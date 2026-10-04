@@ -141,7 +141,7 @@ function quoteFor(p){
   if(q.t&&daysBetween(q.t.slice(0,10),todayISO())>10)return null;
   let ccy=q.ccy,px=q.p;if(ccy==='GBp'||ccy==='GBX'){px/=100;ccy='GBP'}
   let eurPx;if(ccy==='EUR')eurPx=px;else{const r=PRICES.fx&&PRICES.fx[ccy];if(!(r>0))return null;eurPx=px/r}
-  return {eurPx,px,ccy,t:q.t,src:PRICES.source||'Kursdienst'};
+  return {eurPx,px,ccy,t:q.t,src:q.src||PRICES.source||'Kursdienst',alt:q.alt||null};
 }
 function liveValue(p){if(UI.live===false||p.qty==null)return null;const q=quoteFor(p);return q?p.qty*q.eurPx:null}
 function priceInfo(d){const inc=d.positions.filter(p=>p.conf!=='skip');const live=inc.filter(p=>liveValue(p)!=null);

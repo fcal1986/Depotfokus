@@ -207,7 +207,7 @@ function vPos(id){
   return h+checkButtons(p);
 }
 function myPosCard(d,p){const m=txModel(d),s=secFor(d,p),q=liveValue(p)!=null?quoteFor(p):null;
-  const src=q?`Tageskurs ${num(q.px,2)} ${esc(q.ccy)} vom ${esc(fmtAsOf(q.t))}${q.ccy!=='EUR'?', umgerechnet in Euro':''}`:'Wert aus dem Export';
+  const src=q?`Tageskurs ${num(q.px,2)} ${esc(q.ccy)}${q.alt?' an der US-Börse':''} vom ${esc(fmtAsOf(q.t))}${q.ccy!=='EUR'?', umgerechnet in Euro':''} (${esc(q.src)})`:'Wert aus dem Export';
   if(!m)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${p.qty!=null?num(p.qty,4)+' Stück · ':''}${src}. Einstand und Gewinn nach dem Umsatz-Import.</span></section>`;
   if(!s)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${src}. Keine Umsätze zu dieser Position gefunden; Einstand und Gewinn sind deshalb nicht bekannt.</span></section>`;
   const row=(l,v,c='')=>`<dt>${l}</dt><dd class="num ${c}">${v}</dd>`;
