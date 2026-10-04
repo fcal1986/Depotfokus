@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap">
 <style>
-/* Depotfokus Vision: Handy-erste Einzelseite, Bildschirme per Hash-Route (#heute, #story, #kompass, #check, #liga, #kulissen) */
+
+/* Depotfokus: Vision-Oberfläche mit echter Logik. Routen #heute #story #depot #pos #check #plan #liga #daten */
 :root{
   --ground:#F5F6FA; --card:#FFFFFF; --line:#E3E5EE; --line-soft:#EEF0F6;
   --ink:#14172E; --ink-2:#4A5070; --ink-3:#6B7090;
@@ -20,6 +21,7 @@
   --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --body:Figtree, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"DM Mono", ui-monospace, Menlo, monospace;
+  --s1:#2a78d6; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#4a3aa7; --s7:#008300;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -28,6 +30,7 @@ html,body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--b
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:6px}
+[tabindex="-1"]:focus{outline:none}
 h1,h2{margin:0;text-wrap:balance}
 p{margin:0}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
@@ -72,7 +75,7 @@ p{margin:0}
 
 /* Story */
 .story{background:var(--night);color:#fff;min-height:100vh;min-height:100dvh;padding:calc(14px + env(safe-area-inset-top,0px)) 20px 28px;display:flex;flex-direction:column;gap:18px}
-.prog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.prog{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:5px}
 .prog span{height:4px;border-radius:2px;background:var(--night-line)}
 .prog span.on{background:#fff}
 .barrow{display:flex;flex-direction:column;gap:6px}
@@ -106,9 +109,9 @@ p{margin:0}
 /* Liga */
 .yn button{min-height:48px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;background:transparent;color:#fff;border:1.5px solid #4A5070}
 .yn button[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
-.conf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
-.conf button{min-height:44px;border-radius:10px;font-family:var(--mono);font-size:13px;cursor:pointer;background:var(--night-2);color:#fff;border:0}
-.conf button[aria-pressed="true"]{background:var(--coral);color:var(--ink)}
+.conf-g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.conf-g button{min-height:44px;border-radius:10px;font-family:var(--mono);font-size:13px;cursor:pointer;background:var(--night-2);color:#fff;border:0}
+.conf-g button[aria-pressed="true"]{background:var(--coral);color:var(--ink)}
 .board{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:42px;border-bottom:1px solid var(--line-soft)}
 .board:last-of-type{border-bottom:0}
 
@@ -120,253 +123,904 @@ p{margin:0}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;font-size:14px;z-index:20;max-width:calc(100% - 32px)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Zusammenführung: Bausteine aus App und Vision */
+.col{display:flex;flex-direction:column}
+.small{font-size:13px}.strong{font-weight:700}.center{text-align:center}
+.muted2{color:var(--ink-2)}.muted-night{color:var(--night-text-2)}
+.pos-text{color:var(--pos)}.neg-text{color:var(--neg)}.warn-text{color:var(--warn);font-weight:700;font-size:13px}.dark .warn-text{color:var(--sun)}.sun-text{color:var(--sun)}
+.h2,.card h2{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:-.01em;margin:0 0 6px}
+.h3,.card h3{font-family:var(--display);font-weight:800;font-size:17px;margin:10px 0 4px}
+.card>p+p{margin-top:6px}
+.lead{font-size:16px;line-height:1.45}
+.hint{font-size:12.5px;color:var(--ink-3)}
+.hint-box{font-size:13px;color:var(--warn);background:var(--warn-bg);border-radius:10px;padding:8px 10px}
+.empty{background:var(--ground);border:1px dashed #C9CDDA;border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2)}
+.banner{display:flex;flex-direction:column;gap:2px;background:var(--warn-bg);color:var(--warn);border-radius:14px;padding:12px 14px;font-size:13.5px}
+.demo-bar{display:flex;gap:10px;align-items:center;background:#FFF8E0;border:1px solid #F2DE9B;border-radius:14px;padding:10px 12px;font-size:13px;color:var(--ink-2)}
+.chip-btn{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 12px;min-height:44px;font-weight:700;font-size:13px}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;flex:none;border:0;background:none;cursor:pointer}
+.icon-btn.night{color:#fff}
+.chip-soon{font-size:11px;font-weight:700;color:var(--blue);background:#E6ECFA;border-radius:6px;padding:2px 7px}
+.lbl.night{color:var(--night-text)}
+.av.light{background:#fff;color:var(--ink);flex:none}
+.story-h{font-size:26px;line-height:1.2;font-weight:600}
+.story-box{display:flex;flex-direction:column;gap:6px;background:var(--night-2);border-radius:14px;padding:12px 14px}
+.story .btn:disabled{opacity:.35;cursor:default}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.danger{border-color:var(--neg);color:var(--neg)}
+.card .btn{min-height:46px;font-size:14.5px}
+.link{background:none;border:0;padding:0;color:var(--blue);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap}
+.tag.neutral{background:var(--line-soft);color:var(--ink-2)}
+.mood{font-weight:700}.mood.pos{color:var(--pos)}.mood.warn{color:var(--warn)}.mood.neg{color:var(--neg)}.mood.neutral{color:var(--ink-3)}
+.kind{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 7px;margin-right:6px}
+.kind.metric{background:#E6ECFA;color:var(--blue)}.kind.company{background:var(--line-soft);color:var(--ink-2)}.kind.interp{background:#F1E9FB;color:#6B3FA8}
+.st{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;flex:none}
+.st.yes{background:var(--pos-bg);color:var(--pos)}.st.no{background:var(--neg-bg);color:var(--neg)}.st.open{background:var(--warn-bg);color:var(--warn)}.st.np{background:var(--line-soft);color:var(--ink-3)}
+.item{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line-soft)}
+.card h2+.item{border-top:0}
+.mark{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px}
+.mark.crit{background:var(--neg-bg);color:var(--neg)}.mark.warn{background:var(--warn-bg);color:var(--warn)}.mark.info{background:#E6ECFA;color:var(--blue)}.mark.good{background:var(--pos-bg);color:var(--pos)}.mark.na{background:var(--line-soft);color:var(--ink-3)}
+details summary{cursor:pointer;font-size:13px;color:var(--blue);font-weight:600;min-height:28px;display:flex;align-items:center}
+details.card summary{font-size:15px;color:var(--ink);min-height:36px}
+.grph{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px;color:var(--ink-2);padding:12px 0 4px;border-top:1px solid var(--line-soft)}
+.card h2+.grph{border-top:0;padding-top:4px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:9px 0;min-height:44px}
+.prow .nm{font-weight:600}.prow .r{text-align:right}.prow .sub{grid-column:1/-1;font-size:12.5px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prow:hover .nm{color:var(--accent)}
+.fact,.rule{padding:10px 0;border-top:1px solid var(--line-soft);font-size:14px;display:flex;flex-direction:column;gap:4px}
+.card h2+.fact,.card h2+.rule{border-top:0}
+.fact .kind{align-self:flex-start}
+.src{font-size:12px;color:var(--ink-3)}a.src{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+.story .src{color:var(--night-text)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:8px 0;font-size:13px}
+.kv dt{color:var(--ink-3)}.kv dd{margin:0}
+.goal{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--line-soft)}
+.goal .err{grid-column:2/-1}
+.numin{width:76px;min-height:44px;border:1.5px solid #C9CDDA;border-radius:10px;padding:0 10px;font:inherit;font-family:var(--mono);text-align:right;background:#fff;color:var(--ink)}
+.numin[aria-invalid="true"]{border-color:var(--neg);background:var(--neg-bg)}
+select{min-height:44px;border:1.5px solid #C9CDDA;border-radius:10px;padding:0 10px;font:inherit;background:#fff;color:var(--ink);max-width:100%}
+.field{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.field .numin{width:100%}
+.err{font-size:12.5px;color:var(--neg);font-weight:600}.err:empty{display:none}
+.alloc{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--line-soft)}
+.alloc .why{grid-column:2/-1;font-size:12.5px;color:var(--ink-3)}
+.result{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;background:var(--ground);border-radius:12px;padding:10px 12px;margin:6px 0;font-size:14px}
+.bars{display:flex;flex-direction:column;gap:6px;margin:6px 0}
+.barlab{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;align-items:center;font-size:12px;color:var(--ink-3)}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--line-soft)}
+.bar span{height:100%}
+.c1{background:var(--pos-bg);color:var(--pos)}.c2{background:var(--warn-bg);color:var(--warn)}.c3{background:#E6ECFA;color:var(--blue)}.c4{background:#F1E9FB;color:#6B3FA8}
+.stage{display:flex;flex-direction:column;gap:10px;margin-top:12px;background:var(--ground);border-radius:14px;padding:12px}
+.ok{color:var(--pos);font-weight:700}.bad{color:var(--neg);font-weight:700}
+.conf{display:flex;flex-direction:column;gap:8px;padding:12px 0;border-top:1px solid var(--line-soft)}
+.card h2+.conf{border-top:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.card .row{flex-wrap:wrap}
+
 </style>
 </head>
 <body>
 <div class="app">
-
-<!-- ===================== HEUTE ===================== -->
-<main class="screen" data-screen="heute" aria-labelledby="t-heute">
-  <div class="row between">
-    <div style="display:flex;flex-direction:column;gap:2px">
-      <span style="font-size:13px;color:var(--ink-2);font-weight:600" id="today">Heute</span>
-      <h1 class="h1" id="t-heute">Guten Morgen</h1>
-    </div>
-    <a href="#liga" class="row" style="gap:6px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 12px;min-height:44px;font-weight:700;font-size:13px" aria-label="Verstanden-Serie: 6 Tage, zur Liga">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V5M22 20H2"/></svg>6 Tage
-    </a>
-  </div>
-
-  <div class="stories" aria-label="Neuigkeiten zu deinen Positionen">
-    <a href="#story" class="story-b"><span class="ring"><span class="av">AR</span></span><span class="n">Ares</span></a>
-    <a href="#story" class="story-b"><span class="ring"><span class="av">NO</span></span><span class="n">Novo</span></a>
-    <a href="#story" class="story-b"><span class="ring"><span class="av">PG</span></span><span class="n">P&amp;G</span></a>
-    <a href="#story" class="story-b"><span class="ring seen"><span class="av">MS</span></span><span class="n">Main St.</span></a>
-  </div>
-
-  <section class="dark" style="display:flex;flex-direction:column;gap:8px">
-    <div class="row between"><span class="lbl">Heute Nacht für dich gelesen</span><span class="chip-demo">Beispiel</span></div>
-    <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">2.418</span><span style="font-size:14px;color:var(--night-text-2)">Meldungen in 23 Sprachen</span></div>
-    <a href="#kulissen" class="row between" style="font-size:14px;font-weight:600;min-height:36px"><span><b style="color:var(--coral)">3</b> davon betreffen dein Depot</span><span aria-hidden="true">→</span></a>
-  </section>
-
-  <section class="card row" style="gap:14px">
-    <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="18" r="8" stroke="#E0A100"/><path d="M18 4v3M18 29v3M4 18h3M29 18h3M8 8l2 2M26 26l2 2M8 28l2-2M26 10l2-2" stroke="#E0A100"/><path d="M20 40h18a7 7 0 0 0 0-14 9 9 0 0 0-17 3 6 6 0 0 0-1 11z" stroke="#4A5070" fill="#fff"/></svg>
-    <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-      <span class="lbl">Depot-Wetter</span>
-      <span style="font-family:var(--display);font-weight:600;font-size:19px">Überwiegend ruhig</span>
-      <span style="font-size:13px;color:var(--ink-2)">Wolken bei BDCs &amp; REITs: 35 % statt deiner 15 %</span>
-    </div>
-  </section>
-
-  <section style="display:flex;flex-direction:column;gap:8px">
-    <h2 style="font-size:15px;font-weight:700;margin-top:4px">Was sich geändert hat</h2>
-    <a href="#kompass" class="card change"><span class="row between"><span class="t">Ares Capital</span><span class="tag warn">Beobachten</span></span><span class="d">Erträge 0,47 $ decken die Dividende von 0,48 $ knapp nicht.</span></a>
-    <a href="#story" class="card change"><span class="row between"><span class="t">Novo Nordisk</span><span class="tag pos">Rückenwind</span></span><span class="d">Jahresausblick im August wieder angehoben.</span></a>
-    <a href="#story" class="card change"><span class="row between"><span class="t">Procter &amp; Gamble</span><span class="tag neg">Gegenwind</span></span><span class="d">Neue Prognose: 0 bis 3 % Gewinnwachstum je Aktie.</span></a>
-  </section>
-</main>
-
-<!-- ===================== STORY ===================== -->
-<main class="story" data-screen="story" hidden aria-labelledby="t-story">
-  <div class="prog" aria-label="Teil 1 von 4"><span class="on"></span><span></span><span></span><span></span></div>
-  <div class="row">
-    <span class="av" style="width:40px;height:40px;background:#fff;color:var(--ink);font-size:13px">AR</span>
-    <div style="display:flex;flex-direction:column;flex:1;min-width:0"><span style="font-weight:700">Ares Capital</span><span style="font-size:12.5px;color:var(--night-text)">11,6 % des Musterdepots · Q2-Bericht</span></div>
-    <a href="#heute" aria-label="Story schließen" class="back" style="margin:0 -10px 0 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
-  </div>
-  <h1 class="big" id="t-story" style="margin-top:18px;font-size:34px;line-height:1.12">Die Erträge decken die Dividende gerade nicht ganz.</h1>
-  <section style="background:var(--night-2);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px">
-    <span class="lbl" style="color:var(--night-text)">Je Aktie im 2. Quartal 2026</span>
-    <div class="barrow"><div class="row between" style="font-size:14px"><span>Kernerträge (Core EPS)</span><span class="num">0,47 $</span></div><div class="track"><div class="fill" style="width:94%;background:var(--coral)"></div></div></div>
-    <div class="barrow"><div class="row between" style="font-size:14px"><span>Dividende</span><span class="num">0,48 $</span></div><div class="track"><div class="fill" style="width:96%;background:#fff"></div></div></div>
-    <a href="https://www.sec.gov/Archives/edgar/data/0001287750/000162828026050303/arccq2-2026exhibit991.htm" target="_blank" rel="noopener" style="font-size:12px;color:var(--night-text);text-decoration:underline">Quelle: Ares Capital, Ergebnismeldung Q2 2026, 29.07.2026</a>
-  </section>
-  <section class="bubble">
-    <span class="lbl">Was heißt das?</span>
-    <p style="font-size:15px">Die Lücke ist ein Cent je Aktie. Spannend wird der Bericht Ende Oktober: Bleibt die Lücke, steigt das Risiko einer Kürzung.</p>
-  </section>
-  <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
-    <a href="#kompass" class="btn light">Tiefer einsteigen</a>
-    <button type="button" class="btn ghost-dark" id="understood">Verstanden</button>
-  </div>
-</main>
-
-<!-- ===================== KOMPASS ===================== -->
-<main class="screen" data-screen="kompass" hidden aria-labelledby="t-kompass">
-  <div class="row" style="gap:8px">
-    <a href="#heute" class="back" aria-label="Zurück"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
-    <div style="display:flex;flex-direction:column"><h1 class="big" id="t-kompass" style="font-size:24px">Ares Capital</h1><span style="font-size:13px;color:var(--ink-2)">BDC · 11,6 % des Musterdepots</span></div>
-  </div>
-  <section class="card" style="display:flex;flex-direction:column;gap:12px">
-    <div class="row between"><span class="lbl">Kompass · 12 Monate</span><span class="chip-demo">Beispielwerte</span></div>
-    <div class="prob" role="img" aria-label="Schwächer als der Markt 25 Prozent, ähnlich 50 Prozent, stärker 25 Prozent">
-      <div style="width:25%;background:#F3C6BC;color:#7A2412">25 %</div><div style="width:50%;background:#DADDEA">50 %</div><div style="width:25%;background:#BFE8DA;color:#0B5A44">25 %</div>
-    </div>
-    <div class="grid2" style="grid-template-columns:repeat(3,minmax(0,1fr));font-size:12px;color:var(--ink-2);text-align:center;gap:6px"><span>Schwächer als der Markt</span><span>Ähnlich</span><span>Stärker</span></div>
-    <div class="trust"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2"/></svg><span style="font-size:13px;line-height:1.35"><b>Trefferquote öffentlich:</b> Von unseren 70-%-Aussagen trafen bisher 68 % ein.</span></div>
-  </section>
-  <div class="grid2">
-    <section class="card pc"><span style="font-weight:700;font-size:14px;color:var(--pos)">Dafür spricht</span><ul><li>Ausfallquote 2,4 %, unter dem langjährigen Schnitt von rund 3 %</li><li>Verschuldung stabil bei 1,12-fach</li><li>Dividende für Q3 bestätigt</li></ul></section>
-    <section class="card pc"><span style="font-weight:700;font-size:14px;color:var(--neg)">Dagegen spricht</span><ul><li>Kernerträge 0,47 $ unter der Dividende von 0,48 $</li><li>Vorjahr noch 0,50 $</li><li>Sinkende Zinsen drücken variable Kreditzinsen</li></ul></section>
-  </div>
-  <span style="font-size:12px;color:var(--ink-3)">Gelesen in EN, DE, FR, JA und weiteren Sprachen · jede Aussage mit Quelle</span>
-  <section class="dark" style="display:flex;flex-direction:column;gap:4px"><span class="lbl">Was als Nächstes zählt</span><span style="font-size:15px;font-weight:600">Q3-Bericht, erwartet Ende Oktober: Steigen die Kernerträge wieder auf 0,48 $?</span></section>
-  <div class="grid2" style="margin-top:auto">
-    <a href="#check" class="btn" data-intent="kauf">Kauf überlegen</a>
-    <a href="#check" class="btn solid" data-intent="verkauf">Verkauf überlegen</a>
-  </div>
-</main>
-
-<!-- ===================== CHECK ===================== -->
-<main class="screen sub" data-screen="check" hidden aria-labelledby="t-check">
-  <div class="row" style="gap:8px">
-    <a href="#kompass" class="back" aria-label="Zurück"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
-    <div style="display:flex;flex-direction:column"><span class="lbl">Entscheidungs-Check</span><h1 class="big" id="t-check" style="font-size:22px">Teilverkauf Ares Capital</h1></div>
-  </div>
-  <section class="card step"><span class="num-c" style="background:var(--pos-bg);color:var(--pos)" aria-hidden="true">1</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700">Passt es zu deinem Plan?</span><span style="font-size:13.5px;color:var(--ink-2)" id="planText">BDCs &amp; REITs liegen bei 35 %, dein Ziel sind 15 %. Ein Teilverkauf bringt dich näher heran.</span></div></section>
-  <section class="card step"><span class="num-c" style="background:var(--warn-bg);color:var(--warn)" aria-hidden="true">2</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700">Was kostet es?</span><span style="font-size:13.5px;color:var(--ink-2)">Steuer auf den Gewinn hängt von deinem Kaufkurs ab: [Kaufkurs fehlt]. Dazu die Ordergebühr deines Brokers.</span></div></section>
-  <section class="card" style="display:flex;flex-direction:column;gap:10px">
-    <div class="step"><span class="num-c" style="background:#E6ECFA;color:var(--blue)" aria-hidden="true">3</span><span style="font-weight:700;padding-top:3px" id="whyLbl">Warum gerade jetzt?</span></div>
-    <div class="reasons" role="group" aria-labelledby="whyLbl">
-      <button type="button" data-reason="plan" aria-pressed="true">Weg vom Ziel</button>
-      <button type="button" data-reason="news" aria-pressed="false">Neue Information</button>
-      <button type="button" data-reason="drop" aria-pressed="false">Kurs ist gefallen</button>
-    </div>
-    <p id="dropHint" hidden style="font-size:13px;color:var(--warn);background:var(--warn-bg);border-radius:10px;padding:8px 10px">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?</p>
-  </section>
-  <section class="card step"><span class="num-c" style="background:#F1E9FB;color:#6B3FA8" aria-hidden="true">4</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700">Was würde dich umstimmen?</span><span style="font-size:13.5px;color:var(--ink-2)">Vorschlag: Kernerträge im Q3-Bericht wieder mindestens 0,48 $. Wir melden uns, wenn das eintritt.</span></div></section>
-  <section class="dark row between">
-    <div style="display:flex;flex-direction:column;gap:2px"><span class="lbl">Entscheidungsqualität</span><span class="big" style="font-size:20px" id="quality" aria-live="polite">Sehr gut begründet</span></div>
-    <div class="meter" id="meter" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-  </section>
-  <label class="switch"><span>24 Stunden drüber schlafen</span><input type="checkbox" id="sleep" checked></label>
-  <div class="grid2" style="margin-top:auto">
-    <button type="button" class="btn" id="saveNote">Notiz speichern</button>
-    <button type="button" class="btn solid" id="broker">Morgen erinnern</button>
-  </div>
-  <p style="font-size:12px;color:var(--ink-3);text-align:center">Depotfokus führt keine Orders aus. Punkte gibt es für die Begründung, nicht für den Trade.</p>
-</main>
-
-<!-- ===================== LIGA ===================== -->
-<main class="screen" data-screen="liga" hidden aria-labelledby="t-liga">
-  <div class="row between" style="align-items:baseline"><h1 class="h1" id="t-liga" style="font-size:28px">Prognose-Liga</h1><span style="font-size:13px;color:var(--ink-2);font-weight:600" id="week">Woche 40</span></div>
-  <section class="dark" style="display:flex;flex-direction:column;gap:12px">
-    <span class="lbl">Frage der Woche</span>
-    <span style="font-family:var(--display);font-weight:600;font-size:20px;line-height:1.25" id="qText">Erhöht Main Street die Monatsdividende für das erste Quartal 2027?</span>
-    <span style="font-size:12.5px;color:var(--night-text)">Auflösung mit der nächsten Dividendenmeldung · zuletzt 0,265 $ je Monat</span>
-    <div class="grid2 yn" role="group" aria-labelledby="qText"><button type="button" data-ans="yes" aria-pressed="false">Ja</button><button type="button" data-ans="no" aria-pressed="false">Nein</button></div>
-    <span style="font-size:13px;color:var(--night-text-2)" id="confLbl">Wie sicher bist du?</span>
-    <div class="conf" role="group" aria-labelledby="confLbl">
-      <button type="button" data-conf="50" aria-pressed="false">50 %</button><button type="button" data-conf="60" aria-pressed="false">60 %</button><button type="button" data-conf="70" aria-pressed="true">70 %</button><button type="button" data-conf="80" aria-pressed="false">80 %</button><button type="button" data-conf="90" aria-pressed="false">90 %</button>
-    </div>
-    <span style="font-size:13px;color:var(--sun);min-height:20px" id="ligaMsg" aria-live="polite"></span>
-  </section>
-  <section class="card" style="display:flex;flex-direction:column;gap:4px">
-    <div class="row between"><span style="font-weight:700">Treffsicherheit · Familie</span><span class="chip-demo">Beispiel</span></div>
-    <div class="board"><span class="num" style="color:var(--ink-3)">1</span><span style="font-weight:600">Du</span><span class="num">82</span></div>
-    <div class="board"><span class="num" style="color:var(--ink-3)">2</span><span style="font-weight:600">Lea</span><span class="num">79</span></div>
-    <div class="board"><span class="num" style="color:var(--ink-3)">3</span><span style="font-weight:600">Papa</span><span class="num">74</span></div>
-    <div class="board"><span class="num" style="color:var(--ink-3)">4</span><span style="font-weight:600">Oma Gisela</span><span class="num">71</span></div>
-    <span style="font-size:12px;color:var(--ink-3);margin-top:4px">Punkte für gut kalibrierte Einschätzungen: Wer 70 % sagt, sollte in 7 von 10 Fällen richtig liegen.</span>
-  </section>
-  <div class="grid2">
-    <section class="card" style="display:flex;flex-direction:column;gap:4px;padding:12px"><span style="font-weight:700;font-size:14px">Taschengeld-Depot</span><span style="font-size:13px;color:var(--ink-2)">Lea, 12: Spielgeld in Firmen, die sie kennt. Gleiche Storys, einfachere Worte.</span></section>
-    <section class="card" style="display:flex;flex-direction:column;gap:6px;padding:12px"><span style="font-weight:700;font-size:14px">Abzeichen</span><span style="font-size:12.5px;color:var(--ink-2)">Bilanz-Leser · Ruhe bewahrt · Klumpen-Knacker</span></section>
-  </div>
-</main>
-
-<!-- ===================== KULISSEN ===================== -->
-<main class="screen" data-screen="kulissen" hidden aria-labelledby="t-kul">
-  <h1 class="h1" id="t-kul" style="font-size:28px">Hinter den Kulissen</h1>
-  <p style="font-size:14px;color:var(--ink-2);margin-top:-6px">Was jede Nacht passiert, bevor du aufwachst.</p>
-  <div class="grid2" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
-    <div class="card" style="padding:10px;border-radius:14px"><div class="big" style="font-size:22px">2.418</div><div style="font-size:12px;color:var(--ink-2)">gelesen</div></div>
-    <div class="card" style="padding:10px;border-radius:14px"><div class="big" style="font-size:22px">31</div><div style="font-size:12px;color:var(--ink-2)">relevant</div></div>
-    <div class="dark" style="padding:10px;border-radius:14px"><div class="big" style="font-size:22px;color:var(--coral)">3</div><div style="font-size:12px;color:var(--night-text-2)">für dich</div></div>
-  </div>
-  <span class="chip-demo" style="align-self:flex-start">Beispielwerte</span>
-  <section class="card steps" style="padding:6px 16px">
-    <div class="s"><span class="n">1</span><div><div style="font-weight:700">Lesen</div><div style="font-size:13px;color:var(--ink-2)">Nachrichten, Pflichtmitteilungen und Geschäftsberichte in über 30 Sprachen.</div></div></div>
-    <div class="s"><span class="n">2</span><div><div style="font-weight:700">Verstehen</div><div style="font-size:13px;color:var(--ink-2)">Übersetzen und Fakten mit Quelle, Periode und Datum herausziehen.</div></div></div>
-    <div class="s"><span class="n">3</span><div><div style="font-weight:700">Prüfen</div><div style="font-size:13px;color:var(--ink-2)">Gegenquelle suchen, Widersprüche markieren, bei Zweifel ein Mensch.</div></div></div>
-    <div class="s"><span class="n">4</span><div><div style="font-weight:700">Rechnen</div><div style="font-size:13px;color:var(--ink-2)">Szenarien mit Wahrscheinlichkeiten, die sich an der eigenen Trefferquote messen lassen.</div></div></div>
-    <div class="s"><span class="n">5</span><div><div style="font-weight:700">Filtern</div><div style="font-size:13px;color:var(--ink-2)">Nur was dein Depot betrifft, gebündelt statt im Minutentakt.</div></div></div>
-  </section>
-  <section style="display:flex;flex-direction:column;gap:8px">
-    <span style="font-weight:700">Versprechen</span>
-    <div class="row" style="flex-wrap:wrap;gap:8px"><span class="pill">Jede Zahl mit Quelle</span><span class="pill">Trefferquote öffentlich</span><span class="pill">Keine Provision für Käufe</span><span class="pill">Keine Orders</span></div>
-  </section>
-  <p style="font-size:12px;color:var(--ink-3)">Vision-Prototyp. Zähler, Wahrscheinlichkeiten, Trefferquote und Ranglisten sind Beispielwerte; die Unternehmenszahlen stammen aus den Q2-Berichten 2026. Keine Anlageberatung. <a href="app/" style="text-decoration:underline">Zur bisherigen Depot-App</a></p>
-</main>
-
-<nav class="tabs" id="tabs" aria-label="Hauptnavigation">
-  <a href="#heute" data-tab="heute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Heute</a>
-  <a href="#kompass" data-tab="kompass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/></svg>Depot</a>
-  <a href="#liga" data-tab="liga"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM12 13v4M8 21h8M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/></svg>Liga</a>
-  <a href="#kulissen" data-tab="kulissen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>Kulissen</a>
-</nav>
-<div class="toast" id="toast" hidden role="status"></div>
+<main id="view" class="screen"></main>
+<nav class="tabs" id="tabs" aria-label="Hauptnavigation"><a href="#heute" data-tab="heute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>Heute</a><a href="#depot" data-tab="depot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18"/></svg>Depot</a><a href="#plan" data-tab="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 4"/></svg>Plan</a><a href="#liga" data-tab="liga"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM12 13v4M8 21h8M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/></svg>Liga</a></nav>
 </div>
-
+<div class="toast" id="toast" hidden></div>
+<div class="sr" id="live" aria-live="polite"></div>
 <script>
 'use strict';
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const SCREENS=['heute','story','kompass','check','liga','kulissen'];
-const TABS={heute:'heute',kompass:'kompass',check:'kompass',liga:'liga',kulissen:'kulissen'};
-let toastT;function toast(t){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,2600)}
 
-/* Datum und Kalenderwoche */
-const now=new Date();
-$('#today').textContent=now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
-(function(){const d=new Date(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()));const day=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-day);const y=new Date(Date.UTC(d.getUTCFullYear(),0,1));$('#week').textContent='Woche '+Math.ceil(((d-y)/864e5+1)/7)})();
-const h=now.getHours();$('#t-heute').textContent=h<11?'Guten Morgen':h<18?'Guten Tag':'Guten Abend';
+'use strict';
+/* =========================================================
+   STAMMDATEN UND BEISPIELDATEN
+   ========================================================= */
+const B=[
+ {id:'liq',name:'Konto & Tagesgeld',c:'--s6',eq:false},
+ {id:'bonds',name:'Anleihen',c:'--s7',eq:false},
+ {id:'core',name:'Welt-ETFs',c:'--s1',eq:true},
+ {id:'hdy',name:'Dividenden-ETFs',c:'--s2',eq:true},
+ {id:'single',name:'Einzelaktien',c:'--s3',eq:true},
+ {id:'bdc',name:'BDCs & REITs',c:'--s4',eq:true},
+ {id:'ndq',name:'Nasdaq-ETF',c:'--s5',eq:true}
+];
+const BN=Object.fromEntries(B.map(b=>[b.id,b]));
+/* Beispiel-Stammdaten: Baustein, Fonds ja/nein, laufende Kosten nur wo eine Quelle vorliegt.
+   Unbekannte Symbole bekommen keinen Baustein und keine Kosten. */
+const STAMM={
+ 'IQQW.DE':{bucket:'core',fund:true,ter:0.50,terSrc:'Finanzfluss, Abruf 04.10.2026'},
+ 'K0MR.DE':{bucket:'core',fund:true,ter:0.45,terSrc:'finanzen.net, Abruf 04.10.2026'},
+ 'EQQQ.DE':{bucket:'ndq',fund:true,ter:0.30,terSrc:'extraETF, Abruf 04.10.2026'},
+ '9A2.F':{bucket:'bdc',fund:false},'13M.F':{bucket:'bdc',fund:false},'WX4.F':{bucket:'bdc',fund:false},'RY6.F':{bucket:'bdc',fund:false},
+ 'PEP.DE':{bucket:'single',fund:false},'JNJ.DE':{bucket:'single',fund:false},'CCC3.DE':{bucket:'single',fund:false},'PRG.DE':{bucket:'single',fund:false},
+ 'MSF.DE':{bucket:'single',fund:false},'3V64.DE':{bucket:'single',fund:false},'NOV.DE':{bucket:'single',fund:false},
+ 'GOOG':{bucket:'single',fund:false},'AAPL':{bucket:'single',fund:false},'MA':{bucket:'single',fund:false}
+};
+const DEMO_CSV=`Bestand;Name;Symbol;Kurs;Marktwert;Anteil in %;Notiz
+"";Summe;;;20.520,45;100,00;
+40;MSCI World USD (Dist);IQQW.DE;93,156;3.726,24;18,16;
+150;Gerd Kommer Multifactor Equity USD (Dist);K0MR.DE;14,414;2.162,10;10,54;
+2;EQQQ Nasdaq 100 USD (Dist);EQQQ.DE;669,1;1.338,20;6,52;
+60;Ares Capital;9A2.F;16,674;1.000,44;4,88;
+20;Main Street Capital;13M.F;48,675;973,50;4,74;
+25;Omega Healthcare Investors;WX4.F;40,01;1.000,25;4,87;
+20;Realty Income;RY6.F;47,94;958,80;4,67;
+10;PepsiCo;PEP.DE;111,6001678;1.116,00;5,44;
+15;Coca-Cola;CCC3.DE;75,9;1.138,50;5,55;
+8;Procter & Gamble;PRG.DE;128,3609167;1.026,89;5,00;
+5;Johnson & Johnson;JNJ.DE;228,3501247;1.141,75;5,56;
+20;Novo-Nordisk (B);NOV.DE;33,21;664,20;3,24;
+4;Microsoft;MSF.DE;457,35;1.829,40;8,92;
+4;Visa;3V64.DE;319,2;1.276,80;6,22;
+2;Apple;AAPL;333,69;667,38;3,25;
+"";Verrechnungskonto;;;500,00;2,44;
+"";Summe;;;20.520,45;100,00;`;
 
-/* Navigation per Hash: Browser-Zurück funktioniert */
-function show(){
-  const id=(location.hash||'#heute').slice(1);const s=SCREENS.includes(id)?id:'heute';
-  $$('[data-screen]').forEach(el=>el.hidden=el.dataset.screen!==s);
-  $('#tabs').hidden=s==='story'||s==='check';
-  $$('#tabs a').forEach(a=>{if(a.dataset.tab===TABS[s])a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-  window.scrollTo(0,0);
-  const t=$('[data-screen="'+s+'"] h1');if(t){t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}
+/* Quellen: Organisation, Dokument, Berichtsperiode, Datum, Link */
+const S={
+ arcc:{org:'Ares Capital',doc:'Ergebnismeldung (SEC 8-K)',per:'Q2 2026',date:'29.07.2026',url:'https://www.sec.gov/Archives/edgar/data/0001287750/000162828026050303/arccq2-2026exhibit991.htm'},
+ arccQ1:{org:'Ares Capital',doc:'Ergebnismeldung (SEC 8-K)',per:'Q1 2026',date:'28.04.2026',url:'https://www.sec.gov/Archives/edgar/data/0001287750/000162828026027685/arccq1-2026exhibit991.htm'},
+ arccCall:{org:'MarketBeat',doc:'Zusammenfassung Telefonkonferenz',per:'Q2 2026',date:'29.07.2026',url:'https://www.marketbeat.com/instant-alerts/ares-capital-q2-earnings-call-highlights-2026-07-29/'},
+ main:{org:'Main Street Capital',doc:'Ergebnismeldung (SEC 8-K)',per:'Q2 2026',date:'06.08.2026',url:'https://www.sec.gov/Archives/edgar/data/0001396440/000139644026000090/main-q22026xearningsreleas.htm'},
+ mainQ:{org:'Main Street Capital',doc:'Quartalsbericht 10-Q, Anhang M',per:'Q1 2026',date:'05.2026',url:'https://www.sec.gov/Archives/edgar/data/0001396440/000139644026000073/main-20260331.htm'},
+ mainDiv:{org:'Main Street Capital',doc:'Dividendenmeldung',per:'Q4 2026',date:'04.08.2026',url:'https://www.mainstcapital.com/investors/news-events/press-releases/detail/2768'},
+ ohi:{org:'Omega Healthcare',doc:'Ergebnismeldung (SEC 8-K)',per:'Q2 2026',date:'29.07.2026',url:'https://www.sec.gov/Archives/edgar/data/0000888491/000088849126000022/ohi-20260729xex99d1.htm'},
+ ohiCall:{org:'GuruFocus',doc:'Zusammenfassung Telefonkonferenz',per:'Q2 2026',date:'30.07.2026',url:'https://www.gurufocus.com/stock/OHI/transcripts/8992016'},
+ o:{org:'Realty Income',doc:'Ergebnismeldung und Zusatzinformationen',per:'Q2 2026',date:'08.2026',url:'https://www.realtyincome.com/sites/realty-income/files/2026-08/realty-income-earnings-release-and-supplemental-information-q2-2026.pdf'},
+ oZ:{org:'Zacks',doc:'Analyseartikel',per:'Q2 2026',date:'08.2026',url:'https://www.zacks.com/stock/news/2972865/is-realty-income-stock-worth-holding-after-its-q2-earnings-results'},
+ pep:{org:'PepsiCo',doc:'Ergebnismeldung (SEC 8-K)',per:'Q2 2026',date:'09.07.2026',url:'https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000037/q220268-kxexhibit991.htm'},
+ jnj:{org:'Johnson & Johnson',doc:'Ergebnismeldung (SEC 8-K)',per:'Q2 2026',date:'15.07.2026',url:'https://www.sec.gov/Archives/edgar/data/0000200406/000020040626000146/a2026q2exhibit991.htm'},
+ ko:{org:'Pulse 2.0',doc:'Bericht zur Ergebnismeldung',per:'Q2 2026',date:'28.07.2026',url:'https://pulse2.com/coca-cola-q2-revenue-rises-7-to-13-4-billion-as-company-raises-2026-guidance/'},
+ pg:{org:'Procter & Gamble',doc:'Ergebnismeldung (SEC 8-K)',per:'Q4 GJ 2026',date:'29.07.2026',url:'https://www.sec.gov/Archives/edgar/data/0000080424/000008042426000093/fy2526q4amj8-kexhibit991.htm'},
+ msft:{org:'Fierce Network',doc:'Bericht zur Ergebnismeldung',per:'Q4 GJ 2026',date:'07.2026',url:'https://www.fierce-network.com/cloud/microsoft-azure-crosses-100b-mark-growth-hits-four-year-high'},
+ v:{org:'MarketBeat',doc:'Zusammenfassung Telefonkonferenz',per:'Q3 GJ 2026',date:'28.07.2026',url:'https://www.marketbeat.com/instant-alerts/visa-q3-earnings-call-highlights-2026-07-28/'},
+ novo:{org:'Novo Nordisk',doc:'Halbjahresbericht (SEC 6-K)',per:'H1 2026',date:'08.2026',url:'https://www.sec.gov/Archives/edgar/data/0000353278/000035327826000023/caq22026.htm'},
+ novoQ2:{org:'RTTNews',doc:'Bericht zur Ergebnismeldung',per:'Q2 2026',date:'08.2026',url:'https://www.rttnews.com/3675609/novo-nordisk-q2-net-sales-improve.aspx'},
+ novoFeb:{org:'MarketScreener',doc:'Bericht zur Jahresmeldung',per:'GJ 2025',date:'02.2026',url:'https://uk.marketscreener.com/news/novo-nordisk-warns-of-lower-sales-and-profit-for-2026-shares-plunge-in-u-s-update-ce7e5bd3de8ff226'},
+ iqqw:{org:'Finanzfluss',doc:'ETF-Profil IE00B0M62Q58',per:'Stand Abruf',date:'04.10.2026',url:'https://www.finanzfluss.de/informer/etf/ie00b0m62q58/'},
+ kommer:{org:'Parqet',doc:'ETF-Profil (thesaurierende Klasse)',per:'Bestände 19.06.2026',date:'Abruf 04.10.2026',url:'https://app.parqet.com/etf/l-g-gerd-kommer-multifactor-equity-ucits-etf-usd-accumulating-IE0001UQQ933'},
+ kommerTer:{org:'finanzen.net',doc:'ETF-Profil IE000FPWSL69',per:'Stand Abruf',date:'04.10.2026',url:'https://www.finanzen.net/etf/lg-gerd-kommer-multifactor-equity-etf-ie000fpwsl69/xetra'},
+ eqqq:{org:'extraETF',doc:'ETF-Profil IE0032077012',per:'Stand 24.07.2026',date:'Abruf 04.10.2026',url:'https://extraetf.com/de/etf-profile/IE0032077012'},
+ eqqqFF:{org:'Finanzfluss',doc:'ETF-Profil IE0032077012',per:'Stand Abruf',date:'04.10.2026',url:'https://www.finanzfluss.de/informer/etf/ie0032077012/'}
+};
+
+/* Einordnungen (Beispieldaten, manuell recherchiert am 04.10.2026).
+   kind: metric = Kennzahl aus Bericht, company = Aussage/Prognose des Unternehmens.
+   Regeln: type goal (Bedingung erwünscht) oder risk (Risiko). Status goal: met|not_met|open|np, risk: occurred|not_occurred|open|np. */
+const INFO={
+ '9A2.F':{interp:'Die Kreditqualität ist laut Bericht stabil. Die laufenden Kernerträge lagen im zweiten Quartal aber knapp unter der Dividende.',
+  changes:{cmp:'Q2 2026 gegenüber Q1 2026',items:[
+   {kind:'metric',t:'Core EPS unverändert bei 0,47 $ je Aktie.',src:['arcc','arccQ1']},
+   {kind:'company',t:'Dividende für Q3 2026 unverändert bei 0,48 $ je Aktie erklärt.',src:['arcc']}]},
+  facts:[
+   {kind:'metric',t:'Core EPS 0,47 $ je Aktie (Vorjahresquartal 0,50 $).',src:'arcc'},
+   {kind:'metric',t:'Notleidende Kredite: 2,4 % zu Anschaffungskosten, 1,4 % zum Zeitwert.',src:'arccCall'},
+   {kind:'metric',t:'Verschuldung netto 1,12-fach Eigenkapital.',src:'arccCall'}],
+  rules:[
+   {type:'goal',q:'Decken die Kernerträge die reguläre Dividende?',metric:'Core EPS je Aktie im Vergleich zur regulären Quartalsdividende',cond:'Core EPS mindestens 0,48 $',per:'Q2 2026',obs:'0,47 $',prev:'Q1 2026: 0,47 $',status:'not_met',src:'arcc',next:'Bericht Q3 2026, Termin geschätzt Ende Oktober',why:'Liegen die Kernerträge dauerhaft unter der Dividende, muss die Differenz aus früheren Überschüssen kommen.'},
+   {type:'risk',q:'Liegt der Anteil notleidender Kredite über 3 %?',metric:'Notleidende Kredite zu Anschaffungskosten',cond:'über 3,0 %',per:'Q2 2026',obs:'2,4 %',prev:null,status:'not_occurred',src:'arccCall',next:'Bericht Q3 2026',why:'Das Management nennt rund 3 % als eigenen langjährigen Durchschnitt; die Schwelle ist eine Festlegung von Depotfokus.'}],
+  themes:[{t:'Zinsniveau',why:'Ein großer Teil der Kredite ist variabel verzinst. Sinkende Zinsen verringern die Zinserträge. Nicht automatisch prüfbar.'}]},
+ '13M.F':{interp:'Die ausschüttbaren Erträge lagen deutlich über der regulären Dividende, der Substanzwert je Aktie ist gestiegen.',
+  changes:{cmp:'Q2 2026 gegenüber Q1 2026',items:[
+   {kind:'metric',t:'Substanzwert (NAV) je Aktie von 33,46 $ auf 33,92 $.',src:['main']},
+   {kind:'company',t:'Reguläre Monatsdividende ab Q3 2026 von 0,26 $ auf 0,265 $ je Aktie.',src:['mainQ']}]},
+  facts:[
+   {kind:'metric',t:'Ausschüttbare Erträge (DNII) 1,04 $ je Aktie im Quartal.',src:'main'},
+   {kind:'company',t:'Monatsdividende 0,265 $ für Oktober bis Dezember 2026 erklärt, dazu 0,30 $ Sonderdividende im September 2026.',src:'mainDiv'},
+   {kind:'metric',t:'Schlusskurs 55,75 $ am 03.08.2026 laut Dividendenmeldung; das entspricht rund dem 1,6-Fachen des NAV.',src:'mainDiv'}],
+  rules:[
+   {type:'goal',q:'Decken die ausschüttbaren Erträge die reguläre Dividende?',metric:'DNII je Aktie im Vergleich zur regulären Quartalsdividende',cond:'DNII mindestens reguläre Dividende',per:'Q2 2026',obs:'1,04 $ zu 0,78 $',prev:null,status:'met',src:'main',next:'Bericht Q3 2026, Termin geschätzt Anfang November',why:'Zeigt, ob die reguläre Dividende aus laufenden Erträgen bezahlt wird.'},
+   {type:'risk',q:'Sinkt der Substanzwert je Aktie gegenüber dem Vorquartal?',metric:'NAV je Aktie',cond:'niedriger als im Vorquartal',per:'Q2 2026',obs:'33,92 $',prev:'Q1 2026: 33,46 $',status:'not_occurred',src:'main',next:'Bericht Q3 2026',why:'Ein sinkender NAV kann auf Wertberichtigungen im Kreditportfolio hindeuten.'}],
+  themes:[{t:'Bewertungsaufschlag',why:'Der Kurs liegt deutlich über dem Substanzwert. Schrumpft der Aufschlag, kann der Kurs fallen, ohne dass sich das Geschäft verschlechtert.'},{t:'Konjunktur im Mittelstand',why:'Die Kreditnehmer sind kleine und mittlere Unternehmen. Nicht automatisch prüfbar.'}]},
+ 'WX4.F':{interp:'Die Erträge decken die Dividende mit Abstand; die Mieter erwirtschaften ihre Miete laut Unternehmen so gut wie seit Jahren nicht.',
+  changes:{cmp:'Q2 2026 gegenüber Q1 2026',items:[
+   {kind:'company',t:'Quartalsdividende um 0,01 $ auf 0,68 $ je Aktie erhöht.',src:['ohi']},
+   {kind:'company',t:'Jahresprognose AFFO angehoben, Mitte jetzt 3,24 $ je Aktie.',src:['ohi']}]},
+  facts:[
+   {kind:'metric',t:'AFFO 0,83 $ je Aktie im Quartal.',src:'ohi'},
+   {kind:'metric',t:'Mietdeckung der Betreiber (EBITDA) 1,65-fach; Verschuldung 3,3-fach.',src:'ohiCall'}],
+  rules:[
+   {type:'goal',q:'Deckt der AFFO je Aktie die Dividende?',metric:'AFFO je Aktie im Vergleich zur Quartalsdividende',cond:'AFFO mindestens Dividende',per:'Q2 2026',obs:'0,83 $ zu 0,68 $',prev:null,status:'met',src:'ohi',next:'Bericht Q3 2026, Termin geschätzt Ende Oktober',why:'Zeigt, wie viel Spielraum zwischen Erträgen und Ausschüttung liegt.'},
+   {type:'risk',q:'Fällt die Mietdeckung der Betreiber unter 1,5-fach?',metric:'EBITDA-Mietdeckung der Betreiber',cond:'unter 1,5-fach',per:'Q2 2026',obs:'1,65-fach',prev:null,status:'not_occurred',src:'ohiCall',next:'Bericht Q3 2026',why:'Je niedriger die Deckung, desto eher geraten Betreiber mit der Miete in Rückstand. Schwelle: Festlegung von Depotfokus.'}],
+  themes:[{t:'Staatliche Pflegevergütung in den USA',why:'Änderungen bei Medicare und Medicaid wirken direkt auf die Betreiber. Nicht automatisch prüfbar.'}]},
+ 'RY6.F':{interp:'Ausschüttung gut gedeckt und Auslastung hoch; die Dividende je Aktie wächst derzeit langsam.',
+  changes:{cmp:'Q2 2026 gegenüber der vorherigen Prognose',items:[
+   {kind:'company',t:'AFFO-Prognose 2026 von 4,41–4,44 $ auf 4,44–4,45 $ je Aktie angehoben.',src:['o']}]},
+  facts:[
+   {kind:'metric',t:'AFFO 1,09 $ je Aktie im Quartal, plus 3,8 % zum Vorjahr.',src:'o'},
+   {kind:'metric',t:'Ausschüttung 74,5 % des AFFO; Auslastung 98,8 %.',src:'o'},
+   {kind:'metric',t:'Nettoverschuldung 5,4-fach EBITDAre.',src:'oZ'}],
+  rules:[
+   {type:'goal',q:'Bleibt die Ausschüttung unter 80 % des AFFO?',metric:'Dividende im Verhältnis zum AFFO',cond:'unter 80 %',per:'Q2 2026',obs:'74,5 %',prev:null,status:'met',src:'o',next:'Bericht Q3 2026, Termin geschätzt Anfang November',why:'Ein Puffer zwischen Erträgen und Ausschüttung erhöht die Tragfähigkeit. Schwelle: Festlegung von Depotfokus.'},
+   {type:'risk',q:'Steigt die Nettoverschuldung über 6-fach EBITDAre?',metric:'Nettoverschuldung zu EBITDAre',cond:'über 6,0-fach',per:'Q2 2026',obs:'5,4-fach',prev:null,status:'not_occurred',src:'oZ',next:'Bericht Q3 2026',why:'Höhere Verschuldung macht das Geschäft zinsempfindlicher. Schwelle: Festlegung von Depotfokus.'}],
+  themes:[{t:'Langfristzinsen',why:'Steigende Zinsen verteuern die Finanzierung neuer Immobilien. Nicht automatisch prüfbar.'}]},
+ 'PEP.DE':{interp:'Wachstum im eigenen Prognosekorridor, die operative Kernmarge ist leicht gesunken.',
+  changes:{cmp:'Q2 2026 gegenüber der vorherigen Prognose',items:[{kind:'company',t:'Jahresprognose bestätigt: organisches Wachstum 2–4 %, Kern-EPS plus 4–6 %.',src:['pep']}]},
+  facts:[
+   {kind:'metric',t:'Organisches Wachstum 2,4 % im Quartal.',src:'pep'},
+   {kind:'metric',t:'Operative Kernmarge 16,8 %, minus 0,4 Prozentpunkte.',src:'pep'}],
+  rules:[
+   {type:'goal',q:'Liegt das organische Wachstum im eigenen Prognosekorridor?',metric:'Organisches Umsatzwachstum',cond:'mindestens 2 %',per:'Q2 2026',obs:'2,4 %',prev:null,status:'met',src:'pep',next:'Bericht Q3 2026, Termin geschätzt Anfang Oktober',why:'Zeigt, ob das Unternehmen seine eigenen Erwartungen erfüllt.'},
+   {type:'risk',q:'Senkt PepsiCo die Jahresprognose?',metric:'Prognose organisches Wachstum 2026',cond:'Senkung gegenüber 2–4 %',per:'Q2 2026',obs:'bestätigt',prev:null,status:'not_occurred',src:'pep',next:'Bericht Q3 2026',why:'Eine Senkung wäre ein Hinweis auf schwächere Nachfrage.'}],
+  themes:[]},
+ 'JNJ.DE':{interp:'Neue Medikamente gleichen den Rückgang bei Stelara aus; das Unternehmen hat die Jahresprognose angehoben.',
+  changes:{cmp:'Q2 2026 gegenüber der vorherigen Prognose',items:[{kind:'company',t:'Prognose für das bereinigte EPS um 0,13 $ auf 11,68 $ angehoben.',src:['jnj']}]},
+  facts:[
+   {kind:'metric',t:'Umsatz 25,3 Mrd. $, plus 6,6 %.',src:'jnj'},
+   {kind:'metric',t:'Der Rückgang bei Stelara kostete im Pharmageschäft rund 7,6 Prozentpunkte Wachstum.',src:'jnj'}],
+  rules:[
+   {type:'risk',q:'Senkt J&J die Jahresprognose?',metric:'Prognose bereinigtes EPS 2026',cond:'unter 11,68 $',per:'Q2 2026',obs:'angehoben auf 11,68 $',prev:null,status:'not_occurred',src:'jnj',next:'Bericht Q3 2026, Termin geschätzt Mitte Oktober',why:'Die Prognose zeigt, wie das Unternehmen selbst das Jahr einschätzt.'}],
+  themes:[{t:'Talk-Rechtsstreit',why:'Ausgang und Kosten offener Verfahren sind nicht automatisch prüfbar.'}]},
+ 'CCC3.DE':{interp:'Mengen und Umsatz sind gewachsen, das Unternehmen hat die Prognose angehoben.',
+  changes:{cmp:'Q2 2026 gegenüber der vorherigen Prognose',items:[{kind:'company',t:'Prognose für das vergleichbare EPS-Wachstum von 8–9 % auf 9–10 % angehoben.',src:['ko']}]},
+  facts:[
+   {kind:'metric',t:'Umsatz 13,4 Mrd. $, organisch plus 6 %.',src:'ko'},
+   {kind:'metric',t:'Absatzmenge plus 5 %.',src:'ko'}],
+  rules:[
+   {type:'goal',q:'Wächst die Absatzmenge?',metric:'Unit case volume',cond:'über 0 %',per:'Q2 2026',obs:'plus 5 %',prev:null,status:'met',src:'ko',next:'Bericht Q3 2026, Termin geschätzt Ende Oktober',why:'Wachstum über Mengen ist weniger anfällig als reines Preiswachstum.'}],
+  themes:[{t:'Wechselkurse',why:'Ein großer Teil des Geschäfts liegt außerhalb der USA. Nicht automatisch prüfbar.'}]},
+ 'PRG.DE':{interp:'Die Absatzmengen stagnieren; für das neue Geschäftsjahr erwartet das Unternehmen kaum Gewinnwachstum.',
+  changes:{cmp:'Q4 GJ 2026, neue Prognose GJ 2027',items:[{kind:'company',t:'Prognose GJ 2027: Kern-EPS unverändert bis plus 3 %.',src:['pg']}]},
+  facts:[
+   {kind:'metric',t:'Organisches Wachstum im Quartal 0 %, im Geschäftsjahr 1 %; Absatzmenge unverändert.',src:'pg'},
+   {kind:'company',t:'Rund 1,4 Mrd. $ Gegenwind nach Steuern erwartet, vor allem Rohstoffe, Energie und Transport.',src:'pg'},
+   {kind:'company',t:'70. Dividendenerhöhung in Folge im April 2026.',src:'pg'}],
+  rules:[
+   {type:'goal',q:'Wächst die Absatzmenge wieder?',metric:'Absatzmenge (Volumen)',cond:'über 0 %',per:'Q4 GJ 2026',obs:'0 %',prev:null,status:'not_met',src:'pg',next:'Bericht Q1 GJ 2027, Termin geschätzt Mitte Oktober',why:'Ohne Mengenwachstum hängt das Wachstum allein an Preiserhöhungen.'}],
+  themes:[{t:'Rohstoff- und Energiekosten',why:'Wirken direkt auf die Marge. Nicht automatisch prüfbar.'}]},
+ 'NOV.DE':{interp:'Nach einem gesenkten Ausblick im Februar hat Novo im August den Jahresausblick wieder angehoben.',
+  changes:{cmp:'H1 2026 gegenüber Ausblick vom Februar',items:[{kind:'company',t:'Jahresausblick angehoben, nachdem im Februar sinkende Umsätze und Gewinne erwartet wurden.',src:['novoQ2','novoFeb']}]},
+  facts:[
+   {kind:'company',t:'Zwischendividende 3,75 DKK je Aktie, gezahlt im August 2026.',src:'novo'},
+   {kind:'company',t:'Aktienrückkaufprogramm über bis zu 15 Mrd. DKK läuft.',src:'novo'}],
+  rules:[
+   {type:'risk',q:'Senkt Novo den Jahresausblick erneut?',metric:'Jahresausblick 2026',cond:'Senkung gegenüber August 2026',per:'H1 2026',obs:'angehoben',prev:'Februar 2026: gesenkt',status:'not_occurred',src:'novoQ2',next:'Bericht Q3 2026, Termin geschätzt Anfang November',why:'Der Ausblick war 2026 bereits einmal deutlich gesenkt worden.'},
+   {type:'goal',q:'Hält Novo seinen Marktanteil bei Abnehmmitteln?',metric:'Marktanteil',cond:'nicht festgelegt',per:'–',obs:null,prev:null,status:'np',src:null,next:'erst mit einer lizenzierten Marktdatenquelle',why:'Für diese Kennzahl ist keine geprüfte Quelle hinterlegt.'}],
+  themes:[{t:'Preisdruck in den USA',why:'Nicht automatisch prüfbar.'}]},
+ 'MSF.DE':{interp:'Das Cloudgeschäft wächst stark; die Investitionen in Rechenzentren steigen ebenfalls deutlich.',
+  changes:{cmp:'kein Vergleich mit einer vorherigen Prüfung hinterlegt',items:[]},
+  facts:[
+   {kind:'metric',t:'Umsatz 90 Mrd. $, plus 18 %; Azure plus 43 %.',src:'msft'},
+   {kind:'company',t:'Investitionen von über 50 Mrd. $ im folgenden Quartal erwartet.',src:'msft'}],
+  rules:[
+   {type:'goal',q:'Wächst Azure mindestens 30 %?',metric:'Azure-Umsatzwachstum',cond:'mindestens 30 %',per:'Q4 GJ 2026',obs:'43 %',prev:null,status:'met',src:'msft',next:'Bericht Q1 GJ 2027, Termin geschätzt Ende Oktober',why:'Das Cloudwachstum soll die hohen Investitionen tragen. Schwelle: Festlegung von Depotfokus.'}],
+  themes:[{t:'Rendite der KI-Investitionen',why:'Ob die Investitionen sich auszahlen, ist nicht automatisch prüfbar.'}]},
+ '3V64.DE':{interp:'Umsatz und Zahlungsvolumen wachsen zweistellig, die Prognose wurde angehoben.',
+  changes:{cmp:'Q3 GJ 2026 gegenüber der vorherigen Prognose',items:[{kind:'company',t:'Jahresprognose angehoben: Umsatzwachstum im niedrigen zweistelligen Bereich.',src:['v']}]},
+  facts:[
+   {kind:'metric',t:'Nettoumsatz 11,6 Mrd. $, plus 14 %.',src:'v'},
+   {kind:'company',t:'563 Mio. $ Kosten für Stellenabbau verbucht.',src:'v'}],
+  rules:[
+   {type:'goal',q:'Wachsen die Nettoumsätze zweistellig?',metric:'Nettoumsatzwachstum',cond:'mindestens 10 %',per:'Q3 GJ 2026',obs:'14 %',prev:null,status:'met',src:'v',next:'Bericht Q4 GJ 2026, Termin geschätzt Ende Oktober',why:'Zeigt, ob das Kerngeschäft wie vom Unternehmen erwartet wächst.'}],
+  themes:[{t:'Regulierung von Kartengebühren',why:'Gesetzgebung in den USA ist nicht automatisch prüfbar.'}]},
+ 'IQQW.DE':{etf:{name:'iShares MSCI World UCITS ETF (Dist)',isin:'IE00B0M62Q58',index:'MSCI World, Industrieländer',ter:'0,50 % p. a.',conc:'rund 72,8 % USA',dist:'ausschüttend, quartalsweise',overlap:'nicht verfügbar',stand:'Profil abgerufen am 04.10.2026',src:'iqqw'}},
+ 'K0MR.DE':{etf:{name:'L&G Gerd Kommer Multifactor Equity UCITS ETF (Dist)',isin:'IE000FPWSL69',index:'Solactive Gerd Kommer Multifactor Equity Index: Industrie- und Schwellenländer, Länder nach Börsenwert und BIP, Faktor-Gewichtung',ter:'0,45 % p. a.',conc:'rund 46 % USA (Bestände der thesaurierenden Klasse, 19.06.2026)',dist:'ausschüttend',overlap:'nicht verfügbar',stand:'Bestände vom 19.06.2026',src:'kommer',terSrc:'kommerTer'}},
+ 'EQQQ.DE':{etf:{name:'Invesco EQQQ NASDAQ-100 UCITS ETF (Dist)',isin:'IE0032077012',index:'NASDAQ-100, große Nicht-Finanzwerte',ter:'0,30 % p. a.',conc:'zehn größte Positionen rund 45 % (Stand 24.07.2026)',dist:'ausschüttend, quartalsweise',overlap:'nicht verfügbar',stand:'Stand 24.07.2026',src:'eqqq',distSrc:'eqqqFF'}}
+};
+/* Ausschüttungen: nur hinterlegte Prüfungen. amount je Aktie in Originalwährung. */
+const PAY={
+ '13M.F':{ccy:'$',items:[{state:'announced',label:'Monatsdividende Okt., Nov., Dez. 2026',amount:0.265,per:'je Monat',src:'mainDiv'}],cover:'met'},
+ 'RY6.F':{ccy:'$',items:[{state:'estimated',label:'Monatsdividende, abgeleitet aus annualisierter Rate 3,252 $ (Stand Q2 2026)',amount:3.252/12,per:'je Monat',src:'o'}],cover:'met'},
+ 'WX4.F':{ccy:'$',items:[{state:'announced',label:'Quartalsdividende, erklärt im August 2026',amount:0.68,per:'je Quartal',src:'ohi'},{state:'estimated',label:'Nächste Quartalsdividende, noch nicht erklärt, Termin geschätzt November',amount:null,per:'je Quartal',src:null}],cover:'met'},
+ '9A2.F':{ccy:'$',items:[{state:'announced',label:'Dividende Q3 2026, zahlbar 30.09.2026',amount:0.48,per:'je Quartal',src:'arcc'},{state:'estimated',label:'Dividende Q4 2026, noch nicht erklärt',amount:null,per:'je Quartal',src:null}],cover:'not_met'},
+ 'NOV.DE':{ccy:'DKK',items:[{state:'announced',label:'Zwischendividende, gezahlt im August 2026',amount:3.75,per:'einmalig',src:'novo'},{state:'estimated',label:'Schlussdividende, Höhe und Termin noch nicht erklärt',amount:null,per:'einmalig',src:null}],cover:null}
+};
+const DEMO_GOALS={liq:0,bonds:0,core:40,hdy:15,single:25,bdc:15,ndq:5};
+const ASSUME={liq:[0,2],bonds:[0,2.5],core:[5,1.5],hdy:[4,3.5],single:[4,2.5],bdc:[1,7.6],ndq:[6,0.6]};
+const TAX=0.26375;
+
+/* =========================================================
+   HILFSFUNKTIONEN
+   ========================================================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const eur=(v,d=0)=>(+v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})+' €';
+const num=(v,d=2)=>(+v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=(v,d=1)=>(v*100).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})+' %';
+const fz=v=>(+v).toLocaleString('de-DE',{maximumFractionDigits:2});
+const nowStr=()=>new Date().toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+function parseNum(s){s=String(s??'').replace(/["€\s ]|EUR/gi,'');if(!s)return NaN;if(s.includes(',')&&s.includes('.'))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');else if(s.includes(','))s=s.replace(',','.');if(!/^-?\d*\.?\d+(e-?\d+)?$/i.test(s))return NaN;return parseFloat(s)}
+function parseInput(v){if(v===''||v==null)return null;const n=parseNum(v);return Number.isFinite(n)?n:NaN}
+function load(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
+function store(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+let toastT;function toast(t){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,3200);$('#live').textContent=t}
+
+/* =========================================================
+   CSV-PARSER (prüft zuerst, übernimmt nichts)
+   ========================================================= */
+function splitL(l,d){const o=[];let c='',q=false;for(const ch of l){if(ch==='"'){q=!q;continue}if(ch===d&&!q){o.push(c);c='';continue}c+=ch}o.push(c);return o.map(x=>x.trim())}
+function analyzeCSV(text,fileName){
+  const st={fileName,error:null,cols:{},positions:[],accounts:[],skipped:[],fileSum:null,kind:'holdings'};
+  const lines=String(text||'').replace(/^﻿/,'').split(/\r?\n/);
+  const nonEmpty=lines.map((l,i)=>({l,i:i+1})).filter(x=>x.l.trim());
+  if(nonEmpty.length<2){st.error='Die Datei enthält keine Kopfzeile mit Daten.';return st}
+  const h=nonEmpty[0].l;const d=[';','\t',','].sort((a,b)=>h.split(b).length-h.split(a).length)[0];
+  const head=splitL(h,d);const low=head.map(x=>x.toLowerCase());const col=re=>low.findIndex(x=>re.test(x));
+  if(col(/^datum|^date/)>=0&&col(/^typ|^type/)>=0){st.kind='transactions';st.error='Das ist ein Umsatz-Export. Umsätze kann Depotfokus noch nicht verarbeiten; dein Bestand bleibt unverändert.';return st}
+  const ci={name:col(/^name$|bezeichnung|wertpapier/),value:col(/marktwert|kurswert|^wert$/),qty:col(/^bestand|stück|anzahl|shares/),symbol:col(/symbol|ticker/),price:col(/^kurs$|preis|price/),isin:col(/isin/)};
+  Object.entries(ci).forEach(([k,i])=>{if(i>=0)st.cols[k]=head[i]});
+  if(ci.name<0||ci.value<0){st.error='Spalten „Name“ und „Marktwert“ nicht gefunden. Erwartet wird die Vermögensaufstellung aus Portfolio Performance.';return st}
+  nonEmpty.slice(1).forEach(({l,i})=>{
+    const r=splitL(l,d);const name=(r[ci.name]||'').trim();const v=parseNum(r[ci.value]);
+    if(!name){st.skipped.push({line:i,reason:'kein Name'});return}
+    if(/^summe|^gesamt|^total/i.test(name)){if(Number.isFinite(v)&&st.fileSum==null)st.fileSum=v;st.skipped.push({line:i,reason:`Summenzeile „${name}“`});return}
+    if(!Number.isFinite(v)){st.skipped.push({line:i,reason:`„${name}“: Marktwert nicht lesbar`});return}
+    if(v<0){st.skipped.push({line:i,reason:`„${name}“: negativer Marktwert`});return}
+    const qty=ci.qty>=0?parseNum(r[ci.qty]):NaN,sym=ci.symbol>=0?(r[ci.symbol]||'').trim():'',price=ci.price>=0?parseNum(r[ci.price]):NaN,isin=ci.isin>=0?(r[ci.isin]||'').trim():'';
+    if(!Number.isFinite(qty)&&!sym&&!isin){st.accounts.push({name,value:v,line:i,accept:false});return}
+    const m=STAMM[sym]||null;
+    /* Kurswährung: deutscher Börsenplatz (.DE/.F) → Euro; sonst unbekannt */
+    const priceCcy=/\.(DE|F|DU|MU|HM|SG|BE)$/i.test(sym)?'EUR':null;
+    st.positions.push({id:sym||isin||name,name,symbol:sym,isin:isin||null,qty:Number.isFinite(qty)?qty:null,price:Number.isFinite(price)?price:null,priceCcy,
+      exportValue:v,valueStatus:priceCcy?'ok':'unclear',conf:null,manualValue:null,bucket:m?m.bucket:null,bucketSrc:m?'stamm':null,fund:m?m.fund:null,ter:m&&m.ter!=null?m.ter:null});
+  });
+  if(!st.positions.length&&!st.accounts.length)st.error='Keine gültigen Zeilen gefunden. Prüfe, ob die Spalte Marktwert Beträge enthält.';
+  return st;
 }
-window.addEventListener('hashchange',show);
 
-/* Story */
-let understood=false;
-$('#understood').addEventListener('click',()=>{if(!understood){understood=true;$('#understood').textContent='Verstanden · +10 Wissen';toast('+10 Wissenspunkte')}});
-
-/* Kompass → Check: Kauf oder Verkauf */
-let intent='verkauf';
-$$('[data-intent]').forEach(a=>a.addEventListener('click',()=>{intent=a.dataset.intent;
-  $('#t-check').textContent=intent==='kauf'?'Nachkauf Ares Capital':'Teilverkauf Ares Capital';
-  $('#planText').textContent=intent==='kauf'?'BDCs & REITs liegen bei 35 %, dein Ziel sind 15 %. Ein Nachkauf entfernt dich weiter vom Ziel.':'BDCs & REITs liegen bei 35 %, dein Ziel sind 15 %. Ein Teilverkauf bringt dich näher heran.';
-  update()}));
-
-/* Check */
-let reason='plan';
-$$('[data-reason]').forEach(b=>b.addEventListener('click',()=>{reason=b.dataset.reason;$$('[data-reason]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));update()}));
-$('#sleep').addEventListener('change',()=>{sent=false;update()});
-let sent=false;
-function update(){
-  const sleep=$('#sleep').checked;
-  let score=(reason==='drop'?2:3)+(sleep?1:0)-(intent==='kauf'?1:0);score=Math.max(1,Math.min(4,score));
-  $('#quality').textContent=['','Schwach begründet','Ausbaufähig','Gut begründet','Sehr gut begründet'][score];
-  $$('#meter span').forEach((s,i)=>s.classList.toggle('on',i<score));
-  $('#dropHint').hidden=reason!=='drop';
-  $('#broker').textContent=sent?(sleep?'Erinnerung gesetzt':'Broker-App würde sich öffnen'):(sleep?'Morgen erinnern':'Beim Broker umsetzen');
+/* =========================================================
+   DATENHALTUNG: Demo und eigenes Depot strikt getrennt
+   ========================================================= */
+const OWN_KEY='depotfokus-v4-own', UI_KEY='depotfokus-v4-ui';
+function newDepot(kind){return {kind,fileName:null,importedAt:null,valuationDate:null,positions:[],accounts:[],
+  external:{reserve:0,items:[]},goals:null,goalsSource:null,maxSingle:null,budget:0,cashMode:'keep',minRate:0,manual:null,
+  notify:{change:true,month:true,pay:false,channel:'push',freq:'weekly'},events:[],read:[],baseline:null}}
+function buildDemo(){
+  const d=newDepot('demo');const a=analyzeCSV(DEMO_CSV,'Demodepot');
+  d.positions=a.positions;d.accounts=a.accounts.map(x=>({name:x.name,value:x.value}));
+  d.valuationDate='04.10.2026';d.goals={...DEMO_GOALS};d.goalsSource='example';d.maxSingle=10;d.budget=778;d.cashMode='invest';
+  return d;
 }
-$('#broker').addEventListener('click',()=>{sent=true;update();toast($('#sleep').checked?'Wir erinnern dich morgen (Prototyp)':'Im Produkt öffnet sich hier deine Broker-App')});
-$('#saveNote').addEventListener('click',()=>toast('Notiz gespeichert (Prototyp)'));
+let DEMO=buildDemo();
+let OWN=load(OWN_KEY);
+let UI=Object.assign({mode:'compact',tab:'home',source:'demo'},load(UI_KEY)||{});
+if(UI.source==='own'&&!OWN)UI.source='demo';
+const D=()=>UI.source==='own'&&OWN?OWN:DEMO;
+let goalRaw={};              // ungültige Eingaben je Feld (nur Anzeige)
+let budgetRaw=null;
+let staged=null;             // geprüfter, noch nicht übernommener Import
+let pendingDelete=false;
+function saveUI(){store(UI_KEY,UI)}
+function persist(){if(D().kind==='own'){if(!store(OWN_KEY,OWN))toast('Speichern auf diesem Gerät nicht möglich. Änderungen gehen beim Schließen verloren.')}}
 
-/* Liga */
-let ans=null,conf=70;
-$$('[data-ans]').forEach(b=>b.addEventListener('click',()=>{ans=b.dataset.ans;$$('[data-ans]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));ligaMsg()}));
-$$('[data-conf]').forEach(b=>b.addEventListener('click',()=>{conf=+b.dataset.conf;$$('[data-conf]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));ligaMsg()}));
-function ligaMsg(){if(!ans)return;$('#ligaMsg').textContent=`Getippt: ${ans==='yes'?'Ja':'Nein'} mit ${conf} %. Auflösung, sobald die Meldung da ist.`}
+/* =========================================================
+   BERECHNUNG
+   ========================================================= */
+function posValue(p){if(p.conf==='skip')return null;if(p.conf==='manual')return p.manualValue;if(p.valueStatus==='ok'||p.conf==='eur')return p.exportValue;return null}
+function isIncluded(p){return posValue(p)!=null}
+function unresolved(d){return d.positions.filter(p=>p.valueStatus==='unclear'&&!p.conf)}
+function noBucket(d){return d.positions.filter(p=>isIncluded(p)&&!p.bucket)}
+function totals(d){
+  const sec=d.positions.reduce((a,p)=>a+(isIncluded(p)?posValue(p):0),0);
+  const acct=d.accounts.reduce((a,x)=>a+x.value,0);
+  const ext=d.external.items.reduce((a,x)=>a+(+x.value||0),0);
+  return {sec,acct,ext,reserve:+d.external.reserve||0,sum:sec+acct+ext,open:unresolved(d).length,skipped:d.positions.filter(p=>p.conf==='skip').length};
+}
+/* Bausteinwerte für Zielvergleich und Plan. Verrechnungskonto je nach Einstellung. */
+function bucketVals(d,cashMode=d.cashMode){
+  const V={};B.forEach(b=>V[b.id]=0);
+  d.positions.forEach(p=>{if(isIncluded(p)&&p.bucket)V[p.bucket]+=posValue(p)});
+  if(cashMode!=='exclude')V.liq+=d.accounts.reduce((a,x)=>a+x.value,0);
+  d.external.items.forEach(x=>{const v=+x.value||0;if(x.type==='bonds')V.bonds+=v;else V.liq+=v});
+  return V;
+}
+const tot=V=>Object.values(V).reduce((a,b)=>a+b,0);
+function goalState(d){
+  if(!d.goals)return {ok:false,reason:'none'};
+  const bad=B.filter(b=>goalRaw[b.id]!=null);
+  if(bad.length)return {ok:false,reason:'invalid',fields:bad.map(b=>b.id)};
+  const sum=B.reduce((a,b)=>a+(d.goals[b.id]||0),0);
+  if(Math.abs(sum-100)>0.05)return {ok:false,reason:'sum',sum};
+  return {ok:true,sum};
+}
+function budgetState(d){if(budgetRaw!=null)return {ok:false,msg:budgetRaw};return {ok:true}}
+/* Verteilung auf Bausteine, centgenau */
+function allocate(d){
+  const gs=goalState(d),bs=budgetState(d);if(!gs.ok||!bs.ok)return null;
+  const V=bucketVals(d,d.cashMode==='invest'?'exclude':d.cashMode);
+  const cash=d.cashMode==='invest'?d.accounts.reduce((a,x)=>a+x.value,0):0;
+  const T=tot(V)+cash,Mc=Math.round((+d.budget||0)*100);
+  const t={};B.forEach(b=>t[b.id]=(d.goals[b.id]||0)/100);
+  let Ts=T;B.forEach(b=>{if(t[b.id]>0)Ts=Math.max(Ts,V[b.id]/t[b.id])});
+  const need={};let ns=0;B.forEach(b=>{need[b.id]=Math.max(0,t[b.id]*Ts-V[b.id]);ns+=need[b.id]});
+  const weights={};B.forEach(b=>weights[b.id]=ns>0?need[b.id]/ns:t[b.id]);
+  const out={};let used=0;const rem=[];
+  B.forEach(b=>{const raw=Mc*weights[b.id];out[b.id]=Math.floor(raw);used+=out[b.id];rem.push([b.id,raw-out[b.id]])});
+  rem.sort((a,c)=>c[1]-a[1]);for(let i=0;i<Mc-used;i++)out[rem[i%rem.length][0]]++;
+  const moves=[];const minC=(+d.minRate||0)*100;
+  if(minC>0){const big=B.reduce((a,b)=>need[b.id]>need[a.id]?b:a,B[0]).id;
+    B.forEach(b=>{if(b.id!==big&&out[b.id]>0&&out[b.id]<minC){moves.push({from:b.id,to:big,c:out[b.id]});out[big]+=out[b.id];out[b.id]=0}})}
+  const amounts={};B.forEach(b=>amounts[b.id]=out[b.id]/100);
+  return {V,T,cash,Ts,need,amounts,moves,ns};
+}
+function chosenAmounts(d,al){if(d.manual){const m={};B.forEach(b=>m[b.id]=Math.max(0,+d.manual[b.id]||0));return m}return al.amounts}
+/* Pfad bei unveränderten Kursen */
+function pathFor(d,al,amounts){
+  const t={};B.forEach(b=>t[b.id]=(d.goals[b.id]||0)/100);
+  const V={...al.V};
+  if(al.cash>0){const tmpNs=al.ns||1;B.forEach(b=>V[b.id]+=al.cash*(al.ns>0?al.need[b.id]/tmpNs:t[b.id]))}
+  const blocked=B.filter(b=>t[b.id]===0&&V[b.id]>0.5);
+  const M=B.reduce((a,b)=>a+amounts[b.id],0);
+  const tol=0.01;
+  const dev=()=>{const T=tot(V);return T>0?Math.max(...B.map(b=>Math.abs(V[b.id]/T-t[b.id]))):1};
+  let theo=null;
+  if(!blocked.length){const T=tot(V);let Ts=T;B.forEach(b=>{if(t[b.id]>0)Ts=Math.max(Ts,V[b.id]/t[b.id])});const need=Ts-T;const Mb=+d.budget||0;theo=need<0.5?0:(Mb>0?Math.ceil(need/Mb):null)}
+  if(blocked.length)return {blocked,theo:null,months:null};
+  if(dev()<=tol)return {blocked:[],theo:0,months:0};
+  if(M<=0)return {blocked:[],theo,months:null};
+  for(let m=1;m<=600;m++){B.forEach(b=>V[b.id]+=amounts[b.id]);if(dev()<=tol)return {blocked:[],theo,months:m}}
+  return {blocked:[],theo,months:Infinity};
+}
 
-update();show();
+/* =========================================================
+   DEPOT-CHECK: Abweichungen, Datenfragen, Informationen
+   ========================================================= */
+function checkModel(d){
+  const tt=totals(d),out={dev:[],data:[],info:[]};
+  const V=bucketVals(d),T=tot(V),gs=goalState(d);
+  const incomplete=tt.open>0||noBucket(d).length>0;
+  // Datenfragen
+  if(tt.open)out.data.push({key:'open',lvl:'warn',t:`${tt.open} ${tt.open>1?'Positionen haben':'Position hat'} einen ungeklärten Wert`,d:`Die Kurswährung ist aus dem Export nicht erkennbar: ${unresolved(d).map(p=>p.name).join(', ')}. Diese Positionen fehlen in Gesamtwert, Gewichten und Zielvergleich.`,go:['depot','confirmCard'],act:'Zuordnungen prüfen'});
+  const nb=noBucket(d);if(nb.length)out.data.push({key:'nobucket',lvl:'warn',t:`${nb.length} ${nb.length>1?'Positionen haben':'Position hat'} keinen Baustein`,d:'Ohne Baustein fehlen sie im Zielvergleich.',go:['depot','confirmCard'],act:'Baustein wählen'});
+  const funds=d.positions.filter(p=>isIncluded(p)&&p.fund===true);const unkF=d.positions.filter(p=>isIncluded(p)&&p.fund==null);
+  if(unkF.length)out.data.push({key:'unkfund',lvl:'na',t:`Bei ${unkF.length} ${unkF.length>1?'Positionen':'Position'} ist nicht bekannt, ob es ein Fonds ist`,d:'Für diese Positionen liegen keine Stammdaten vor; laufende Kosten sind deshalb nicht bekannt.',go:['depot','posCard'],act:'Positionen ansehen'});
+  out.data.push({key:'perf',lvl:'na',t:'Wertentwicklung nicht verfügbar',d:'Dafür werden Umsätze und historische Bewertungen gebraucht. Der Umsatz-Import ist noch nicht verfügbar.',go:null});
+  if(d.kind==='own'&&!d.valuationDate)out.data.push({key:'date',lvl:'na',t:'Bewertungsstichtag nicht bekannt',d:'Der Export enthält kein Datum. Du kannst es beim nächsten Import angeben.',go:['depot','importCard'],act:'Zum Import'});
+  // Abweichungen von eigenen Vorgaben
+  if(!d.goals)out.dev.push({key:'nogoals',lvl:'na',t:'Noch keine eigene Zielverteilung',d:'Ohne Vorgaben gibt es nichts zu vergleichen.',go:['plan','goalCard'],act:'Ziele festlegen'});
+  else if(!gs.ok)out.dev.push({key:'goalsinvalid',lvl:'na',t:'Zielverteilung ungültig',d:gs.reason==='sum'?`Deine Vorgaben ergeben ${fz(gs.sum)} % statt 100 %.`:'Mindestens ein Eingabefeld ist ungültig.',go:['plan','goalCard'],act:'Vorgaben prüfen'});
+  else{
+    const pre=incomplete?' Vorläufig, weil Positionen fehlen.':'';
+    B.forEach(b=>{const w=T?V[b.id]/T:0,g=d.goals[b.id]/100,diff=w-g;if(Math.abs(diff)>0.05)out.dev.push({key:'dev-'+b.id,lvl:Math.abs(diff)>0.10?'crit':'warn',
+      t:`${b.name}: ${pct(w)} statt ${fz(d.goals[b.id])} %`,d:`${num(Math.abs(diff)*100,1)} Prozentpunkte ${diff>0?'darüber':'darunter'}${Math.abs(diff)>0.10?', deutlich':''}.${pre}`,go:['plan','allocCard'],act:'Zum Plan'})});
+    const eqA=T?B.filter(b=>b.eq).reduce((a,b)=>a+V[b.id],0)/T:0,eqG=B.filter(b=>b.eq).reduce((a,b)=>a+d.goals[b.id],0)/100;
+    if(Math.abs(eqA-eqG)>0.05)out.dev.push({key:'eq',lvl:Math.abs(eqA-eqG)>0.10?'crit':'warn',t:`Aktienquote ${pct(eqA,0)} statt ${pct(eqG,0)}`,d:`Aktien und Aktienfonds im Verhältnis zum betrachteten Vermögen.${pre}`,go:['plan','goalCard'],act:'Vorgaben ansehen'});
+    if(d.maxSingle!=null){d.positions.filter(p=>isIncluded(p)&&(p.bucket==='single'||p.bucket==='bdc')).forEach(p=>{const w=posValue(p)/T;if(w>d.maxSingle/100)out.dev.push({key:'max-'+p.id,lvl:'warn',t:`${p.name}: ${pct(w)} des Vermögens`,d:`Über deiner Grenze von ${fz(d.maxSingle)} % je Einzelwert.${pre}`,go:['plan','maxSingle'],act:'Grenze ändern',pos:p.id})})}
+    if(!out.dev.length)out.dev.push({key:'devok',lvl:'good',t:'Keine Abweichung über 5 Prozentpunkte',d:incomplete?'Gilt nur für die eingerechneten Positionen; das Depot ist unvollständig.':'Alle Bausteine liegen nah an deinen Vorgaben.',go:null});
+  }
+  // Informationen
+  const known=funds.filter(p=>p.ter!=null),unk=funds.filter(p=>p.ter==null);
+  const cost=known.reduce((a,p)=>a+posValue(p)*p.ter/100,0),kv=known.reduce((a,p)=>a+posValue(p),0);
+  out.info.push({key:'cost',lvl:'info',t:funds.length?`Laufende Fondskosten: rund ${eur(cost)} pro Jahr`:'Keine Fonds mit bekannten Stammdaten',
+    d:funds.length?`Berechnet für ${known.length} von ${funds.length} Fonds (Ø ${num(kv?cost/kv*100:0,2)} %).${unk.length?` Bei ${unk.length} Fonds ist die TER nicht bekannt; sie zählt nicht als 0.`:''} Die laufenden Kosten sind bereits im Fondswert berücksichtigt; Handels- und Depotkosten sind nicht enthalten.`:'',go:['depot','posCard'],act:'Fonds ansehen'});
+  const inc=d.positions.filter(isIncluded).sort((a,c)=>posValue(c)-posValue(a)).slice(0,3);
+  out.info.push({key:'conc',lvl:'info',t:'Größte Positionen',d:(inc.map(p=>`${p.name} ${pct(posValue(p)/tt.sum)}`).join(' · ')||'–')+'. Länderanteile: nicht verfügbar, dafür fehlen geprüfte Bestandsdaten der Fonds.',go:['depot','posCard'],act:'Positionen'});
+  const checked=d.positions.filter(p=>isIncluded(p)&&PAY[p.symbol]&&PAY[p.symbol].cover);const notMet=checked.filter(p=>PAY[p.symbol].cover==='not_met');
+  if(checked.length)out.info.push({key:'divcheck',lvl:'info',t:'Geprüfte Ausschüttungsdeckung',d:`${checked.length} Positionen mit hinterlegter Prüfung. ${notMet.length?`Nicht erfüllt: ${notMet.map(p=>p.name).join(', ')}.`:'Bei allen geprüften erfüllt.'} Für alle übrigen Positionen nicht geprüft.`,go:notMet.length?['pos',notMet[0].id]:null,act:notMet.length?'Position ansehen':null});
+  return {...out,incomplete};
+}
+/* „Jetzt wichtig“: höchstens drei Punkte */
+function nowItems(d){
+  const c=checkModel(d),items=[];
+  c.data.filter(x=>x.lvl==='warn').forEach(x=>items.push(x));
+  c.dev.filter(x=>x.lvl==='crit').forEach(x=>items.push(x));
+  d.positions.filter(isIncluded).forEach(p=>{const I=INFO[p.symbol];if(!I||!I.rules)return;I.rules.forEach(r=>{if((r.type==='goal'&&r.status==='not_met')||(r.type==='risk'&&r.status==='occurred'))items.push({key:'rule-'+p.id,lvl:'warn',t:`${p.name}: ${r.q.replace(/\?$/,'')}`,d:`${STATUS[r.type][r.status]} für ${r.per} (${r.obs}). Kein Kauf- oder Verkaufssignal.`,go:['pos',p.id],act:'Einordnung ansehen'})})});
+  return items.slice(0,3);
+}
+
+/* =========================================================
+   HINWEISE: nur aus tatsächlichen Änderungen auf diesem Gerät
+   ========================================================= */
+function addEvent(d,e){d.events.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),at:nowStr(),...e});d.events=d.events.slice(0,50)}
+function evaluateChanges(d,first){
+  const keys=checkModel(d).dev.filter(x=>x.lvl==='crit').map(x=>x.key).concat(unresolved(d).length?['open']:[]);
+  if(d.baseline==null||first){d.baseline=keys;return}
+  const added=keys.filter(k=>!d.baseline.includes(k));
+  if(added.length&&d.notify.change){const c=checkModel(d);const all=[...c.dev,...c.data];
+    added.forEach(k=>{const it=all.find(x=>x.key===k);if(it)addEvent(d,{t:it.t,b:it.d,go:it.go})})}
+  d.baseline=keys;
+}
+const unreadCount=d=>d.events.filter(e=>!d.read.includes(e.id)).length;
+
+
+function renderConfirm(){
+  const d=D(),un=unresolved(d),nb=noBucket(d),sk=d.positions.filter(p=>p.conf==='skip');
+  let h=`<h2>Zuordnungen prüfen</h2>`;
+  if(!un.length&&!nb.length&&!sk.length){h+='<p class="hint">Keine offenen Zuordnungen.</p>';$('#confirmCard').innerHTML=h;return}
+  h+=un.map(p=>`<div class="conf"><div><b>${esc(p.name)}</b><div class="hint num">${esc(p.symbol||'ohne Symbol')} · ${p.qty!=null?num(p.qty,4)+' Stück':'Stückzahl fehlt'} · Kurs ${p.price!=null?num(p.price,2):'–'} in unbekannter Währung · Marktwert laut Export ${num(p.exportValue,2)}</div>
+    <p class="hint" style="margin-top:4px">Der Kurs kann in Dollar notiert sein. Ob der Marktwert trotzdem in Euro angegeben ist, lässt sich aus dem Export nicht erkennen.</p></div>
+    <div class="opts"><button class="btn" data-conf="${esc(p.id)}|eur">Marktwert ist in Euro</button><button class="btn" data-conf="${esc(p.id)}|manual">Wert in Euro eintragen</button><button class="btn" data-conf="${esc(p.id)}|skip">Nicht einrechnen</button></div>
+    <div class="opts" id="mv_${esc(p.id)}" hidden><label class="field" for="mvi_${esc(p.id)}">Wert in Euro<input class="numin" type="text" inputmode="decimal" id="mvi_${esc(p.id)}" style="width:140px"></label><button class="btn primary" data-confsave="${esc(p.id)}">Übernehmen</button><span class="err" id="mve_${esc(p.id)}"></span></div></div>`).join('');
+  h+=nb.map(p=>`<div class="conf"><div><b>${esc(p.name)}</b><div class="hint">Baustein unbekannt: keine Stammdaten für ${esc(p.symbol||'dieses Wertpapier')}</div></div>
+    <label class="field" for="bk_${esc(p.id)}">Baustein wählen<select id="bk_${esc(p.id)}" data-bucket="${esc(p.id)}"><option value="">bitte wählen</option>${B.filter(b=>b.id!=='liq').map(b=>`<option value="${b.id}">${b.name}</option>`).join('')}</select></label></div>`).join('');
+  if(sk.length)h+=`<p class="hint" style="margin-top:10px">Bewusst nicht eingerechnet: ${sk.map(p=>esc(p.name)).join(', ')}. <button class="link" data-unskip="1">Auswahl zurücksetzen</button></p>`;
+  $('#confirmCard').innerHTML=h;
+}
+function renderExt(){
+  const d=D();
+  $('#extCard').innerHTML=`<h2>Vermögen außerhalb des Depots</h2>
+   <label class="field" for="reserve" style="max-width:320px">Frei verfügbare Reserve (Notgroschen), wird nicht eingerechnet
+     <input class="numin" style="width:140px" type="text" inputmode="decimal" id="reserve" value="${d.external.reserve||''}" aria-describedby="resErr"><span class="err" id="resErr"></span></label>
+   <h3>Für deine Anlageziele vorgesehen</h3>
+   ${d.external.items.map((x,i)=>`<div class="row" style="padding:6px 0"><select data-exttype="${i}" aria-label="Art">${[['tagesgeld','Tagesgeld'],['festgeld','Festgeld'],['bonds','Anleihen oder Anleihefonds']].map(([v,l])=>`<option value="${v}" ${x.type===v?'selected':''}>${l}</option>`).join('')}</select>
+     <input class="numin" style="width:130px" type="text" inputmode="decimal" data-extval="${i}" value="${x.value||''}" aria-label="Betrag in Euro"> € <button class="link" data-extdel="${i}" aria-label="Eintrag entfernen">Entfernen</button></div>`).join('')||'<p class="hint">Keine Einträge.</p>'}
+   <button class="btn" id="extAdd" style="margin-top:8px">Eintrag hinzufügen</button>
+   <p class="hint" style="margin-top:8px">Tagesgeld und Festgeld zählen zum Baustein „Konto & Tagesgeld“, Anleihen zu „Anleihen“. Beides schwankt unterschiedlich und ist nicht risikolos gleichzusetzen.</p>`;
+}
+function renderImport(){
+  const d=D();let h=`<h2>Daten importieren</h2>
+   <p>Unterstützt: <b>Vermögensaufstellung</b> aus Portfolio Performance als CSV (Spalten Name und Marktwert, optional Bestand, Symbol, Kurs).</p>
+   <p class="hint" style="margin-top:6px">Umsätze kann Depotfokus noch nicht verarbeiten. Eine Renditeauswertung ist deshalb nicht verfügbar, auch nicht über den Bestandsimport.</p>
+   <div class="row" style="margin-top:12px"><label class="btn primary" for="file">Datei auswählen<input type="file" id="file" accept=".csv,.txt,text/csv" class="sr-only"></label></div>`;
+  if(staged){const s=staged;
+    if(s.error)h+=`<div class="stage" role="alert"><b class="bad">Import nicht möglich</b><p>${esc(s.error)}</p><p class="hint">Dein bisheriger Bestand bleibt unverändert.</p><div class="row"><button class="btn" id="stDiscard">Schließen</button></div></div>`;
+    else{const sum=s.positions.reduce((a,p)=>a+p.exportValue,0)+s.accounts.reduce((a,x)=>a+x.value,0);const un=s.positions.filter(p=>p.valueStatus==='unclear').length,nb=s.positions.filter(p=>!p.bucket).length;
+      h+=`<div class="stage"><div><b>Prüfung: ${esc(s.fileName)}</b><p class="hint">Noch nichts übernommen.</p></div>
+       <div><span class="lbl">Erkannte Spalten</span><p>${Object.entries(s.cols).map(([k,v])=>`${({name:'Name',value:'Marktwert',qty:'Bestand',symbol:'Symbol',price:'Kurs',isin:'ISIN'})[k]}: „${esc(v)}“`).join(' · ')}</p></div>
+       <div><span class="lbl">Positionen</span><p>${s.positions.length} Wertpapiere${un?`, davon ${un} mit unklarer Kurswährung`:''}${nb?`, ${nb} ohne bekannten Baustein`:''}</p></div>
+       ${s.accounts.length?`<div><span class="lbl">Mögliche Konten</span>${s.accounts.map((a,i)=>`<label class="row" style="gap:8px;padding:4px 0"><input type="checkbox" data-acc="${i}" ${a.accept?'checked':''}> „${esc(a.name)}“ mit ${eur(a.value,2)} als Verrechnungskonto übernehmen</label>`).join('')}<p class="hint">Zeilen ohne Stückzahl und Symbol. Nicht bestätigte Zeilen werden nicht übernommen.</p></div>`:''}
+       <div><span class="lbl">Summenvergleich</span><p>${s.fileSum!=null?`Datei: ${eur(s.fileSum,2)} · erkannt: ${eur(sum,2)} · ${Math.abs(s.fileSum-sum)<0.05?'<span class="ok">stimmt überein</span>':`<span class="bad">Abweichung ${eur(s.fileSum-sum,2)}</span>`}`:'Keine Summenzeile in der Datei.'}</p></div>
+       ${s.skipped.length?`<div><span class="lbl">Übersprungene Zeilen</span>${s.skipped.map(x=>`<p class="hint">Zeile ${x.line}: ${esc(x.reason)}</p>`).join('')}</div>`:''}
+       <label class="field" for="stDate" style="max-width:240px">Bewertungsstichtag (optional, nicht im Export)<input type="date" id="stDate"></label>
+       ${OWN?`<label class="row" style="gap:8px"><input type="checkbox" id="stReplace"> Mir ist klar, dass mein bisheriger eigener Bestand ersetzt wird. Ziele und Bestätigungen gleicher Positionen bleiben erhalten.</label>`:''}
+       <div class="row"><button class="btn primary" id="stAccept" ${OWN?'disabled':''}>Übernehmen</button><button class="btn" id="stDiscard">Verwerfen</button></div></div>`}}
+  $('#importCard').innerHTML=h;
+}
+function renderSourceCard(){
+  $('#sourceCard').innerHTML=`<h2>Datenquelle und Speicherung</h2>
+   <p>${D().kind==='demo'?'Du siehst das <b>Demodepot</b>.':'Du siehst dein <b>eigenes Depot</b>.'} ${OWN?'Ein eigenes Depot ist auf diesem Gerät gespeichert.':'Auf diesem Gerät ist kein eigenes Depot gespeichert.'}</p>
+   <div class="row" style="margin-top:10px">${D().kind==='own'?'<button class="btn" data-src="demo">Demodepot ansehen</button>':OWN?'<button class="btn" data-src="own">Mein Depot anzeigen</button>':''}
+    ${OWN?(pendingDelete?`<button class="btn danger" id="delConfirm">Endgültig löschen</button><button class="btn" id="delCancel">Abbrechen</button>`:'<button class="btn danger" id="delAsk">Daten auf diesem Gerät löschen</button>'):''}</div>
+   <p class="hint" style="margin-top:10px">Eigene Daten werden nur im Speicher dieses Browsers abgelegt. Das ist keine Sicherung: Sie fehlen auf anderen Geräten und gehen verloren, wenn Websitedaten gelöscht werden. Das Demodepot wird nie gespeichert und vermischt sich nicht mit deinen Daten.</p>`;
+}
+
+function acceptImport(){
+  const s=staged;if(!s||s.error)return;
+  const prev=OWN;const d=newDepot('own');
+  d.fileName=s.fileName;d.importedAt=nowStr();
+  const dt=$('#stDate')&&$('#stDate').value;d.valuationDate=dt?dt.split('-').reverse().join('.'):null;
+  d.positions=s.positions.map(p=>({...p}));d.accounts=s.accounts.filter(a=>a.accept).map(a=>({name:a.name,value:a.value}));
+  if(prev){// Ziele, Bestätigungen, Einstellungen erhalten
+    d.goals=prev.goals;d.goalsSource=prev.goalsSource;d.maxSingle=prev.maxSingle;d.budget=prev.budget;d.cashMode=prev.cashMode;d.minRate=prev.minRate;d.external=prev.external;d.notify=prev.notify;d.events=prev.events;d.read=prev.read;d.baseline=prev.baseline;
+    d.positions.forEach(p=>{const o=prev.positions.find(x=>x.id===p.id);if(o){if(o.conf&&p.valueStatus==='unclear'&&o.exportValue===p.exportValue){p.conf=o.conf;p.manualValue=o.manualValue}if(!p.bucket&&o.bucket){p.bucket=o.bucket;p.bucketSrc=o.bucketSrc}}});
+  }
+  OWN=d;UI.source='own';saveUI();staged=null;
+  addEvent(d,{t:`Bestand importiert: ${d.fileName}`,b:`${d.positions.length} Wertpapiere, ${d.accounts.length} Konten. ${unresolved(d).length?unresolved(d).length+' Zuordnungen offen.':'Keine offenen Zuordnungen.'}`,go:unresolved(d).length?['depot','confirmCard']:['home','wealthCard']});
+  evaluateChanges(d,!prev);persist();renderAll();toast('Import übernommen');setTab('home');
+}
+
+/* =========================================================
+   OBERFLÄCHE (Vision) – nutzt die geprüfte Logik oben
+   ========================================================= */
+const STATUS={goal:{met:'Erfüllt',not_met:'Nicht erfüllt',open:'Noch offen',np:'Nicht prüfbar'},risk:{occurred:'Eingetreten',not_occurred:'Nicht eingetreten',open:'Noch offen',np:'Nicht prüfbar'}};
+const MOOD={'9A2.F':'warn','13M.F':'pos','WX4.F':'pos','RY6.F':'pos','PEP.DE':'neutral','JNJ.DE':'pos','CCC3.DE':'pos','PRG.DE':'neg','NOV.DE':'pos','MSF.DE':'pos','3V64.DE':'pos'};
+const MOODTXT={pos:'Rückenwind',warn:'Beobachten',neg:'Gegenwind',neutral:'Unverändert'};
+const FUN_KEY='depotfokus-v5-fun';
+let FUN=Object.assign({seen:[],understood:[],days:[],points:0,preds:{},notes:[]},load(FUN_KEY)||{});
+function saveFun(){store(FUN_KEY,FUN)}
+function streak(){const ds=new Set(FUN.days);let n=0;const d=new Date();for(;;){const k=d.toISOString().slice(0,10);if(ds.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
+function touchDay(){const k=new Date().toISOString().slice(0,10);if(!FUN.days.includes(k)){FUN.days.push(k);FUN.days=FUN.days.slice(-400)}}
+function renderAll(){route()}
+function setTab(t){location.hash=t==='home'?'#heute':'#'+t}
+const ICON={
+ back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+ close:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ gear:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>',
+ bars:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V5M22 20H2"/></svg>'
+};
+function weather(kind){
+  const sun='<circle cx="18" cy="18" r="8" stroke="#E0A100"/><path d="M18 4v3M18 29v3M4 18h3M29 18h3M8 8l2 2M26 26l2 2M8 28l2-2M26 10l2-2" stroke="#E0A100"/>';
+  const cloud='<path d="M20 40h18a7 7 0 0 0 0-14 9 9 0 0 0-17 3 6 6 0 0 0-1 11z" stroke="#4A5070" fill="#fff"/>';
+  const rain='<path d="M22 44l-2 3M30 44l-2 3M38 44l-2 3" stroke="#1F5FD1"/>';
+  const q='<circle cx="24" cy="24" r="16" stroke="#6B7090" stroke-dasharray="4 4"/>';
+  const body=kind==='sun'?sun:kind==='cloud'?sun+cloud:kind==='rain'?cloud+rain:q;
+  return `<svg width="48" height="48" style="flex:none" viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">${body}</svg>`;
+}
+const posById=id=>D().positions.find(p=>p.id===id);
+const hasStory=p=>{const I=INFO[p.symbol];return I&&!I.etf&&isIncluded(p)};
+function storyPositions(){const d=D();return d.positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a))}
+function srcText(k){const s=S[k];return s?`${esc(s.org)}, ${esc(s.doc)}, ${esc(s.per)}, ${esc(s.date)}`:'Quelle nicht verfügbar'}
+function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target="_blank" rel="noopener">${srcText(k)}</a>`:'<span class="src">Quelle nicht verfügbar</span>'}
+const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
+
+/* ---------------- Routing ---------------- */
+const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute'};
+function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
+function route(){
+  const {r,a}=parse();const v=$('#view');let html='';
+  try{
+    if(r==='story')html=vStory(a[0]);
+    else if(r==='depot')html=vDepot();
+    else if(r==='pos')html=vPos(a[0]);
+    else if(r==='check')html=vCheck(a[0],a[1]);
+    else if(r==='plan')html=vPlan();
+    else if(r==='liga')html=vLiga();
+    else if(r==='daten')html=vDaten();
+    else html=vHeute();
+  }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
+  v.innerHTML=html;v.className=r==='story'?'story':'screen';
+  const full=r==='story'||r==='check';$('#tabs').hidden=full;v.classList.toggle('sub',full);
+  document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
+  if(r==='daten'){renderSourceCard();renderImport();renderConfirm();renderExt()}
+  if(r==='plan')renderGoalSum2();
+  if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
+  route.keep=false;
+}
+function rerender(){route.keep=true;const y=window.scrollY;route();window.scrollTo(0,y)}
+window.addEventListener('hashchange',route);
+
+/* ---------------- Heute ---------------- */
+function vHeute(){
+  const d=D(),tt=totals(d),c=checkModel(d),now=new Date(),hr=now.getHours();
+  const greet=hr<11?'Guten Morgen':hr<18?'Guten Tag':'Guten Abend';
+  const st=storyPositions();
+  const crit=c.dev.filter(x=>x.lvl==='crit'),warn=c.dev.filter(x=>x.lvl==='warn');
+  const gs=goalState(d);
+  let w;
+  if(!gs.ok)w={k:'none',t:'Noch kein Wetterbericht',d:'Lege in „Plan“ deine Zielverteilung fest, dann vergleichen wir dein Depot damit.',go:'#plan'};
+  else if(crit.length)w={k:'rain',t:'Wechselhaft',d:crit[0].t+(crit.length>1?` und ${crit.length-1} weitere deutliche Abweichung${crit.length>2?'en':''}`:'')+'.',go:'#depot'};
+  else if(warn.length)w={k:'cloud',t:'Leicht bewölkt',d:warn[0].t+'.',go:'#depot'};
+  else w={k:'sun',t:'Heiter',d:'Dein Depot liegt nah an deinen Vorgaben.',go:'#depot'};
+  if(c.incomplete&&gs.ok)w.d+=' Vorläufig, weil Positionen fehlen.';
+  const rank={neg:0,warn:1,pos:2,neutral:3};
+  const changes=st.filter(p=>INFO[p.symbol].changes.items.length).sort((a,b)=>(rank[MOOD[a.symbol]||'neutral']-rank[MOOD[b.symbol]||'neutral'])||posValue(b)-posValue(a)).slice(0,3);
+  return `
+  <div class="row between">
+    <div class="col" style="gap:2px"><span class="small strong muted2">${now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}</span><h1 class="h1">${greet}</h1></div>
+    <div class="row" style="gap:6px">
+      <a href="#liga" class="chip-btn" aria-label="Lernserie: ${streak()} Tage, ${FUN.points} Wissenspunkte">${ICON.bars}<span>${streak()} ${streak()===1?'Tag':'Tage'}</span></a>
+      <a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a>
+    </div>
+  </div>
+  ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
+  ${st.length?`<div class="stories" aria-label="Neuigkeiten zu deinen Positionen">${st.map(p=>`<a href="#story/${encodeURIComponent(p.id)}" class="story-b"><span class="ring ${FUN.seen.includes(p.id)?'seen':''}"><span class="av">${esc(initials(p.name))}</span></span><span class="n">${esc(short(p.name))}</span></a>`).join('')}</div>`:''}
+  <section class="dark col" style="gap:6px">
+    <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
+    <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
+    <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${d.kind==='demo'?'Kurse vom 04.10.2026':`Datei ${esc(d.fileName)}, Stichtag ${d.valuationDate?esc(d.valuationDate):'nicht bekannt'}`}. Keine Live-Kurse.</span>
+  </section>
+  ${c.incomplete?`<a href="#daten" class="banner"><b>Zuordnungen prüfen</b><span>Ohne Bestätigung ${(tt.open+noBucket(d).length)===1?'fehlt 1 Position':'fehlen '+(tt.open+noBucket(d).length)+' Positionen'} in Gewichten und Zielvergleich.</span></a>`:''}
+  <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
+  <section class="col" style="gap:8px">
+    <h2 class="h2">Was sich geändert hat</h2>
+    ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)}</span></a>`}).join(''):'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
+  </section>
+  <p class="hint">Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026. Keine Anlageberatung.</p>`;
+}
+const initials=n=>{const w=n.replace(/[^A-Za-zÄÖÜäöü ]/g,' ').split(/\s+/).filter(x=>x.length>1);return (w.length>1?w[0][0]+w[1][0]:(w[0]||'?').slice(0,2)).toUpperCase()};
+const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':w};
+
+/* ---------------- Story ---------------- */
+let storyIdx=0,storyId=null;
+function storySlides(p){const I=INFO[p.symbol];const sl=[];
+  sl.push({lbl:'Einordnung',kind:'interp',t:I.interp,src:null});
+  I.changes.items.forEach(c=>sl.push({lbl:'Was sich verändert hat · '+I.changes.cmp,kind:c.kind,t:c.t,src:c.src[0]}));
+  if(I.facts[0])sl.push({lbl:'Fakt aus dem Bericht',kind:I.facts[0].kind,t:I.facts[0].t,src:I.facts[0].src});
+  const r=I.rules[0];if(r)sl.push({lbl:'Worauf wir achten',kind:'rule',t:r.q,rule:r,src:r.src});
+  return sl}
+function vStory(id){
+  const p=posById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
+  if(storyId!==id){storyId=id;storyIdx=0}
+  if(!FUN.seen.includes(id)){FUN.seen.push(id);saveFun()}
+  const sl=storySlides(p),s=sl[Math.min(storyIdx,sl.length-1)],tt=totals(D());
+  const und=FUN.understood.includes(id);
+  return `
+  <div class="prog" aria-label="Teil ${storyIdx+1} von ${sl.length}">${sl.map((_,i)=>`<span class="${i<=storyIdx?'on':''}"></span>`).join('')}</div>
+  <div class="row">
+    <span class="av light">${esc(initials(p.name))}</span>
+    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'}</span></div>
+    <a href="#heute" class="icon-btn night" aria-label="Story schließen">${ICON.close}</a>
+  </div>
+  <div class="col" style="gap:10px;margin-top:10px">
+    <span class="lbl night">${esc(s.lbl)}</span>
+    ${s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
+    <h1 class="big story-h">${esc(s.t)}</h1>
+    ${s.rule?`<div class="story-box"><div class="row between"><span>Stand ${esc(s.rule.per)}</span><span class="st ${stCls(s.rule)}">${STATUS[s.rule.type][s.rule.status]}</span></div><span class="small muted-night">${esc(s.rule.metric)}: ${esc(s.rule.cond)}${s.rule.obs?` · beobachtet ${esc(s.rule.obs)}`:''}</span><span class="small muted-night">Nächste Prüfung: ${esc(s.rule.next)}</span></div>`:''}
+    ${s.src?`<span class="small muted-night">Quelle: ${srcText(s.src)}</span>`:s.kind==='interp'?'<span class="small muted-night">Interpretation von Depotfokus auf Basis der Quellen</span>':''}
+  </div>
+  <div class="grid2" style="margin-top:8px">
+    <button type="button" class="btn ghost-dark" data-story="prev" ${storyIdx===0?'disabled':''}>Zurück</button>
+    <button type="button" class="btn ghost-dark" data-story="next" ${storyIdx>=sl.length-1?'disabled':''}>Weiter</button>
+  </div>
+  <div class="col" style="gap:10px;margin-top:auto">
+    <a href="#pos/${encodeURIComponent(id)}" class="btn light">Tiefer einsteigen</a>
+    <button type="button" class="btn ghost-dark" data-understood="${esc(id)}">${und?'Verstanden ✓':'Verstanden · +10 Wissen'}</button>
+  </div>`;
+}
+const stCls=r=>({met:'yes',not_met:'no',occurred:'no',not_occurred:'yes',open:'open',np:'np'})[r.status];
+
+/* ---------------- Depot ---------------- */
+function itemRow(x){return `<div class="item"><span class="mark ${x.lvl}" aria-hidden="true">${({warn:'!',crit:'!!',info:'i',good:'✓',na:'?'})[x.lvl]}</span><div class="col" style="min-width:0"><span class="sr">${({warn:'Hinweis',crit:'Deutliche Abweichung',info:'Information',good:'Unauffällig',na:'Nicht beurteilbar'})[x.lvl]}: </span><span class="strong">${esc(x.t)}</span>${x.d?`<details><summary>Details</summary><p class="small muted2">${esc(x.d)}</p></details>`:''}</div>${x.go?`<a class="link" href="${x.go[0]==='pos'?'#pos/'+encodeURIComponent(x.go[1]):x.go[0]==='plan'?'#plan':x.go[0]==='depot'?(x.go[1]==='posCard'?'#depot':'#daten'):'#'+x.go[0]}">${esc(x.act||'Ansehen')} →</a>`:'<span></span>'}</div>`}
+function vDepot(){
+  const d=D(),tt=totals(d),c=checkModel(d),T=tt.sum;
+  let list='';
+  B.forEach(b=>{const ps=d.positions.filter(p=>isIncluded(p)&&p.bucket===b.id).sort((x,y)=>posValue(y)-posValue(x));if(!ps.length)return;const s=ps.reduce((a,p)=>a+posValue(p),0);
+    list+=`<div class="grph"><span class="row" style="gap:8px"><i class="dot" style="background:var(${b.c})"></i>${b.name}</span><span class="num">${pct(s/T,0)}</span></div>`+ps.map(p=>posRow(p,T)).join('')});
+  const nb=noBucket(d);if(nb.length)list+=`<div class="grph"><span>Ohne Baustein</span></div>`+nb.map(p=>posRow(p,T)).join('');
+  const out=d.positions.filter(p=>!isIncluded(p));if(out.length)list+=`<div class="grph"><span>Nicht eingerechnet</span></div>`+out.map(p=>posRow(p,T)).join('');
+  if(d.accounts.length)list+=`<div class="grph"><span class="row" style="gap:8px"><i class="dot" style="background:var(--s6)"></i>Verrechnungskonto</span><span class="num">${eur(tt.acct)}</span></div>`;
+  return `
+  <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a></div>
+  ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
+  <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
+  <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
+  <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
+  <section class="card"><h2 class="h2">Positionen</h2>${list}</section>`;
+}
+function posRow(p,T){const v=posValue(p),I=INFO[p.symbol],m=MOOD[p.symbol];
+  const sub=!I?'Noch keine geprüfte Einordnung':I.etf?'ETF-Profil':I.changes.items[0]?I.changes.items[0].t:I.interp;
+  return `<a class="prow" href="#pos/${encodeURIComponent(p.id)}"><span class="nm">${esc(p.name)}</span><span class="num r">${v!=null?eur(v):p.conf==='skip'?'nicht eingerechnet':'Wert ungeklärt'}</span>
+   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
+
+/* ---------------- Position / Kompass ---------------- */
+function vPos(id){
+  const d=D(),p=posById(id);if(!p)return `<h1 class="h1">Nicht gefunden</h1><a class="btn" href="#depot">Zum Depot</a>`;
+  const I=INFO[p.symbol],tt=totals(d),v=posValue(p);
+  let h=`<div class="row" style="gap:6px"><a href="#depot" class="icon-btn" aria-label="Zurück zum Depot">${ICON.back}</a><div class="col"><h1 class="big" style="font-size:24px">${esc(p.name)}</h1><span class="small muted2">${p.bucket?BN[p.bucket].name:'ohne Baustein'} · ${v!=null?eur(v)+' · '+pct(v/tt.sum)+(d.kind==='demo'?' des Musterdepots':' deines Depots'):'Wert ungeklärt'}</span></div></div>`;
+  if(v==null&&p.conf!=='skip')h+=`<a href="#daten" class="banner"><b>Wert ungeklärt</b><span>Die Kurswährung ist nicht erkennbar. Bitte zuerst bestätigen.</span></a>`;
+  if(!I){h+=`<section class="card"><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p></section>`;return h+checkButtons(p)}
+  if(I.etf){const e=I.etf;
+    h+=`<section class="card col" style="gap:8px"><span class="lbl">ETF-Profil</span><dl class="kv"><dt>Fonds</dt><dd>${esc(e.name)} · ${esc(e.isin)}</dd><dt>Index</dt><dd>${esc(e.index)}</dd><dt>Kosten</dt><dd>${esc(e.ter)}</dd><dt>Konzentration</dt><dd>${esc(e.conc)}</dd><dt>Ausschüttung</dt><dd>${esc(e.dist)}</dd><dt>Überschneidungen</dt><dd>nicht verfügbar</dd><dt>Stand</dt><dd>${esc(e.stand)}</dd></dl>${srcLink(e.terSrc||e.src)}${e.terSrc?srcLink(e.src):''}</section>`;
+    return h+checkButtons(p)}
+  const pro=[],con=[];I.rules.forEach(r=>{const t=`${r.q.replace(/\?$/,'')}: ${STATUS[r.type][r.status]}${r.obs?` (${r.obs})`:''}`;if(r.status==='met'||r.status==='not_occurred')pro.push(t);else if(r.status==='not_met'||r.status==='occurred')con.push(t)});
+  I.facts.filter(f=>f.kind==='metric').slice(0,1).forEach(f=>pro.length<3&&pro.push(f.t));
+  const nextR=I.rules.find(r=>r.status!=='np')||I.rules[0];
+  h+=`<section class="card col" style="gap:6px">${kindTag('interp')}<p class="lead">${esc(I.interp)}</p></section>
+  <section class="card col" style="gap:10px">
+    <div class="row between"><span class="lbl">Kompass</span><span class="chip-soon">im Aufbau</span></div>
+    <p class="small muted2">Wahrscheinlichkeiten zeigen wir erst, wenn genug Prognosen aufgelöst sind und die Trefferquote öffentlich ist. Bis dahin zählen die geprüften Bedingungen und Risiken.</p>
+    <div class="grid2"><div class="pc"><span class="strong pos-text">Dafür spricht</span><ul>${pro.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Keine geprüften Punkte</li>'}</ul></div><div class="pc"><span class="strong neg-text">Dagegen spricht</span><ul>${con.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Kein geprüfter Punkt eingetreten</li>'}${I.themes.map(t=>`<li class="muted2">Offen: ${esc(t.t)}</li>`).join('')}</ul></div></div>
+  </section>
+  ${nextR?`<section class="dark col" style="gap:4px"><span class="lbl">Was als Nächstes zählt</span><span class="strong">${esc(nextR.next)}: ${esc(nextR.q)}</span></section>`:''}
+  <section class="card"><h2 class="h2">Belegte Fakten</h2>${I.facts.map(f=>`<div class="fact">${kindTag(f.kind)}${esc(f.t)}${srcLink(f.src)}</div>`).join('')}</section>
+  <section class="card"><h2 class="h2">Was wir beobachten</h2>${I.rules.map(r=>`<div class="rule"><div class="row between" style="align-items:flex-start;gap:8px"><span class="strong">${esc(r.q)} <span class="small muted2">${r.type==='goal'?'Bedingung':'Risiko'}</span></span><span class="st ${stCls(r)}">${STATUS[r.type][r.status]}</span></div><details><summary>Regel und Quelle</summary><dl class="kv"><dt>Kennzahl</dt><dd>${esc(r.metric)}</dd><dt>Bedingung</dt><dd>${esc(r.cond)}</dd><dt>Periode</dt><dd>${esc(r.per)}</dd><dt>Beobachtet</dt><dd>${r.obs?esc(r.obs):'nicht verfügbar'}${r.prev?' · Vorperiode '+esc(r.prev):''}</dd><dt>Nächste Prüfung</dt><dd>${esc(r.next)}</dd><dt>Bedeutung</dt><dd>${esc(r.why)}</dd></dl>${r.src?srcLink(r.src):''}</details></div>`).join('')}</section>`;
+  return h+checkButtons(p);
+}
+function checkButtons(p){return `<div class="grid2" style="margin-top:4px"><a href="#check/${encodeURIComponent(p.id)}/kauf" class="btn">Kauf überlegen</a><a href="#check/${encodeURIComponent(p.id)}/verkauf" class="btn solid">Verkauf überlegen</a></div><p class="hint center">Depotfokus führt keine Orders aus.</p>`}
+
+/* ---------------- Entscheidungs-Check ---------------- */
+let chk={reason:null,sleep:true,id:null};
+function vCheck(id,intent){
+  const d=D(),p=posById(id);if(!p)return `<h1 class="h1">Nicht gefunden</h1><a class="btn" href="#depot">Zum Depot</a>`;
+  if(chk.id!==id+intent)chk={reason:null,sleep:true,id:id+intent};
+  const buy=intent==='kauf',I=INFO[p.symbol],V=bucketVals(d),T=tot(V),gs=goalState(d);
+  let plan,planOk=null;
+  if(!p.bucket)plan='Die Position hat keinen Baustein; ein Vergleich mit deinem Plan ist nicht möglich.';
+  else if(!gs.ok)plan='Du hast noch keine gültige Zielverteilung. Lege sie im Plan fest, dann prüfen wir das hier.';
+  else{const w=V[p.bucket]/T,g=d.goals[p.bucket]/100,under=w<g-0.005;planOk=buy?under:!under;
+    plan=`${BN[p.bucket].name}: ${pct(w)} heute, dein Ziel ${fz(d.goals[p.bucket])} %. Ein ${buy?'Kauf':'Verkauf'} bringt dich ${planOk?'näher an':'weiter weg von'} deinem Ziel.`;
+    const v=posValue(p);if(d.maxSingle!=null&&v!=null&&(p.bucket==='single'||p.bucket==='bdc')){const pw=v/tt0();if(buy&&pw>=d.maxSingle/100)plan+=` Die Position liegt mit ${pct(pw)} schon über deiner Grenze von ${fz(d.maxSingle)} %.`}}
+  const cost=p.fund?(p.ter!=null?`Laufende Fondskosten ${num(p.ter,2)} % pro Jahr. `:'Laufende Kosten nicht bekannt. '):'';
+  const R=[['plan','Weg vom Ziel'],['news','Neue Information'],['drop',buy?'Kurs ist gefallen':'Kurs ist gefallen'],['tip','Tipp von anderen']];
+  const rule=I&&I.rules?I.rules.find(r=>r.status!=='np'):null;
+  let score=0;if(chk.reason){score=chk.reason==='plan'||chk.reason==='news'?2:1;if(planOk===true)score++;if(planOk===false)score--;if(chk.sleep)score++}score=Math.max(0,Math.min(4,score));
+  const qual=chk.reason?['Schwach begründet','Schwach begründet','Ausbaufähig','Gut begründet','Sehr gut begründet'][score]:'Wähle einen Grund';
+  return `
+  <div class="row" style="gap:6px"><a href="#pos/${encodeURIComponent(id)}" class="icon-btn" aria-label="Zurück">${ICON.back}</a><div class="col"><span class="lbl">Entscheidungs-Check</span><h1 class="big" style="font-size:22px">${buy?'Kauf':'Verkauf'}: ${esc(p.name)}</h1></div></div>
+  <section class="card step"><span class="num-c c1" aria-hidden="true">1</span><div class="col" style="gap:3px"><span class="strong">Passt es zu deinem Plan?</span><span class="small muted2">${esc(plan)}</span>${!gs.ok?'<a class="link" href="#plan">Zum Plan →</a>':''}</div></section>
+  <section class="card step"><span class="num-c c2" aria-hidden="true">2</span><div class="col" style="gap:3px"><span class="strong">Was kostet es?</span><span class="small muted2">${esc(cost)}${buy?'Ordergebühr laut deinem Broker.':'Steuer auf einen Gewinn hängt von deinem Kaufkurs ab; der ist im Export nicht enthalten. Dazu die Ordergebühr.'}</span></div></section>
+  <section class="card col" style="gap:10px"><div class="step"><span class="num-c c3" aria-hidden="true">3</span><span class="strong" id="whyLbl" style="padding-top:3px">Warum gerade jetzt?</span></div>
+    <div class="reasons" role="group" aria-labelledby="whyLbl">${R.map(([k,l])=>`<button type="button" data-reason="${k}" aria-pressed="${chk.reason===k}">${l}</button>`).join('')}</div>
+    ${chk.reason==='drop'?'<p class="hint-box">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?</p>':''}
+    ${chk.reason==='tip'?'<p class="hint-box">Tipps von anderen kennen deinen Plan nicht. Prüfe Schritt 1 besonders genau.</p>':''}</section>
+  <section class="card step"><span class="num-c c4" aria-hidden="true">4</span><div class="col" style="gap:3px"><span class="strong">Was würde dich umstimmen?</span><span class="small muted2">${rule?`Zum Beispiel: ${esc(rule.metric)} – ${esc(rule.cond)} (${esc(rule.next)}).`:'Überlege dir eine konkrete Bedingung, bevor du handelst.'}</span></div></section>
+  <section class="dark row between"><div class="col" style="gap:2px"><span class="lbl">Entscheidungsqualität</span><span class="big" style="font-size:20px" id="qual" aria-live="polite">${qual}</span></div><div class="meter" aria-hidden="true">${[1,2,3,4].map(i=>`<span class="${chk.reason&&i<=score?'on':''}"></span>`).join('')}</div></section>
+  <label class="switch"><span>24 Stunden drüber schlafen</span><input type="checkbox" id="sleep" ${chk.sleep?'checked':''}></label>
+  <button type="button" class="btn solid" id="saveNote" ${chk.reason?'':'disabled'}>Entscheidungsnotiz speichern</button>
+  <p class="hint center">Punkte gibt es für die Begründung, nicht für den Trade. Umsetzen kannst du nur bei deinem Broker.</p>`;
+}
+const tt0=()=>totals(D()).sum;
+
+/* ---------------- Plan ---------------- */
+function vPlan(){
+  const d=D(),V=bucketVals(d),T=tot(V),gs=goalState(d);
+  let goals;
+  if(!d.goals)goals=`<div class="empty">Du hast noch keine Zielverteilung. Ohne Ziele gibt es keinen Vergleich und keine Verteilung der Sparrate.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn solid" id="goalsFromNow" type="button">Heutige Verteilung übernehmen</button><button class="btn" id="goalsEmpty" type="button">Leer beginnen</button></div>`;
+  else goals=B.map(b=>{const raw=goalRaw[b.id];return `<div class="goal"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><label for="g_${b.id}" class="col"><span class="strong">${b.name}</span><span class="small muted2 num">heute ${T?pct(V[b.id]/T,1):'–'}</span></label><span class="row" style="gap:6px;flex-wrap:nowrap"><input class="numin" type="text" inputmode="decimal" id="g_${b.id}" data-goal="${b.id}" value="${esc(raw?raw.v:d.goals[b.id])}" ${raw?'aria-invalid="true"':''} aria-describedby="ge_${b.id}"> %</span><span class="err" id="ge_${b.id}">${raw?esc(raw.msg):''}</span></div>`}).join('')+`<div class="row between" style="margin-top:8px"><span id="goalSum" class="num" role="status"></span><button class="link" id="goalsFromNow" type="button">Heutige Verteilung</button></div>`;
+  return `
+  <h1 class="h1" style="font-size:28px">Dein Plan</h1>
+  <section class="card col" style="gap:6px"><div class="row between"><h2 class="h2">1. Meine Zielverteilung</h2>${d.goalsSource==='example'?'<span class="chip-demo">Beispiel</span>':''}</div>${goals}
+    <label class="field" for="maxSingle" style="margin-top:10px">Grenze je Einzelwert in % (leer = keine)<input class="numin" type="text" inputmode="decimal" id="maxSingle" value="${d.maxSingle??''}"><span class="err" id="maxErr"></span></label>
+    <p class="hint">Zur Orientierung: Stiftung Warentest beschreibt im Pantoffel-Portfolio Mischungen mit 25, 50 oder 75 % Aktien. Keine Empfehlung für dich.</p></section>
+  <section class="card col" style="gap:10px"><h2 class="h2">2. Meine monatliche Einzahlung</h2>
+    <div class="grid2"><label class="field" for="budget">Betrag in €<input class="numin" type="text" inputmode="decimal" id="budget" value="${budgetRaw!=null?'':num(d.budget||0,2)}"><span class="err" id="budgetErr">${budgetRaw?esc(budgetRaw):''}</span></label>
+    <label class="field" for="cashMode">Verrechnungskonto<select id="cashMode"><option value="keep" ${d.cashMode==='keep'?'selected':''}>bleibt unverändert</option><option value="invest" ${d.cashMode==='invest'?'selected':''}>einmalig mitverteilen</option><option value="exclude" ${d.cashMode==='exclude'?'selected':''}>nicht zur Zielverteilung</option></select></label></div></section>
+  <section class="card col" style="gap:6px" id="allocBox">${allocHTML()}</section>
+  <details class="card"><summary class="strong">4. So wird gerechnet</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Für jeden Baustein wird geprüft, wie viel Geld bei unveränderten Kursen fehlt, damit er seine Zielquote erreicht, ohne dass etwas verkauft wird.</p><p>Die Einzahlung wird im Verhältnis dieser Fehlbeträge verteilt, auf den Cent genau. Ist nichts zu verteilen, gilt das Verhältnis der Zielquoten.</p><p>Die Dauer ist eine Rechnung bei unveränderten Kursen. Kursbewegungen und Ausschüttungen verändern sie.</p></div></details>`;
+}
+function allocHTML(){
+  const d=D(),gs=goalState(d),bs=budgetState(d);
+  if(!gs.ok||!bs.ok){const why=!d.goals?'Lege zuerst eine Zielverteilung fest.':gs.reason==='sum'?`Deine Ziele ergeben ${fz(gs.sum)} % statt 100 %.`:gs.reason==='invalid'?'Mindestens eine Zielquote ist ungültig.':bs.msg;
+    return `<h2 class="h2">3. Rechnerische Verteilung</h2><div class="empty">Keine Berechnung: ${esc(why)}</div><button class="btn solid" disabled aria-describedby="cw">Verteilung kopieren</button><span class="hint" id="cw">Nicht möglich: ${esc(why)}</span>`}
+  const al=allocate(d),am=al.amounts,p=pathFor(d,al,am),M=+d.budget||0;
+  const rows=B.map(b=>{const t=d.goals[b.id],held=al.V[b.id]>0.5;if(!t&&!held&&!am[b.id])return '';
+    const why=!t?(held?'Ziel 0 %: keine Einzahlung, der Bestand bleibt.':'Ziel 0 %.'):al.need[b.id]>0.5?`Unter Ziel: bis ${fz(t)} % fehlen rund ${eur(al.need[b.id])}.`:al.ns===0?`Verteilung nach deinem Ziel von ${fz(t)} %.`:`Hat ${fz(t)} % erreicht oder überschritten.`;
+    return `<div class="alloc"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><span class="strong">${b.name}</span><span class="num">${eur(am[b.id],2)}</span><span class="why">${esc(why)}</span></div>`}).join('');
+  const dur=p.blocked.length?'ohne Verkauf nicht erreichbar':p.theo===0?'erreicht':p.theo==null?'–':`frühestens nach ${p.theo} Monaten`;
+  return `<h2 class="h2">3. Rechnerische Verteilung</h2>${rows}
+   <div class="result"><span>Ziel erreicht</span><span class="num strong">${dur}</span>${al.cash>0?`<span>Einmalig aus dem Konto</span><span class="num">${eur(al.cash,2)}</span>`:''}</div>
+   ${p.blocked.length?`<p class="neg-text small">${esc(p.blocked.map(b=>b.name).join(', '))}: Ziel 0 %, aber Bestand vorhanden.</p>`:''}${M===0?'<p class="hint">Bei 0 € Einzahlung ändert sich die Verteilung nicht.</p>':''}
+   <div class="bars"><div class="barlab"><span>Heute</span><div class="bar">${barHTML(al.V)}</div></div><div class="barlab"><span>Ziel</span><div class="bar">${barHTML(d.goals)}</div></div></div>
+   <button class="btn solid" id="btnCopy" type="button">Verteilung kopieren</button><p class="hint">Bei unveränderten Kursen. Welche Wertpapiere du kaufst, entscheidest du.</p>`;
+}
+function barHTML(W){const T=tot(W)||1;return B.filter(b=>W[b.id]>0).map(b=>`<span title="${b.name}" style="width:${W[b.id]/T*100}%;background:var(${b.c})"></span>`).join('')}
+function renderGoalSum2(){const d=D(),el=$('#goalSum');if(!el||!d.goals)return;const gs=goalState(d),sum=B.reduce((a,b)=>a+(d.goals[b.id]||0),0);
+  el.textContent=gs.reason==='invalid'?'Ungültige Eingabe korrigieren':`Summe ${fz(sum)} %${Math.abs(sum-100)>0.05?` – es fehlen ${fz(100-sum)} Punkte`:' ✓'}`;el.className='num '+(gs.ok?'pos-text':'neg-text')}
+
+/* ---------------- Liga ---------------- */
+function questions(){const qs=[];D().positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a)).forEach(p=>{const r=INFO[p.symbol].rules.find(x=>x.status!=='np');if(r)qs.push({id:p.symbol+'|'+r.q,p,r})});return qs.slice(0,4)}
+function vLiga(){
+  const qs=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind);
+  return `
+  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Prognose-Liga</h1><span class="small strong muted2">${FUN.points} Wissenspunkte</span></div>
+  <p class="small muted2">Echte Fragen zu deinen Positionen. Aufgelöst wird, sobald der nächste Bericht geprüft ist.</p>
+  ${qs.map(q=>{const pr=FUN.preds[q.id]||{};return `<section class="dark col" style="gap:10px"><span class="lbl">${esc(q.p.name)} · ${esc(q.r.next)}</span>
+    <span class="h3" style="color:#fff">${esc(q.r.q)}</span><span class="small muted-night">${esc(q.r.metric)}: ${esc(q.r.cond)} · zuletzt ${esc(q.r.obs||'nicht verfügbar')} (${esc(q.r.per)})</span>
+    <div class="grid2 yn" role="group" aria-label="Antwort">${['ja','nein'].map(a=>`<button type="button" data-pred="${esc(q.id)}" data-ans="${a}" aria-pressed="${pr.a===a}">${a==='ja'?'Ja':'Nein'}</button>`).join('')}</div>
+    <div class="conf-g" role="group" aria-label="Wie sicher bist du?">${[50,60,70,80,90].map(c=>`<button type="button" data-pred="${esc(q.id)}" data-conf="${c}" aria-pressed="${(pr.c||70)===c}">${c} %</button>`).join('')}</div>
+    <span class="small sun-text">${pr.a?`Getippt: ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} %. Offen bis zur Auflösung.`:'Noch nicht getippt.'}</span></section>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine prüfbaren Fragen.</p>'}
+  <section class="card col" style="gap:6px"><span class="strong">Deine Treffsicherheit</span><p class="small muted2">Noch keine aufgelöste Prognose. Gewertet wird, wie gut deine Sicherheit zur Wirklichkeit passt: Wer 70 % sagt, sollte in 7 von 10 Fällen richtig liegen.</p></section>
+  <section class="card"><h2 class="h2">Deine Entscheidungsnotizen</h2>${notes.length?notes.slice().reverse().map(n=>`<div class="fact"><span class="strong">${esc(n.intent==='kauf'?'Kauf':'Verkauf')} ${esc(n.name)}</span><span class="small muted2"> · ${esc(n.date)} · ${esc(n.quality)}</span><div class="small muted2">Grund: ${esc(n.reasonTxt)}${n.sleep?' · mit Bedenkzeit':''}</div></div>`).join(''):'<p class="hint">Noch keine. Notizen entstehen im Entscheidungs-Check.</p>'}</section>
+  <p class="hint">Familien-Rangliste und Taschengeld-Depot kommen mit Benutzerkonten.</p>`;
+}
+
+/* ---------------- Daten ---------------- */
+function vDaten(){return `
+  <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Daten &amp; Import</h1></div>
+  <div class="card" id="sourceCard"></div>
+  <div class="card" id="importCard" tabindex="-1"></div>
+  <div class="card" id="confirmCard" tabindex="-1"></div>
+  <div class="card" id="extCard"></div>
+  <details class="card"><summary class="strong">Hinter den Kulissen</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Heute: Die Einordnungen sind manuell recherchierte Beispieldaten vom 04.10.2026 mit Quellenangabe. Es gibt keine automatische Aktualisierung.</p><p>Geplant: Jede Nacht Meldungen und Berichte in vielen Sprachen lesen, Fakten mit Quelle herausziehen, gegenprüfen, Regeln berechnen und nur Relevantes für dein Depot bündeln.</p><p>Versprechen: Jede Zahl mit Quelle · Trefferquote öffentlich · keine Provision für Käufe · keine Orders.</p></div></details>`}
+
+/* ---------------- Ereignisse ---------------- */
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const sb=t.closest('[data-story]');if(sb){storyIdx+=sb.dataset.story==='next'?1:-1;storyIdx=Math.max(0,storyIdx);rerender();return}
+  const un=t.closest('[data-understood]');if(un){const id=un.dataset.understood;if(!FUN.understood.includes(id)){FUN.understood.push(id);FUN.points+=10;touchDay();saveFun();toast('+10 Wissenspunkte')}rerender();return}
+  const rb=t.closest('[data-reason]');if(rb){chk.reason=rb.dataset.reason;rerender();return}
+  if(t.closest('#saveNote')){const {a}=parse();const p=posById(a[0]);const RT={plan:'Weg vom Ziel',news:'Neue Information',drop:'Kurs ist gefallen',tip:'Tipp von anderen'};
+    const q=$('#qual').textContent;
+    FUN.notes.push({kind:D().kind,id:p.id,name:p.name,intent:a[1],reasonTxt:RT[chk.reason],sleep:chk.sleep,quality:q,date:new Date().toLocaleDateString('de-DE')});FUN.points+=5;touchDay();saveFun();toast('Notiz gespeichert · +5 Punkte');location.hash='#liga';return}
+  const pb=t.closest('[data-pred]');if(pb){const id=pb.dataset.pred;const pr=FUN.preds[id]||{c:70};if(pb.dataset.ans)pr.a=pb.dataset.ans;if(pb.dataset.conf)pr.c=+pb.dataset.conf;pr.at=new Date().toISOString();FUN.preds[id]=pr;touchDay();saveFun();rerender();return}
+  if(t.closest('#goalsFromNow')){const d=D(),V=bucketVals(d),T=tot(V);if(!T){toast('Ohne Bestand gibt es keine heutige Verteilung.');return}const g={};B.forEach(b=>g[b.id]=Math.round(V[b.id]/T*1000)/10);const diff=Math.round((100-B.reduce((a,b)=>a+g[b.id],0))*10)/10;const big=B.reduce((a,b)=>g[b.id]>g[a.id]?b:a,B[0]);g[big.id]=Math.round((g[big.id]+diff)*10)/10;d.goals=g;d.goalsSource='current';goalRaw={};changed();toast('Heutige Verteilung übernommen');return}
+  if(t.closest('#goalsEmpty')){const d=D();d.goals=Object.fromEntries(B.map(b=>[b.id,0]));d.goalsSource='own';goalRaw={};changed();return}
+  if(t.closest('#btnCopy')){const d=D(),al=allocate(d);if(!al)return;const txt=['Depotfokus · rechnerische Verteilung',...B.filter(b=>al.amounts[b.id]>0).map(b=>`${eur(al.amounts[b.id],2)} → ${b.name} (Ziel ${fz(d.goals[b.id])} %)`)].join('\n');(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Verteilung kopiert')).catch(()=>toast('Kopieren nicht möglich'));return}
+  // Daten (aus der App übernommen)
+  const src=t.closest('[data-src]');if(src){UI.source=src.dataset.src;saveUI();goalRaw={};budgetRaw=null;rerender();toast(UI.source==='demo'?'Musterdepot wird angezeigt':'Dein Depot wird angezeigt');return}
+  const cf=t.closest('[data-conf]');if(cf&&cf.dataset.conf.includes('|')){const [id,how]=cf.dataset.conf.split('|');const p=posById(id);if(!p)return;if(how==='manual'){const box=document.getElementById('mv_'+id);box.hidden=false;document.getElementById('mvi_'+id).focus();return}p.conf=how;changed();toast(how==='eur'?`${p.name} wird eingerechnet`:`${p.name} wird nicht eingerechnet`);return}
+  const cs=t.closest('[data-confsave]');if(cs){const id=cs.dataset.confsave;const p=posById(id);const v=parseInput(document.getElementById('mvi_'+id).value);if(!(v>=0)||v>1e9){document.getElementById('mve_'+id).textContent='Bitte einen Betrag ab 0 € eingeben.';return}p.conf='manual';p.manualValue=v;changed();return}
+  if(t.closest('[data-unskip]')){D().positions.forEach(p=>{if(p.conf==='skip')p.conf=null});changed();return}
+  if(t.closest('#extAdd')){D().external.items.push({type:'tagesgeld',value:0});changed();return}
+  const xd=t.closest('[data-extdel]');if(xd){D().external.items.splice(+xd.dataset.extdel,1);changed();return}
+  if(t.closest('#stDiscard')){staged=null;renderImport();return}
+  if(t.closest('#stAccept')){acceptImport();return}
+  if(t.closest('#delAsk')){pendingDelete=true;renderSourceCard();return}
+  if(t.closest('#delCancel')){pendingDelete=false;renderSourceCard();return}
+  if(t.closest('#delConfirm')){store(OWN_KEY,null);OWN=null;pendingDelete=false;UI.source='demo';saveUI();rerender();toast('Eigene Daten auf diesem Gerät gelöscht');return}
+});
+document.addEventListener('change',e=>{
+  const el=e.target,d=D();
+  if(el.id==='sleep'){chk.sleep=el.checked;rerender();return}
+  if(el.id==='cashMode'){d.cashMode=el.value;changed();return}
+  if(el.id==='maxSingle'){const v=parseInput(el.value);if(v!=null&&!(v>0&&v<=100)){$('#maxErr').textContent='Wert über 0 und höchstens 100, oder leer lassen.';el.setAttribute('aria-invalid','true');return}d.maxSingle=v;changed();return}
+  if(el.id==='file'){const f=el.files&&el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{staged=analyzeCSV(r.result,f.name);renderImport();toast(staged.error?'Import nicht möglich':'Datei geprüft, bitte kontrollieren')};r.readAsText(f);el.value='';return}
+  if(el.dataset.acc!=null&&staged){staged.accounts[+el.dataset.acc].accept=el.checked;return}
+  if(el.id==='stReplace'){$('#stAccept').disabled=!el.checked;return}
+  if(el.dataset.bucket){const p=posById(el.dataset.bucket);if(p&&el.value){p.bucket=el.value;p.bucketSrc='user';changed()}return}
+  if(el.dataset.exttype!=null){d.external.items[+el.dataset.exttype].type=el.value;changed();return}
+  if(el.dataset.extval!=null){const v=parseInput(el.value);if(v==null||!(v>=0)){el.setAttribute('aria-invalid','true');return}d.external.items[+el.dataset.extval].value=v;changed();return}
+  if(el.id==='reserve'){const v=parseInput(el.value);if(v!=null&&!(v>=0)){$('#resErr').textContent='Bitte einen Betrag ab 0 € eingeben.';return}d.external.reserve=v||0;changed();return}
+});
+document.addEventListener('input',e=>{
+  const el=e.target,d=D();
+  if(el.dataset.goal){const k=el.dataset.goal,v=parseInput(el.value);
+    if(v==null||!Number.isFinite(v)||v<0||v>100){goalRaw[k]={v:el.value,msg:v==null?'Wert 0 bis 100 eingeben.':!Number.isFinite(v)?'Keine gültige Zahl.':v<0?'Nicht negativ.':'Höchstens 100.'};el.setAttribute('aria-invalid','true');$('#ge_'+k).textContent=goalRaw[k].msg}
+    else{delete goalRaw[k];d.goals[k]=Math.round(v*100)/100;el.removeAttribute('aria-invalid');$('#ge_'+k).textContent=''}
+    d.goalsSource='own';d.manual=null;renderGoalSum2();$('#allocBox').innerHTML=allocHTML();if(goalState(d).ok)persist();return}
+  if(el.id==='budget'){const v=parseInput(el.value);
+    if(v==null||!Number.isFinite(v)||v<0||v>1e7){budgetRaw=v==null?'Bitte einen Betrag eingeben, mindestens 0 €.':!Number.isFinite(v)?'Keine gültige Zahl.':v<0?'Nicht negativ.':'Höchstens 10 Mio. €.';el.setAttribute('aria-invalid','true')}
+    else{budgetRaw=null;d.budget=Math.round(v*100)/100;el.removeAttribute('aria-invalid');persist()}
+    $('#budgetErr').textContent=budgetRaw||'';$('#allocBox').innerHTML=allocHTML();return}
+});
+function changed(){const d=D();evaluateChanges(d);persist();rerender()}
+
+/* Start */
+evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
+touchDay();saveFun();route();
+
 </script>
 </body>
 </html>

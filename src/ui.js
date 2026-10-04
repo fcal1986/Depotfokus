@@ -1,0 +1,339 @@
+/* =========================================================
+   OBERFLÄCHE (Vision) – nutzt die geprüfte Logik oben
+   ========================================================= */
+const STATUS={goal:{met:'Erfüllt',not_met:'Nicht erfüllt',open:'Noch offen',np:'Nicht prüfbar'},risk:{occurred:'Eingetreten',not_occurred:'Nicht eingetreten',open:'Noch offen',np:'Nicht prüfbar'}};
+const MOOD={'9A2.F':'warn','13M.F':'pos','WX4.F':'pos','RY6.F':'pos','PEP.DE':'neutral','JNJ.DE':'pos','CCC3.DE':'pos','PRG.DE':'neg','NOV.DE':'pos','MSF.DE':'pos','3V64.DE':'pos'};
+const MOODTXT={pos:'Rückenwind',warn:'Beobachten',neg:'Gegenwind',neutral:'Unverändert'};
+const FUN_KEY='depotfokus-v5-fun';
+let FUN=Object.assign({seen:[],understood:[],days:[],points:0,preds:{},notes:[]},load(FUN_KEY)||{});
+function saveFun(){store(FUN_KEY,FUN)}
+function streak(){const ds=new Set(FUN.days);let n=0;const d=new Date();for(;;){const k=d.toISOString().slice(0,10);if(ds.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
+function touchDay(){const k=new Date().toISOString().slice(0,10);if(!FUN.days.includes(k)){FUN.days.push(k);FUN.days=FUN.days.slice(-400)}}
+function renderAll(){route()}
+function setTab(t){location.hash=t==='home'?'#heute':'#'+t}
+const ICON={
+ back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+ close:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ gear:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>',
+ bars:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V5M22 20H2"/></svg>'
+};
+function weather(kind){
+  const sun='<circle cx="18" cy="18" r="8" stroke="#E0A100"/><path d="M18 4v3M18 29v3M4 18h3M29 18h3M8 8l2 2M26 26l2 2M8 28l2-2M26 10l2-2" stroke="#E0A100"/>';
+  const cloud='<path d="M20 40h18a7 7 0 0 0 0-14 9 9 0 0 0-17 3 6 6 0 0 0-1 11z" stroke="#4A5070" fill="#fff"/>';
+  const rain='<path d="M22 44l-2 3M30 44l-2 3M38 44l-2 3" stroke="#1F5FD1"/>';
+  const q='<circle cx="24" cy="24" r="16" stroke="#6B7090" stroke-dasharray="4 4"/>';
+  const body=kind==='sun'?sun:kind==='cloud'?sun+cloud:kind==='rain'?cloud+rain:q;
+  return `<svg width="48" height="48" style="flex:none" viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">${body}</svg>`;
+}
+const posById=id=>D().positions.find(p=>p.id===id);
+const hasStory=p=>{const I=INFO[p.symbol];return I&&!I.etf&&isIncluded(p)};
+function storyPositions(){const d=D();return d.positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a))}
+function srcText(k){const s=S[k];return s?`${esc(s.org)}, ${esc(s.doc)}, ${esc(s.per)}, ${esc(s.date)}`:'Quelle nicht verfügbar'}
+function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target="_blank" rel="noopener">${srcText(k)}</a>`:'<span class="src">Quelle nicht verfügbar</span>'}
+const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
+
+/* ---------------- Routing ---------------- */
+const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute'};
+function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
+function route(){
+  const {r,a}=parse();const v=$('#view');let html='';
+  try{
+    if(r==='story')html=vStory(a[0]);
+    else if(r==='depot')html=vDepot();
+    else if(r==='pos')html=vPos(a[0]);
+    else if(r==='check')html=vCheck(a[0],a[1]);
+    else if(r==='plan')html=vPlan();
+    else if(r==='liga')html=vLiga();
+    else if(r==='daten')html=vDaten();
+    else html=vHeute();
+  }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
+  v.innerHTML=html;v.className=r==='story'?'story':'screen';
+  const full=r==='story'||r==='check';$('#tabs').hidden=full;v.classList.toggle('sub',full);
+  document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
+  if(r==='daten'){renderSourceCard();renderImport();renderConfirm();renderExt()}
+  if(r==='plan')renderGoalSum2();
+  if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
+  route.keep=false;
+}
+function rerender(){route.keep=true;const y=window.scrollY;route();window.scrollTo(0,y)}
+window.addEventListener('hashchange',route);
+
+/* ---------------- Heute ---------------- */
+function vHeute(){
+  const d=D(),tt=totals(d),c=checkModel(d),now=new Date(),hr=now.getHours();
+  const greet=hr<11?'Guten Morgen':hr<18?'Guten Tag':'Guten Abend';
+  const st=storyPositions();
+  const crit=c.dev.filter(x=>x.lvl==='crit'),warn=c.dev.filter(x=>x.lvl==='warn');
+  const gs=goalState(d);
+  let w;
+  if(!gs.ok)w={k:'none',t:'Noch kein Wetterbericht',d:'Lege in „Plan“ deine Zielverteilung fest, dann vergleichen wir dein Depot damit.',go:'#plan'};
+  else if(crit.length)w={k:'rain',t:'Wechselhaft',d:crit[0].t+(crit.length>1?` und ${crit.length-1} weitere deutliche Abweichung${crit.length>2?'en':''}`:'')+'.',go:'#depot'};
+  else if(warn.length)w={k:'cloud',t:'Leicht bewölkt',d:warn[0].t+'.',go:'#depot'};
+  else w={k:'sun',t:'Heiter',d:'Dein Depot liegt nah an deinen Vorgaben.',go:'#depot'};
+  if(c.incomplete&&gs.ok)w.d+=' Vorläufig, weil Positionen fehlen.';
+  const rank={neg:0,warn:1,pos:2,neutral:3};
+  const changes=st.filter(p=>INFO[p.symbol].changes.items.length).sort((a,b)=>(rank[MOOD[a.symbol]||'neutral']-rank[MOOD[b.symbol]||'neutral'])||posValue(b)-posValue(a)).slice(0,3);
+  return `
+  <div class="row between">
+    <div class="col" style="gap:2px"><span class="small strong muted2">${now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}</span><h1 class="h1">${greet}</h1></div>
+    <div class="row" style="gap:6px">
+      <a href="#liga" class="chip-btn" aria-label="Lernserie: ${streak()} Tage, ${FUN.points} Wissenspunkte">${ICON.bars}<span>${streak()} ${streak()===1?'Tag':'Tage'}</span></a>
+      <a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a>
+    </div>
+  </div>
+  ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
+  ${st.length?`<div class="stories" aria-label="Neuigkeiten zu deinen Positionen">${st.map(p=>`<a href="#story/${encodeURIComponent(p.id)}" class="story-b"><span class="ring ${FUN.seen.includes(p.id)?'seen':''}"><span class="av">${esc(initials(p.name))}</span></span><span class="n">${esc(short(p.name))}</span></a>`).join('')}</div>`:''}
+  <section class="dark col" style="gap:6px">
+    <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
+    <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
+    <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${d.kind==='demo'?'Kurse vom 04.10.2026':`Datei ${esc(d.fileName)}, Stichtag ${d.valuationDate?esc(d.valuationDate):'nicht bekannt'}`}. Keine Live-Kurse.</span>
+  </section>
+  ${c.incomplete?`<a href="#daten" class="banner"><b>Zuordnungen prüfen</b><span>Ohne Bestätigung ${(tt.open+noBucket(d).length)===1?'fehlt 1 Position':'fehlen '+(tt.open+noBucket(d).length)+' Positionen'} in Gewichten und Zielvergleich.</span></a>`:''}
+  <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
+  <section class="col" style="gap:8px">
+    <h2 class="h2">Was sich geändert hat</h2>
+    ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)}</span></a>`}).join(''):'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
+  </section>
+  <p class="hint">Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026. Keine Anlageberatung.</p>`;
+}
+const initials=n=>{const w=n.replace(/[^A-Za-zÄÖÜäöü ]/g,' ').split(/\s+/).filter(x=>x.length>1);return (w.length>1?w[0][0]+w[1][0]:(w[0]||'?').slice(0,2)).toUpperCase()};
+const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':w};
+
+/* ---------------- Story ---------------- */
+let storyIdx=0,storyId=null;
+function storySlides(p){const I=INFO[p.symbol];const sl=[];
+  sl.push({lbl:'Einordnung',kind:'interp',t:I.interp,src:null});
+  I.changes.items.forEach(c=>sl.push({lbl:'Was sich verändert hat · '+I.changes.cmp,kind:c.kind,t:c.t,src:c.src[0]}));
+  if(I.facts[0])sl.push({lbl:'Fakt aus dem Bericht',kind:I.facts[0].kind,t:I.facts[0].t,src:I.facts[0].src});
+  const r=I.rules[0];if(r)sl.push({lbl:'Worauf wir achten',kind:'rule',t:r.q,rule:r,src:r.src});
+  return sl}
+function vStory(id){
+  const p=posById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
+  if(storyId!==id){storyId=id;storyIdx=0}
+  if(!FUN.seen.includes(id)){FUN.seen.push(id);saveFun()}
+  const sl=storySlides(p),s=sl[Math.min(storyIdx,sl.length-1)],tt=totals(D());
+  const und=FUN.understood.includes(id);
+  return `
+  <div class="prog" aria-label="Teil ${storyIdx+1} von ${sl.length}">${sl.map((_,i)=>`<span class="${i<=storyIdx?'on':''}"></span>`).join('')}</div>
+  <div class="row">
+    <span class="av light">${esc(initials(p.name))}</span>
+    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'}</span></div>
+    <a href="#heute" class="icon-btn night" aria-label="Story schließen">${ICON.close}</a>
+  </div>
+  <div class="col" style="gap:10px;margin-top:10px">
+    <span class="lbl night">${esc(s.lbl)}</span>
+    ${s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
+    <h1 class="big story-h">${esc(s.t)}</h1>
+    ${s.rule?`<div class="story-box"><div class="row between"><span>Stand ${esc(s.rule.per)}</span><span class="st ${stCls(s.rule)}">${STATUS[s.rule.type][s.rule.status]}</span></div><span class="small muted-night">${esc(s.rule.metric)}: ${esc(s.rule.cond)}${s.rule.obs?` · beobachtet ${esc(s.rule.obs)}`:''}</span><span class="small muted-night">Nächste Prüfung: ${esc(s.rule.next)}</span></div>`:''}
+    ${s.src?`<span class="small muted-night">Quelle: ${srcText(s.src)}</span>`:s.kind==='interp'?'<span class="small muted-night">Interpretation von Depotfokus auf Basis der Quellen</span>':''}
+  </div>
+  <div class="grid2" style="margin-top:8px">
+    <button type="button" class="btn ghost-dark" data-story="prev" ${storyIdx===0?'disabled':''}>Zurück</button>
+    <button type="button" class="btn ghost-dark" data-story="next" ${storyIdx>=sl.length-1?'disabled':''}>Weiter</button>
+  </div>
+  <div class="col" style="gap:10px;margin-top:auto">
+    <a href="#pos/${encodeURIComponent(id)}" class="btn light">Tiefer einsteigen</a>
+    <button type="button" class="btn ghost-dark" data-understood="${esc(id)}">${und?'Verstanden ✓':'Verstanden · +10 Wissen'}</button>
+  </div>`;
+}
+const stCls=r=>({met:'yes',not_met:'no',occurred:'no',not_occurred:'yes',open:'open',np:'np'})[r.status];
+
+/* ---------------- Depot ---------------- */
+function itemRow(x){return `<div class="item"><span class="mark ${x.lvl}" aria-hidden="true">${({warn:'!',crit:'!!',info:'i',good:'✓',na:'?'})[x.lvl]}</span><div class="col" style="min-width:0"><span class="sr">${({warn:'Hinweis',crit:'Deutliche Abweichung',info:'Information',good:'Unauffällig',na:'Nicht beurteilbar'})[x.lvl]}: </span><span class="strong">${esc(x.t)}</span>${x.d?`<details><summary>Details</summary><p class="small muted2">${esc(x.d)}</p></details>`:''}</div>${x.go?`<a class="link" href="${x.go[0]==='pos'?'#pos/'+encodeURIComponent(x.go[1]):x.go[0]==='plan'?'#plan':x.go[0]==='depot'?(x.go[1]==='posCard'?'#depot':'#daten'):'#'+x.go[0]}">${esc(x.act||'Ansehen')} →</a>`:'<span></span>'}</div>`}
+function vDepot(){
+  const d=D(),tt=totals(d),c=checkModel(d),T=tt.sum;
+  let list='';
+  B.forEach(b=>{const ps=d.positions.filter(p=>isIncluded(p)&&p.bucket===b.id).sort((x,y)=>posValue(y)-posValue(x));if(!ps.length)return;const s=ps.reduce((a,p)=>a+posValue(p),0);
+    list+=`<div class="grph"><span class="row" style="gap:8px"><i class="dot" style="background:var(${b.c})"></i>${b.name}</span><span class="num">${pct(s/T,0)}</span></div>`+ps.map(p=>posRow(p,T)).join('')});
+  const nb=noBucket(d);if(nb.length)list+=`<div class="grph"><span>Ohne Baustein</span></div>`+nb.map(p=>posRow(p,T)).join('');
+  const out=d.positions.filter(p=>!isIncluded(p));if(out.length)list+=`<div class="grph"><span>Nicht eingerechnet</span></div>`+out.map(p=>posRow(p,T)).join('');
+  if(d.accounts.length)list+=`<div class="grph"><span class="row" style="gap:8px"><i class="dot" style="background:var(--s6)"></i>Verrechnungskonto</span><span class="num">${eur(tt.acct)}</span></div>`;
+  return `
+  <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a></div>
+  ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
+  <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
+  <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
+  <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
+  <section class="card"><h2 class="h2">Positionen</h2>${list}</section>`;
+}
+function posRow(p,T){const v=posValue(p),I=INFO[p.symbol],m=MOOD[p.symbol];
+  const sub=!I?'Noch keine geprüfte Einordnung':I.etf?'ETF-Profil':I.changes.items[0]?I.changes.items[0].t:I.interp;
+  return `<a class="prow" href="#pos/${encodeURIComponent(p.id)}"><span class="nm">${esc(p.name)}</span><span class="num r">${v!=null?eur(v):p.conf==='skip'?'nicht eingerechnet':'Wert ungeklärt'}</span>
+   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
+
+/* ---------------- Position / Kompass ---------------- */
+function vPos(id){
+  const d=D(),p=posById(id);if(!p)return `<h1 class="h1">Nicht gefunden</h1><a class="btn" href="#depot">Zum Depot</a>`;
+  const I=INFO[p.symbol],tt=totals(d),v=posValue(p);
+  let h=`<div class="row" style="gap:6px"><a href="#depot" class="icon-btn" aria-label="Zurück zum Depot">${ICON.back}</a><div class="col"><h1 class="big" style="font-size:24px">${esc(p.name)}</h1><span class="small muted2">${p.bucket?BN[p.bucket].name:'ohne Baustein'} · ${v!=null?eur(v)+' · '+pct(v/tt.sum)+(d.kind==='demo'?' des Musterdepots':' deines Depots'):'Wert ungeklärt'}</span></div></div>`;
+  if(v==null&&p.conf!=='skip')h+=`<a href="#daten" class="banner"><b>Wert ungeklärt</b><span>Die Kurswährung ist nicht erkennbar. Bitte zuerst bestätigen.</span></a>`;
+  if(!I){h+=`<section class="card"><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p></section>`;return h+checkButtons(p)}
+  if(I.etf){const e=I.etf;
+    h+=`<section class="card col" style="gap:8px"><span class="lbl">ETF-Profil</span><dl class="kv"><dt>Fonds</dt><dd>${esc(e.name)} · ${esc(e.isin)}</dd><dt>Index</dt><dd>${esc(e.index)}</dd><dt>Kosten</dt><dd>${esc(e.ter)}</dd><dt>Konzentration</dt><dd>${esc(e.conc)}</dd><dt>Ausschüttung</dt><dd>${esc(e.dist)}</dd><dt>Überschneidungen</dt><dd>nicht verfügbar</dd><dt>Stand</dt><dd>${esc(e.stand)}</dd></dl>${srcLink(e.terSrc||e.src)}${e.terSrc?srcLink(e.src):''}</section>`;
+    return h+checkButtons(p)}
+  const pro=[],con=[];I.rules.forEach(r=>{const t=`${r.q.replace(/\?$/,'')}: ${STATUS[r.type][r.status]}${r.obs?` (${r.obs})`:''}`;if(r.status==='met'||r.status==='not_occurred')pro.push(t);else if(r.status==='not_met'||r.status==='occurred')con.push(t)});
+  I.facts.filter(f=>f.kind==='metric').slice(0,1).forEach(f=>pro.length<3&&pro.push(f.t));
+  const nextR=I.rules.find(r=>r.status!=='np')||I.rules[0];
+  h+=`<section class="card col" style="gap:6px">${kindTag('interp')}<p class="lead">${esc(I.interp)}</p></section>
+  <section class="card col" style="gap:10px">
+    <div class="row between"><span class="lbl">Kompass</span><span class="chip-soon">im Aufbau</span></div>
+    <p class="small muted2">Wahrscheinlichkeiten zeigen wir erst, wenn genug Prognosen aufgelöst sind und die Trefferquote öffentlich ist. Bis dahin zählen die geprüften Bedingungen und Risiken.</p>
+    <div class="grid2"><div class="pc"><span class="strong pos-text">Dafür spricht</span><ul>${pro.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Keine geprüften Punkte</li>'}</ul></div><div class="pc"><span class="strong neg-text">Dagegen spricht</span><ul>${con.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Kein geprüfter Punkt eingetreten</li>'}${I.themes.map(t=>`<li class="muted2">Offen: ${esc(t.t)}</li>`).join('')}</ul></div></div>
+  </section>
+  ${nextR?`<section class="dark col" style="gap:4px"><span class="lbl">Was als Nächstes zählt</span><span class="strong">${esc(nextR.next)}: ${esc(nextR.q)}</span></section>`:''}
+  <section class="card"><h2 class="h2">Belegte Fakten</h2>${I.facts.map(f=>`<div class="fact">${kindTag(f.kind)}${esc(f.t)}${srcLink(f.src)}</div>`).join('')}</section>
+  <section class="card"><h2 class="h2">Was wir beobachten</h2>${I.rules.map(r=>`<div class="rule"><div class="row between" style="align-items:flex-start;gap:8px"><span class="strong">${esc(r.q)} <span class="small muted2">${r.type==='goal'?'Bedingung':'Risiko'}</span></span><span class="st ${stCls(r)}">${STATUS[r.type][r.status]}</span></div><details><summary>Regel und Quelle</summary><dl class="kv"><dt>Kennzahl</dt><dd>${esc(r.metric)}</dd><dt>Bedingung</dt><dd>${esc(r.cond)}</dd><dt>Periode</dt><dd>${esc(r.per)}</dd><dt>Beobachtet</dt><dd>${r.obs?esc(r.obs):'nicht verfügbar'}${r.prev?' · Vorperiode '+esc(r.prev):''}</dd><dt>Nächste Prüfung</dt><dd>${esc(r.next)}</dd><dt>Bedeutung</dt><dd>${esc(r.why)}</dd></dl>${r.src?srcLink(r.src):''}</details></div>`).join('')}</section>`;
+  return h+checkButtons(p);
+}
+function checkButtons(p){return `<div class="grid2" style="margin-top:4px"><a href="#check/${encodeURIComponent(p.id)}/kauf" class="btn">Kauf überlegen</a><a href="#check/${encodeURIComponent(p.id)}/verkauf" class="btn solid">Verkauf überlegen</a></div><p class="hint center">Depotfokus führt keine Orders aus.</p>`}
+
+/* ---------------- Entscheidungs-Check ---------------- */
+let chk={reason:null,sleep:true,id:null};
+function vCheck(id,intent){
+  const d=D(),p=posById(id);if(!p)return `<h1 class="h1">Nicht gefunden</h1><a class="btn" href="#depot">Zum Depot</a>`;
+  if(chk.id!==id+intent)chk={reason:null,sleep:true,id:id+intent};
+  const buy=intent==='kauf',I=INFO[p.symbol],V=bucketVals(d),T=tot(V),gs=goalState(d);
+  let plan,planOk=null;
+  if(!p.bucket)plan='Die Position hat keinen Baustein; ein Vergleich mit deinem Plan ist nicht möglich.';
+  else if(!gs.ok)plan='Du hast noch keine gültige Zielverteilung. Lege sie im Plan fest, dann prüfen wir das hier.';
+  else{const w=V[p.bucket]/T,g=d.goals[p.bucket]/100,under=w<g-0.005;planOk=buy?under:!under;
+    plan=`${BN[p.bucket].name}: ${pct(w)} heute, dein Ziel ${fz(d.goals[p.bucket])} %. Ein ${buy?'Kauf':'Verkauf'} bringt dich ${planOk?'näher an':'weiter weg von'} deinem Ziel.`;
+    const v=posValue(p);if(d.maxSingle!=null&&v!=null&&(p.bucket==='single'||p.bucket==='bdc')){const pw=v/tt0();if(buy&&pw>=d.maxSingle/100)plan+=` Die Position liegt mit ${pct(pw)} schon über deiner Grenze von ${fz(d.maxSingle)} %.`}}
+  const cost=p.fund?(p.ter!=null?`Laufende Fondskosten ${num(p.ter,2)} % pro Jahr. `:'Laufende Kosten nicht bekannt. '):'';
+  const R=[['plan','Weg vom Ziel'],['news','Neue Information'],['drop',buy?'Kurs ist gefallen':'Kurs ist gefallen'],['tip','Tipp von anderen']];
+  const rule=I&&I.rules?I.rules.find(r=>r.status!=='np'):null;
+  let score=0;if(chk.reason){score=chk.reason==='plan'||chk.reason==='news'?2:1;if(planOk===true)score++;if(planOk===false)score--;if(chk.sleep)score++}score=Math.max(0,Math.min(4,score));
+  const qual=chk.reason?['Schwach begründet','Schwach begründet','Ausbaufähig','Gut begründet','Sehr gut begründet'][score]:'Wähle einen Grund';
+  return `
+  <div class="row" style="gap:6px"><a href="#pos/${encodeURIComponent(id)}" class="icon-btn" aria-label="Zurück">${ICON.back}</a><div class="col"><span class="lbl">Entscheidungs-Check</span><h1 class="big" style="font-size:22px">${buy?'Kauf':'Verkauf'}: ${esc(p.name)}</h1></div></div>
+  <section class="card step"><span class="num-c c1" aria-hidden="true">1</span><div class="col" style="gap:3px"><span class="strong">Passt es zu deinem Plan?</span><span class="small muted2">${esc(plan)}</span>${!gs.ok?'<a class="link" href="#plan">Zum Plan →</a>':''}</div></section>
+  <section class="card step"><span class="num-c c2" aria-hidden="true">2</span><div class="col" style="gap:3px"><span class="strong">Was kostet es?</span><span class="small muted2">${esc(cost)}${buy?'Ordergebühr laut deinem Broker.':'Steuer auf einen Gewinn hängt von deinem Kaufkurs ab; der ist im Export nicht enthalten. Dazu die Ordergebühr.'}</span></div></section>
+  <section class="card col" style="gap:10px"><div class="step"><span class="num-c c3" aria-hidden="true">3</span><span class="strong" id="whyLbl" style="padding-top:3px">Warum gerade jetzt?</span></div>
+    <div class="reasons" role="group" aria-labelledby="whyLbl">${R.map(([k,l])=>`<button type="button" data-reason="${k}" aria-pressed="${chk.reason===k}">${l}</button>`).join('')}</div>
+    ${chk.reason==='drop'?'<p class="hint-box">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?</p>':''}
+    ${chk.reason==='tip'?'<p class="hint-box">Tipps von anderen kennen deinen Plan nicht. Prüfe Schritt 1 besonders genau.</p>':''}</section>
+  <section class="card step"><span class="num-c c4" aria-hidden="true">4</span><div class="col" style="gap:3px"><span class="strong">Was würde dich umstimmen?</span><span class="small muted2">${rule?`Zum Beispiel: ${esc(rule.metric)} – ${esc(rule.cond)} (${esc(rule.next)}).`:'Überlege dir eine konkrete Bedingung, bevor du handelst.'}</span></div></section>
+  <section class="dark row between"><div class="col" style="gap:2px"><span class="lbl">Entscheidungsqualität</span><span class="big" style="font-size:20px" id="qual" aria-live="polite">${qual}</span></div><div class="meter" aria-hidden="true">${[1,2,3,4].map(i=>`<span class="${chk.reason&&i<=score?'on':''}"></span>`).join('')}</div></section>
+  <label class="switch"><span>24 Stunden drüber schlafen</span><input type="checkbox" id="sleep" ${chk.sleep?'checked':''}></label>
+  <button type="button" class="btn solid" id="saveNote" ${chk.reason?'':'disabled'}>Entscheidungsnotiz speichern</button>
+  <p class="hint center">Punkte gibt es für die Begründung, nicht für den Trade. Umsetzen kannst du nur bei deinem Broker.</p>`;
+}
+const tt0=()=>totals(D()).sum;
+
+/* ---------------- Plan ---------------- */
+function vPlan(){
+  const d=D(),V=bucketVals(d),T=tot(V),gs=goalState(d);
+  let goals;
+  if(!d.goals)goals=`<div class="empty">Du hast noch keine Zielverteilung. Ohne Ziele gibt es keinen Vergleich und keine Verteilung der Sparrate.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn solid" id="goalsFromNow" type="button">Heutige Verteilung übernehmen</button><button class="btn" id="goalsEmpty" type="button">Leer beginnen</button></div>`;
+  else goals=B.map(b=>{const raw=goalRaw[b.id];return `<div class="goal"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><label for="g_${b.id}" class="col"><span class="strong">${b.name}</span><span class="small muted2 num">heute ${T?pct(V[b.id]/T,1):'–'}</span></label><span class="row" style="gap:6px;flex-wrap:nowrap"><input class="numin" type="text" inputmode="decimal" id="g_${b.id}" data-goal="${b.id}" value="${esc(raw?raw.v:d.goals[b.id])}" ${raw?'aria-invalid="true"':''} aria-describedby="ge_${b.id}"> %</span><span class="err" id="ge_${b.id}">${raw?esc(raw.msg):''}</span></div>`}).join('')+`<div class="row between" style="margin-top:8px"><span id="goalSum" class="num" role="status"></span><button class="link" id="goalsFromNow" type="button">Heutige Verteilung</button></div>`;
+  return `
+  <h1 class="h1" style="font-size:28px">Dein Plan</h1>
+  <section class="card col" style="gap:6px"><div class="row between"><h2 class="h2">1. Meine Zielverteilung</h2>${d.goalsSource==='example'?'<span class="chip-demo">Beispiel</span>':''}</div>${goals}
+    <label class="field" for="maxSingle" style="margin-top:10px">Grenze je Einzelwert in % (leer = keine)<input class="numin" type="text" inputmode="decimal" id="maxSingle" value="${d.maxSingle??''}"><span class="err" id="maxErr"></span></label>
+    <p class="hint">Zur Orientierung: Stiftung Warentest beschreibt im Pantoffel-Portfolio Mischungen mit 25, 50 oder 75 % Aktien. Keine Empfehlung für dich.</p></section>
+  <section class="card col" style="gap:10px"><h2 class="h2">2. Meine monatliche Einzahlung</h2>
+    <div class="grid2"><label class="field" for="budget">Betrag in €<input class="numin" type="text" inputmode="decimal" id="budget" value="${budgetRaw!=null?'':num(d.budget||0,2)}"><span class="err" id="budgetErr">${budgetRaw?esc(budgetRaw):''}</span></label>
+    <label class="field" for="cashMode">Verrechnungskonto<select id="cashMode"><option value="keep" ${d.cashMode==='keep'?'selected':''}>bleibt unverändert</option><option value="invest" ${d.cashMode==='invest'?'selected':''}>einmalig mitverteilen</option><option value="exclude" ${d.cashMode==='exclude'?'selected':''}>nicht zur Zielverteilung</option></select></label></div></section>
+  <section class="card col" style="gap:6px" id="allocBox">${allocHTML()}</section>
+  <details class="card"><summary class="strong">4. So wird gerechnet</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Für jeden Baustein wird geprüft, wie viel Geld bei unveränderten Kursen fehlt, damit er seine Zielquote erreicht, ohne dass etwas verkauft wird.</p><p>Die Einzahlung wird im Verhältnis dieser Fehlbeträge verteilt, auf den Cent genau. Ist nichts zu verteilen, gilt das Verhältnis der Zielquoten.</p><p>Die Dauer ist eine Rechnung bei unveränderten Kursen. Kursbewegungen und Ausschüttungen verändern sie.</p></div></details>`;
+}
+function allocHTML(){
+  const d=D(),gs=goalState(d),bs=budgetState(d);
+  if(!gs.ok||!bs.ok){const why=!d.goals?'Lege zuerst eine Zielverteilung fest.':gs.reason==='sum'?`Deine Ziele ergeben ${fz(gs.sum)} % statt 100 %.`:gs.reason==='invalid'?'Mindestens eine Zielquote ist ungültig.':bs.msg;
+    return `<h2 class="h2">3. Rechnerische Verteilung</h2><div class="empty">Keine Berechnung: ${esc(why)}</div><button class="btn solid" disabled aria-describedby="cw">Verteilung kopieren</button><span class="hint" id="cw">Nicht möglich: ${esc(why)}</span>`}
+  const al=allocate(d),am=al.amounts,p=pathFor(d,al,am),M=+d.budget||0;
+  const rows=B.map(b=>{const t=d.goals[b.id],held=al.V[b.id]>0.5;if(!t&&!held&&!am[b.id])return '';
+    const why=!t?(held?'Ziel 0 %: keine Einzahlung, der Bestand bleibt.':'Ziel 0 %.'):al.need[b.id]>0.5?`Unter Ziel: bis ${fz(t)} % fehlen rund ${eur(al.need[b.id])}.`:al.ns===0?`Verteilung nach deinem Ziel von ${fz(t)} %.`:`Hat ${fz(t)} % erreicht oder überschritten.`;
+    return `<div class="alloc"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><span class="strong">${b.name}</span><span class="num">${eur(am[b.id],2)}</span><span class="why">${esc(why)}</span></div>`}).join('');
+  const dur=p.blocked.length?'ohne Verkauf nicht erreichbar':p.theo===0?'erreicht':p.theo==null?'–':`frühestens nach ${p.theo} Monaten`;
+  return `<h2 class="h2">3. Rechnerische Verteilung</h2>${rows}
+   <div class="result"><span>Ziel erreicht</span><span class="num strong">${dur}</span>${al.cash>0?`<span>Einmalig aus dem Konto</span><span class="num">${eur(al.cash,2)}</span>`:''}</div>
+   ${p.blocked.length?`<p class="neg-text small">${esc(p.blocked.map(b=>b.name).join(', '))}: Ziel 0 %, aber Bestand vorhanden.</p>`:''}${M===0?'<p class="hint">Bei 0 € Einzahlung ändert sich die Verteilung nicht.</p>':''}
+   <div class="bars"><div class="barlab"><span>Heute</span><div class="bar">${barHTML(al.V)}</div></div><div class="barlab"><span>Ziel</span><div class="bar">${barHTML(d.goals)}</div></div></div>
+   <button class="btn solid" id="btnCopy" type="button">Verteilung kopieren</button><p class="hint">Bei unveränderten Kursen. Welche Wertpapiere du kaufst, entscheidest du.</p>`;
+}
+function barHTML(W){const T=tot(W)||1;return B.filter(b=>W[b.id]>0).map(b=>`<span title="${b.name}" style="width:${W[b.id]/T*100}%;background:var(${b.c})"></span>`).join('')}
+function renderGoalSum2(){const d=D(),el=$('#goalSum');if(!el||!d.goals)return;const gs=goalState(d),sum=B.reduce((a,b)=>a+(d.goals[b.id]||0),0);
+  el.textContent=gs.reason==='invalid'?'Ungültige Eingabe korrigieren':`Summe ${fz(sum)} %${Math.abs(sum-100)>0.05?` – es fehlen ${fz(100-sum)} Punkte`:' ✓'}`;el.className='num '+(gs.ok?'pos-text':'neg-text')}
+
+/* ---------------- Liga ---------------- */
+function questions(){const qs=[];D().positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a)).forEach(p=>{const r=INFO[p.symbol].rules.find(x=>x.status!=='np');if(r)qs.push({id:p.symbol+'|'+r.q,p,r})});return qs.slice(0,4)}
+function vLiga(){
+  const qs=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind);
+  return `
+  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Prognose-Liga</h1><span class="small strong muted2">${FUN.points} Wissenspunkte</span></div>
+  <p class="small muted2">Echte Fragen zu deinen Positionen. Aufgelöst wird, sobald der nächste Bericht geprüft ist.</p>
+  ${qs.map(q=>{const pr=FUN.preds[q.id]||{};return `<section class="dark col" style="gap:10px"><span class="lbl">${esc(q.p.name)} · ${esc(q.r.next)}</span>
+    <span class="h3" style="color:#fff">${esc(q.r.q)}</span><span class="small muted-night">${esc(q.r.metric)}: ${esc(q.r.cond)} · zuletzt ${esc(q.r.obs||'nicht verfügbar')} (${esc(q.r.per)})</span>
+    <div class="grid2 yn" role="group" aria-label="Antwort">${['ja','nein'].map(a=>`<button type="button" data-pred="${esc(q.id)}" data-ans="${a}" aria-pressed="${pr.a===a}">${a==='ja'?'Ja':'Nein'}</button>`).join('')}</div>
+    <div class="conf-g" role="group" aria-label="Wie sicher bist du?">${[50,60,70,80,90].map(c=>`<button type="button" data-pred="${esc(q.id)}" data-conf="${c}" aria-pressed="${(pr.c||70)===c}">${c} %</button>`).join('')}</div>
+    <span class="small sun-text">${pr.a?`Getippt: ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} %. Offen bis zur Auflösung.`:'Noch nicht getippt.'}</span></section>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine prüfbaren Fragen.</p>'}
+  <section class="card col" style="gap:6px"><span class="strong">Deine Treffsicherheit</span><p class="small muted2">Noch keine aufgelöste Prognose. Gewertet wird, wie gut deine Sicherheit zur Wirklichkeit passt: Wer 70 % sagt, sollte in 7 von 10 Fällen richtig liegen.</p></section>
+  <section class="card"><h2 class="h2">Deine Entscheidungsnotizen</h2>${notes.length?notes.slice().reverse().map(n=>`<div class="fact"><span class="strong">${esc(n.intent==='kauf'?'Kauf':'Verkauf')} ${esc(n.name)}</span><span class="small muted2"> · ${esc(n.date)} · ${esc(n.quality)}</span><div class="small muted2">Grund: ${esc(n.reasonTxt)}${n.sleep?' · mit Bedenkzeit':''}</div></div>`).join(''):'<p class="hint">Noch keine. Notizen entstehen im Entscheidungs-Check.</p>'}</section>
+  <p class="hint">Familien-Rangliste und Taschengeld-Depot kommen mit Benutzerkonten.</p>`;
+}
+
+/* ---------------- Daten ---------------- */
+function vDaten(){return `
+  <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Daten &amp; Import</h1></div>
+  <div class="card" id="sourceCard"></div>
+  <div class="card" id="importCard" tabindex="-1"></div>
+  <div class="card" id="confirmCard" tabindex="-1"></div>
+  <div class="card" id="extCard"></div>
+  <details class="card"><summary class="strong">Hinter den Kulissen</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Heute: Die Einordnungen sind manuell recherchierte Beispieldaten vom 04.10.2026 mit Quellenangabe. Es gibt keine automatische Aktualisierung.</p><p>Geplant: Jede Nacht Meldungen und Berichte in vielen Sprachen lesen, Fakten mit Quelle herausziehen, gegenprüfen, Regeln berechnen und nur Relevantes für dein Depot bündeln.</p><p>Versprechen: Jede Zahl mit Quelle · Trefferquote öffentlich · keine Provision für Käufe · keine Orders.</p></div></details>`}
+
+/* ---------------- Ereignisse ---------------- */
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const sb=t.closest('[data-story]');if(sb){storyIdx+=sb.dataset.story==='next'?1:-1;storyIdx=Math.max(0,storyIdx);rerender();return}
+  const un=t.closest('[data-understood]');if(un){const id=un.dataset.understood;if(!FUN.understood.includes(id)){FUN.understood.push(id);FUN.points+=10;touchDay();saveFun();toast('+10 Wissenspunkte')}rerender();return}
+  const rb=t.closest('[data-reason]');if(rb){chk.reason=rb.dataset.reason;rerender();return}
+  if(t.closest('#saveNote')){const {a}=parse();const p=posById(a[0]);const RT={plan:'Weg vom Ziel',news:'Neue Information',drop:'Kurs ist gefallen',tip:'Tipp von anderen'};
+    const q=$('#qual').textContent;
+    FUN.notes.push({kind:D().kind,id:p.id,name:p.name,intent:a[1],reasonTxt:RT[chk.reason],sleep:chk.sleep,quality:q,date:new Date().toLocaleDateString('de-DE')});FUN.points+=5;touchDay();saveFun();toast('Notiz gespeichert · +5 Punkte');location.hash='#liga';return}
+  const pb=t.closest('[data-pred]');if(pb){const id=pb.dataset.pred;const pr=FUN.preds[id]||{c:70};if(pb.dataset.ans)pr.a=pb.dataset.ans;if(pb.dataset.conf)pr.c=+pb.dataset.conf;pr.at=new Date().toISOString();FUN.preds[id]=pr;touchDay();saveFun();rerender();return}
+  if(t.closest('#goalsFromNow')){const d=D(),V=bucketVals(d),T=tot(V);if(!T){toast('Ohne Bestand gibt es keine heutige Verteilung.');return}const g={};B.forEach(b=>g[b.id]=Math.round(V[b.id]/T*1000)/10);const diff=Math.round((100-B.reduce((a,b)=>a+g[b.id],0))*10)/10;const big=B.reduce((a,b)=>g[b.id]>g[a.id]?b:a,B[0]);g[big.id]=Math.round((g[big.id]+diff)*10)/10;d.goals=g;d.goalsSource='current';goalRaw={};changed();toast('Heutige Verteilung übernommen');return}
+  if(t.closest('#goalsEmpty')){const d=D();d.goals=Object.fromEntries(B.map(b=>[b.id,0]));d.goalsSource='own';goalRaw={};changed();return}
+  if(t.closest('#btnCopy')){const d=D(),al=allocate(d);if(!al)return;const txt=['Depotfokus · rechnerische Verteilung',...B.filter(b=>al.amounts[b.id]>0).map(b=>`${eur(al.amounts[b.id],2)} → ${b.name} (Ziel ${fz(d.goals[b.id])} %)`)].join('\n');(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Verteilung kopiert')).catch(()=>toast('Kopieren nicht möglich'));return}
+  // Daten (aus der App übernommen)
+  const src=t.closest('[data-src]');if(src){UI.source=src.dataset.src;saveUI();goalRaw={};budgetRaw=null;rerender();toast(UI.source==='demo'?'Musterdepot wird angezeigt':'Dein Depot wird angezeigt');return}
+  const cf=t.closest('[data-conf]');if(cf&&cf.dataset.conf.includes('|')){const [id,how]=cf.dataset.conf.split('|');const p=posById(id);if(!p)return;if(how==='manual'){const box=document.getElementById('mv_'+id);box.hidden=false;document.getElementById('mvi_'+id).focus();return}p.conf=how;changed();toast(how==='eur'?`${p.name} wird eingerechnet`:`${p.name} wird nicht eingerechnet`);return}
+  const cs=t.closest('[data-confsave]');if(cs){const id=cs.dataset.confsave;const p=posById(id);const v=parseInput(document.getElementById('mvi_'+id).value);if(!(v>=0)||v>1e9){document.getElementById('mve_'+id).textContent='Bitte einen Betrag ab 0 € eingeben.';return}p.conf='manual';p.manualValue=v;changed();return}
+  if(t.closest('[data-unskip]')){D().positions.forEach(p=>{if(p.conf==='skip')p.conf=null});changed();return}
+  if(t.closest('#extAdd')){D().external.items.push({type:'tagesgeld',value:0});changed();return}
+  const xd=t.closest('[data-extdel]');if(xd){D().external.items.splice(+xd.dataset.extdel,1);changed();return}
+  if(t.closest('#stDiscard')){staged=null;renderImport();return}
+  if(t.closest('#stAccept')){acceptImport();return}
+  if(t.closest('#delAsk')){pendingDelete=true;renderSourceCard();return}
+  if(t.closest('#delCancel')){pendingDelete=false;renderSourceCard();return}
+  if(t.closest('#delConfirm')){store(OWN_KEY,null);OWN=null;pendingDelete=false;UI.source='demo';saveUI();rerender();toast('Eigene Daten auf diesem Gerät gelöscht');return}
+});
+document.addEventListener('change',e=>{
+  const el=e.target,d=D();
+  if(el.id==='sleep'){chk.sleep=el.checked;rerender();return}
+  if(el.id==='cashMode'){d.cashMode=el.value;changed();return}
+  if(el.id==='maxSingle'){const v=parseInput(el.value);if(v!=null&&!(v>0&&v<=100)){$('#maxErr').textContent='Wert über 0 und höchstens 100, oder leer lassen.';el.setAttribute('aria-invalid','true');return}d.maxSingle=v;changed();return}
+  if(el.id==='file'){const f=el.files&&el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{staged=analyzeCSV(r.result,f.name);renderImport();toast(staged.error?'Import nicht möglich':'Datei geprüft, bitte kontrollieren')};r.readAsText(f);el.value='';return}
+  if(el.dataset.acc!=null&&staged){staged.accounts[+el.dataset.acc].accept=el.checked;return}
+  if(el.id==='stReplace'){$('#stAccept').disabled=!el.checked;return}
+  if(el.dataset.bucket){const p=posById(el.dataset.bucket);if(p&&el.value){p.bucket=el.value;p.bucketSrc='user';changed()}return}
+  if(el.dataset.exttype!=null){d.external.items[+el.dataset.exttype].type=el.value;changed();return}
+  if(el.dataset.extval!=null){const v=parseInput(el.value);if(v==null||!(v>=0)){el.setAttribute('aria-invalid','true');return}d.external.items[+el.dataset.extval].value=v;changed();return}
+  if(el.id==='reserve'){const v=parseInput(el.value);if(v!=null&&!(v>=0)){$('#resErr').textContent='Bitte einen Betrag ab 0 € eingeben.';return}d.external.reserve=v||0;changed();return}
+});
+document.addEventListener('input',e=>{
+  const el=e.target,d=D();
+  if(el.dataset.goal){const k=el.dataset.goal,v=parseInput(el.value);
+    if(v==null||!Number.isFinite(v)||v<0||v>100){goalRaw[k]={v:el.value,msg:v==null?'Wert 0 bis 100 eingeben.':!Number.isFinite(v)?'Keine gültige Zahl.':v<0?'Nicht negativ.':'Höchstens 100.'};el.setAttribute('aria-invalid','true');$('#ge_'+k).textContent=goalRaw[k].msg}
+    else{delete goalRaw[k];d.goals[k]=Math.round(v*100)/100;el.removeAttribute('aria-invalid');$('#ge_'+k).textContent=''}
+    d.goalsSource='own';d.manual=null;renderGoalSum2();$('#allocBox').innerHTML=allocHTML();if(goalState(d).ok)persist();return}
+  if(el.id==='budget'){const v=parseInput(el.value);
+    if(v==null||!Number.isFinite(v)||v<0||v>1e7){budgetRaw=v==null?'Bitte einen Betrag eingeben, mindestens 0 €.':!Number.isFinite(v)?'Keine gültige Zahl.':v<0?'Nicht negativ.':'Höchstens 10 Mio. €.';el.setAttribute('aria-invalid','true')}
+    else{budgetRaw=null;d.budget=Math.round(v*100)/100;el.removeAttribute('aria-invalid');persist()}
+    $('#budgetErr').textContent=budgetRaw||'';$('#allocBox').innerHTML=allocHTML();return}
+});
+function changed(){const d=D();evaluateChanges(d);persist();rerender()}
+
+/* Start */
+evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
+touchDay();saveFun();route();
