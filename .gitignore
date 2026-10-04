@@ -1,3 +1,4 @@
 # Echte Depotdaten nie einchecken
 *.csv
 *.xlsx
+_dry/

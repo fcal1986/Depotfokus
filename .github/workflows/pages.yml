@@ -12,6 +12,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  pull-requests: read
 
 concurrency:
   group: pages
@@ -37,8 +38,17 @@ jobs:
       - name: Tageskurse abrufen
         continue-on-error: true
         run: node scripts/fetch-prices.mjs _site/prices.json
+      - name: Neue Berichte erkennen (SEC EDGAR)
+        continue-on-error: true
+        env:
+          HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+          MODEL: ${{ vars.DEPOTFOKUS_MODEL || 'claude-sonnet-5-5' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-reports.mjs _site/reports.json
       - name: Kursdatei sicherstellen
-        run: test -f _site/prices.json || echo '{"asOf":null,"quotes":{},"fx":{},"missing":[]}' > _site/prices.json
+        run: |
+          test -f _site/prices.json || echo '{"asOf":null,"quotes":{},"fx":{},"missing":[]}' > _site/prices.json
+          test -f _site/reports.json || echo '{"checkedAt":null,"positions":{},"proposals":[],"errors":{"all":"Abruf fehlgeschlagen"}}' > _site/reports.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

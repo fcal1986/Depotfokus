@@ -1,0 +1,50 @@
+name: Berichte einordnen
+
+# Stufe 2: Neue Berichte mit Claude einordnen und als Pull Request zur Freigabe vorlegen.
+# Benötigt das Repository-Secret ANTHROPIC_API_KEY. Ohne Schlüssel endet der Lauf sofort.
+# Modell optional über die Repository-Variable DEPOTFOKUS_MODEL (Standard claude-sonnet-5-5).
+
+on:
+  schedule:
+    # Täglich morgens, nachdem US-Unternehmen am Vorabend berichtet haben
+    - cron: '47 5 * * *'
+  workflow_dispatch:
+    inputs:
+      max_reports:
+        description: 'Höchstens so viele Berichte bewerten'
+        default: '3'
+  push:
+    branches: [main]
+    paths: ['scripts/assess-reports.mjs', 'scripts/sec.mjs', '.github/workflows/assess.yml']
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: assess
+  cancel-in-progress: false
+
+jobs:
+  assess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Git-Identität
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Neue Berichte bewerten
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: ${{ vars.DEPOTFOKUS_MODEL || 'claude-sonnet-5-5' }}
+          MAX_REPORTS: ${{ github.event.inputs.max_reports || '3' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/assess-reports.mjs

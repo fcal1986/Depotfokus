@@ -15,17 +15,29 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 
 **Tageskurse:** Die GitHub Action ruft werktags nach Börsenschluss Kurse für die Symbole aus den Stammdaten (und optional `symbols.txt`) ab und veröffentlicht sie als `prices.json`. Es werden keine Bestände übertragen; gerechnet wird im Browser. Ohne Kurse gelten die Exportwerte.
 
+**Berichte (Stufe 1, automatisch, kostenlos):** Beim Veröffentlichen prüft die Action bei SEC EDGAR, ob die Unternehmen seit der letzten Einordnung neue Ergebnismeldungen (8-K), Quartals- oder Jahresberichte oder Mitteilungen (6-K) eingereicht haben, und veröffentlicht das als `reports.json`. Die App markiert betroffene Storys und Positionen.
+
+**Einordnung (Stufe 2, Claude mit Freigabe):** `.github/workflows/assess.yml` läuft täglich morgens. Für jeden neuen Bericht liest Claude das Dokument und schlägt Einordnung, Fakten und Regelstatus vor. Jede Aussage braucht ein wörtliches Zitat aus dem Bericht, und jede Zahl muss im Zitat stehen; das prüft `scripts/assess-reports.mjs` und verwirft sonst die Aussage. Das Ergebnis kommt als Pull Request (Änderung an `data/info.json` und `data/resolved.json`). Erst nach dem Zusammenführen ändert sich die App; offene Liga-Prognosen werden dabei aufgelöst.
+
+Einrichtung:
+1. Settings › Secrets and variables › Actions › New repository secret: `ANTHROPIC_API_KEY`.
+2. Settings › Actions › General › Workflow permissions: „Read and write permissions“ und „Allow GitHub Actions to create and approve pull requests“ aktivieren.
+3. Optional: Repository-Variable `DEPOTFOKUS_MODEL` (Standard `claude-sonnet-5-5`), `SEC_USER_AGENT` als Variable ist nicht nötig.
+4. Testlauf: Actions › Berichte einordnen › Run workflow.
+
+Kosten: rund 10 Cent je Quartalsbericht (Sonnet 5.5, Stand Oktober 2026), höchstens drei Berichte je Lauf. Bereits bewertete Einreichungen stehen in `data/assessed.json` und werden nicht erneut bewertet.
+
 **Liga:** Rückblick-Quiz mit sofortiger Auflösung aus den letzten Berichten, offene Prognosen bis zum nächsten Bericht, Treffsicherheit mit Brier-Wert.
 
 **`/app/`:** leitet auf die Startseite um. Gespeicherte Daten bleiben erhalten.
 
 Installierbar als App (Zum Home-Bildschirm) und offline nutzbar.
 
-**Keine Anlageberatung. Depotfokus führt keine Orders aus.** Alle Einordnungen sind manuell recherchierte Beispieldaten vom 04.10.2026. Wahrscheinlichkeiten werden erst gezeigt, wenn eine öffentliche Trefferquote existiert.
+**Keine Anlageberatung. Depotfokus führt keine Orders aus.** Die Einordnungen in `data/info.json` sind am 04.10.2026 manuell recherchiert und werden danach per freigegebenem Pull Request aktualisiert. Wahrscheinlichkeiten werden erst gezeigt, wenn eine öffentliche Trefferquote existiert.
 
 ## Quelltext
 
-`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten) und `src/ui.js` (Oberfläche, Routing) zusammen. Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
+`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten) und `src/ui.js` (Oberfläche, Routing) sowie `data/info.json` und `data/resolved.json` zusammen. Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
 
 ## Datenschutz
 
@@ -42,6 +54,8 @@ Settings › Pages › Source „GitHub Actions“. Jeder Push auf `main` veröf
 
 - Umsätze nur aus Euro-Konten. Steuerschätzung vereinfacht (ohne Kirchensteuer, Sparerpauschbetrag, Verlusttöpfe, Vorabpauschale).
 - Kurse einmal täglich und verzögert, nur für Wertpapiere mit bekanntem Symbol.
-- Kompass-Wahrscheinlichkeiten erst mit öffentlicher Trefferquote. Offene Prognosen werden aufgelöst, sobald ein neuer Bericht in den Daten hinterlegt ist.
+- Kompass-Wahrscheinlichkeiten erst mit öffentlicher Trefferquote.
+- Berichte nur von der SEC (US-Unternehmen und ausländische Emittenten mit US-Notierung); keine Presseartikel, keine ETFs.
+- GitHub pausiert geplante Läufe in Repositories ohne Aktivität nach 60 Tagen; ein Commit oder manueller Start reaktiviert sie.
 - Familien-Rangliste braucht Benutzerkonten.
 - Daten liegen pro Browser und Gerät; es gibt keine Synchronisierung und keine Sicherung.

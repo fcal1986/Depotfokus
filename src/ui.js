@@ -2,7 +2,7 @@
    OBERFLÄCHE (Vision) – nutzt die geprüfte Logik oben
    ========================================================= */
 const STATUS={goal:{met:'Erfüllt',not_met:'Nicht erfüllt',open:'Noch offen',np:'Nicht prüfbar'},risk:{occurred:'Eingetreten',not_occurred:'Nicht eingetreten',open:'Noch offen',np:'Nicht prüfbar'}};
-const MOOD={'9A2.F':'warn','13M.F':'pos','WX4.F':'pos','RY6.F':'pos','PEP.DE':'neutral','JNJ.DE':'pos','CCC3.DE':'pos','PRG.DE':'neg','NOV.DE':'pos','MSF.DE':'pos','3V64.DE':'pos'};
+const MOOD=new Proxy({},{get:(_,k)=>INFO[k]&&INFO[k].mood||undefined});
 const MOODTXT={pos:'Rückenwind',warn:'Beobachten',neg:'Gegenwind',neutral:'Unverändert'};
 const FUN_KEY='depotfokus-v5-fun';
 let FUN=Object.assign({seen:[],understood:[],days:[],points:0,preds:{},notes:[]},load(FUN_KEY)||{});
@@ -10,6 +10,17 @@ function saveFun(){store(FUN_KEY,FUN)}
 function streak(){const ds=new Set(FUN.days);let n=0;const d=new Date();for(;;){const k=d.toISOString().slice(0,10);if(ds.has(k)){n++;d.setDate(d.getDate()-1)}else break}return n}
 function touchDay(){const k=new Date().toISOString().slice(0,10);if(!FUN.days.includes(k)){FUN.days.push(k);FUN.days=FUN.days.slice(-400)}}
 function renderAll(){route()}
+/* Neue Berichte (Stufe 1) und Vorschläge (Stufe 2) aus reports.json */
+let REPORTS=null;
+function loadReports(){if(typeof fetch!=='function')return;fetch('reports.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.positions){REPORTS=j;rerender()}}).catch(()=>{})}
+const deDate=s=>s&&/^\d{4}-\d{2}-\d{2}/.test(s)?s.slice(0,10).split('-').reverse().join('.'):s||'';
+function newReports(sym){const r=REPORTS&&REPORTS.positions&&REPORTS.positions[sym],I=INFO[sym];if(!r||!I)return [];const since=I.assessedFrom&&I.assessedFrom.date>I.checked?I.assessedFrom.date:I.checked;return (r.new||[]).filter(f=>f.date>since)}
+const proposalFor=sym=>REPORTS&&(REPORTS.proposals||[]).find(x=>x.sym===sym)||null;
+const methodTxt=I=>I&&I.method==='claude'?'von Claude eingeordnet, von dir freigegeben':'manuell geprüft';
+const storyKey=p=>{const n=newReports(p.symbol)[0];return p.id+'@'+(INFO[p.symbol]&&INFO[p.symbol].checked||'')+(n?'#'+n.acc:'')};
+const ICON_EXT='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+function newsLine(sym){const n=newReports(sym)[0];if(!n)return '';const pr=proposalFor(sym);
+  return pr?`Ein Vorschlag zur neuen Einordnung liegt zur Freigabe bereit (Pull Request #${pr.number}).`:REPORTS&&REPORTS.assessEnabled?'Die automatische Einordnung folgt beim nächsten Lauf; danach gibst du sie frei.':'Noch nicht eingeordnet.'}
 function setTab(t){location.hash=t==='home'?'#heute':'#'+t}
 const ICON={
  back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
@@ -76,7 +87,8 @@ function vHeute(){
   else w={k:'sun',t:'Heiter',d:'Dein Depot liegt nah an deinen Vorgaben.',go:'#depot'};
   if(c.incomplete&&gs.ok)w.d+=' Vorläufig, weil Positionen fehlen.';
   const rank={neg:0,warn:1,pos:2,neutral:3};
-  const changes=st.filter(p=>INFO[p.symbol].changes.items.length).sort((a,b)=>(rank[MOOD[a.symbol]||'neutral']-rank[MOOD[b.symbol]||'neutral'])||posValue(b)-posValue(a)).slice(0,3);
+  const fresh=st.filter(p=>newReports(p.symbol).length);
+  const changes=st.filter(p=>!fresh.includes(p)&&INFO[p.symbol].changes.items.length).sort((a,b)=>(rank[MOOD[a.symbol]||'neutral']-rank[MOOD[b.symbol]||'neutral'])||posValue(b)-posValue(a)).slice(0,Math.max(1,3-fresh.length));
   return `
   <div class="row between">
     <div class="col" style="gap:2px"><span class="small strong muted2">${now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}</span><h1 class="h1">${greet}</h1></div>
@@ -86,7 +98,7 @@ function vHeute(){
     </div>
   </div>
   ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
-  ${st.length?`<div class="stories" aria-label="Neuigkeiten zu deinen Positionen">${st.map(p=>`<a href="#story/${encodeURIComponent(p.id)}" class="story-b"><span class="ring ${FUN.seen.includes(p.id)?'seen':''}"><span class="av">${esc(initials(p.name))}</span></span><span class="n">${esc(short(p.name))}</span></a>`).join('')}</div>`:''}
+  ${st.length?`<div class="stories" aria-label="Neuigkeiten zu deinen Positionen">${st.map(p=>`<a href="#story/${encodeURIComponent(p.id)}" class="story-b"><span class="ring ${FUN.seen.includes(storyKey(p))?'seen':''}${newReports(p.symbol).length?' fresh':''}"><span class="av">${esc(initials(p.name))}</span></span><span class="n">${esc(short(p.name))}</span></a>`).join('')}</div>`:''}
   <section class="dark col" style="gap:6px">
     <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
     <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
@@ -98,7 +110,8 @@ function vHeute(){
   <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
   <section class="col" style="gap:8px">
     <h2 class="h2">Was sich geändert hat</h2>
-    ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)}</span></a>`}).join(''):'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
+    ${fresh.map(p=>{const n=newReports(p.symbol)[0];return `<a href="#pos/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag new">Neuer Bericht</span></span><span class="d">${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(p.symbol))}</span><span class="src">Erkannt bei der SEC am ${esc(deDate(REPORTS.checkedAt))}</span></a>`}).join('')}
+    ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)} · Stand ${deDate(I.checked)}</span></a>`}).join(''):fresh.length?'':'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
   ${standTeaser()}
   <p class="hint">Keine Anlageberatung.</p>`;
@@ -119,16 +132,17 @@ const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':
 let storyIdx=0,storyId=null,storyT=null,storyRem=0,storyStart=0,storyPaused=false,storySpeed=1,tapDown=0,tapLong=false;
 const reducedMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 function storySlides(p){const I=INFO[p.symbol];const sl=[];
+  const n=newReports(p.symbol)[0];if(n)sl.push({lbl:'Bei der SEC erkannt',kind:'news',t:`Neuer Bericht: ${n.label} vom ${deDate(n.date)}.`,sub:newsLine(p.symbol)+` Die folgende Einordnung ist vom ${deDate(I.checked)}.`,url:n.url,src:null});
   sl.push({lbl:'Einordnung',kind:'interp',t:I.interp,src:null});
   I.changes.items.forEach(c=>sl.push({lbl:'Was sich verändert hat · '+I.changes.cmp,kind:c.kind,t:c.t,src:c.src[0]}));
   if(I.facts[0])sl.push({lbl:'Fakt aus dem Bericht',kind:I.facts[0].kind,t:I.facts[0].t,src:I.facts[0].src});
   const r=I.rules[0];if(r)sl.push({lbl:'Worauf wir achten',kind:'rule',t:r.q,rule:r,src:r.src});
   return sl}
-const slideDur=s=>Math.round(Math.min(14000,Math.max(6000,3500+(s.t.length+(s.rule?140:0))*45))*storySpeed);
+const slideDur=s=>Math.round(Math.min(14000,Math.max(6000,3500+(s.t.length+(s.rule?140:0)+(s.sub?s.sub.length:0))*45))*storySpeed);
 function vStory(id){
   const p=posById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
   if(storyId!==id){storyId=id;storyIdx=0}
-  if(!FUN.seen.includes(id)){FUN.seen.push(id);saveFun()}
+  {const sk=storyKey(p);if(!FUN.seen.includes(sk)){FUN.seen.push(sk);FUN.seen=FUN.seen.slice(-300);saveFun()}}
   const sl=storySlides(p);storyIdx=Math.min(storyIdx,sl.length-1);const s=sl[storyIdx],tt=totals(D());
   const list=storyPositions(),k=list.findIndex(x=>x.id===id);
   const und=FUN.understood.includes(id);
@@ -136,7 +150,7 @@ function vStory(id){
   <div class="prog" role="progressbar" aria-label="Teil ${storyIdx+1} von ${sl.length}" aria-valuemin="1" aria-valuemax="${sl.length}" aria-valuenow="${storyIdx+1}">${sl.map((_,i)=>`<span class="${i<storyIdx?'done':i===storyIdx?'cur':''}"><i></i></span>`).join('')}</div>
   <div class="row">
     <span class="av light">${esc(initials(p.name))}</span>
-    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'} · Stand ${STAND.info}</span></div>
+    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'} · Stand ${deDate(INFO[p.symbol].checked)}, ${methodTxt(INFO[p.symbol])}</span></div>
     <button type="button" class="icon-btn night" id="storyPause" aria-label="${reducedMotion()?'Automatisch weiter':'Pause'}">${reducedMotion()?ICON.play:ICON.pause}</button>
     <a href="#heute" class="icon-btn night" aria-label="Story schließen">${ICON.close}</a>
   </div>
@@ -145,9 +159,10 @@ function vStory(id){
     <button type="button" class="tap prev" data-story="prev" aria-label="Vorheriger Teil"></button>
     <button type="button" class="tap next" data-story="next" aria-label="${storyIdx<sl.length-1?'Nächster Teil':k<list.length-1?'Nächste Story: '+esc(list[k+1].name):'Stories beenden'}"></button>
     <span class="lbl night">${esc(s.lbl)}</span>
-    ${s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
+    ${s.kind==='news'?'<span class="tag new" style="align-self:flex-start">Neuer Bericht</span>':s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
     <h1 class="big story-h">${esc(s.t)}</h1>
     ${s.rule?`<div class="story-box"><div class="row between"><span>Stand ${esc(s.rule.per)}</span><span class="st ${stCls(s.rule)}">${STATUS[s.rule.type][s.rule.status]}</span></div><span class="small muted-night">${esc(s.rule.metric)}: ${esc(s.rule.cond)}${s.rule.obs?` · beobachtet ${esc(s.rule.obs)}`:''}</span><span class="small muted-night">Nächste Prüfung: ${esc(s.rule.next)}</span></div>`:''}
+    ${s.kind==='news'?`<span class="small muted-night">${esc(s.sub)}</span><a class="story-link" href="${esc(s.url)}" target="_blank" rel="noopener">Bericht bei der SEC öffnen ${ICON_EXT}</a>`:''}
     ${s.src?`<span class="small muted-night">Quelle: ${srcText(s.src)}</span>`:s.kind==='interp'?'<span class="small muted-night">Interpretation von Depotfokus auf Basis der Quellen</span>':''}
   </div>
   <div class="col" style="gap:10px">
@@ -223,6 +238,7 @@ function vPos(id){
   const d=D(),p=posById(id);if(!p)return `<h1 class="h1">Nicht gefunden</h1><a class="btn" href="#depot">Zum Depot</a>`;
   const I=INFO[p.symbol],tt=totals(d),v=posValue(p);
   let h=`<div class="row" style="gap:6px"><a href="#depot" class="icon-btn" aria-label="Zurück zum Depot">${ICON.back}</a><div class="col"><h1 class="big" style="font-size:24px">${esc(p.name)}</h1><span class="small muted2">${p.bucket?BN[p.bucket].name:'ohne Baustein'} · ${v!=null?eur(v)+' · '+pct(v/tt.sum)+(d.kind==='demo'?' des Musterdepots':' deines Depots'):'Wert ungeklärt'}</span></div></div>`;
+  {const n=I&&!I.etf?newReports(p.symbol)[0]:null;if(n){const pr=proposalFor(p.symbol);h+=`<div class="banner info"><b>Neuer Bericht: ${esc(n.label)} vom ${deDate(n.date)}</b><span>Die Einordnung unten ist vom ${deDate(I.checked)} und berücksichtigt ihn noch nicht. ${esc(newsLine(p.symbol))}</span><span class="row" style="gap:14px;margin-top:4px"><a class="link" href="${esc(n.url)}" target="_blank" rel="noopener">Bericht öffnen ${ICON_EXT}</a>${pr?`<a class="link" href="${esc(pr.url)}" target="_blank" rel="noopener">Vorschlag prüfen ${ICON_EXT}</a>`:''}</span></div>`}}
   if(v==null&&p.conf!=='skip')h+=`<a href="#daten" class="banner"><b>Wert ungeklärt</b><span>Die Kurswährung ist nicht erkennbar. Bitte zuerst bestätigen.</span></a>`;
   h+=myPosCard(d,p);
   if(!I){h+=`<section class="card"><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p></section>`;return h+checkButtons(p)}
@@ -232,14 +248,14 @@ function vPos(id){
   const pro=[],con=[];I.rules.forEach(r=>{const t=`${r.q.replace(/\?$/,'')}: ${STATUS[r.type][r.status]}${r.obs?` (${r.obs})`:''}`;if(r.status==='met'||r.status==='not_occurred')pro.push(t);else if(r.status==='not_met'||r.status==='occurred')con.push(t)});
   I.facts.filter(f=>f.kind==='metric').slice(0,1).forEach(f=>pro.length<3&&pro.push(f.t));
   const nextR=I.rules.find(r=>r.status!=='np')||I.rules[0];
-  h+=`<section class="card col" style="gap:6px">${kindTag('interp')}<p class="lead">${esc(I.interp)}</p></section>
+  h+=`<section class="card col" style="gap:6px"><div class="row between">${kindTag('interp')}<span class="small muted2">Stand ${deDate(I.checked)}</span></div><p class="lead">${esc(I.interp)}</p><span class="hint">${I.method==='claude'?`Von Claude (${esc(I.model||'')}) aus dem Bericht abgeleitet; jede Zahl ist durch ein Zitat belegt und wurde von dir freigegeben.`:'Manuell recherchiert und geprüft.'}</span></section>
   <section class="card col" style="gap:10px">
     <div class="row between"><span class="lbl">Kompass</span><span class="chip-soon">im Aufbau</span></div>
     <p class="small muted2">Wahrscheinlichkeiten zeigen wir erst, wenn genug Prognosen aufgelöst sind und die Trefferquote öffentlich ist. Bis dahin zählen die geprüften Bedingungen und Risiken.</p>
     <div class="grid2"><div class="pc"><span class="strong pos-text">Dafür spricht</span><ul>${pro.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Keine geprüften Punkte</li>'}</ul></div><div class="pc"><span class="strong neg-text">Dagegen spricht</span><ul>${con.map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Kein geprüfter Punkt eingetreten</li>'}${I.themes.map(t=>`<li class="muted2">Offen: ${esc(t.t)}</li>`).join('')}</ul></div></div>
   </section>
   ${nextR?`<section class="dark col" style="gap:4px"><span class="lbl">Was als Nächstes zählt</span><span class="strong">${esc(nextR.next)}: ${esc(nextR.q)}</span></section>`:''}
-  <section class="card"><h2 class="h2">Belegte Fakten</h2>${I.facts.map(f=>`<div class="fact">${kindTag(f.kind)}${esc(f.t)}${srcLink(f.src)}</div>`).join('')}</section>
+  <section class="card"><h2 class="h2">Belegte Fakten</h2>${I.facts.map(f=>`<div class="fact">${kindTag(f.kind)}${esc(f.t)}${f.quote?`<details><summary>Zitat aus dem Bericht</summary><blockquote class="quote">${esc(f.quote)}</blockquote></details>`:''}${srcLink(f.src)}</div>`).join('')}</section>
   <section class="card"><h2 class="h2">Was wir beobachten</h2>${I.rules.map(r=>`<div class="rule"><div class="row between" style="align-items:flex-start;gap:8px"><span class="strong">${esc(r.q)} <span class="small muted2">${r.type==='goal'?'Bedingung':'Risiko'}</span></span><span class="st ${stCls(r)}">${STATUS[r.type][r.status]}</span></div><details><summary>Regel und Quelle</summary><dl class="kv"><dt>Kennzahl</dt><dd>${esc(r.metric)}</dd><dt>Bedingung</dt><dd>${esc(r.cond)}</dd><dt>Periode</dt><dd>${esc(r.per)}</dd><dt>Beobachtet</dt><dd>${r.obs?esc(r.obs):'nicht verfügbar'}${r.prev?' · Vorperiode '+esc(r.prev):''}</dd><dt>Nächste Prüfung</dt><dd>${esc(r.next)}</dd><dt>Bedeutung</dt><dd>${esc(r.why)}</dd></dl>${r.src?srcLink(r.src):''}</details></div>`).join('')}</section>`;
   return h+checkButtons(p);
 }
@@ -333,7 +349,7 @@ function renderGoalSum2(){const d=D(),el=$('#goalSum');if(!el||!d.goals)return;c
 
 /* ---------------- Liga ---------------- */
 /* Auflösungen offener Prognosen: wird ergänzt, sobald ein neuer Bericht geprüft ist. Schlüssel = Fragen-ID. */
-const RESOLVED={};
+const RESOLVED=RESOLVED_DATA;
 const yesOf=r=>(r.type==='goal'&&r.status==='met')||(r.type==='risk'&&r.status==='occurred');
 function questions(){const retro=[],open=[];
   D().positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a)).forEach(p=>INFO[p.symbol].rules.filter(r=>r.status!=='np'&&r.status!=='open').forEach(r=>{
@@ -398,14 +414,18 @@ const fmtWhen=d=>d?d.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month
 function priceStatus(){const pi=priceInfo(D()),cron=(PRICES&&PRICES.schedule)||PRICE_CRON,next=cronNext(cron);
   const last=PRICES&&PRICES.asOf?new Date(PRICES.asOf):null,age=last?(Date.now()-last)/864e5:null;
   return {pi,next,last,stale:age!=null&&age>4,n:PRICES&&PRICES.quotes?Object.keys(PRICES.quotes).length:0,src:PRICES&&PRICES.source}}
-function standTeaser(){const ps=priceStatus();
+function reportStatus(){const pos=storyPositions().map(p=>({p,I:INFO[p.symbol],n:newReports(p.symbol),pr:proposalFor(p.symbol)}));
+  const nNew=pos.filter(x=>x.n.length).length,claude=pos.filter(x=>x.I.method==='claude').length;
+  const last=pos.map(x=>x.I.checked).sort().pop();
+  return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0}}
+function standTeaser(){const ps=priceStatus(),rs=reportStatus();
   return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
    <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'vom '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
-   <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${STAND.info}</span><span class="muted2">manuell</span></span>
-   <span class="stand-l"><i class="dot off"></i><span>Nachrichten</span><span class="muted2">nicht automatisch</span></span></a>`}
-function vStand(){const d=D(),ps=priceStatus(),m=txModel(d);
-  const upcoming=storyPositions().map(p=>{const r=(INFO[p.symbol].rules||[]).find(x=>x.status!=='np');return r?{p,next:r.next,per:r.per}:null}).filter(Boolean);
+   <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
+   <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span></a>`}
+function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
   const chip=(k,t)=>`<span class="mode ${k}">${t}</span>`;
+  const ext=(u,t)=>`<a class="link" href="${esc(u)}" target="_blank" rel="noopener">${t} ${ICON_EXT}</a>`;
   return `
   <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Datenstand und Ablauf</h1></div>
   <p class="small muted2">Was Depotfokus automatisch erledigt, was von Hand geprüft ist und wann es sich das nächste Mal ändert.</p>
@@ -415,21 +435,27 @@ function vStand(){const d=D(),ps=priceStatus(),m=txModel(d);
    <dt>Quelle</dt><dd>${esc(ps.src||'–')}, Euro, verzögert</dd>
    <dt>Zeitplan</dt><dd>werktags nach US-Börsenschluss und bei jeder neuen Version</dd>
    <dt>Nächster Abruf</dt><dd>${fmtWhen(ps.next)} (geplant; GitHub startet geplante Läufe teils mit Verspätung)</dd>
-   <dt>Genutzt für</dt><dd>${ps.pi.n} von ${ps.pi.of} deiner Positionen${ps.pi.on?'':' (abgeschaltet)'}</dd></dl>
-   <p class="hint">Ein GitHub-Workflow lädt die Kurse für die bekannten Wertpapiere und veröffentlicht sie mit dieser Seite. Deine Bestände werden dabei nicht übertragen.</p></section>
-  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Einordnungen, Fakten, Regeln</h2>${chip('man','manuell')}</div>
-   <dl class="kv"><dt>Stand</dt><dd>${STAND.info}, ${STAND.infoMethod}</dd><dt>Umfang</dt><dd>${storyPositions().length} Positionen mit Story, jede Zahl mit Quelle</dd><dt>Aktualisierung</dt><dd>nicht automatisch</dd></dl>
-   <span class="strong small">Als Nächstes erwartete Berichte</span>
-   ${upcoming.map(u=>`<div class="stand-up"><span class="strong small">${esc(u.p.name)}</span><span class="muted2 small">${esc(u.next)}</span></div>`).join('')}
-   <p class="hint">Erscheint ein neuer Bericht, bleibt die alte Einordnung stehen, bis sie geprüft ist. Offene Liga-Prognosen werden erst dann aufgelöst.</p></section>
-  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Nachrichten</h2>${chip('off','nicht automatisch')}</div>
-   <p class="small muted2">Depotfokus liest derzeit keine Nachrichten automatisch. Die Storys stammen aus der manuellen Prüfung vom ${STAND.info}.</p></section>
+   <dt>Genutzt für</dt><dd>${ps.pi.n} von ${ps.pi.of} deiner Positionen${ps.pi.on?'':' (abgeschaltet)'}</dd></dl></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Neue Berichte erkennen</h2>${chip('auto','automatisch')}</div>
+   <dl class="kv"><dt>Quelle</dt><dd>SEC EDGAR: Ergebnismeldungen (8-K), Quartals- und Jahresberichte, Mitteilungen (6-K)</dd>
+   <dt>Letzte Prüfung</dt><dd>${rs.checkedAt?esc(fmtAsOf(rs.checkedAt)):'noch keine'}${rs.errs?` · ${rs.errs} Abrufe fehlgeschlagen`:''}</dd>
+   <dt>Zeitplan</dt><dd>mit jedem Kursabruf, also werktags abends</dd></dl>
+   ${rs.pos.map(x=>{const n=x.n[0],r=(x.I.rules||[]).find(y=>y.status!=='np');return `<div class="stand-up"><span class="row between"><span class="strong small">${esc(x.p.name)}</span>${n?'<span class="tag new">neu</span>':''}</span>
+     <span class="muted2 small">${n?`${esc(n.label)} vom ${deDate(n.date)} · ${x.pr?`Vorschlag #${x.pr.number} wartet auf Freigabe`:rs.auto?'Einordnung folgt beim nächsten Lauf':'noch nicht eingeordnet'}`:`Erwartet: ${esc(r?r.next:'–')}`}</span>
+     ${n?`<span class="row" style="gap:14px">${ext(n.url,'Bericht')}${x.pr?ext(x.pr.url,'Vorschlag prüfen'):''}</span>`:''}</div>`}).join('')}
+   <p class="hint">Gelesen werden nur offizielle Pflichtmitteilungen der Unternehmen, keine Presseartikel oder Foren. ETFs haben keine solchen Berichte.</p></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Einordnen</h2>${rs.auto?chip('auto','Claude + Freigabe'):chip('man','manuell')}</div>
+   <dl class="kv"><dt>Verfahren</dt><dd>${rs.auto?`Claude (${esc(rs.model||'')}) liest den neuen Bericht und schlägt Einordnung, Fakten und Regelstatus vor. Jede Zahl braucht ein wörtliches Zitat aus dem Bericht; das prüft ein Skript, sonst wird die Aussage verworfen. Erst wenn du den Vorschlag auf GitHub freigibst, ändert sich die App.`:'Automatische Einordnung ist nicht eingerichtet. Einordnungen werden manuell gepflegt.'}</dd>
+   <dt>Zeitplan</dt><dd>${rs.auto?'täglich morgens, höchstens drei Berichte je Lauf':'–'}</dd>
+   <dt>Offene Vorschläge</dt><dd>${rs.props.length?rs.props.map(x=>ext(x.url,'#'+x.number+' '+esc(x.sym))).join(' · '):'keine'}</dd>
+   <dt>Stand</dt><dd>${rs.pos.length} Positionen, ${rs.claude} davon automatisch eingeordnet, zuletzt ${deDate(rs.last)}</dd></dl>
+   <p class="hint">Liga-Prognosen werden aufgelöst, sobald die neue Einordnung freigegeben ist.</p></section>
   <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Deine Daten</h2>${chip('dev','nur dieses Gerät')}</div>
    <dl class="kv"><dt>Bestand</dt><dd>${d.kind==='demo'?'Musterdepot (erfunden)':`${esc(d.fileName)}, übernommen ${esc(d.importedAt||'–')}`}</dd>
    <dt>Umsätze</dt><dd>${m?`${d.tx.length} Buchungen bis ${isoToDe(m.M.last)}`:'keine'}</dd>
    <dt>Berechnung</dt><dd>bei jedem Öffnen im Browser: Werte, Rendite, Zielvergleich, Plan</dd></dl></section>
   <section class="card col" style="gap:4px"><h2 class="h2">Ablauf</h2>
-   ${[['Kurse laden','auto','GitHub Actions, werktags'],['Berichte lesen','man','von Hand'],['Fakten mit Quelle erfassen','man','von Hand'],['Regeln prüfen','man','von Hand, Ergebnis je Bericht'],['Rechnen und filtern','auto','in deinem Browser'],['Wahrscheinlichkeiten','off','erst mit öffentlicher Trefferquote']].map(([t,k,dd],i)=>`<div class="flow"><span class="n">${i+1}</span><span class="col"><span class="strong">${t}</span><span class="small muted2">${dd}</span></span>${chip(k,{auto:'automatisch',man:'manuell',off:'noch nicht'}[k])}</div>`).join('')}</section>`}
+   ${[['Kurse laden','auto','GitHub, werktags'],['Neue Berichte erkennen','auto','SEC EDGAR, werktags'],['Bericht lesen und Fakten mit Zitat erfassen',rs.auto?'auto':'man',rs.auto?'Claude, täglich':'von Hand'],['Zitate und Zahlen prüfen',rs.auto?'auto':'man',rs.auto?'Skript, ohne Zitat kein Eintrag':'von Hand'],['Freigeben','man','du, per Pull Request'],['Rechnen und filtern','auto','in deinem Browser'],['Wahrscheinlichkeiten','off','erst mit öffentlicher Trefferquote']].map(([t,k,dd],i)=>`<div class="flow"><span class="n">${i+1}</span><span class="col"><span class="strong">${t}</span><span class="small muted2">${dd}</span></span>${chip(k,{auto:'automatisch',man:k==='man'&&t==='Freigeben'?'du':'manuell',off:'noch nicht'}[k])}</div>`).join('')}</section>`}
 
 /* ---------------- Ereignisse ---------------- */
 document.addEventListener('click',e=>{
@@ -497,4 +523,4 @@ function changed(){const d=D();evaluateChanges(d);persist();rerender()}
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
-touchDay();saveFun();route();loadPrices();
+touchDay();saveFun();route();loadPrices();loadReports();
