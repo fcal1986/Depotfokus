@@ -3,6 +3,9 @@ name: GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Werktags nach US-Börsenschluss: Tageskurse aktualisieren
+    - cron: '37 21 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -22,11 +25,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Seite zusammenstellen
         run: |
-          mkdir -p _site
-          cp index.html .nojekyll _site/
-          mkdir -p _site/app && cp app/index.html _site/app/
+          python3 scripts/build.py
+          mkdir -p _site/app
+          cp index.html .nojekyll manifest.webmanifest icon.svg icon-180.png icon-512.png sw.js _site/
+          cp app/index.html _site/app/
+      - name: Tageskurse abrufen
+        continue-on-error: true
+        run: node scripts/fetch-prices.mjs _site/prices.json
+      - name: Kursdatei sicherstellen
+        run: test -f _site/prices.json || echo '{"asOf":null,"quotes":{},"fx":{},"missing":[]}' > _site/prices.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -50,7 +50,7 @@ function route(){
   v.innerHTML=html;v.className=r==='story'?'story':'screen';
   const full=r==='story'||r==='check';$('#tabs').hidden=full;v.classList.toggle('sub',full);
   document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
-  if(r==='daten'){renderSourceCard();renderImport();renderConfirm();renderExt()}
+  if(r==='daten'){renderSourceCard();renderImport();renderTxCard();renderPrices();renderConfirm();renderExt()}
   if(r==='plan')renderGoalSum2();
   if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
   route.keep=false;
@@ -86,8 +86,10 @@ function vHeute(){
   <section class="dark col" style="gap:6px">
     <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
     <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
-    <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${d.kind==='demo'?'Kurse vom 04.10.2026':`Datei ${esc(d.fileName)}, Stichtag ${d.valuationDate?esc(d.valuationDate):'nicht bekannt'}`}. Keine Live-Kurse.</span>
+    ${perfLine(d)}
+    <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${valLine(d)}</span>
   </section>
+  ${eventsHTML(d)}
   ${c.incomplete?`<a href="#daten" class="banner"><b>Zuordnungen prüfen</b><span>Ohne Bestätigung ${(tt.open+noBucket(d).length)===1?'fehlt 1 Position':'fehlen '+(tt.open+noBucket(d).length)+' Positionen'} in Gewichten und Zielvergleich.</span></a>`:''}
   <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
   <section class="col" style="gap:8px">
@@ -96,6 +98,13 @@ function vHeute(){
   </section>
   <p class="hint">Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026. Keine Anlageberatung.</p>`;
 }
+function valLine(d){const pi=priceInfo(d);const exp=d.kind==='demo'?'Exportwerte vom 04.10.2026':`Exportwerte aus ${esc(d.fileName)}${d.valuationDate?', Stichtag '+esc(d.valuationDate):''}`;
+  if(pi.avail&&pi.on&&pi.n)return `Tageskurse vom ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen${pi.n<pi.of?`, übrige: ${exp}`:''}. Verzögert, ohne Gewähr.`;
+  return exp+'.'}
+function perfLine(d){const m=txModel(d);if(!m||!m.okCount)return '';
+  return `<div class="perf"><span><b class="${m.result>=0?'up':'down'}">${sgn(m.result)}</b> ${m.irr!=null?`· ${spct(m.irr)} p. a.`:`· ${spct(m.simple)} gesamt`}<br><span class="muted-night small">Ergebnis seit ${isoToDe(m.since)}, inkl. Ausschüttungen</span></span><span><b>${eur(m.M.div12)}</b><br><span class="muted-night small">Ausschüttungen 12 Monate</span></span></div>`}
+function eventsHTML(d){const ev=d.events.filter(e=>!d.read.includes(e.id)).slice(0,3);if(!ev.length)return '';
+  return `<section class="card col" style="gap:8px"><div class="row between"><span class="lbl">Neu auf diesem Gerät</span><button class="link" id="evRead" type="button">Gelesen</button></div>${ev.map(e=>`<div class="col" style="gap:2px"><span class="strong">${esc(e.t)}</span><span class="small muted2">${esc(e.b||'')} · ${esc(e.at)}</span></div>`).join('')}</section>`}
 const initials=n=>{const w=n.replace(/[^A-Za-zÄÖÜäöü ]/g,' ').split(/\s+/).filter(x=>x.length>1);return (w.length>1?w[0][0]+w[1][0]:(w[0]||'?').slice(0,2)).toUpperCase()};
 const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':w};
 
@@ -151,15 +160,26 @@ function vDepot(){
   return `
   <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a></div>
   ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
+  ${perfCard(d)}
   <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
   <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
   <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
   <section class="card"><h2 class="h2">Positionen</h2>${list}</section>`;
 }
+function perfCard(d){const m=txModel(d);
+  if(!m)return `<section class="card col" style="gap:8px" id="perf"><h2 class="h2">Wertentwicklung</h2><div class="empty">Für Gewinn, Ausschüttungen und Rendite braucht Depotfokus deine Umsätze aus Portfolio Performance.</div><a class="btn" href="#daten">Umsätze importieren</a></section>`;
+  const kp=(l,v,c='')=>`<div class="kpi"><span class="small muted2">${l}</span><span class="num strong ${c}">${v}</span></div>`;
+  return `<section class="card col" style="gap:10px" id="perf"><div class="row between"><h2 class="h2" style="margin:0">Wertentwicklung</h2>${d.kind==='demo'?'<span class="chip-demo">Musterumsätze</span>':''}</div>
+   <div class="kpis">${kp('Ergebnis gesamt',m.okCount?sgn(m.result):'–',m.result>=0?'pos-text':'neg-text')}${kp(m.irr!=null?'Rendite p. a.':'Rendite gesamt',m.irr!=null?spct(m.irr):m.simple!=null?spct(m.simple):'–')}
+   ${kp('Ausschüttungen 12 Monate',eur(m.M.div12))}${kp('Ausschüttungen gesamt',eur(m.M.div))}
+   ${kp('Kursgewinn offen',sgn(m.unrealized))}${kp('Gewinn realisiert',sgn(m.realized))}
+   ${kp('Einzahlungen netto',eur(m.M.dep-m.M.wd))}${kp('Gebühren und Steuern',eur(m.M.fees+m.M.taxes+m.secs.reduce((a,s)=>a+s.fees+s.taxes,0)))}</div>
+   <p class="hint">Seit ${isoToDe(m.since)}. Berechnet für ${m.heldOk} von ${m.heldAll} gehaltenen Wertpapieren${m.secs.some(s=>s.soldOut)?' plus verkaufte':''}; Kontoguthaben zählt nicht. Rendite p. a. als interner Zinsfuß (geldgewichtet)${m.irr==null?', erst ab zwölf Monaten Historie':''}. Ausschüttungen netto nach Steuern, wie gebucht.</p>
+   ${m.issues.length?`<a class="banner" href="#depot"><b>${m.issues.length} ${m.issues.length>1?'Positionen':'Position'} nicht eingerechnet</b><span>Details unter „Offene Datenfragen“.</span></a>`:''}</section>`}
 function posRow(p,T){const v=posValue(p),I=INFO[p.symbol],m=MOOD[p.symbol];
   const sub=!I?'Noch keine geprüfte Einordnung':I.etf?'ETF-Profil':I.changes.items[0]?I.changes.items[0].t:I.interp;
   return `<a class="prow" href="#pos/${encodeURIComponent(p.id)}"><span class="nm">${esc(p.name)}</span><span class="num r">${v!=null?eur(v):p.conf==='skip'?'nicht eingerechnet':'Wert ungeklärt'}</span>
-   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
+   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${(()=>{const s=secFor(D(),p);return s&&s.ok&&s.unreal!=null?`<b class="${s.unreal>=0?'pos-text':'neg-text'}">${spct(s.cost?s.unreal/s.cost:0,0)}</b> · `:''})()}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
 
 /* ---------------- Position / Kompass ---------------- */
 function vPos(id){
@@ -167,6 +187,7 @@ function vPos(id){
   const I=INFO[p.symbol],tt=totals(d),v=posValue(p);
   let h=`<div class="row" style="gap:6px"><a href="#depot" class="icon-btn" aria-label="Zurück zum Depot">${ICON.back}</a><div class="col"><h1 class="big" style="font-size:24px">${esc(p.name)}</h1><span class="small muted2">${p.bucket?BN[p.bucket].name:'ohne Baustein'} · ${v!=null?eur(v)+' · '+pct(v/tt.sum)+(d.kind==='demo'?' des Musterdepots':' deines Depots'):'Wert ungeklärt'}</span></div></div>`;
   if(v==null&&p.conf!=='skip')h+=`<a href="#daten" class="banner"><b>Wert ungeklärt</b><span>Die Kurswährung ist nicht erkennbar. Bitte zuerst bestätigen.</span></a>`;
+  h+=myPosCard(d,p);
   if(!I){h+=`<section class="card"><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p></section>`;return h+checkButtons(p)}
   if(I.etf){const e=I.etf;
     h+=`<section class="card col" style="gap:8px"><span class="lbl">ETF-Profil</span><dl class="kv"><dt>Fonds</dt><dd>${esc(e.name)} · ${esc(e.isin)}</dd><dt>Index</dt><dd>${esc(e.index)}</dd><dt>Kosten</dt><dd>${esc(e.ter)}</dd><dt>Konzentration</dt><dd>${esc(e.conc)}</dd><dt>Ausschüttung</dt><dd>${esc(e.dist)}</dd><dt>Überschneidungen</dt><dd>nicht verfügbar</dd><dt>Stand</dt><dd>${esc(e.stand)}</dd></dl>${srcLink(e.terSrc||e.src)}${e.terSrc?srcLink(e.src):''}</section>`;
@@ -185,6 +206,19 @@ function vPos(id){
   <section class="card"><h2 class="h2">Was wir beobachten</h2>${I.rules.map(r=>`<div class="rule"><div class="row between" style="align-items:flex-start;gap:8px"><span class="strong">${esc(r.q)} <span class="small muted2">${r.type==='goal'?'Bedingung':'Risiko'}</span></span><span class="st ${stCls(r)}">${STATUS[r.type][r.status]}</span></div><details><summary>Regel und Quelle</summary><dl class="kv"><dt>Kennzahl</dt><dd>${esc(r.metric)}</dd><dt>Bedingung</dt><dd>${esc(r.cond)}</dd><dt>Periode</dt><dd>${esc(r.per)}</dd><dt>Beobachtet</dt><dd>${r.obs?esc(r.obs):'nicht verfügbar'}${r.prev?' · Vorperiode '+esc(r.prev):''}</dd><dt>Nächste Prüfung</dt><dd>${esc(r.next)}</dd><dt>Bedeutung</dt><dd>${esc(r.why)}</dd></dl>${r.src?srcLink(r.src):''}</details></div>`).join('')}</section>`;
   return h+checkButtons(p);
 }
+function myPosCard(d,p){const m=txModel(d),s=secFor(d,p),q=liveValue(p)!=null?quoteFor(p):null;
+  const src=q?`Tageskurs ${num(q.px,2)} ${esc(q.ccy)} vom ${esc(fmtAsOf(q.t))}${q.ccy!=='EUR'?', umgerechnet in Euro':''}`:'Wert aus dem Export';
+  if(!m)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${p.qty!=null?num(p.qty,4)+' Stück · ':''}${src}. Einstand und Gewinn nach dem Umsatz-Import.</span></section>`;
+  if(!s)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${src}. Keine Umsätze zu dieser Position gefunden; Einstand und Gewinn sind deshalb nicht bekannt.</span></section>`;
+  const row=(l,v,c='')=>`<dt>${l}</dt><dd class="num ${c}">${v}</dd>`;
+  return `<section class="card col" style="gap:6px"><div class="row between"><span class="lbl">Deine Position</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
+   ${!s.ok?`<p class="hint-box">${s.value==null&&!s.mismatch&&!s.unknownCost?'Wert ungeklärt: Bestätige zuerst die Währung unter Daten & Import.':s.mismatch?`Laut Umsätzen ${num(s.shares,4)} Stück, im Bestand ${num(p.qty,4)}. Gewinn und Rendite werden erst gezeigt, wenn beides übereinstimmt.`:s.unknownCost?'Einstand unbekannt: Einlieferung ohne Wert.':'Die Umsätze sind unvollständig.'}</p>`:''}
+   <dl class="kv">${row('Stück',num(s.shares,4))}${row('Einstand (FIFO)',eur(s.cost,2))}${row('Ø Kaufkurs',s.avg!=null?eur(s.avg,2):'–')}
+   ${s.ok?row('Kursgewinn',`${sgn(s.unreal,2)} (${spct(s.cost?s.unreal/s.cost:0)})`,s.unreal>=0?'pos-text':'neg-text'):''}
+   ${row('Ausschüttungen erhalten',`${eur(s.div,2)}${s.div12?` · 12 Monate ${eur(s.div12,2)}`:''}`)}
+   ${s.realized?row('Realisiert',sgn(s.realized,2)):''}
+   ${s.ok?row('Ergebnis gesamt',sgn(s.result,2),s.result>=0?'pos-text':'neg-text'):''}${s.irr!=null?row('Rendite p. a.',spct(s.irr)):''}
+   ${row('Erster Kauf',isoToDe(s.first))}</dl><span class="hint">${src}. Ausschüttungen netto nach Steuern.</span></section>`}
 function checkButtons(p){return `<div class="grid2" style="margin-top:4px"><a href="#check/${encodeURIComponent(p.id)}/kauf" class="btn">Kauf überlegen</a><a href="#check/${encodeURIComponent(p.id)}/verkauf" class="btn solid">Verkauf überlegen</a></div><p class="hint center">Depotfokus führt keine Orders aus.</p>`}
 
 /* ---------------- Entscheidungs-Check ---------------- */
@@ -207,7 +241,7 @@ function vCheck(id,intent){
   return `
   <div class="row" style="gap:6px"><a href="#pos/${encodeURIComponent(id)}" class="icon-btn" aria-label="Zurück">${ICON.back}</a><div class="col"><span class="lbl">Entscheidungs-Check</span><h1 class="big" style="font-size:22px">${buy?'Kauf':'Verkauf'}: ${esc(p.name)}</h1></div></div>
   <section class="card step"><span class="num-c c1" aria-hidden="true">1</span><div class="col" style="gap:3px"><span class="strong">Passt es zu deinem Plan?</span><span class="small muted2">${esc(plan)}</span>${!gs.ok?'<a class="link" href="#plan">Zum Plan →</a>':''}</div></section>
-  <section class="card step"><span class="num-c c2" aria-hidden="true">2</span><div class="col" style="gap:3px"><span class="strong">Was kostet es?</span><span class="small muted2">${esc(cost)}${buy?'Ordergebühr laut deinem Broker.':'Steuer auf einen Gewinn hängt von deinem Kaufkurs ab; der ist im Export nicht enthalten. Dazu die Ordergebühr.'}</span></div></section>
+  <section class="card step"><span class="num-c c2" aria-hidden="true">2</span><div class="col" style="gap:3px"><span class="strong">Was kostet es?</span><span class="small muted2">${esc(cost)}${buy?'Ordergebühr laut deinem Broker.':esc(sellCost(d,p))}</span>${!buy&&!txModel(d)?'<a class="link" href="#daten">Umsätze importieren →</a>':''}</div></section>
   <section class="card col" style="gap:10px"><div class="step"><span class="num-c c3" aria-hidden="true">3</span><span class="strong" id="whyLbl" style="padding-top:3px">Warum gerade jetzt?</span></div>
     <div class="reasons" role="group" aria-labelledby="whyLbl">${R.map(([k,l])=>`<button type="button" data-reason="${k}" aria-pressed="${chk.reason===k}">${l}</button>`).join('')}</div>
     ${chk.reason==='drop'?'<p class="hint-box">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?</p>':''}
@@ -219,6 +253,10 @@ function vCheck(id,intent){
   <p class="hint center">Punkte gibt es für die Begründung, nicht für den Trade. Umsetzen kannst du nur bei deinem Broker.</p>`;
 }
 const tt0=()=>totals(D()).sum;
+function sellCost(d,p){const s=secFor(d,p),te=taxEstimate(p,s);
+  if(!te)return txModel(d)?'Steuer nicht schätzbar: Für diese Position fehlen vollständige Umsätze. Dazu die Ordergebühr.':'Steuer auf einen Gewinn hängt von deinem Kaufkurs ab; dafür braucht Depotfokus deine Umsätze. Dazu die Ordergebühr.';
+  if(te.gain<=0)return `Bei Verkauf der ganzen Position: Verlust ${eur(-te.gain)} gegenüber dem Einstand, also keine Steuer. Der Verlust kann mit späteren Gewinnen verrechnet werden (Aktienverluste nur mit Aktiengewinnen). Dazu die Ordergebühr.`;
+  return `Bei Verkauf der ganzen Position: Kursgewinn rund ${eur(te.gain)}${te.tf?`, davon ${eur(te.taxable)} steuerpflichtig (Teilfreistellung 30 % für Aktienfonds)`:''}, Steuer rund ${eur(te.tax)} (26,375 %, ohne Kirchensteuer, vor Sparerpauschbetrag und Verlustverrechnung). Bei Teilverkauf zählen zuerst die ältesten Anteile. Dazu die Ordergebühr.`}
 
 /* ---------------- Plan ---------------- */
 function vPlan(){
@@ -257,20 +295,49 @@ function renderGoalSum2(){const d=D(),el=$('#goalSum');if(!el||!d.goals)return;c
   el.textContent=gs.reason==='invalid'?'Ungültige Eingabe korrigieren':`Summe ${fz(sum)} %${Math.abs(sum-100)>0.05?` – es fehlen ${fz(100-sum)} Punkte`:' ✓'}`;el.className='num '+(gs.ok?'pos-text':'neg-text')}
 
 /* ---------------- Liga ---------------- */
-function questions(){const qs=[];D().positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a)).forEach(p=>{const r=INFO[p.symbol].rules.find(x=>x.status!=='np');if(r)qs.push({id:p.symbol+'|'+r.q,p,r})});return qs.slice(0,4)}
+/* Auflösungen offener Prognosen: wird ergänzt, sobald ein neuer Bericht geprüft ist. Schlüssel = Fragen-ID. */
+const RESOLVED={};
+const yesOf=r=>(r.type==='goal'&&r.status==='met')||(r.type==='risk'&&r.status==='occurred');
+function questions(){const retro=[],open=[];
+  D().positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a)).forEach(p=>INFO[p.symbol].rules.filter(r=>r.status!=='np'&&r.status!=='open').forEach(r=>{
+    retro.push({id:`r|${p.symbol}|${r.per}|${r.q}`,p,r,kind:'retro',outcome:yesOf(r)?1:0,
+      text:`${r.per}: ${r.q.replace(/\?$/,'')}?`});
+    open.push({id:`o|${p.symbol}|${r.next}|${r.q}`,p,r,kind:'open',text:r.q})}));
+  return {retro,open}}
+function score(pr,outcome){const p=(pr.c||70)/100,pj=pr.a==='ja'?p:1-p,b=(pj-outcome)**2;return {outcome,brier:b,hit:(pr.a==='ja')===(outcome===1),pts:Math.max(0,Math.round(20*(1-2*b)))}}
+function resolveOpen(){let ch=false;Object.entries(FUN.preds).forEach(([id,pr])=>{const r=RESOLVED[id];if(r&&pr.a&&!pr.res){pr.res=score(pr,r.outcome);FUN.points+=pr.res.pts;ch=true}});if(ch)saveFun()}
+function calib(){const res=Object.values(FUN.preds).filter(x=>x.res);if(!res.length)return null;
+  const hits=res.filter(x=>x.res.hit).length,conf=res.reduce((a,x)=>a+(x.c||70),0)/res.length,brier=res.reduce((a,x)=>a+x.res.brier,0)/res.length;
+  return {n:res.length,hits,conf,rate:hits/res.length*100,brier}}
+function qButtons(q,pr,locked){return `<div class="grid2 yn" role="group" aria-label="Antwort">${['ja','nein'].map(a=>`<button type="button" data-pred="${esc(q.id)}" data-ans="${a}" aria-pressed="${pr.a===a}" ${locked?'disabled':''}>${a==='ja'?'Ja':'Nein'}</button>`).join('')}</div>
+    <div class="conf-g" role="group" aria-label="Wie sicher bist du?">${[50,60,70,80,90].map(c=>`<button type="button" data-pred="${esc(q.id)}" data-conf="${c}" aria-pressed="${(pr.c||70)===c}" ${locked?'disabled':''}>${c} %</button>`).join('')}</div>`}
 function vLiga(){
-  const qs=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind);
+  resolveOpen();const {retro,open}=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind),cb=calib();
+  const last=FUN.lastRes&&FUN.preds[FUN.lastRes]&&FUN.preds[FUN.lastRes].res?retro.find(q=>q.id===FUN.lastRes):null;
+  const next=retro.find(q=>!(FUN.preds[q.id]&&FUN.preds[q.id].res));const done=retro.filter(q=>FUN.preds[q.id]&&FUN.preds[q.id].res).length;
+  let quiz;
+  if(last){const pr=FUN.preds[last.id],r=last.r;quiz=`<section class="dark col" style="gap:10px"><span class="lbl">${esc(last.p.name)} · Rückblick</span><span class="h3" style="color:#fff">${esc(last.text)}</span>
+    <span class="res ${pr.res.hit?'hit':'miss'}">${pr.res.hit?'Richtig':'Daneben'} · +${pr.res.pts} Punkte</span>
+    <span class="small muted-night">Antwort: ${last.outcome?'Ja':'Nein'}. ${esc(r.metric)}: ${esc(r.obs||'–')} (Bedingung: ${esc(r.cond)}). Du hast ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} % getippt.</span>
+    <span class="small muted-night">Quelle: ${srcText(r.src)}</span><span class="small muted-night">${esc(r.why)}</span>
+    <button type="button" class="btn light" id="qNext">${next?'Nächste Frage':'Fertig'}</button></section>`}
+  else if(next){const pr=FUN.preds[next.id]||{};quiz=`<section class="dark col" style="gap:10px"><div class="row between"><span class="lbl">${esc(next.p.name)} · Rückblick</span><span class="small muted-night">${done+1} von ${retro.length}</span></div>
+    <span class="h3" style="color:#fff">${esc(next.text)}</span><span class="small muted-night">${esc(next.r.metric)}: ${esc(next.r.cond)}. Die Antwort steht im letzten Bericht.</span>
+    ${qButtons(next,pr,false)}<button type="button" class="btn light" data-resolve="${esc(next.id)}" ${pr.a?'':'disabled'}>Auflösen</button></section>`}
+  else quiz=`<section class="card"><p>Alle ${retro.length} Rückblick-Fragen beantwortet. Neue kommen mit dem nächsten geprüften Bericht.</p></section>`;
   return `
-  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Prognose-Liga</h1><span class="small strong muted2">${FUN.points} Wissenspunkte</span></div>
-  <p class="small muted2">Echte Fragen zu deinen Positionen. Aufgelöst wird, sobald der nächste Bericht geprüft ist.</p>
-  ${qs.map(q=>{const pr=FUN.preds[q.id]||{};return `<section class="dark col" style="gap:10px"><span class="lbl">${esc(q.p.name)} · ${esc(q.r.next)}</span>
-    <span class="h3" style="color:#fff">${esc(q.r.q)}</span><span class="small muted-night">${esc(q.r.metric)}: ${esc(q.r.cond)} · zuletzt ${esc(q.r.obs||'nicht verfügbar')} (${esc(q.r.per)})</span>
-    <div class="grid2 yn" role="group" aria-label="Antwort">${['ja','nein'].map(a=>`<button type="button" data-pred="${esc(q.id)}" data-ans="${a}" aria-pressed="${pr.a===a}">${a==='ja'?'Ja':'Nein'}</button>`).join('')}</div>
-    <div class="conf-g" role="group" aria-label="Wie sicher bist du?">${[50,60,70,80,90].map(c=>`<button type="button" data-pred="${esc(q.id)}" data-conf="${c}" aria-pressed="${(pr.c||70)===c}">${c} %</button>`).join('')}</div>
-    <span class="small sun-text">${pr.a?`Getippt: ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} %. Offen bis zur Auflösung.`:'Noch nicht getippt.'}</span></section>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine prüfbaren Fragen.</p>'}
-  <section class="card col" style="gap:6px"><span class="strong">Deine Treffsicherheit</span><p class="small muted2">Noch keine aufgelöste Prognose. Gewertet wird, wie gut deine Sicherheit zur Wirklichkeit passt: Wer 70 % sagt, sollte in 7 von 10 Fällen richtig liegen.</p></section>
+  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Prognose-Liga</h1><span class="small strong muted2">${FUN.points} Punkte · ${streak()} ${streak()===1?'Tag':'Tage'}</span></div>
+  <p class="small muted2">Punkte gibt es für gut kalibrierte Einschätzungen, nicht für Käufe oder Verkäufe.</p>
+  <section class="card col" style="gap:6px"><span class="strong">Deine Treffsicherheit</span>
+   ${cb?`<div class="kpis">${[['Aufgelöst',cb.n],['Richtig',`${cb.hits} (${num(cb.rate,0)} %)`],['Ø Sicherheit',num(cb.conf,0)+' %'],['Brier-Wert',num(cb.brier,3)]].map(([l,v])=>`<div class="kpi"><span class="small muted2">${l}</span><span class="num strong">${v}</span></div>`).join('')}</div>
+   <p class="small muted2">${Math.abs(cb.rate-cb.conf)<=10?'Gut kalibriert: Deine Sicherheit passt zu deiner Trefferquote.':cb.conf>cb.rate?`Du bist im Schnitt sicherer (${num(cb.conf,0)} %), als deine Trefferquote (${num(cb.rate,0)} %) hergibt.`:`Du triffst öfter (${num(cb.rate,0)} %), als du dir zutraust (${num(cb.conf,0)} %).`} Brier-Wert: 0 ist perfekt, 0,25 entspricht Raten.</p>`
+   :'<p class="small muted2">Noch nichts aufgelöst. Starte mit dem Rückblick-Quiz: Wer 70 % sagt, sollte in 7 von 10 Fällen richtig liegen.</p>'}</section>
+  <h2 class="h2" style="margin:4px 0 0">Rückblick-Quiz</h2>${quiz}
+  <h2 class="h2" style="margin:4px 0 0">Offene Prognosen</h2><p class="small muted2">Aufgelöst wird mit dem nächsten geprüften Bericht.</p>
+  ${open.slice(0,4).map(q=>{const pr=FUN.preds[q.id]||{};return `<section class="card col" style="gap:8px"><span class="lbl">${esc(q.p.name)} · ${esc(q.r.next)}</span><span class="strong">${esc(q.text)}</span><span class="small muted2">${esc(q.r.metric)}: ${esc(q.r.cond)} · zuletzt ${esc(q.r.obs||'nicht verfügbar')} (${esc(q.r.per)})</span>
+    <div class="light-q">${qButtons(q,pr,!!pr.res)}</div><span class="small ${pr.res?(pr.res.hit?'pos-text':'neg-text'):'muted2'}">${pr.res?`${pr.res.hit?'Richtig':'Daneben'} · +${pr.res.pts} Punkte`:pr.a?`Getippt: ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} %. Offen bis zur Auflösung.`:'Noch nicht getippt.'}</span></section>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine prüfbaren Fragen.</p>'}
   <section class="card"><h2 class="h2">Deine Entscheidungsnotizen</h2>${notes.length?notes.slice().reverse().map(n=>`<div class="fact"><span class="strong">${esc(n.intent==='kauf'?'Kauf':'Verkauf')} ${esc(n.name)}</span><span class="small muted2"> · ${esc(n.date)} · ${esc(n.quality)}</span><div class="small muted2">Grund: ${esc(n.reasonTxt)}${n.sleep?' · mit Bedenkzeit':''}</div></div>`).join(''):'<p class="hint">Noch keine. Notizen entstehen im Entscheidungs-Check.</p>'}</section>
-  <p class="hint">Familien-Rangliste und Taschengeld-Depot kommen mit Benutzerkonten.</p>`;
+  <p class="hint">Familien-Rangliste und Taschengeld-Depot brauchen Benutzerkonten und sind deshalb nicht Teil dieser Version.</p>`;
 }
 
 /* ---------------- Daten ---------------- */
@@ -278,9 +345,11 @@ function vDaten(){return `
   <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Daten &amp; Import</h1></div>
   <div class="card" id="sourceCard"></div>
   <div class="card" id="importCard" tabindex="-1"></div>
+  <div class="card" id="txCard"></div>
+  <div class="card" id="pricesCard"></div>
   <div class="card" id="confirmCard" tabindex="-1"></div>
   <div class="card" id="extCard"></div>
-  <details class="card"><summary class="strong">Hinter den Kulissen</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Heute: Die Einordnungen sind manuell recherchierte Beispieldaten vom 04.10.2026 mit Quellenangabe. Es gibt keine automatische Aktualisierung.</p><p>Geplant: Jede Nacht Meldungen und Berichte in vielen Sprachen lesen, Fakten mit Quelle herausziehen, gegenprüfen, Regeln berechnen und nur Relevantes für dein Depot bündeln.</p><p>Versprechen: Jede Zahl mit Quelle · Trefferquote öffentlich · keine Provision für Käufe · keine Orders.</p></div></details>`}
+  <details class="card"><summary class="strong">Hinter den Kulissen</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Kurse: Werktags nach Börsenschluss ruft GitHub die Tageskurse der bekannten Wertpapiere ab und veröffentlicht sie mit dieser Seite. Deine Bestände werden dabei nicht übertragen; gerechnet wird in deinem Browser.</p><p>Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026 mit Quellenangabe.</p><p>Geplant: Jede Nacht Meldungen und Berichte in vielen Sprachen lesen, Fakten mit Quelle herausziehen, gegenprüfen, Regeln berechnen und nur Relevantes für dein Depot bündeln.</p><p>Versprechen: Jede Zahl mit Quelle · Trefferquote öffentlich · keine Provision für Käufe · keine Orders.</p></div></details>`}
 
 /* ---------------- Ereignisse ---------------- */
 document.addEventListener('click',e=>{
@@ -291,7 +360,13 @@ document.addEventListener('click',e=>{
   if(t.closest('#saveNote')){const {a}=parse();const p=posById(a[0]);const RT={plan:'Weg vom Ziel',news:'Neue Information',drop:'Kurs ist gefallen',tip:'Tipp von anderen'};
     const q=$('#qual').textContent;
     FUN.notes.push({kind:D().kind,id:p.id,name:p.name,intent:a[1],reasonTxt:RT[chk.reason],sleep:chk.sleep,quality:q,date:new Date().toLocaleDateString('de-DE')});FUN.points+=5;touchDay();saveFun();toast('Notiz gespeichert · +5 Punkte');location.hash='#liga';return}
-  const pb=t.closest('[data-pred]');if(pb){const id=pb.dataset.pred;const pr=FUN.preds[id]||{c:70};if(pb.dataset.ans)pr.a=pb.dataset.ans;if(pb.dataset.conf)pr.c=+pb.dataset.conf;pr.at=new Date().toISOString();FUN.preds[id]=pr;touchDay();saveFun();rerender();return}
+  const rs=t.closest('[data-resolve]');if(rs){const id=rs.dataset.resolve,q=questions().retro.find(x=>x.id===id),pr=FUN.preds[id];if(!q||!pr||!pr.a||pr.res)return;pr.res=score(pr,q.outcome);FUN.points+=pr.res.pts;FUN.lastRes=id;touchDay();saveFun();rerender();return}
+  if(t.closest('#qNext')){FUN.lastRes=null;saveFun();rerender();return}
+  if(t.closest('#evRead')){const d=D();d.events.forEach(e=>{if(!d.read.includes(e.id))d.read.push(e.id)});d.read=d.read.slice(-200);persist();rerender();return}
+  if(t.closest('#stTxAccept')){acceptTx();return}
+  if(t.closest('#stTxDiscard')){stagedTx=null;renderImport();return}
+  if(t.closest('#txDelete')){if(OWN){OWN.tx=null;OWN.txMeta=null;_txc.k=null;persist();rerender();toast('Umsätze entfernt')}return}
+  const pb=t.closest('[data-pred]');if(pb){if(pb.disabled)return;const pr0=FUN.preds[pb.dataset.pred];if(pr0&&pr0.res)return;const id=pb.dataset.pred;const pr=FUN.preds[id]||{c:70};if(pb.dataset.ans)pr.a=pb.dataset.ans;if(pb.dataset.conf)pr.c=+pb.dataset.conf;pr.at=new Date().toISOString();FUN.preds[id]=pr;touchDay();saveFun();rerender();return}
   if(t.closest('#goalsFromNow')){const d=D(),V=bucketVals(d),T=tot(V);if(!T){toast('Ohne Bestand gibt es keine heutige Verteilung.');return}const g={};B.forEach(b=>g[b.id]=Math.round(V[b.id]/T*1000)/10);const diff=Math.round((100-B.reduce((a,b)=>a+g[b.id],0))*10)/10;const big=B.reduce((a,b)=>g[b.id]>g[a.id]?b:a,B[0]);g[big.id]=Math.round((g[big.id]+diff)*10)/10;d.goals=g;d.goalsSource='current';goalRaw={};changed();toast('Heutige Verteilung übernommen');return}
   if(t.closest('#goalsEmpty')){const d=D();d.goals=Object.fromEntries(B.map(b=>[b.id,0]));d.goalsSource='own';goalRaw={};changed();return}
   if(t.closest('#btnCopy')){const d=D(),al=allocate(d);if(!al)return;const txt=['Depotfokus · rechnerische Verteilung',...B.filter(b=>al.amounts[b.id]>0).map(b=>`${eur(al.amounts[b.id],2)} → ${b.name} (Ziel ${fz(d.goals[b.id])} %)`)].join('\n');(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('Verteilung kopiert')).catch(()=>toast('Kopieren nicht möglich'));return}
@@ -313,7 +388,9 @@ document.addEventListener('change',e=>{
   if(el.id==='sleep'){chk.sleep=el.checked;rerender();return}
   if(el.id==='cashMode'){d.cashMode=el.value;changed();return}
   if(el.id==='maxSingle'){const v=parseInput(el.value);if(v!=null&&!(v>0&&v<=100)){$('#maxErr').textContent='Wert über 0 und höchstens 100, oder leer lassen.';el.setAttribute('aria-invalid','true');return}d.maxSingle=v;changed();return}
-  if(el.id==='file'){const f=el.files&&el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{staged=analyzeCSV(r.result,f.name);renderImport();toast(staged.error?'Import nicht möglich':'Datei geprüft, bitte kontrollieren')};r.readAsText(f);el.value='';return}
+  if(el.id==='file'){const fs=[...(el.files||[])];if(!fs.length)return;stagedTx=null;
+    Promise.all(fs.map(f=>new Promise(res=>{const r=new FileReader();r.onload=()=>res([f.name,r.result]);r.onerror=()=>res([f.name,'']);r.readAsText(f)}))).then(list=>{handleFiles(list)});el.value='';return}
+  if(el.id==='liveToggle'){UI.live=el.checked;saveUI();_txc.k=null;rerender();toast(el.checked?'Tageskurse werden verwendet':'Werte aus dem Export werden verwendet');return}
   if(el.dataset.acc!=null&&staged){staged.accounts[+el.dataset.acc].accept=el.checked;return}
   if(el.id==='stReplace'){$('#stAccept').disabled=!el.checked;return}
   if(el.dataset.bucket){const p=posById(el.dataset.bucket);if(p&&el.value){p.bucket=el.value;p.bucketSrc='user';changed()}return}
@@ -332,8 +409,11 @@ document.addEventListener('input',e=>{
     else{budgetRaw=null;d.budget=Math.round(v*100)/100;el.removeAttribute('aria-invalid');persist()}
     $('#budgetErr').textContent=budgetRaw||'';$('#allocBox').innerHTML=allocHTML();return}
 });
+function handleFiles(list){let h=0,t=0,err=0;
+  list.forEach(([name,text])=>{const a=analyzeCSV(text,name);if(a.kind==='transactions'){t++;stagedTx=stagedTx&&!stagedTx.error?mergeTx(stagedTx,a):a}else{h++;staged=a}if(a.error)err++});
+  renderImport();toast(err?'Mindestens eine Datei ist nicht lesbar':`${h?'Bestand':''}${h&&t?' und ':''}${t?'Umsätze':''} geprüft, bitte kontrollieren`)}
 function changed(){const d=D();evaluateChanges(d);persist();rerender()}
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
-touchDay();saveFun();route();
+touchDay();saveFun();route();loadPrices();

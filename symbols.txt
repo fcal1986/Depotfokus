@@ -1,0 +1,1 @@
+# Zusätzliche Yahoo-Symbole für den Kursabruf, eines pro Zeile (keine Bestände!)

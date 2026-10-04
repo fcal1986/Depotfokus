@@ -1,5 +1,4 @@
 
-'use strict';
 /* =========================================================
    STAMMDATEN UND BEISPIELDATEN
    ========================================================= */
@@ -43,6 +42,234 @@ const DEMO_CSV=`Bestand;Name;Symbol;Kurs;Marktwert;Anteil in %;Notiz
 2;Apple;AAPL;333,69;667,38;3,25;
 "";Verrechnungskonto;;;500,00;2,44;
 "";Summe;;;20.520,45;100,00;`;
+
+/* Erfundene Musterumsätze passend zum Musterdepot (erzeugt mit scripts/gen_demo_tx.py) */
+const DEMO_TX=`Datum;Typ;Wert;Buchungswährung;Gebühren;Steuern;Stück;ISIN;Ticker-Symbol;Wertpapiername;Notiz
+2023-01-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-02-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-03-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-04-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-04-23;Kauf;901,89;EUR;1,00;0,00;13;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2023-05-10;Kauf;943,00;EUR;1,00;0,00;20;GB00BVZK7T90;UNVB.DE;Unilever;
+2023-05-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-05-16;Kauf;345,37;EUR;1,00;0,00;20;US04010L1035;9A2.F;Ares Capital;
+2023-05-17;Kauf;562,22;EUR;1,00;0,00;8;US1912161007;CCC3.DE;Coca-Cola;
+2023-06-07;Kauf;1070,78;EUR;1,00;0,00;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2023-06-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-06-22;Kauf;649,90;EUR;1,00;0,00;2;US0378331005;AAPL;Apple;
+2023-06-28;Dividende;3,41;EUR;0,00;0,77;13;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2023-06-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2023-06-28;Dividende;5,08;EUR;0,00;1,82;20;US04010L1035;9A2.F;Ares Capital;
+2023-06-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2023-06-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2023-07-01;Kauf;416,40;EUR;1,00;0,00;2;US4781601046;JNJ.DE;Johnson & Johnson;
+2023-07-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-08-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-09-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-09-25;Kauf;310,50;EUR;1,00;0,00;20;US04010L1035;9A2.F;Ares Capital;
+2023-09-28;Dividende;3,41;EUR;0,00;0,77;13;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2023-09-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2023-09-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2023-09-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2023-09-28;Dividende;2,32;EUR;0,00;0,83;2;US4781601046;JNJ.DE;Johnson & Johnson;
+2023-09-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2023-09-28;Dividende;6,18;EUR;0,00;2,22;20;GB00BVZK7T90;UNVB.DE;Unilever;
+2023-10-14;Kauf;392,57;EUR;1,00;0,00;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2023-10-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-11-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-11-19;Kauf;1087,10;EUR;1,00;0,00;13;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2023-12-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2023-12-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2023-12-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2023-12-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2023-12-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2023-12-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2023-12-28;Dividende;2,32;EUR;0,00;0,83;2;US4781601046;JNJ.DE;Johnson & Johnson;
+2023-12-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2024-01-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-02-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-03-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-03-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2024-03-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2024-03-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2024-03-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2024-03-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2024-03-28;Dividende;2,32;EUR;0,00;0,83;2;US4781601046;JNJ.DE;Johnson & Johnson;
+2024-03-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2024-03-29;Kauf;792,73;EUR;1,00;0,00;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2024-04-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-05-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-05-28;Kauf;612,97;EUR;1,00;0,00;3;US4781601046;JNJ.DE;Johnson & Johnson;
+2024-06-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-06-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2024-06-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2024-06-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2024-06-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2024-06-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2024-06-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2024-06-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2024-06-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2024-07-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-08-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-08-26;Kauf;243,57;EUR;1,00;0,00;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2024-09-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-09-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2024-09-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2024-09-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2024-09-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2024-09-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2024-09-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2024-09-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2024-09-28;Dividende;0,79;EUR;0,00;0,28;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2024-09-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2024-10-07;Kauf;434,80;EUR;1,00;0,00;10;US7561091049;RY6.F;Realty Income;
+2024-10-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-10-19;Kauf;395,61;EUR;1,00;0,00;3;US7427181091;PRG.DE;Procter & Gamble;
+2024-11-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-12-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2024-12-15;Kauf;1409,92;EUR;1,00;0,00;4;US5949181045;MSF.DE;Microsoft;
+2024-12-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2024-12-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2024-12-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2024-12-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2024-12-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2024-12-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2024-12-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2024-12-28;Dividende;1,69;EUR;0,00;0,61;3;US7427181091;PRG.DE;Procter & Gamble;
+2024-12-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2024-12-28;Dividende;0,79;EUR;0,00;0,28;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2024-12-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2024-12-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2025-01-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-02-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-03-12;Verkauf;1095,00;EUR;1,00;40,09;20;GB00BVZK7T90;UNVB.DE;Unilever;
+2025-03-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-03-28;Dividende;6,82;EUR;0,00;1,54;26;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2025-03-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2025-03-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2025-03-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2025-03-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2025-03-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2025-03-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2025-03-28;Dividende;1,69;EUR;0,00;0,61;3;US7427181091;PRG.DE;Procter & Gamble;
+2025-03-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2025-03-28;Dividende;0,79;EUR;0,00;0,28;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2025-03-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2025-03-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2025-04-02;Kauf;1097,40;EUR;1,00;0,00;14;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2025-04-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-05-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-06-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-06-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2025-06-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2025-06-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2025-06-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2025-06-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2025-06-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2025-06-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2025-06-28;Dividende;1,69;EUR;0,00;0,61;3;US7427181091;PRG.DE;Procter & Gamble;
+2025-06-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2025-06-28;Dividende;0,79;EUR;0,00;0,28;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2025-06-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2025-06-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2025-07-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-07-22;Kauf;177,44;EUR;1,00;0,00;7;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2025-08-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-08-25;Kauf;324,21;EUR;1,00;0,00;3;US7427181091;PRG.DE;Procter & Gamble;
+2025-09-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-09-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2025-09-28;Dividende;3,65;EUR;0,00;0,83;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2025-09-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2025-09-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2025-09-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2025-09-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2025-09-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2025-09-28;Dividende;3,40;EUR;0,00;1,21;6;US7427181091;PRG.DE;Procter & Gamble;
+2025-09-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2025-09-28;Dividende;1,58;EUR;0,00;0,56;14;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2025-09-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2025-09-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2025-10-12;Kauf;1097,98;EUR;1,00;0,00;4;US92826C8394;3V64.DE;Visa;
+2025-10-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-11-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-11-19;Kauf;934,06;EUR;1,00;0,00;75;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2025-12-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2025-12-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2025-12-28;Dividende;7,30;EUR;0,00;1,65;150;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2025-12-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2025-12-28;Dividende;10,17;EUR;0,00;3,64;40;US04010L1035;9A2.F;Ares Capital;
+2025-12-28;Dividende;5,29;EUR;0,00;1,89;12;US6819361006;WX4.F;Omega Healthcare Investors;
+2025-12-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2025-12-28;Dividende;2,98;EUR;0,00;1,07;8;US1912161007;CCC3.DE;Coca-Cola;
+2025-12-28;Dividende;3,40;EUR;0,00;1,21;6;US7427181091;PRG.DE;Procter & Gamble;
+2025-12-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2025-12-28;Dividende;1,58;EUR;0,00;0,56;14;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2025-12-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2025-12-28;Dividende;1,52;EUR;0,00;0,54;4;US92826C8394;3V64.DE;Visa;
+2025-12-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2026-01-02;Gebühren;4,90;EUR;0,00;0,00;;;;;Depotgebühr
+2026-01-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-02-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-02-28;Kauf;400,25;EUR;1,00;0,00;13;US6819361006;WX4.F;Omega Healthcare Investors;
+2026-03-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-03-15;Kauf;470,57;EUR;1,00;0,00;7;US1912161007;CCC3.DE;Coca-Cola;
+2026-03-18;Kauf;305,26;EUR;1,00;0,00;20;US04010L1035;9A2.F;Ares Capital;
+2026-03-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2026-03-28;Dividende;7,30;EUR;0,00;1,65;150;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2026-03-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2026-03-28;Dividende;15,25;EUR;0,00;5,46;60;US04010L1035;9A2.F;Ares Capital;
+2026-03-28;Dividende;11,01;EUR;0,00;3,94;25;US6819361006;WX4.F;Omega Healthcare Investors;
+2026-03-28;Dividende;4,46;EUR;0,00;1,60;10;US7561091049;RY6.F;Realty Income;
+2026-03-28;Dividende;5,59;EUR;0,00;2,00;15;US1912161007;CCC3.DE;Coca-Cola;
+2026-03-28;Dividende;3,40;EUR;0,00;1,21;6;US7427181091;PRG.DE;Procter & Gamble;
+2026-03-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2026-03-28;Dividende;1,58;EUR;0,00;0,56;14;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2026-03-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2026-03-28;Dividende;1,52;EUR;0,00;0,54;4;US92826C8394;3V64.DE;Visa;
+2026-03-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2026-03-29;Kauf;454,06;EUR;1,00;0,00;10;US7561091049;RY6.F;Realty Income;
+2026-03-29;Kauf;520,41;EUR;1,00;0,00;5;US7134481081;PEP.DE;PepsiCo;
+2026-04-10;Kauf;415,18;EUR;1,00;0,00;10;US56035L1044;13M.F;Main Street Capital;
+2026-04-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-04-20;Kauf;471,33;EUR;1,00;0,00;5;US7134481081;PEP.DE;PepsiCo;
+2026-04-28;Kauf;508,27;EUR;1,00;0,00;10;US56035L1044;13M.F;Main Street Capital;
+2026-04-28;Kauf;206,89;EUR;1,00;0,00;2;US7427181091;PRG.DE;Procter & Gamble;
+2026-05-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-06-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-06-15;Kauf;171,96;EUR;1,00;0,00;6;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2026-06-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2026-06-28;Dividende;7,30;EUR;0,00;1,65;150;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2026-06-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2026-06-28;Dividende;15,25;EUR;0,00;5,46;60;US04010L1035;9A2.F;Ares Capital;
+2026-06-28;Dividende;9,89;EUR;0,00;3,54;20;US56035L1044;13M.F;Main Street Capital;
+2026-06-28;Dividende;11,01;EUR;0,00;3,94;25;US6819361006;WX4.F;Omega Healthcare Investors;
+2026-06-28;Dividende;8,93;EUR;0,00;3,20;20;US7561091049;RY6.F;Realty Income;
+2026-06-28;Dividende;6,61;EUR;0,00;2,37;10;US7134481081;PEP.DE;PepsiCo;
+2026-06-28;Dividende;5,59;EUR;0,00;2,00;15;US1912161007;CCC3.DE;Coca-Cola;
+2026-06-28;Dividende;4,52;EUR;0,00;1,62;8;US7427181091;PRG.DE;Procter & Gamble;
+2026-06-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2026-06-28;Dividende;2,25;EUR;0,00;0,81;20;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2026-06-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2026-06-28;Dividende;1,52;EUR;0,00;0,54;4;US92826C8394;3V64.DE;Visa;
+2026-06-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;
+2026-07-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-08-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-09-15;Einlage;500,00;EUR;0,00;0,00;;;;;
+2026-09-28;Dividende;10,49;EUR;0,00;2,37;40;IE00B0M62Q58;IQQW.DE;MSCI World USD (Dist);
+2026-09-28;Dividende;7,30;EUR;0,00;1,65;150;IE000FPWSL69;K0MR.DE;Gerd Kommer Multifactor Equity USD (Dist);
+2026-09-28;Dividende;1,26;EUR;0,00;0,28;2;IE0032077012;EQQQ.DE;EQQQ Nasdaq 100 USD (Dist);
+2026-09-28;Dividende;15,25;EUR;0,00;5,46;60;US04010L1035;9A2.F;Ares Capital;
+2026-09-28;Dividende;9,89;EUR;0,00;3,54;20;US56035L1044;13M.F;Main Street Capital;
+2026-09-28;Dividende;11,01;EUR;0,00;3,94;25;US6819361006;WX4.F;Omega Healthcare Investors;
+2026-09-28;Dividende;8,93;EUR;0,00;3,20;20;US7561091049;RY6.F;Realty Income;
+2026-09-28;Dividende;6,61;EUR;0,00;2,37;10;US7134481081;PEP.DE;PepsiCo;
+2026-09-28;Dividende;5,59;EUR;0,00;2,00;15;US1912161007;CCC3.DE;Coca-Cola;
+2026-09-28;Dividende;4,52;EUR;0,00;1,62;8;US7427181091;PRG.DE;Procter & Gamble;
+2026-09-28;Dividende;5,80;EUR;0,00;2,08;5;US4781601046;JNJ.DE;Johnson & Johnson;
+2026-09-28;Dividende;2,25;EUR;0,00;0,81;20;DK0062498333;NOV.DE;Novo-Nordisk (B);
+2026-09-28;Dividende;2,17;EUR;0,00;0,78;4;US5949181045;MSF.DE;Microsoft;
+2026-09-28;Dividende;1,52;EUR;0,00;0,54;4;US92826C8394;3V64.DE;Visa;
+2026-09-28;Dividende;0,57;EUR;0,00;0,20;2;US0378331005;AAPL;Apple;`;
 
 /* Quellen: Organisation, Dokument, Berichtsperiode, Datum, Link */
 const S={
@@ -224,7 +451,7 @@ function analyzeCSV(text,fileName){
   if(nonEmpty.length<2){st.error='Die Datei enthält keine Kopfzeile mit Daten.';return st}
   const h=nonEmpty[0].l;const d=[';','\t',','].sort((a,b)=>h.split(b).length-h.split(a).length)[0];
   const head=splitL(h,d);const low=head.map(x=>x.toLowerCase());const col=re=>low.findIndex(x=>re.test(x));
-  if(col(/^datum|^date/)>=0&&col(/^typ|^type/)>=0){st.kind='transactions';st.error='Das ist ein Umsatz-Export. Umsätze kann Depotfokus noch nicht verarbeiten; dein Bestand bleibt unverändert.';return st}
+  if(col(/^datum|^date/)>=0&&col(/^typ|^type/)>=0)return analyzeTx(nonEmpty,d,head,fileName);
   const ci={name:col(/^name$|bezeichnung|wertpapier/),value:col(/marktwert|kurswert|^wert$/),qty:col(/^bestand|stück|anzahl|shares/),symbol:col(/symbol|ticker/),price:col(/^kurs$|preis|price/),isin:col(/isin/)};
   Object.entries(ci).forEach(([k,i])=>{if(i>=0)st.cols[k]=head[i]});
   if(ci.name<0||ci.value<0){st.error='Spalten „Name“ und „Marktwert“ nicht gefunden. Erwartet wird die Vermögensaufstellung aus Portfolio Performance.';return st}
@@ -256,12 +483,13 @@ function newDepot(kind){return {kind,fileName:null,importedAt:null,valuationDate
 function buildDemo(){
   const d=newDepot('demo');const a=analyzeCSV(DEMO_CSV,'Demodepot');
   d.positions=a.positions;d.accounts=a.accounts.map(x=>({name:x.name,value:x.value}));
+  const tx=analyzeCSV(DEMO_TX,'Musterumsätze');d.tx=tx.tx;d.txMeta={fileName:'Musterumsätze (erfunden)',importedAt:'04.10.2026',from:tx.from,to:tx.to};
   d.valuationDate='04.10.2026';d.goals={...DEMO_GOALS};d.goalsSource='example';d.maxSingle=10;d.budget=778;d.cashMode='invest';
   return d;
 }
 let DEMO=buildDemo();
 let OWN=load(OWN_KEY);
-let UI=Object.assign({mode:'compact',tab:'home',source:'demo'},load(UI_KEY)||{});
+let UI=Object.assign({mode:'compact',tab:'home',source:'demo',live:true},load(UI_KEY)||{});
 if(UI.source==='own'&&!OWN)UI.source='demo';
 const D=()=>UI.source==='own'&&OWN?OWN:DEMO;
 let goalRaw={};              // ungültige Eingaben je Feld (nur Anzeige)
@@ -274,9 +502,9 @@ function persist(){if(D().kind==='own'){if(!store(OWN_KEY,OWN))toast('Speichern 
 /* =========================================================
    BERECHNUNG
    ========================================================= */
-function posValue(p){if(p.conf==='skip')return null;if(p.conf==='manual')return p.manualValue;if(p.valueStatus==='ok'||p.conf==='eur')return p.exportValue;return null}
+function posValue(p){if(p.conf==='skip')return null;const lv=liveValue(p);if(lv!=null)return lv;if(p.conf==='manual')return p.manualValue;if(p.valueStatus==='ok'||p.conf==='eur')return p.exportValue;return null}
 function isIncluded(p){return posValue(p)!=null}
-function unresolved(d){return d.positions.filter(p=>p.valueStatus==='unclear'&&!p.conf)}
+function unresolved(d){return d.positions.filter(p=>p.valueStatus==='unclear'&&!p.conf&&liveValue(p)==null)}
 function noBucket(d){return d.positions.filter(p=>isIncluded(p)&&!p.bucket)}
 function totals(d){
   const sec=d.positions.reduce((a,p)=>a+(isIncluded(p)?posValue(p):0),0);
@@ -352,7 +580,10 @@ function checkModel(d){
   const nb=noBucket(d);if(nb.length)out.data.push({key:'nobucket',lvl:'warn',t:`${nb.length} ${nb.length>1?'Positionen haben':'Position hat'} keinen Baustein`,d:'Ohne Baustein fehlen sie im Zielvergleich.',go:['depot','confirmCard'],act:'Baustein wählen'});
   const funds=d.positions.filter(p=>isIncluded(p)&&p.fund===true);const unkF=d.positions.filter(p=>isIncluded(p)&&p.fund==null);
   if(unkF.length)out.data.push({key:'unkfund',lvl:'na',t:`Bei ${unkF.length} ${unkF.length>1?'Positionen':'Position'} ist nicht bekannt, ob es ein Fonds ist`,d:'Für diese Positionen liegen keine Stammdaten vor; laufende Kosten sind deshalb nicht bekannt.',go:['depot','posCard'],act:'Positionen ansehen'});
-  out.data.push({key:'perf',lvl:'na',t:'Wertentwicklung nicht verfügbar',d:'Dafür werden Umsätze und historische Bewertungen gebraucht. Der Umsatz-Import ist noch nicht verfügbar.',go:null});
+  const tm=txModel(d);
+  if(!tm)out.data.push({key:'perf',lvl:'na',t:'Wertentwicklung noch nicht berechenbar',d:'Dafür braucht Depotfokus deine Umsätze (Käufe, Verkäufe, Dividenden) aus Portfolio Performance.',go:['depot','importCard'],act:'Umsätze importieren'});
+  else{tm.issues.forEach(s=>out.data.push({key:'tx-'+s.sk,lvl:'warn',t:`${s.name||s.symbol||s.isin}: ${s.mismatch?`laut Umsätzen ${num(s.shares,4)} Stück, im Bestand ${num(s.pos.qty,4)}`:s.missingPos?'laut Umsätzen noch im Bestand, fehlt in der Vermögensaufstellung':s.oversold?'mehr verkauft als gekauft':s.unknownCost?'Einstand unbekannt (Einlieferung ohne Wert)':'Wert ungeklärt, bitte Währung bestätigen'}`,d:s.held&&s.pos&&s.value==null&&!s.mismatch?'Ohne bestätigten Wert fehlt die Position in der Renditeberechnung.':'Diese Position fehlt in der Renditeberechnung. Meist fehlen ältere Umsätze im Export oder der Bestand ist von einem anderen Stichtag.',go:s.held&&s.pos&&s.value==null&&!s.mismatch?['depot','confirmCard']:s.pos?['pos',s.pos.id]:['depot','importCard'],act:s.held&&s.pos&&s.value==null&&!s.mismatch?'Wert bestätigen':s.pos?'Position ansehen':'Zum Import'}));
+    if(tm.posNoTx.length)out.data.push({key:'notx',lvl:'na',t:`${tm.posNoTx.length} ${tm.posNoTx.length>1?'Positionen haben':'Position hat'} keine Umsätze`,d:`${tm.posNoTx.map(p=>p.name).join(', ')}. Sie fehlen in der Renditeberechnung.`,go:['depot','importCard'],act:'Zum Import'})}
   if(d.kind==='own'&&!d.valuationDate)out.data.push({key:'date',lvl:'na',t:'Bewertungsstichtag nicht bekannt',d:'Der Export enthält kein Datum. Du kannst es beim nächsten Import angeben.',go:['depot','importCard'],act:'Zum Import'});
   // Abweichungen von eigenen Vorgaben
   if(!d.goals)out.dev.push({key:'nogoals',lvl:'na',t:'Noch keine eigene Zielverteilung',d:'Ohne Vorgaben gibt es nichts zu vergleichen.',go:['plan','goalCard'],act:'Ziele festlegen'});

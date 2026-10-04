@@ -1,0 +1,16 @@
+{
+  "name": "Depotfokus",
+  "short_name": "Depotfokus",
+  "description": "Dein Depot verstehen: Plan, Einordnungen und gut begründete Entscheidungen. Keine Anlageberatung.",
+  "lang": "de",
+  "start_url": "./#heute",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F6FA",
+  "theme_color": "#F5F6FA",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-180.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}
