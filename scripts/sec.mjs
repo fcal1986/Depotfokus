@@ -12,9 +12,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function get(url, as = 'json') {
   for (let i = 0; i < 3; i++) {
-    const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Encoding': 'gzip, deflate' } });
+    const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept': 'application/json, text/html;q=0.9, */*;q=0.8', 'Accept-Encoding': 'gzip, deflate' } });
     if (r.status === 429 || r.status >= 500) { await sleep(1500 * (i + 1)); continue; }
-    if (!r.ok) throw new Error(`SEC ${r.status} ${url}`);
+    if (!r.ok) { const t = (await r.text().catch(() => '')).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160); throw new Error(`SEC ${r.status} ${url} ${t}`); }
     await sleep(150); // höchstens ~10 Anfragen je Sekunde
     return as === 'json' ? r.json() : r.text();
   }
@@ -30,8 +30,12 @@ export const formLabel = f => FORM[f.form] || `SEC ${f.form}`;
 
 /** Letzte Einreichungen eines Unternehmens */
 export async function filingsFor(cik) {
-  const j = MOCK ? JSON.parse(fs.readFileSync(path.join(MOCK, `sub_${cik}.json`), 'utf8'))
-    : await get(`https://data.sec.gov/submissions/CIK${pad(cik)}.json`);
+  let j;
+  if (MOCK) j = JSON.parse(fs.readFileSync(path.join(MOCK, `sub_${cik}.json`), 'utf8'));
+  else {
+    try { j = await get(`https://data.sec.gov/submissions/CIK${pad(cik)}.json`); }
+    catch (e) { j = await atomFallback(cik, e); }
+  }
   const r = j.filings?.recent || {};
   const out = (r.accessionNumber || []).map((acc, i) => {
     const nod = acc.replace(/-/g, '');
@@ -43,6 +47,22 @@ export async function filingsFor(cik) {
     };
   });
   return { name: j.name || '', filings: out };
+}
+
+/** Ausweichweg: Atom-Feed der Einreichungen auf www.sec.gov */
+async function atomFallback(cik, first) {
+  let xml;
+  try { xml = await get(`https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${pad(cik)}&type=&dateb=&owner=include&count=40&action=getcompany&output=atom`, 'text'); }
+  catch (e) { throw new Error(`${first.message} | Atom: ${e.message}`); }
+  const name = (xml.match(/<conformed-name>([^<]+)/) || [])[1] || '';
+  const rec = { accessionNumber: [], filingDate: [], reportDate: [], form: [], items: [], primaryDocument: [], primaryDocDescription: [] };
+  for (const e of xml.split('<entry>').slice(1)) {
+    const g = t => (e.match(new RegExp(`<${t}>([^<]*)</${t}>`)) || [])[1] || '';
+    const acc = g('accession-number'); if (!acc) continue;
+    rec.accessionNumber.push(acc); rec.filingDate.push(g('filing-date')); rec.reportDate.push(''); rec.form.push(g('filing-type'));
+    rec.items.push((e.match(/<items-desc>([^<]*)/) || [, ''])[1].match(/\d\.\d\d/g)?.join(',') || ''); rec.primaryDocument.push(''); rec.primaryDocDescription.push('');
+  }
+  return { name, filings: { recent: rec } };
 }
 
 /** Ist die Einreichung für die Einordnung relevant? Ergebnismeldungen, Quartals- und Jahresberichte, Mitteilungen ausländischer Emittenten. */
