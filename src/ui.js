@@ -15,6 +15,8 @@ const ICON={
  back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
  close:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
  gear:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>',
+ pause:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+ play:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>',
  bars:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V5M22 20H2"/></svg>'
 };
 function weather(kind){
@@ -33,7 +35,7 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute'};
+const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute'};
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -45,6 +47,7 @@ function route(){
     else if(r==='plan')html=vPlan();
     else if(r==='liga')html=vLiga();
     else if(r==='daten')html=vDaten();
+    else if(r==='stand')html=vStand();
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   v.innerHTML=html;v.className=r==='story'?'story':'screen';
@@ -52,6 +55,7 @@ function route(){
   document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
   if(r==='daten'){renderSourceCard();renderImport();renderTxCard();renderPrices();renderConfirm();renderExt()}
   if(r==='plan')renderGoalSum2();
+  if(r==='story')armStory();else stopStory();
   if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
   route.keep=false;
 }
@@ -96,7 +100,8 @@ function vHeute(){
     <h2 class="h2">Was sich geändert hat</h2>
     ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)}</span></a>`}).join(''):'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
-  <p class="hint">Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026. Keine Anlageberatung.</p>`;
+  ${standTeaser()}
+  <p class="hint">Keine Anlageberatung.</p>`;
 }
 function valLine(d){const pi=priceInfo(d);const exp=d.kind==='demo'?'Exportwerte vom 04.10.2026':`Exportwerte aus ${esc(d.fileName)}${d.valuationDate?', Stichtag '+esc(d.valuationDate):''}`;
   if(pi.avail&&pi.on&&pi.n)return `Tageskurse vom ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen${pi.n<pi.of?`, übrige: ${exp}`:''}. Verzögert, ohne Gewähr.`;
@@ -108,43 +113,75 @@ function eventsHTML(d){const ev=d.events.filter(e=>!d.read.includes(e.id)).slice
 const initials=n=>{const w=n.replace(/[^A-Za-zÄÖÜäöü ]/g,' ').split(/\s+/).filter(x=>x.length>1);return (w.length>1?w[0][0]+w[1][0]:(w[0]||'?').slice(0,2)).toUpperCase()};
 const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':w};
 
-/* ---------------- Story ---------------- */
-let storyIdx=0,storyId=null;
+/* ---------------- Story (wie WhatsApp-Status) ----------------
+   Läuft automatisch weiter; rechts tippen = weiter, links = zurück, halten = Pause.
+   Nach dem letzten Teil folgt die Story der nächsten Position. */
+let storyIdx=0,storyId=null,storyT=null,storyRem=0,storyStart=0,storyPaused=false,storySpeed=1,tapDown=0,tapLong=false;
+const reducedMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 function storySlides(p){const I=INFO[p.symbol];const sl=[];
   sl.push({lbl:'Einordnung',kind:'interp',t:I.interp,src:null});
   I.changes.items.forEach(c=>sl.push({lbl:'Was sich verändert hat · '+I.changes.cmp,kind:c.kind,t:c.t,src:c.src[0]}));
   if(I.facts[0])sl.push({lbl:'Fakt aus dem Bericht',kind:I.facts[0].kind,t:I.facts[0].t,src:I.facts[0].src});
   const r=I.rules[0];if(r)sl.push({lbl:'Worauf wir achten',kind:'rule',t:r.q,rule:r,src:r.src});
   return sl}
+const slideDur=s=>Math.round(Math.min(14000,Math.max(6000,3500+(s.t.length+(s.rule?140:0))*45))*storySpeed);
 function vStory(id){
   const p=posById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
   if(storyId!==id){storyId=id;storyIdx=0}
   if(!FUN.seen.includes(id)){FUN.seen.push(id);saveFun()}
-  const sl=storySlides(p),s=sl[Math.min(storyIdx,sl.length-1)],tt=totals(D());
+  const sl=storySlides(p);storyIdx=Math.min(storyIdx,sl.length-1);const s=sl[storyIdx],tt=totals(D());
+  const list=storyPositions(),k=list.findIndex(x=>x.id===id);
   const und=FUN.understood.includes(id);
   return `
-  <div class="prog" aria-label="Teil ${storyIdx+1} von ${sl.length}">${sl.map((_,i)=>`<span class="${i<=storyIdx?'on':''}"></span>`).join('')}</div>
+  <div class="prog" role="progressbar" aria-label="Teil ${storyIdx+1} von ${sl.length}" aria-valuemin="1" aria-valuemax="${sl.length}" aria-valuenow="${storyIdx+1}">${sl.map((_,i)=>`<span class="${i<storyIdx?'done':i===storyIdx?'cur':''}"><i></i></span>`).join('')}</div>
   <div class="row">
     <span class="av light">${esc(initials(p.name))}</span>
-    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'}</span></div>
+    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'} · Stand ${STAND.info}</span></div>
+    <button type="button" class="icon-btn night" id="storyPause" aria-label="${reducedMotion()?'Automatisch weiter':'Pause'}">${reducedMotion()?ICON.play:ICON.pause}</button>
     <a href="#heute" class="icon-btn night" aria-label="Story schließen">${ICON.close}</a>
   </div>
-  <div class="col" style="gap:10px;margin-top:10px">
+  ${!FUN.storyHint?'<p class="story-hint">Tippe rechts für weiter, links für zurück. Halten pausiert.</p>':''}
+  <div class="story-stage">
+    <button type="button" class="tap prev" data-story="prev" aria-label="Vorheriger Teil"></button>
+    <button type="button" class="tap next" data-story="next" aria-label="${storyIdx<sl.length-1?'Nächster Teil':k<list.length-1?'Nächste Story: '+esc(list[k+1].name):'Stories beenden'}"></button>
     <span class="lbl night">${esc(s.lbl)}</span>
     ${s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
     <h1 class="big story-h">${esc(s.t)}</h1>
     ${s.rule?`<div class="story-box"><div class="row between"><span>Stand ${esc(s.rule.per)}</span><span class="st ${stCls(s.rule)}">${STATUS[s.rule.type][s.rule.status]}</span></div><span class="small muted-night">${esc(s.rule.metric)}: ${esc(s.rule.cond)}${s.rule.obs?` · beobachtet ${esc(s.rule.obs)}`:''}</span><span class="small muted-night">Nächste Prüfung: ${esc(s.rule.next)}</span></div>`:''}
     ${s.src?`<span class="small muted-night">Quelle: ${srcText(s.src)}</span>`:s.kind==='interp'?'<span class="small muted-night">Interpretation von Depotfokus auf Basis der Quellen</span>':''}
   </div>
-  <div class="grid2" style="margin-top:8px">
-    <button type="button" class="btn ghost-dark" data-story="prev" ${storyIdx===0?'disabled':''}>Zurück</button>
-    <button type="button" class="btn ghost-dark" data-story="next" ${storyIdx>=sl.length-1?'disabled':''}>Weiter</button>
-  </div>
-  <div class="col" style="gap:10px;margin-top:auto">
+  <div class="col" style="gap:10px">
+    <span class="small muted-night center">${k>=0?`Story ${k+1} von ${list.length}`:''}${k<list.length-1?` · danach ${esc(list[k+1].name)}`:''}</span>
     <a href="#pos/${encodeURIComponent(id)}" class="btn light">Tiefer einsteigen</a>
     <button type="button" class="btn ghost-dark" data-understood="${esc(id)}">${und?'Verstanden ✓':'Verstanden · +10 Wissen'}</button>
   </div>`;
 }
+function stopStory(){clearTimeout(storyT);storyT=null}
+function armStory(){
+  stopStory();const p=posById(storyId);if(!p||!hasStory(p))return;const sl=storySlides(p);
+  storyRem=slideDur(sl[storyIdx]);storyPaused=false;const v=$('#view');v.classList.remove('paused');
+  const bar=v.querySelector('.prog .cur i');if(bar)bar.style.animationDuration=storyRem+'ms';
+  if(reducedMotion()){storyPaused=true;v.classList.add('paused','manual');return}
+  storyStart=Date.now();storyT=setTimeout(()=>storyStep(1),storyRem);
+}
+function pauseStory(){if(storyPaused)return;storyPaused=true;if(storyT){clearTimeout(storyT);storyT=null;storyRem-=Date.now()-storyStart}$('#view').classList.add('paused');pauseBtn()}
+function resumeStory(){if(!storyPaused)return;storyPaused=false;const v=$('#view');v.classList.remove('paused','manual');storyStart=Date.now();storyT=setTimeout(()=>storyStep(1),Math.max(400,storyRem));pauseBtn()}
+function pauseBtn(){const b=$('#storyPause');if(b){b.innerHTML=storyPaused?ICON.play:ICON.pause;b.setAttribute('aria-label',storyPaused?'Weiter abspielen':'Pause')}}
+function storyStep(dir){
+  if(parse().r!=='story')return;
+  if(!FUN.storyHint){FUN.storyHint=true;saveFun()}
+  const list=storyPositions(),p=posById(storyId);if(!p)return;const sl=storySlides(p),k=list.findIndex(x=>x.id===storyId);
+  const i=storyIdx+dir;stopStory();
+  if(i>=sl.length){const n=list[k+1];if(n)location.replace('#story/'+encodeURIComponent(n.id));else location.replace('#heute');return}
+  if(i<0){const pr=list[k-1];if(pr)location.replace('#story/'+encodeURIComponent(pr.id));else{storyIdx=0;rerender()}return}
+  storyIdx=i;rerender();
+}
+document.addEventListener('pointerdown',e=>{const t=e.target.closest&&e.target.closest('.tap');if(!t)return;tapDown=Date.now();tapLong=false;pauseStory()});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>document.addEventListener(ev,e=>{if(!tapDown)return;const held=Date.now()-tapDown;tapDown=0;if(held>350){tapLong=true;resumeStory()}},true));
+document.addEventListener('keydown',e=>{const tg=e.target&&e.target.nodeType===1?e.target:document.body;if(parse().r!=='story'||tg.matches('input,select,textarea'))return;
+  if(e.key==='ArrowRight'){e.preventDefault();storyStep(1)}else if(e.key==='ArrowLeft'){e.preventDefault();storyStep(-1)}
+  else if(e.key==='Escape'){location.hash='#heute'}else if(e.key===' '&&!tg.closest('button,a')){e.preventDefault();storyPaused?resumeStory():pauseStory()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&parse().r==='story')pauseStory()});
 const stCls=r=>({met:'yes',not_met:'no',occurred:'no',not_occurred:'yes',open:'open',np:'np'})[r.status];
 
 /* ---------------- Depot ---------------- */
@@ -349,12 +386,56 @@ function vDaten(){return `
   <div class="card" id="pricesCard"></div>
   <div class="card" id="confirmCard" tabindex="-1"></div>
   <div class="card" id="extCard"></div>
-  <details class="card"><summary class="strong">Hinter den Kulissen</summary><div class="col small muted2" style="gap:6px;margin-top:8px"><p>Kurse: Werktags nach Börsenschluss ruft GitHub die Tageskurse der bekannten Wertpapiere ab und veröffentlicht sie mit dieser Seite. Deine Bestände werden dabei nicht übertragen; gerechnet wird in deinem Browser.</p><p>Einordnungen: manuell recherchierte Beispieldaten vom 04.10.2026 mit Quellenangabe.</p><p>Geplant: Jede Nacht Meldungen und Berichte in vielen Sprachen lesen, Fakten mit Quelle herausziehen, gegenprüfen, Regeln berechnen und nur Relevantes für dein Depot bündeln.</p><p>Versprechen: Jede Zahl mit Quelle · Trefferquote öffentlich · keine Provision für Käufe · keine Orders.</p></div></details>`}
+  <a class="card row between" href="#stand"><span class="col" style="gap:2px"><span class="strong">Datenstand und Ablauf</span><span class="small muted2">Was automatisch läuft, was manuell geprüft ist und wann</span></span><span aria-hidden="true">→</span></a>`}
+
+/* ---------------- Datenstand ---------------- */
+const STAND={info:'04.10.2026',infoMethod:'manuell recherchiert und geprüft'};
+function cronNext(cron,from=new Date()){const m=String(cron||'').trim().split(/\s+/);if(m.length<5)return null;const mi=+m[0],h=+m[1];
+  const days=m[4]==='*'?[0,1,2,3,4,5,6]:m[4].split(',').flatMap(x=>{const [a,b]=x.split('-').map(Number);return b!=null?Array.from({length:b-a+1},(_,i)=>a+i):[a]});
+  const d=new Date(Date.UTC(from.getUTCFullYear(),from.getUTCMonth(),from.getUTCDate(),h,mi));for(let i=0;i<8;i++){const c=new Date(d.getTime()+i*864e5);if(c>from&&days.includes(c.getUTCDay()))return c}return null}
+const PRICE_CRON='37 21 * * 1-5';
+const fmtWhen=d=>d?d.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Uhr':'unbekannt';
+function priceStatus(){const pi=priceInfo(D()),cron=(PRICES&&PRICES.schedule)||PRICE_CRON,next=cronNext(cron);
+  const last=PRICES&&PRICES.asOf?new Date(PRICES.asOf):null,age=last?(Date.now()-last)/864e5:null;
+  return {pi,next,last,stale:age!=null&&age>4,n:PRICES&&PRICES.quotes?Object.keys(PRICES.quotes).length:0,src:PRICES&&PRICES.source}}
+function standTeaser(){const ps=priceStatus();
+  return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
+   <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'vom '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
+   <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${STAND.info}</span><span class="muted2">manuell</span></span>
+   <span class="stand-l"><i class="dot off"></i><span>Nachrichten</span><span class="muted2">nicht automatisch</span></span></a>`}
+function vStand(){const d=D(),ps=priceStatus(),m=txModel(d);
+  const upcoming=storyPositions().map(p=>{const r=(INFO[p.symbol].rules||[]).find(x=>x.status!=='np');return r?{p,next:r.next,per:r.per}:null}).filter(Boolean);
+  const chip=(k,t)=>`<span class="mode ${k}">${t}</span>`;
+  return `
+  <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Datenstand und Ablauf</h1></div>
+  <p class="small muted2">Was Depotfokus automatisch erledigt, was von Hand geprüft ist und wann es sich das nächste Mal ändert.</p>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Kurse</h2>${chip('auto','automatisch')}</div>
+   <dl class="kv"><dt>Letzter Abruf</dt><dd>${ps.last?esc(fmtAsOf(PRICES.asOf)):'noch keiner'}${ps.stale?' <b class="neg-text">veraltet</b>':''}</dd>
+   <dt>Ergebnis</dt><dd>${ps.n} Kurse${PRICES&&PRICES.missing&&PRICES.missing.length?`, fehlend: ${esc(PRICES.missing.join(', '))}`:''}</dd>
+   <dt>Quelle</dt><dd>${esc(ps.src||'–')}, Euro, verzögert</dd>
+   <dt>Zeitplan</dt><dd>werktags nach US-Börsenschluss und bei jeder neuen Version</dd>
+   <dt>Nächster Abruf</dt><dd>${fmtWhen(ps.next)} (geplant; GitHub startet geplante Läufe teils mit Verspätung)</dd>
+   <dt>Genutzt für</dt><dd>${ps.pi.n} von ${ps.pi.of} deiner Positionen${ps.pi.on?'':' (abgeschaltet)'}</dd></dl>
+   <p class="hint">Ein GitHub-Workflow lädt die Kurse für die bekannten Wertpapiere und veröffentlicht sie mit dieser Seite. Deine Bestände werden dabei nicht übertragen.</p></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Einordnungen, Fakten, Regeln</h2>${chip('man','manuell')}</div>
+   <dl class="kv"><dt>Stand</dt><dd>${STAND.info}, ${STAND.infoMethod}</dd><dt>Umfang</dt><dd>${storyPositions().length} Positionen mit Story, jede Zahl mit Quelle</dd><dt>Aktualisierung</dt><dd>nicht automatisch</dd></dl>
+   <span class="strong small">Als Nächstes erwartete Berichte</span>
+   ${upcoming.map(u=>`<div class="stand-up"><span class="strong small">${esc(u.p.name)}</span><span class="muted2 small">${esc(u.next)}</span></div>`).join('')}
+   <p class="hint">Erscheint ein neuer Bericht, bleibt die alte Einordnung stehen, bis sie geprüft ist. Offene Liga-Prognosen werden erst dann aufgelöst.</p></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Nachrichten</h2>${chip('off','nicht automatisch')}</div>
+   <p class="small muted2">Depotfokus liest derzeit keine Nachrichten automatisch. Die Storys stammen aus der manuellen Prüfung vom ${STAND.info}.</p></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Deine Daten</h2>${chip('dev','nur dieses Gerät')}</div>
+   <dl class="kv"><dt>Bestand</dt><dd>${d.kind==='demo'?'Musterdepot (erfunden)':`${esc(d.fileName)}, übernommen ${esc(d.importedAt||'–')}`}</dd>
+   <dt>Umsätze</dt><dd>${m?`${d.tx.length} Buchungen bis ${isoToDe(m.M.last)}`:'keine'}</dd>
+   <dt>Berechnung</dt><dd>bei jedem Öffnen im Browser: Werte, Rendite, Zielvergleich, Plan</dd></dl></section>
+  <section class="card col" style="gap:4px"><h2 class="h2">Ablauf</h2>
+   ${[['Kurse laden','auto','GitHub Actions, werktags'],['Berichte lesen','man','von Hand'],['Fakten mit Quelle erfassen','man','von Hand'],['Regeln prüfen','man','von Hand, Ergebnis je Bericht'],['Rechnen und filtern','auto','in deinem Browser'],['Wahrscheinlichkeiten','off','erst mit öffentlicher Trefferquote']].map(([t,k,dd],i)=>`<div class="flow"><span class="n">${i+1}</span><span class="col"><span class="strong">${t}</span><span class="small muted2">${dd}</span></span>${chip(k,{auto:'automatisch',man:'manuell',off:'noch nicht'}[k])}</div>`).join('')}</section>`}
 
 /* ---------------- Ereignisse ---------------- */
 document.addEventListener('click',e=>{
   const t=e.target;
-  const sb=t.closest('[data-story]');if(sb){storyIdx+=sb.dataset.story==='next'?1:-1;storyIdx=Math.max(0,storyIdx);rerender();return}
+  const sb=t.closest('[data-story]');if(sb){if(tapLong){tapLong=false;return}storyStep(sb.dataset.story==='next'?1:-1);return}
+  if(t.closest('#storyPause')){storyPaused?resumeStory():pauseStory();return}
   const un=t.closest('[data-understood]');if(un){const id=un.dataset.understood;if(!FUN.understood.includes(id)){FUN.understood.push(id);FUN.points+=10;touchDay();saveFun();toast('+10 Wissenspunkte')}rerender();return}
   const rb=t.closest('[data-reason]');if(rb){chk.reason=rb.dataset.reason;rerender();return}
   if(t.closest('#saveNote')){const {a}=parse();const p=posById(a[0]);const RT={plan:'Weg vom Ziel',news:'Neue Information',drop:'Kurs ist gefallen',tip:'Tipp von anderen'};

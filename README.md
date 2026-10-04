@@ -4,7 +4,8 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 
 **Startseite (`index.html`):** eine App mit vier Bereichen.
 
-- **Heute:** Vermögen, Depot-Wetter (Abstand zu deinen Zielen), Storys und Veränderungen je Position.
+- **Heute:** Vermögen, Depot-Wetter (Abstand zu deinen Zielen), Storys wie bei WhatsApp (laufen automatisch weiter, rechts/links tippen, halten pausiert, danach folgt die nächste Position), Veränderungen je Position und Datenstand.
+- **Datenstand und Ablauf** (`#stand`): was automatisch läuft (Kurse, Rechnen), was manuell geprüft ist (Einordnungen, Regeln), wann der nächste Kursabruf geplant ist und welche Berichte als Nächstes erwartet werden.
 - **Depot:** Abweichungen von deinen Vorgaben, offene Datenfragen, Positionen nach Baustein. Je Position: Einordnung, Kompass (Dafür/Dagegen aus geprüften Regeln), belegte Fakten mit Quelle, beobachtete Bedingungen und Risiken, Entscheidungs-Check für Kauf oder Verkauf.
 - **Plan:** Zielverteilung, Grenze je Einzelwert, monatliche Einzahlung und centgenaue Verteilung ohne Verkauf.
 - **Liga:** echte Prognosefragen zu deinen Positionen mit Sicherheitsangabe und deine Entscheidungsnotizen.

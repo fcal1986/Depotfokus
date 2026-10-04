@@ -130,7 +130,7 @@ for (const c of need) {
   if (r) fx[c] = r.p;
 }
 const used = [...new Set(Object.values(quotes).map(q => q.src))];
-const data = { asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, missing, errors };
+const data = { schedule: process.env.PRICE_CRON || '37 21 * * 1-5', asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, missing, errors };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(data));
 console.log(`Kurse: ${Object.keys(quotes).length}/${symbols.size} (${data.source}), Devisen: ${Object.keys(fx).join(',') || '-'}, fehlend: ${missing.join(',') || '-'}`);
