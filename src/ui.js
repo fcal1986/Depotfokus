@@ -417,11 +417,11 @@ function priceStatus(){const pi=priceInfo(D()),cron=(PRICES&&PRICES.schedule)||P
 function reportStatus(){const pos=storyPositions().map(p=>({p,I:INFO[p.symbol],n:newReports(p.symbol),pr:proposalFor(p.symbol)}));
   const nNew=pos.filter(x=>x.n.length).length,claude=pos.filter(x=>x.I.method==='claude').length;
   const last=pos.map(x=>x.I.checked).sort().pop();
-  return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0}}
+  return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0,uaBlocked:!!(REPORTS&&Object.values(REPORTS.errors||{}).some(e=>/Undeclared Automated Tool/i.test(e)))}}
 function standTeaser(){const ps=priceStatus(),rs=reportStatus();
   return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
    <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'vom '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
-   <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
+   <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.uaBlocked?'Berichte: Abruf blockiert, Einrichtung nötig':rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span></a>`}
 function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
   const chip=(k,t)=>`<span class="mode ${k}">${t}</span>`;
@@ -439,6 +439,7 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
   <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Neue Berichte erkennen</h2>${chip('auto','automatisch')}</div>
    <dl class="kv"><dt>Quelle</dt><dd>SEC EDGAR: Ergebnismeldungen (8-K), Quartals- und Jahresberichte, Mitteilungen (6-K)</dd>
    <dt>Letzte Prüfung</dt><dd>${rs.checkedAt?esc(fmtAsOf(rs.checkedAt)):'noch keine'}${rs.errs?` · ${rs.errs} Abrufe fehlgeschlagen`:''}</dd>
+   ${rs.uaBlocked?'<dt>Hinweis</dt><dd class="neg-text">Die SEC verlangt eine Kontaktadresse. Auf GitHub unter Settings › Secrets and variables › Actions › Variables die Variable SEC_USER_AGENT anlegen, z. B. „Depotfokus deine@mail.de“.</dd>':''}
    <dt>Zeitplan</dt><dd>mit jedem Kursabruf, also werktags abends</dd></dl>
    ${rs.pos.map(x=>{const n=x.n[0],r=(x.I.rules||[]).find(y=>y.status!=='np');return `<div class="stand-up"><span class="row between"><span class="strong small">${esc(x.p.name)}</span>${n?'<span class="tag new">neu</span>':''}</span>
      <span class="muted2 small">${n?`${esc(n.label)} vom ${deDate(n.date)} · ${x.pr?`Vorschlag #${x.pr.number} wartet auf Freigabe`:rs.auto?'Einordnung folgt beim nächsten Lauf':'noch nicht eingeordnet'}`:`Erwartet: ${esc(r?r.next:'–')}`}</span>
