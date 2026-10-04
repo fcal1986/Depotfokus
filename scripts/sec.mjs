@@ -3,6 +3,8 @@
 // Für Tests: SEC_MOCK_DIR mit sub_<cik>.json und doc_<accession>.txt.
 import fs from 'node:fs';
 import path from 'node:path';
+import https from 'node:https';
+import zlib from 'node:zlib';
 
 // Die SEC verlangt Name und E-Mail im User-Agent. Standard: GitHub-noreply-Adresse des Repository-Besitzers.
 const OWNER = (process.env.GITHUB_REPOSITORY || 'fcal1986/Depotfokus').split('/')[0];
@@ -10,13 +12,28 @@ export const UA = process.env.SEC_USER_AGENT || `Depotfokus ${OWNER}@users.norep
 const MOCK = process.env.SEC_MOCK_DIR || '';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+// Schlanker HTTPS-Abruf mit genau den Headern, die die SEC verlangt (User-Agent, Accept-Encoding, Host)
+function raw(url) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    const req = https.request({ hostname: u.hostname, path: u.pathname + u.search, method: 'GET', headers: { 'User-Agent': UA, 'Accept-Encoding': 'gzip, deflate', Host: u.hostname } }, res => {
+      const chunks = []; res.on('data', c => chunks.push(c));
+      res.on('end', () => {
+        let buf = Buffer.concat(chunks);
+        try { if (/gzip/.test(res.headers['content-encoding'] || '')) buf = zlib.gunzipSync(buf); else if (/deflate/.test(res.headers['content-encoding'] || '')) buf = zlib.inflateSync(buf); } catch (e) { /* unverändert */ }
+        resolve({ status: res.statusCode, text: buf.toString('utf8') });
+      });
+    });
+    req.on('error', reject); req.setTimeout(30000, () => req.destroy(new Error('Zeitüberschreitung'))); req.end();
+  });
+}
 async function get(url, as = 'json') {
   for (let i = 0; i < 3; i++) {
-    const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept': 'application/json, text/html;q=0.9, */*;q=0.8', 'Accept-Encoding': 'gzip, deflate' } });
+    const r = await raw(url);
     if (r.status === 429 || r.status >= 500) { await sleep(1500 * (i + 1)); continue; }
-    if (!r.ok) { const t = (await r.text().catch(() => '')).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160); throw new Error(`SEC ${r.status} ${url} ${t}`); }
+    if (r.status < 200 || r.status >= 300) { const t = r.text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120); throw new Error(`SEC ${r.status} ${url} ${t}`); }
     await sleep(150); // höchstens ~10 Anfragen je Sekunde
-    return as === 'json' ? r.json() : r.text();
+    return as === 'json' ? JSON.parse(r.text) : r.text;
   }
   throw new Error(`SEC nicht erreichbar ${url}`);
 }
