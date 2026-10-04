@@ -1,22 +1,23 @@
 # Depotfokus
 
-Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen: Depot-Check gegen eigene Vorgaben, Rechner für die Sparrate und Einordnungen einzelner Positionen mit Quellen.
+**Startseite:** klickbarer Vision-Prototyp (Heute, Story, Entscheidungs-Kompass, Entscheidungs-Check, Prognose-Liga, Hinter den Kulissen) mit Beispielwerten.
+
+**`/app/`:** die bisherige Depot-App mit CSV-Import. Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen: Depot-Check gegen eigene Vorgaben, Rechner für die Sparrate und Einordnungen einzelner Positionen mit Quellen.
 
 **Keine Anlageberatung.** Alle Einordnungen sind Beispieldaten, manuell zusammengestellt am 04.10.2026.
 
 ## Datenschutz
 
 - Diese Seite enthält nur ein **Musterdepot mit erfundenen Beständen**.
-- Eigene Daten importierst du im Browser (Depot › Daten importieren). Sie werden **nur im Speicher deines Browsers** abgelegt und nie an GitHub oder einen anderen Server gesendet.
+- Eigene Daten importierst du in der App unter `/app/` (Depot › Daten importieren). Sie werden **nur im Speicher deines Browsers** abgelegt und nie an GitHub oder einen anderen Server gesendet.
 - Lade niemals eine CSV-Datei mit echten Beständen in dieses Repository hoch: GitHub-Pages-Seiten sind öffentlich.
 - Löschen: Depot › Datenquelle › „Daten auf diesem Gerät löschen“.
 
 ## Veröffentlichen mit GitHub Pages
 
 1. Auf github.com ein neues Repository anlegen, z. B. `depotfokus`.
-2. Die Dateien `index.html`, `.nojekyll` und `README.md` hochladen (Add file › Upload files › Commit).
-3. Settings › Pages › Build and deployment: Source „Deploy from a branch“, Branch `main`, Ordner `/ (root)`, Save.
-4. Nach ein bis zwei Minuten ist die Seite erreichbar unter `https://<dein-benutzername>.github.io/depotfokus/`.
+2. Settings › Pages › Source „GitHub Actions“. Jeder Push auf `main` veröffentlicht automatisch (`.github/workflows/pages.yml`).
+3. Nach ein bis zwei Minuten ist die Seite erreichbar unter `https://<dein-benutzername>.github.io/depotfokus/`.
 
 ## Aktualisieren
 
