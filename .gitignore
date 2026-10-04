@@ -1,0 +1,3 @@
+# Echte Depotdaten nie einchecken
+*.csv
+*.xlsx
