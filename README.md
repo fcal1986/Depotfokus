@@ -22,7 +22,7 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 Einrichtung:
 1. Settings › Secrets and variables › Actions › New repository secret: `ANTHROPIC_API_KEY`.
 2. Settings › Actions › General › Workflow permissions: „Read and write permissions“ und „Allow GitHub Actions to create and approve pull requests“ aktivieren.
-3. Optional: Repository-Variable `DEPOTFOKUS_MODEL` (Standard `claude-sonnet-5-5`), `SEC_USER_AGENT` als Variable ist nicht nötig.
+3. Optional: Repository-Variable `DEPOTFOKUS_MODEL` (Standard `claude-sonnet-5-5`), Variable `SEC_USER_AGENT` (z. B. `Depotfokus deine@mail.de`): Die SEC verlangt eine Kontaktadresse; ohne Variable wird die GitHub-noreply-Adresse verwendet.
 4. Testlauf: Actions › Berichte einordnen › Run workflow.
 
 Kosten: rund 10 Cent je Quartalsbericht (Sonnet 5.5, Stand Oktober 2026), höchstens drei Berichte je Lauf. Bereits bewertete Einreichungen stehen in `data/assessed.json` und werden nicht erneut bewertet.

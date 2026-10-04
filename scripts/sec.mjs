@@ -4,7 +4,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const UA = process.env.SEC_USER_AGENT || 'Depotfokus (github.com/fcal1986/Depotfokus)';
+// Die SEC verlangt Name und E-Mail im User-Agent. Standard: GitHub-noreply-Adresse des Repository-Besitzers.
+const OWNER = (process.env.GITHUB_REPOSITORY || 'fcal1986/Depotfokus').split('/')[0];
+export const UA = process.env.SEC_USER_AGENT || `Depotfokus ${OWNER}@users.noreply.github.com`;
 const MOCK = process.env.SEC_MOCK_DIR || '';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
