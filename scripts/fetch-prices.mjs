@@ -10,8 +10,10 @@ const out = process.argv[2] || '_site/prices.json';
 const logic = fs.readFileSync('src/logic.js', 'utf8');
 const i0 = logic.indexOf('const STAMM={');
 const stamm = logic.slice(i0, logic.indexOf('};', i0));
-const symbols = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{bucket/g)].map(m => m[1]));
-if (fs.existsSync('symbols.txt')) fs.readFileSync('symbols.txt', 'utf8').split(/\r?\n/).map(l => l.replace(/#.*/, '').trim()).filter(Boolean).forEach(s => symbols.add(s));
+const ISIN = Object.fromEntries([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{isin:'([A-Z0-9]{12})'/g)].map(m => [m[1], m[2]]));
+const symbols = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{(?:isin:'[A-Z0-9]{12}',)?bucket/g)].map(m => m[1]));
+// symbols.txt: je Zeile "SYMBOL ISIN" (ISIN optional)
+if (fs.existsSync('symbols.txt')) fs.readFileSync('symbols.txt', 'utf8').split(/\r?\n/).map(l => l.replace(/#.*/, '').trim()).filter(Boolean).forEach(l => { const [sy, is] = l.split(/\s+/); symbols.add(sy); if (/^[A-Z]{2}[A-Z0-9]{10}$/.test(is || '')) ISIN[sy] = is; });
 
 // Gleiche Aktie an einer US-Börse (Stooq-Schreibweise), falls die deutsche Notiz fehlt.
 const US = { '9A2.F': 'arcc.us', '13M.F': 'main.us', 'WX4.F': 'ohi.us', 'RY6.F': 'o.us', 'PEP.DE': 'pep.us', 'JNJ.DE': 'jnj.us', 'CCC3.DE': 'ko.us', 'PRG.DE': 'pg.us',
@@ -65,6 +67,32 @@ async function yahooBatch(list, ses) {
   }
   return res;
 }
+// Tradegate: Euro-Kurs je ISIN (letzter Preis, sonst Schluss, sonst Mitte aus Geld/Brief)
+const de = v => typeof v === 'number' ? v : parseFloat(String(v || '').replace(/\./g, '').replace(',', '.'));
+async function tradegate(isin) {
+  try {
+    const r = await fetch(`https://www.tradegatebsx.com/refresh.php?isin=${isin}`, { headers: { 'User-Agent': UA, Accept: 'application/json' } });
+    if (!r.ok) { note(isin, `tradegate ${r.status}`); return null; }
+    const j = JSON.parse(await r.text());
+    const last = de(j.last), close = de(j.close), bid = de(j.bid), ask = de(j.ask);
+    const p = last > 0 ? last : close > 0 ? close : (bid > 0 && ask > 0 ? (bid + ask) / 2 : NaN);
+    if (!(p > 0)) { note(isin, 'tradegate kein Preis'); return null; }
+    return { p, ccy: 'EUR', t: new Date().toISOString(), src: 'Tradegate' };
+  } catch (e) { note(isin, `tradegate ${e.message}`); return null; }
+}
+async function onvista(isin) {
+  for (const kind of ['stocks', 'funds']) {
+    try {
+      const r = await fetch(`https://api.onvista.de/api/v1/${kind}/ISIN:${isin}/snapshot`, { headers: { 'User-Agent': UA, Accept: 'application/json' } });
+      if (!r.ok) { note(isin, `onvista ${kind} ${r.status}`); continue; }
+      const j = await r.json();
+      const list = (j?.quoteList?.list || []).filter(q => q.isoCurrency === 'EUR' && q.last > 0).sort((a, b) => (b.volume || 0) - (a.volume || 0));
+      const q = list[0];
+      if (q) return { p: q.last, ccy: 'EUR', t: q.datetimeLast || new Date().toISOString(), src: 'onvista' };
+    } catch (e) { note(isin, `onvista ${kind} ${e.message}`); }
+  }
+  return null;
+}
 async function stooq(code) {
   try {
     const r = await fetch(`https://stooq.com/q/d/l/?s=${encodeURIComponent(code)}&i=d`, { headers: { 'User-Agent': UA } });
@@ -79,10 +107,10 @@ async function stooq(code) {
 const stooqCcy = code => code.endsWith('.us') ? 'USD' : code.endsWith('.uk') ? 'GBp' : 'EUR';
 
 const quotes = {}, fx = {}, missing = [];
-const ses = await yahooSession();
-const batch = await yahooBatch([...symbols, 'EURUSD=X', 'EURDKK=X', 'EURGBP=X', 'EURCHF=X'], ses);
+let ses = null, batch = {}, tried = false;
 for (const s of symbols) {
-  let q = batch[s] || (ses ? null : await yahoo(s));
+  let q = ISIN[s] ? (await tradegate(ISIN[s])) || (await onvista(ISIN[s])) : null;
+  if (!q) { if (!tried) { tried = true; ses = await yahooSession(); batch = await yahooBatch([...symbols, 'EURUSD=X', 'EURDKK=X', 'EURGBP=X', 'EURCHF=X'], ses); } q = batch[s] || null; }
   if (!q && /\.(DE|F)$/.test(s)) { const c = s.toLowerCase().replace(/\.f$/, '.de'); const r = await stooq(c); if (r) q = { ...r, ccy: 'EUR', src: 'Stooq' }; }
   if (!q && US[s]) { const r = await stooq(US[s]); if (r) q = { ...r, ccy: stooqCcy(US[s]), src: 'Stooq, US-Notiz', alt: US[s] }; }
   if (q) quotes[s] = q; else missing.push(s);

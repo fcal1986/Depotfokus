@@ -1,1 +1,1 @@
-# Zusätzliche Yahoo-Symbole für den Kursabruf, eines pro Zeile (keine Bestände!)
+# Zusätzliche Wertpapiere für den Kursabruf: je Zeile "SYMBOL ISIN" (keine Bestände!)

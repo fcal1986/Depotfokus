@@ -15,13 +15,13 @@ const BN=Object.fromEntries(B.map(b=>[b.id,b]));
 /* Beispiel-Stammdaten: Baustein, Fonds ja/nein, laufende Kosten nur wo eine Quelle vorliegt.
    Unbekannte Symbole bekommen keinen Baustein und keine Kosten. */
 const STAMM={
- 'IQQW.DE':{bucket:'core',fund:true,ter:0.50,terSrc:'Finanzfluss, Abruf 04.10.2026'},
- 'K0MR.DE':{bucket:'core',fund:true,ter:0.45,terSrc:'finanzen.net, Abruf 04.10.2026'},
- 'EQQQ.DE':{bucket:'ndq',fund:true,ter:0.30,terSrc:'extraETF, Abruf 04.10.2026'},
- '9A2.F':{bucket:'bdc',fund:false},'13M.F':{bucket:'bdc',fund:false},'WX4.F':{bucket:'bdc',fund:false},'RY6.F':{bucket:'bdc',fund:false},
- 'PEP.DE':{bucket:'single',fund:false},'JNJ.DE':{bucket:'single',fund:false},'CCC3.DE':{bucket:'single',fund:false},'PRG.DE':{bucket:'single',fund:false},
- 'MSF.DE':{bucket:'single',fund:false},'3V64.DE':{bucket:'single',fund:false},'NOV.DE':{bucket:'single',fund:false},
- 'GOOG':{bucket:'single',fund:false},'AAPL':{bucket:'single',fund:false},'MA':{bucket:'single',fund:false}
+ 'IQQW.DE':{isin:'IE00B0M62Q58',bucket:'core',fund:true,ter:0.50,terSrc:'Finanzfluss, Abruf 04.10.2026'},
+ 'K0MR.DE':{isin:'IE000FPWSL69',bucket:'core',fund:true,ter:0.45,terSrc:'finanzen.net, Abruf 04.10.2026'},
+ 'EQQQ.DE':{isin:'IE0032077012',bucket:'ndq',fund:true,ter:0.30,terSrc:'extraETF, Abruf 04.10.2026'},
+ '9A2.F':{isin:'US04010L1035',bucket:'bdc',fund:false},'13M.F':{isin:'US56035L1044',bucket:'bdc',fund:false},'WX4.F':{isin:'US6819361006',bucket:'bdc',fund:false},'RY6.F':{isin:'US7561091049',bucket:'bdc',fund:false},
+ 'PEP.DE':{isin:'US7134481081',bucket:'single',fund:false},'JNJ.DE':{isin:'US4781601046',bucket:'single',fund:false},'CCC3.DE':{isin:'US1912161007',bucket:'single',fund:false},'PRG.DE':{isin:'US7427181091',bucket:'single',fund:false},
+ 'MSF.DE':{isin:'US5949181045',bucket:'single',fund:false},'3V64.DE':{isin:'US92826C8394',bucket:'single',fund:false},'NOV.DE':{isin:'DK0062498333',bucket:'single',fund:false},
+ 'GOOG':{isin:'US02079K1079',bucket:'single',fund:false},'AAPL':{isin:'US0378331005',bucket:'single',fund:false},'MA':{isin:'US57636Q1040',bucket:'single',fund:false}
 };
 const DEMO_CSV=`Bestand;Name;Symbol;Kurs;Marktwert;Anteil in %;Notiz
 "";Summe;;;20.520,45;100,00;
@@ -466,7 +466,7 @@ function analyzeCSV(text,fileName){
     const m=STAMM[sym]||null;
     /* Kurswährung: deutscher Börsenplatz (.DE/.F) → Euro; sonst unbekannt */
     const priceCcy=/\.(DE|F|DU|MU|HM|SG|BE)$/i.test(sym)?'EUR':null;
-    st.positions.push({id:sym||isin||name,name,symbol:sym,isin:isin||null,qty:Number.isFinite(qty)?qty:null,price:Number.isFinite(price)?price:null,priceCcy,
+    st.positions.push({id:sym||isin||name,name,symbol:sym,isin:isin||(m&&m.isin)||null,qty:Number.isFinite(qty)?qty:null,price:Number.isFinite(price)?price:null,priceCcy,
       exportValue:v,valueStatus:priceCcy?'ok':'unclear',conf:null,manualValue:null,bucket:m?m.bucket:null,bucketSrc:m?'stamm':null,fund:m?m.fund:null,ter:m&&m.ter!=null?m.ter:null});
   });
   if(!st.positions.length&&!st.accounts.length)st.error='Keine gültigen Zeilen gefunden. Prüfe, ob die Spalte Marktwert Beträge enthält.';
