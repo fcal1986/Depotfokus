@@ -33,22 +33,56 @@ async function yahoo(sym) {
   }
   return null;
 }
+// Yahoo mit Sitzungscookie und Crumb, alle Symbole in einer Anfrage (vermeidet 429 ohne Cookie)
+async function yahooSession() {
+  try {
+    let cookie = '';
+    for (const u of ['https://fc.yahoo.com', 'https://finance.yahoo.com/']) {
+      const r = await fetch(u, { headers: { 'User-Agent': UA }, redirect: 'manual' });
+      const sc = typeof r.headers.getSetCookie === 'function' ? r.headers.getSetCookie() : [r.headers.get('set-cookie')].filter(Boolean);
+      cookie = sc.map(c => c.split(';')[0]).join('; ');
+      if (cookie) break;
+    }
+    if (!cookie) { note('session', 'kein Cookie'); return null; }
+    const c = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { 'User-Agent': UA, Cookie: cookie } });
+    const crumb = (await c.text()).trim();
+    if (!c.ok || !crumb || crumb.length > 40 || /[<{]/.test(crumb)) { note('session', `crumb ${c.status}`); return null; }
+    return { cookie, crumb };
+  } catch (e) { note('session', e.message); return null; }
+}
+async function yahooBatch(list, ses) {
+  const res = {};
+  if (!ses) return res;
+  for (let i = 0; i < list.length; i += 40) {
+    const part = list.slice(i, i + 40);
+    try {
+      const r = await fetch(`https://query2.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(part.join(','))}&crumb=${encodeURIComponent(ses.crumb)}`, { headers: { 'User-Agent': UA, Cookie: ses.cookie, Accept: 'application/json' } });
+      if (!r.ok) { note('batch', `yahoo quote ${r.status}`); continue; }
+      for (const q of (await r.json())?.quoteResponse?.result || []) {
+        if (q.regularMarketPrice > 0) res[q.symbol] = { p: q.regularMarketPrice, ccy: q.currency, t: new Date((q.regularMarketTime || Date.now() / 1000) * 1000).toISOString(), src: 'Yahoo Finance' };
+      }
+    } catch (e) { note('batch', e.message); }
+  }
+  return res;
+}
 async function stooq(code) {
   try {
-    const r = await fetch(`https://stooq.com/q/l/?s=${encodeURIComponent(code)}&f=sd2t2c&h&e=csv`, { headers: { 'User-Agent': UA } });
+    const r = await fetch(`https://stooq.com/q/d/l/?s=${encodeURIComponent(code)}&i=d`, { headers: { 'User-Agent': UA } });
     if (!r.ok) { note(code, `stooq ${r.status}`); return null; }
     const lines = (await r.text()).trim().split(/\r?\n/);
-    const v = (lines[1] || '').split(',');
-    const p = parseFloat(v[3]);
-    if (!(p > 0) || !/^\d{4}-\d{2}-\d{2}$/.test(v[1] || '')) { note(code, `stooq keine Daten`); return null; }
-    return { p, t: `${v[1]}T${/^\d\d:\d\d:\d\d$/.test(v[2]) ? v[2] : '22:00:00'}Z` };
+    const h = (lines[0] || '').toLowerCase().split(','), v = (lines[lines.length - 1] || '').split(',');
+    const p = parseFloat(v[h.indexOf('close')]), d = v[h.indexOf('date')];
+    if (!(p > 0) || !/^\d{4}-\d{2}-\d{2}$/.test(d || '')) { note(code, `stooq keine Daten`); return null; }
+    return { p, t: `${d}T20:00:00Z` };
   } catch (e) { note(code, `stooq ${e.message}`); return null; }
 }
 const stooqCcy = code => code.endsWith('.us') ? 'USD' : code.endsWith('.uk') ? 'GBp' : 'EUR';
 
 const quotes = {}, fx = {}, missing = [];
+const ses = await yahooSession();
+const batch = await yahooBatch([...symbols, 'EURUSD=X', 'EURDKK=X', 'EURGBP=X', 'EURCHF=X'], ses);
 for (const s of symbols) {
-  let q = await yahoo(s);
+  let q = batch[s] || (ses ? null : await yahoo(s));
   if (!q && /\.(DE|F)$/.test(s)) { const c = s.toLowerCase().replace(/\.f$/, '.de'); const r = await stooq(c); if (r) q = { ...r, ccy: 'EUR', src: 'Stooq' }; }
   if (!q && US[s]) { const r = await stooq(US[s]); if (r) q = { ...r, ccy: stooqCcy(US[s]), src: 'Stooq, US-Notiz', alt: US[s] }; }
   if (q) quotes[s] = q; else missing.push(s);
@@ -56,7 +90,7 @@ for (const s of symbols) {
 }
 const need = new Set(Object.values(quotes).map(q => (q.ccy === 'GBp' || q.ccy === 'GBX') ? 'GBP' : q.ccy).filter(c => c && c !== 'EUR'));
 for (const c of need) {
-  let r = await yahoo(`EUR${c}=X`);
+  let r = batch[`EUR${c}=X`] || (ses ? null : await yahoo(`EUR${c}=X`));
   if (!r) { const s = await stooq(`eur${c.toLowerCase()}`); if (s) r = s; }
   if (!r) {
     try {
