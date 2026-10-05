@@ -13,7 +13,7 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 
 **Aus den Umsätzen** (Depot- und Kontoumsätze): Einstand nach FIFO, Kursgewinn, realisierte Gewinne, erhaltene Ausschüttungen, Rendite p. a. als interner Zinsfuß und eine Steuerschätzung im Verkaufs-Check. Abweichungen zwischen Umsätzen und Bestand werden angezeigt statt verrechnet.
 
-**Tageskurse:** Die GitHub Action ruft werktags nach Börsenschluss Kurse für die Symbole aus den Stammdaten (und optional `symbols.txt`) ab und veröffentlicht sie als `prices.json`. Es werden keine Bestände übertragen; gerechnet wird im Browser. Ohne Kurse gelten die Exportwerte.
+**Kurse:** Die GitHub Action ruft Mo–Fr während der Handelszeit etwa alle 15 Minuten (Tradegate, 8–22 Uhr) und abends nach US-Börsenschluss Kurse für die Symbole aus den Stammdaten (und optional `symbols.txt`) ab und veröffentlicht sie als `prices.json`. Es werden keine Bestände übertragen; gerechnet wird im Browser. Ohne Kurse gelten die Exportwerte.
 
 **Berichte (Stufe 1, automatisch, kostenlos):** Beim Veröffentlichen prüft die Action bei SEC EDGAR, ob die Unternehmen seit der letzten Einordnung neue Ergebnismeldungen (8-K), Quartals- oder Jahresberichte oder Mitteilungen (6-K) eingereicht haben, und veröffentlicht das als `reports.json`. Die App markiert betroffene Storys und Positionen.
 
@@ -53,7 +53,7 @@ Settings › Pages › Source „GitHub Actions“. Jeder Push auf `main` veröf
 ## Grenzen
 
 - Umsätze nur aus Euro-Konten. Steuerschätzung vereinfacht (ohne Kirchensteuer, Sparerpauschbetrag, Verlusttöpfe, Vorabpauschale).
-- Kurse einmal täglich und verzögert, nur für Wertpapiere mit bekanntem Symbol.
+- Kurse etwa alle 15 Minuten, durch GitHub-Zeitpläne oft 15–30 Minuten alt; nur für Wertpapiere mit ISIN in den Stammdaten oder `symbols.txt`.
 - Kompass-Wahrscheinlichkeiten erst mit öffentlicher Trefferquote.
 - Berichte nur von der SEC (US-Unternehmen und ausländische Emittenten mit US-Notierung); keine Presseartikel, keine ETFs.
 - GitHub pausiert geplante Läufe in Repositories ohne Aktivität nach 60 Tagen; ein Commit oder manueller Start reaktiviert sie.

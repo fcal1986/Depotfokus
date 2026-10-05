@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   schedule:
-    # Werktags nach US-Börsenschluss: Tageskurse aktualisieren
+    # Während der Handelszeit alle 15 Minuten (UTC 6–20 Uhr, Tradegate 8–22 Uhr deutscher Zeit)
+    - cron: '*/15 6-20 * * 1-5'
+    # Schlusskurse nach US-Börsenschluss
     - cron: '37 21 * * 1-5'
   workflow_dispatch:
 

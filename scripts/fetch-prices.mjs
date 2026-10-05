@@ -77,7 +77,8 @@ async function tradegate(isin) {
     const last = de(j.last), close = de(j.close), bid = de(j.bid), ask = de(j.ask);
     const p = last > 0 ? last : close > 0 ? close : (bid > 0 && ask > 0 ? (bid + ask) / 2 : NaN);
     if (!(p > 0)) { note(isin, 'tradegate kein Preis'); return null; }
-    return { p, ccy: 'EUR', t: new Date().toISOString(), src: 'Tradegate' };
+    // close = Schluss des Vortags (delta ist die Veränderung dazu in Prozent)
+    return { p, ccy: 'EUR', t: new Date().toISOString(), src: 'Tradegate', prev: close > 0 ? close : null };
   } catch (e) { note(isin, `tradegate ${e.message}`); return null; }
 }
 async function onvista(isin) {
@@ -130,7 +131,7 @@ for (const c of need) {
   if (r) fx[c] = r.p;
 }
 const used = [...new Set(Object.values(quotes).map(q => q.src))];
-const data = { schedule: process.env.PRICE_CRON || '37 21 * * 1-5', asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, missing, errors };
+const data = { schedule: process.env.PRICE_CRON || '*/15 6-20 * * 1-5|37 21 * * 1-5', asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, missing, errors };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(data));
 console.log(`Kurse: ${Object.keys(quotes).length}/${symbols.size} (${data.source}), Devisen: ${Object.keys(fx).join(',') || '-'}, fehlend: ${missing.join(',') || '-'}`);

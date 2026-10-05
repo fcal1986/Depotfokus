@@ -149,5 +149,17 @@ function priceInfo(d){const inc=d.positions.filter(p=>p.conf!=='skip');const liv
 function loadPrices(){
   if(typeof fetch!=='function')return;
   fetch('prices.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(j=>{
-    if(!j||!j.quotes)return;PRICES=j;_txc.k=null;evaluateChanges(DEMO,true);if(OWN)evaluateChanges(OWN);persist();rerender()}).catch(()=>{});
+    if(!j||!j.quotes)return;const first=!PRICES;if(!first&&PRICES.asOf===j.asOf)return;
+    PRICES=j;_txc.k=null;if(first)evaluateChanges(DEMO,true);if(OWN)evaluateChanges(OWN);persist();
+    // Nicht neu zeichnen, während jemand tippt oder eine Story läuft
+    const ae=document.activeElement;if(ae&&/INPUT|SELECT|TEXTAREA/.test(ae.tagName))return;if(!first&&parse().r==='story')return;rerender()}).catch(()=>{});
 }
+/* Alle 5 Minuten nachsehen, solange die App sichtbar ist (neue Kurse kommen etwa alle 15 Minuten) */
+if(typeof window!=='undefined'&&typeof fetch==='function'){
+  setInterval(()=>{if(!document.hidden)loadPrices()},5*60*1000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadPrices()});
+}
+/* Tagesveränderung je Position und gesamt (nur Positionen mit Tageskurs und Vortagesschluss) */
+function dayChange(p){if(UI.live===false||p.qty==null||!PRICES||!PRICES.quotes)return null;const q=PRICES.quotes[p.symbol];const cur=quoteFor(p);
+  if(!q||!cur||!(q.prev>0))return null;const f=cur.eurPx/cur.px;return {abs:p.qty*(q.p-q.prev)*f,rel:q.p/q.prev-1}}
+function dayTotal(d){let abs=0,base=0,n=0;d.positions.forEach(p=>{if(p.conf==='skip')return;const c=dayChange(p);if(!c)return;abs+=c.abs;base+=liveValue(p)-c.abs;n++});return n?{abs,rel:base?abs/base:0,n}:null}

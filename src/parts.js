@@ -99,9 +99,9 @@ function renderTxCard(){
 function renderPrices(){
   const el=$('#pricesCard');if(!el)return;const d=D(),pi=priceInfo(d);
   el.innerHTML=`<h2>Kurse</h2>
-   ${pi.avail?`<p>Tageskurse vom ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen. Quelle: ${esc(PRICES.source||'Kursdienst')}, verzögert, ohne Gewähr.</p>
-     <label class="switch" style="margin-top:6px"><span>Tageskurse verwenden</span><input type="checkbox" id="liveToggle" ${pi.on?'checked':''}></label>
-     <p class="hint">Aus: Werte aus deinem Export. Positionen ohne Tageskurs behalten immer den Exportwert.${PRICES.missing&&PRICES.missing.length?` Ohne Kurs beim letzten Abruf: ${esc(PRICES.missing.join(', '))}.`:''}</p>`
-   :'<p>Tageskurse sind gerade nicht verfügbar. Es gelten die Werte aus deinem Export.</p><p class="hint">Kurse werden werktags nach Börsenschluss abgerufen.</p>'}`;
+   ${pi.avail?`<p>Kurse von ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen. Quelle: ${esc(PRICES.source||'Kursdienst')}, verzögert, ohne Gewähr.</p>
+     <label class="switch" style="margin-top:6px"><span>Aktuelle Kurse verwenden</span><input type="checkbox" id="liveToggle" ${pi.on?'checked':''}></label>
+     <p class="hint">Aus: Werte aus deinem Export. Positionen ohne aktuellen Kurs behalten immer den Exportwert.${PRICES.missing&&PRICES.missing.length?` Ohne Kurs beim letzten Abruf: ${esc(PRICES.missing.join(', '))}.`:''}</p>`
+   :'<p>Aktuelle Kurse sind gerade nicht verfügbar. Es gelten die Werte aus deinem Export.</p><p class="hint">Kurse werden Mo–Fr während der Handelszeit etwa alle 15 Minuten abgerufen.</p>'}`;
 }
 const fmtAsOf=s=>{if(!s)return 'unbekannt';const d=new Date(s);return isNaN(d)?s:d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})};

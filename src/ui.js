@@ -102,6 +102,7 @@ function vHeute(){
   <section class="dark col" style="gap:6px">
     <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
     <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
+    ${dayLine(d)}
     ${perfLine(d)}
     <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${valLine(d)}</span>
   </section>
@@ -117,8 +118,10 @@ function vHeute(){
   <p class="hint">Keine Anlageberatung.</p>`;
 }
 function valLine(d){const pi=priceInfo(d);const exp=d.kind==='demo'?'Exportwerte vom 04.10.2026':`Exportwerte aus ${esc(d.fileName)}${d.valuationDate?', Stichtag '+esc(d.valuationDate):''}`;
-  if(pi.avail&&pi.on&&pi.n)return `Tageskurse vom ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen${pi.n<pi.of?`, übrige: ${exp}`:''}. Verzögert, ohne Gewähr.`;
+  if(pi.avail&&pi.on&&pi.n)return `Kurse von ${esc(fmtAsOf(pi.asOf))} für ${pi.n} von ${pi.of} Positionen${pi.n<pi.of?`, übrige: ${exp}`:''}. Verzögert, ohne Gewähr.`;
   return exp+'.'}
+function dayLine(d){const t=dayTotal(d);if(!t)return '';const pi=priceInfo(d);
+  return `<div class="dayline"><b class="${t.abs>=0?'up':'down'}">${sgn(t.abs)} (${spct(t.rel,2)})</b><span class="muted-night small">heute${t.n<pi.of?`, ${t.n} von ${pi.of} Positionen`:''}</span></div>`}
 function perfLine(d){const m=txModel(d);if(!m||!m.okCount)return '';
   return `<div class="perf"><span><b class="${m.result>=0?'up':'down'}">${sgn(m.result)}</b> <span style="white-space:nowrap">${m.irr!=null?`· ${spct(m.irr)} p. a.`:`· ${spct(m.simple)} gesamt`}</span><br><span class="muted-night small">Ergebnis seit ${isoToDe(m.since)}, inkl. Ausschüttungen</span></span><span><b>${eur(m.M.div12)}</b><br><span class="muted-night small">Ausschüttungen 12 Monate</span></span></div>`}
 function eventsHTML(d){const ev=d.events.filter(e=>!d.read.includes(e.id)).slice(0,3);if(!ev.length)return '';
@@ -231,7 +234,7 @@ function perfCard(d){const m=txModel(d);
 function posRow(p,T){const v=posValue(p),I=INFO[p.symbol],m=MOOD[p.symbol];
   const sub=!I?'Noch keine geprüfte Einordnung':I.etf?'ETF-Profil':I.changes.items[0]?I.changes.items[0].t:I.interp;
   return `<a class="prow" href="#pos/${encodeURIComponent(p.id)}"><span class="nm">${esc(p.name)}</span><span class="num r">${v!=null?eur(v):p.conf==='skip'?'nicht eingerechnet':'Wert ungeklärt'}</span>
-   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${(()=>{const s=secFor(D(),p);return s&&s.ok&&s.unreal!=null?`<b class="${s.unreal>=0?'pos-text':'neg-text'}">${spct(s.cost?s.unreal/s.cost:0,0)}</b> · `:''})()}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
+   <span class="sub">${v!=null&&T?pct(v/T)+' · ':''}${(()=>{const s=secFor(D(),p);return s&&s.ok&&s.unreal!=null?`<b class="${s.unreal>=0?'pos-text':'neg-text'}">${spct(s.cost?s.unreal/s.cost:0,0)}</b> · `:''})()}${(()=>{const dc=dayChange(p);return dc?`<b class="${dc.rel>=0?'pos-text':'neg-text'}">heute ${spct(dc.rel,1)}</b> · `:''})()}${m?`<b class="mood ${m}">${MOODTXT[m]}</b> · `:''}${esc(sub)}</span></a>`}
 
 /* ---------------- Position / Kompass ---------------- */
 function vPos(id){
@@ -260,7 +263,7 @@ function vPos(id){
   return h+checkButtons(p);
 }
 function myPosCard(d,p){const m=txModel(d),s=secFor(d,p),q=liveValue(p)!=null?quoteFor(p):null;
-  const src=q?`Tageskurs ${num(q.px,2)} ${esc(q.ccy)}${q.alt?' an der US-Börse':''} vom ${esc(fmtAsOf(q.t))}${q.ccy!=='EUR'?', umgerechnet in Euro':''} (${esc(q.src)})`:'Wert aus dem Export';
+  const dc=dayChange(p);const src=q?`Kurs ${num(q.px,2)} ${esc(q.ccy)}${dc?` (heute ${spct(dc.rel,2)})`:''}${q.alt?' an der US-Börse':''} vom ${esc(fmtAsOf(q.t))}${q.ccy!=='EUR'?', umgerechnet in Euro':''} (${esc(q.src)})`:'Wert aus dem Export';
   if(!m)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${p.qty!=null?num(p.qty,4)+' Stück · ':''}${src}. Einstand und Gewinn nach dem Umsatz-Import.</span></section>`;
   if(!s)return `<section class="card col" style="gap:4px"><span class="lbl">Deine Position</span><span class="small muted2">${src}. Keine Umsätze zu dieser Position gefunden; Einstand und Gewinn sind deshalb nicht bekannt.</span></section>`;
   const row=(l,v,c='')=>`<dt>${l}</dt><dd class="num ${c}">${v}</dd>`;
@@ -406,10 +409,13 @@ function vDaten(){return `
 
 /* ---------------- Datenstand ---------------- */
 const STAND={info:'04.10.2026',infoMethod:'manuell recherchiert und geprüft'};
-function cronNext(cron,from=new Date()){const m=String(cron||'').trim().split(/\s+/);if(m.length<5)return null;const mi=+m[0],h=+m[1];
-  const days=m[4]==='*'?[0,1,2,3,4,5,6]:m[4].split(',').flatMap(x=>{const [a,b]=x.split('-').map(Number);return b!=null?Array.from({length:b-a+1},(_,i)=>a+i):[a]});
-  const d=new Date(Date.UTC(from.getUTCFullYear(),from.getUTCMonth(),from.getUTCDate(),h,mi));for(let i=0;i<8;i++){const c=new Date(d.getTime()+i*864e5);if(c>from&&days.includes(c.getUTCDay()))return c}return null}
-const PRICE_CRON='37 21 * * 1-5';
+// Nächster Termin für Cron-Ausdrücke (UTC), mehrere mit | getrennt; unterstützt Stern, Schrittweite, Bereiche und Listen
+function cronField(f,min,max){const out=new Set();String(f).split(',').forEach(part=>{let [r,st]=part.split('/');st=+st||1;let a=min,b=max;if(r!=='*'){const [x,y]=r.split('-').map(Number);a=x;b=y!=null?y:(part.includes('/')?max:x)}for(let v=a;v<=b;v+=st)out.add(v)});return out}
+function cronNext(cron,from=new Date()){let best=null;
+  String(cron||'').split('|').forEach(c=>{const m=c.trim().split(/\s+/);if(m.length<5)return;const M=cronField(m[0],0,59),H=cronField(m[1],0,23),W=cronField(m[4],0,6);
+    const t=new Date(Math.floor(from.getTime()/6e4)*6e4+6e4);for(let i=0;i<8*1440;i++){const d=new Date(t.getTime()+i*6e4);if(M.has(d.getUTCMinutes())&&H.has(d.getUTCHours())&&W.has(d.getUTCDay())){if(!best||d<best)best=d;break}}});
+  return best}
+const PRICE_CRON='*/15 6-20 * * 1-5|37 21 * * 1-5';
 const fmtWhen=d=>d?d.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+' Uhr':'unbekannt';
 function priceStatus(){const pi=priceInfo(D()),cron=(PRICES&&PRICES.schedule)||PRICE_CRON,next=cronNext(cron);
   const last=PRICES&&PRICES.asOf?new Date(PRICES.asOf):null,age=last?(Date.now()-last)/864e5:null;
@@ -420,7 +426,7 @@ function reportStatus(){const pos=storyPositions().map(p=>({p,I:INFO[p.symbol],n
   return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0,uaBlocked:!!(REPORTS&&Object.values(REPORTS.errors||{}).some(e=>/Undeclared Automated Tool/i.test(e)))}}
 function standTeaser(){const ps=priceStatus(),rs=reportStatus();
   return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
-   <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'vom '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
+   <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'von '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.uaBlocked?'Berichte: Abruf blockiert, Einrichtung nötig':rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span></a>`}
 function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
@@ -433,7 +439,7 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
    <dl class="kv"><dt>Letzter Abruf</dt><dd>${ps.last?esc(fmtAsOf(PRICES.asOf)):'noch keiner'}${ps.stale?' <b class="neg-text">veraltet</b>':''}</dd>
    <dt>Ergebnis</dt><dd>${ps.n} Kurse${PRICES&&PRICES.missing&&PRICES.missing.length?`, fehlend: ${esc(PRICES.missing.join(', '))}`:''}</dd>
    <dt>Quelle</dt><dd>${esc(ps.src||'–')}, Euro, verzögert</dd>
-   <dt>Zeitplan</dt><dd>werktags nach US-Börsenschluss und bei jeder neuen Version</dd>
+   <dt>Zeitplan</dt><dd>Mo–Fr während der Handelszeit etwa alle 15 Minuten (Tradegate 8–22 Uhr), dazu Schlusskurse am Abend; die App sieht alle 5 Minuten nach</dd>
    <dt>Nächster Abruf</dt><dd>${fmtWhen(ps.next)} (geplant; GitHub startet geplante Läufe teils mit Verspätung)</dd>
    <dt>Genutzt für</dt><dd>${ps.pi.n} von ${ps.pi.of} deiner Positionen${ps.pi.on?'':' (abgeschaltet)'}</dd></dl></section>
   <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Neue Berichte erkennen</h2>${chip('auto','automatisch')}</div>
@@ -498,7 +504,7 @@ document.addEventListener('change',e=>{
   if(el.id==='maxSingle'){const v=parseInput(el.value);if(v!=null&&!(v>0&&v<=100)){$('#maxErr').textContent='Wert über 0 und höchstens 100, oder leer lassen.';el.setAttribute('aria-invalid','true');return}d.maxSingle=v;changed();return}
   if(el.id==='file'){const fs=[...(el.files||[])];if(!fs.length)return;stagedTx=null;
     Promise.all(fs.map(f=>new Promise(res=>{const r=new FileReader();r.onload=()=>res([f.name,r.result]);r.onerror=()=>res([f.name,'']);r.readAsText(f)}))).then(list=>{handleFiles(list)});el.value='';return}
-  if(el.id==='liveToggle'){UI.live=el.checked;saveUI();_txc.k=null;rerender();toast(el.checked?'Tageskurse werden verwendet':'Werte aus dem Export werden verwendet');return}
+  if(el.id==='liveToggle'){UI.live=el.checked;saveUI();_txc.k=null;rerender();toast(el.checked?'Aktuelle Kurse werden verwendet':'Werte aus dem Export werden verwendet');return}
   if(el.dataset.acc!=null&&staged){staged.accounts[+el.dataset.acc].accept=el.checked;return}
   if(el.id==='stReplace'){$('#stAccept').disabled=!el.checked;return}
   if(el.dataset.bucket){const p=posById(el.dataset.bucket);if(p&&el.value){p.bucket=el.value;p.bucketSrc='user';changed()}return}
