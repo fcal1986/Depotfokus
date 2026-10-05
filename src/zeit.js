@@ -31,13 +31,13 @@ function zSim(d){
   const budget=z.save?Math.max(0,+d.budget||0):0;
   const res={items,tot:[],per:[],val:[],budget,reinvest:z.reinvest};
   for(const sc of Z_SC){
-    const v=items.map(i=>i.v),tot=new Float64Array(Z_H+1),val=new Float64Array(Z_H+1),per=[];
+    const v=items.map(i=>i.v),tot=new Float64Array(Z_H+1),val=new Float64Array(Z_H+1),per=[],vper=[];
     const gm=items.map(i=>{const a=z.assume[i.b];return Math.pow(1+Math.max(-0.5,(a.g+sc.f*a.s)/100),1/12)});
     const y=items.map(i=>Math.max(0,z.assume[i.b].y)/100/12);
     for(let m=0;m<=Z_H;m++){
       const div=new Float64Array(n);let s=0,vs=0;
       for(let i=0;i<n;i++){const c=z.cuts[items[i].key];const cut=c&&c.pct&&m>=c.from*12?1-c.pct/100:1;div[i]=v[i]*y[i]*cut;s+=div[i];vs+=v[i]}
-      tot[m]=s;val[m]=vs;per.push(div);
+      tot[m]=s;val[m]=vs;per.push(div);vper.push(Float64Array.from(v));
       if(m===Z_H)break;
       for(let i=0;i<n;i++){v[i]*=gm[i];if(z.reinvest)v[i]+=div[i]*(1-TAX)}
       if(budget>0){
@@ -50,7 +50,7 @@ function zSim(d){
           const bv=idx.reduce((a,i)=>a+v[i],0);idx.forEach(i=>v[i]+=bv>0?amt*v[i]/bv:amt/idx.length)});
       }
     }
-    res.tot.push(tot);res.per.push(per);res.val.push(val);
+    res.tot.push(tot);res.per.push(per);res.val.push(val);(res.vper=res.vper||[]).push(vper);
   }
   return res;
 }

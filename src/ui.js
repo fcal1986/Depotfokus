@@ -46,7 +46,7 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan'};
+const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot'};
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -60,14 +60,17 @@ function route(){
     else if(r==='daten')html=vDaten();
     else if(r==='stand')html=vStand();
     else if(r==='zeit')html=vZeit();
+    else if(r==='haus')html=vHaus(a[0]);
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
+  const ss0=document.getElementById('stadtScroll'),sl0=ss0?ss0.scrollLeft:null;
   v.innerHTML=html;v.className=r==='story'?'story':'screen';
   const full=r==='story'||r==='check';$('#tabs').hidden=full;v.classList.toggle('sub',full);
   document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
   if(r==='daten'){renderSourceCard();renderImport();renderTxCard();renderPrices();renderConfirm();renderExt()}
   if(r==='plan')renderGoalSum2();
   if(r==='story')armStory();else stopStory();
+  if(r==='depot'){const ss=document.getElementById('stadtScroll');if(route.keep&&sl0!=null&&ss)ss.scrollLeft=sl0;else stadtCenter()}
   if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
   route.keep=false;
 }
@@ -217,6 +220,7 @@ function vDepot(){
   return `
   <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a></div>
   ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
+  ${stadtHTML(d)}
   ${perfCard(d)}
   <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
   <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
@@ -299,10 +303,11 @@ function vCheck(id,intent){
   return `
   <div class="row" style="gap:6px"><a href="#pos/${encodeURIComponent(id)}" class="icon-btn" aria-label="Zurück">${ICON.back}</a><div class="col"><span class="lbl">Entscheidungs-Check</span><h1 class="big" style="font-size:22px">${buy?'Kauf':'Verkauf'}: ${esc(p.name)}</h1></div></div>
   <section class="card step"><span class="num-c c1" aria-hidden="true">1</span><div class="col" style="gap:3px"><span class="strong">Passt es zu deinem Plan?</span><span class="small muted2">${esc(plan)}</span>${!gs.ok?'<a class="link" href="#plan">Zum Plan →</a>':''}</div></section>
+  ${(()=>{const mo=motivesFor(d,p);return `<a class="card row why-line" href="#haus/${encodeURIComponent(id)}"><span class="strong small">Dein Warum:</span><span>${mo.list.map(k=>MOTIVE[k].e+' '+MOTIVE[k].t).join(' · ')}</span>${mo.own?'':'<span class="small muted2">(Vorschlag)</span>'}</a>`})()}
   <section class="card step"><span class="num-c c2" aria-hidden="true">2</span><div class="col" style="gap:3px"><span class="strong">Was kostet es?</span><span class="small muted2">${esc(cost)}${buy?'Ordergebühr laut deinem Broker.':esc(sellCost(d,p))}</span>${!buy&&!txModel(d)?'<a class="link" href="#daten">Umsätze importieren →</a>':''}</div></section>
   <section class="card col" style="gap:10px"><div class="step"><span class="num-c c3" aria-hidden="true">3</span><span class="strong" id="whyLbl" style="padding-top:3px">Warum gerade jetzt?</span></div>
     <div class="reasons" role="group" aria-labelledby="whyLbl">${R.map(([k,l])=>`<button type="button" data-reason="${k}" aria-pressed="${chk.reason===k}">${l}</button>`).join('')}</div>
-    ${chk.reason==='drop'?'<p class="hint-box">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?</p>':''}
+    ${chk.reason==='drop'?`<p class="hint-box">Ein gefallener Kurs allein ist selten ein guter Grund. Was hat sich am Geschäft geändert?${!buy&&motivesFor(d,p).list.includes('einkommen')?' Du hast diese Position wegen des Einkommens: Die Dividende hängt nicht am Kurs, sondern an den Erträgen der Firma.':''}</p>`:''}
     ${chk.reason==='tip'?'<p class="hint-box">Tipps von anderen kennen deinen Plan nicht. Prüfe Schritt 1 besonders genau.</p>':''}</section>
   <section class="card step"><span class="num-c c4" aria-hidden="true">4</span><div class="col" style="gap:3px"><span class="strong">Was würde dich umstimmen?</span><span class="small muted2">${rule?`Zum Beispiel: ${esc(rule.metric)} – ${esc(rule.cond)} (${esc(rule.next)}).`:'Überlege dir eine konkrete Bedingung, bevor du handelst.'}</span></div></section>
   <section class="dark row between"><div class="col" style="gap:2px"><span class="lbl">Entscheidungsqualität</span><span class="big" style="font-size:20px" id="qual" aria-live="polite">${qual}</span></div><div class="meter" aria-hidden="true">${[1,2,3,4].map(i=>`<span class="${chk.reason&&i<=score?'on':''}"></span>`).join('')}</div></section>
