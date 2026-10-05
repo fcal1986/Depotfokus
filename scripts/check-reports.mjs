@@ -9,7 +9,9 @@ const info = JSON.parse(fs.readFileSync('data/info.json', 'utf8'));
 const res = {
   checkedAt: new Date().toISOString(), source: 'SEC EDGAR',
   assessEnabled: process.env.HAS_KEY === 'true', model: process.env.MODEL || null,
-  positions: {}, proposals: [], errors: {}
+  positions: {}, proposals: [], errors: {},
+  // Nur Diagnose, ohne Adresse: woher die SEC-Kennung stammt und ob sie wie „Name name@domain“ aussieht
+  sec: { ua: process.env.SEC_USER_AGENT ? 'variable' : 'standard', uaFormat: /^\S.*\s\S+@\S+\.\S+$/.test(process.env.SEC_USER_AGENT || '') }
 };
 
 for (const [sym, p] of Object.entries(info.positions)) {
