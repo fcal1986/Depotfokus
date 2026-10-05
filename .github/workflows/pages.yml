@@ -44,7 +44,7 @@ jobs:
           HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
           MODEL: ${{ vars.DEPOTFOKUS_MODEL || 'claude-sonnet-5-5' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
         run: node scripts/check-reports.mjs _site/reports.json
       - name: Kursdatei sicherstellen
         run: |

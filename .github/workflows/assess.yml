@@ -47,5 +47,5 @@ jobs:
           MODEL: ${{ vars.DEPOTFOKUS_MODEL || 'claude-sonnet-5-5' }}
           MAX_REPORTS: ${{ github.event.inputs.max_reports || '3' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || vars.SEC_USER_AGENT }}
         run: node scripts/assess-reports.mjs
