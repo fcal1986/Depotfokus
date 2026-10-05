@@ -1,4 +1,5 @@
 // Gemeinsame Funktionen für den Zugriff auf SEC EDGAR (öffentlich, ohne Schlüssel).
+// Kontaktadresse kommt aus der Repository-Variable SEC_USER_AGENT.
 // Die SEC verlangt einen User-Agent mit Kontakt; über SEC_USER_AGENT anpassbar.
 // Für Tests: SEC_MOCK_DIR mit sub_<cik>.json und doc_<accession>.txt.
 import fs from 'node:fs';
