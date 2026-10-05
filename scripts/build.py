@@ -2,7 +2,7 @@
 """Setzt index.html aus src/shell.html und den Skriptteilen zusammen."""
 import pathlib
 root=pathlib.Path(__file__).resolve().parent.parent
-parts=['tx.js','logic.js','parts.js','ui.js']
+parts=['tx.js','logic.js','parts.js','zeit.js','ui.js']
 import json
 data=json.loads((root/'data'/'info.json').read_text())
 resolved=json.loads((root/'data'/'resolved.json').read_text())

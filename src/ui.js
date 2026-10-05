@@ -46,7 +46,7 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute'};
+const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan'};
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -59,6 +59,7 @@ function route(){
     else if(r==='liga')html=vLiga();
     else if(r==='daten')html=vDaten();
     else if(r==='stand')html=vStand();
+    else if(r==='zeit')html=vZeit();
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   v.innerHTML=html;v.className=r==='story'?'story':'screen';
@@ -114,6 +115,7 @@ function vHeute(){
     ${fresh.map(p=>{const n=newReports(p.symbol)[0];return `<a href="#pos/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag new">Neuer Bericht</span></span><span class="d">${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(p.symbol))}</span><span class="src">Erkannt bei der SEC am ${esc(deDate(REPORTS.checkedAt))}</span></a>`}).join('')}
     ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)} · Stand ${deDate(I.checked)}</span></a>`}).join(''):fresh.length?'':'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
+  ${zTeaser(d)}
   ${standTeaser()}
   <p class="hint">Keine Anlageberatung.</p>`;
 }
@@ -322,6 +324,7 @@ function vPlan(){
   else goals=B.map(b=>{const raw=goalRaw[b.id];return `<div class="goal"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><label for="g_${b.id}" class="col"><span class="strong">${b.name}</span><span class="small muted2 num">heute ${T?pct(V[b.id]/T,1):'–'}</span></label><span class="row" style="gap:6px;flex-wrap:nowrap"><input class="numin" type="text" inputmode="decimal" id="g_${b.id}" data-goal="${b.id}" value="${esc(raw?raw.v:d.goals[b.id])}" ${raw?'aria-invalid="true"':''} aria-describedby="ge_${b.id}"> %</span><span class="err" id="ge_${b.id}">${raw?esc(raw.msg):''}</span></div>`}).join('')+`<div class="row between" style="margin-top:8px"><span id="goalSum" class="num" role="status"></span><button class="link" id="goalsFromNow" type="button">Heutige Verteilung</button></div>`;
   return `
   <h1 class="h1" style="font-size:28px">Dein Plan</h1>
+  ${zTeaser(d)}
   <section class="card col" style="gap:6px"><div class="row between"><h2 class="h2">1. Meine Zielverteilung</h2>${d.goalsSource==='example'?'<span class="chip-demo">Beispiel</span>':''}</div>${goals}
     <label class="field" for="maxSingle" style="margin-top:10px">Grenze je Einzelwert in % (leer = keine)<input class="numin" type="text" inputmode="decimal" id="maxSingle" value="${d.maxSingle??''}"><span class="err" id="maxErr"></span></label>
     <p class="hint">Zur Orientierung: Stiftung Warentest beschreibt im Pantoffel-Portfolio Mischungen mit 25, 50 oder 75 % Aktien. Keine Empfehlung für dich.</p></section>
@@ -368,7 +371,7 @@ function calib(){const res=Object.values(FUN.preds).filter(x=>x.res);if(!res.len
 function qButtons(q,pr,locked){return `<div class="grid2 yn" role="group" aria-label="Antwort">${['ja','nein'].map(a=>`<button type="button" data-pred="${esc(q.id)}" data-ans="${a}" aria-pressed="${pr.a===a}" ${locked?'disabled':''}>${a==='ja'?'Ja':'Nein'}</button>`).join('')}</div>
     <div class="conf-g" role="group" aria-label="Wie sicher bist du?">${[50,60,70,80,90].map(c=>`<button type="button" data-pred="${esc(q.id)}" data-conf="${c}" aria-pressed="${(pr.c||70)===c}" ${locked?'disabled':''}>${c} %</button>`).join('')}</div>`}
 function vLiga(){
-  resolveOpen();const {retro,open}=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind),cb=calib();
+  resolveOpen();resolveTips();const {retro,open}=questions(),notes=FUN.notes.filter(n=>n.kind===D().kind),cb=calib();
   const last=FUN.lastRes&&FUN.preds[FUN.lastRes]&&FUN.preds[FUN.lastRes].res?retro.find(q=>q.id===FUN.lastRes):null;
   const next=retro.find(q=>!(FUN.preds[q.id]&&FUN.preds[q.id].res));const done=retro.filter(q=>FUN.preds[q.id]&&FUN.preds[q.id].res).length;
   let quiz;
@@ -392,6 +395,7 @@ function vLiga(){
   <h2 class="h2" style="margin:4px 0 0">Offene Prognosen</h2><p class="small muted2">Aufgelöst wird mit dem nächsten geprüften Bericht.</p>
   ${open.slice(0,4).map(q=>{const pr=FUN.preds[q.id]||{};return `<section class="card col" style="gap:8px"><span class="lbl">${esc(q.p.name)} · ${esc(q.r.next)}</span><span class="strong">${esc(q.text)}</span><span class="small muted2">${esc(q.r.metric)}: ${esc(q.r.cond)} · zuletzt ${esc(q.r.obs||'nicht verfügbar')} (${esc(q.r.per)})</span>
     <div class="light-q">${qButtons(q,pr,!!pr.res)}</div><span class="small ${pr.res?(pr.res.hit?'pos-text':'neg-text'):'muted2'}">${pr.res?`${pr.res.hit?'Richtig':'Daneben'} · +${pr.res.pts} Punkte`:pr.a?`Getippt: ${pr.a==='ja'?'Ja':'Nein'} mit ${pr.c||70} %. Offen bis zur Auflösung.`:'Noch nicht getippt.'}</span></section>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine prüfbaren Fragen.</p>'}
+  ${tipsHTML()}
   <section class="card"><h2 class="h2">Deine Entscheidungsnotizen</h2>${notes.length?notes.slice().reverse().map(n=>`<div class="fact"><span class="strong">${esc(n.intent==='kauf'?'Kauf':'Verkauf')} ${esc(n.name)}</span><span class="small muted2"> · ${esc(n.date)} · ${esc(n.quality)}</span><div class="small muted2">Grund: ${esc(n.reasonTxt)}${n.sleep?' · mit Bedenkzeit':''}</div></div>`).join(''):'<p class="hint">Noch keine. Notizen entstehen im Entscheidungs-Check.</p>'}</section>
   <p class="hint">Familien-Rangliste und Taschengeld-Depot brauchen Benutzerkonten und sind deshalb nicht Teil dieser Version.</p>`;
 }
@@ -424,6 +428,8 @@ function reportStatus(){const pos=storyPositions().map(p=>({p,I:INFO[p.symbol],n
   const nNew=pos.filter(x=>x.n.length).length,claude=pos.filter(x=>x.I.method==='claude').length;
   const last=pos.map(x=>x.I.checked).sort().pop();
   return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0,uaBlocked:!!(REPORTS&&Object.values(REPORTS.errors||{}).some(e=>/Undeclared Automated Tool/i.test(e)))}}
+function zTeaser(d){try{const S=zGetSim(d),m=120;const lo=zAt(S,0,m,d),mid=zAt(S,1,m,d),hi=zAt(S,2,m,d);
+  return `<a class="card zteaser" href="#zeit"><span class="col" style="gap:2px;min-width:0"><span class="lbl">Zeitreise</span><span class="strong">In 10 Jahren rund ${eur(mid)} Dividende im Monat</span><span class="small muted2">Spanne ${eur(lo)} bis ${eur(hi)} · mit deinen Annahmen durchspielen</span></span><svg class="zspark" viewBox="0 0 60 36" aria-hidden="true"><path d="M2 32 C20 30 34 22 58 6 L58 16 C34 26 20 31 2 33 Z" fill="var(--pos-bg)"/><path d="M2 32 C20 29 36 20 58 10" fill="none" stroke="var(--pos)" stroke-width="2.4"/></svg></a>`}catch(e){return ''}}
 function standTeaser(){const ps=priceStatus(),rs=reportStatus();
   return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
    <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'von '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>

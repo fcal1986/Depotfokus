@@ -8,6 +8,7 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 - **Datenstand und Ablauf** (`#stand`): was automatisch läuft (Kurse, Rechnen), was manuell geprüft ist (Einordnungen, Regeln), wann der nächste Kursabruf geplant ist und welche Berichte als Nächstes erwartet werden.
 - **Depot:** Abweichungen von deinen Vorgaben, offene Datenfragen, Positionen nach Baustein. Je Position: Einordnung, Kompass (Dafür/Dagegen aus geprüften Regeln), belegte Fakten mit Quelle, beobachtete Bedingungen und Risiken, Entscheidungs-Check für Kauf oder Verkauf.
 - **Plan:** Zielverteilung, Grenze je Einzelwert, monatliche Einzahlung und centgenaue Verteilung ohne Verkauf.
+- **Zeitreise** (`#zeit`, aus Heute und Plan): monatliche Dividende über 20 Jahre mit Finger verschieben; Spanne vorsichtig–mittel–gut aus offenen, änderbaren Annahmen je Baustein; Sparplan aus dem Plan, Wiederanlage nach Steuern, Kaufkraft, Kürzungs-Weichen für Positionen mit nicht erfüllten Regeln; Säulen je Position. Dazu Kurstipps für 12 Monate, die in der Liga gewertet werden. Keine Prognose, sondern eine Rechnung mit deinen Annahmen.
 - **Liga:** echte Prognosefragen zu deinen Positionen mit Sicherheitsangabe und deine Entscheidungsnotizen.
 - **Daten & Import** (Zahnrad): CSV-Import aus Portfolio Performance (Vermögensaufstellung und Umsätze, mehrere Dateien auf einmal), Zuordnungen bestätigen, Tageskurse an/aus, Vermögen außerhalb des Depots, Daten löschen.
 
@@ -37,7 +38,7 @@ Installierbar als App (Zum Home-Bildschirm) und offline nutzbar.
 
 ## Quelltext
 
-`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten) und `src/ui.js` (Oberfläche, Routing) sowie `data/info.json` und `data/resolved.json` zusammen. Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
+`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten), `src/zeit.js` (Zeitreise und Kurstipps) und `src/ui.js` (Oberfläche, Routing) sowie `data/info.json` und `data/resolved.json` zusammen. Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
 
 ## Datenschutz
 
