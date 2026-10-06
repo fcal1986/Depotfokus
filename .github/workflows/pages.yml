@@ -51,11 +51,11 @@ jobs:
           path: .divcache
           key: dividends-v3-${{ github.run_id }}
           restore-keys: dividends-v3-
-      - name: Dividenden abrufen (Nasdaq, Yahoo Finance; je Lauf die fünf ältesten)
+      - name: Dividenden abrufen (stockanalysis.com, Nasdaq, Yahoo; je Lauf die acht ältesten)
         continue-on-error: true
         timeout-minutes: 4
         env:
-          DIV_BATCH: ${{ github.event.inputs.dividenden_neu == 'true' && '17' || '5' }}
+          DIV_BATCH: ${{ github.event.inputs.dividenden_neu == 'true' && '17' || '8' }}
         run: |
           mkdir -p .divcache
           [ "${{ github.event.inputs.dividenden_neu }}" = "true" ] && rm -f .divcache/dividends.json
