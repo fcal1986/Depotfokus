@@ -1,1 +1,2 @@
-# Zusätzliche Wertpapiere für den Kursabruf: je Zeile "SYMBOL ISIN" (keine Bestände!)
+# Zusätzliche Wertpapiere für Kurse und Dividenden: je Zeile "SYMBOL ISIN US-TICKER" (keine Bestände!)
+# Der US-Ticker ist optional und nur für US-Aktien nötig, z. B.: KO.DE US1912161007 KO
