@@ -11,6 +11,7 @@ const logic = fs.readFileSync('src/logic.js', 'utf8');
 const i0 = logic.indexOf('const STAMM={');
 const stamm = logic.slice(i0, logic.indexOf('};', i0));
 const symbols = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{(?:isin:'[A-Z0-9]{12}',)?bucket/g)].map(m => m[1]));
+const ISIN = Object.fromEntries([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{isin:'([A-Z0-9]{12})'/g)].map(m => [m[1], m[2]]));
 const FUND = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{[^}]*fund:true/g)].map(m => m[1]));
 // symbols.txt: je Zeile "SYMBOL ISIN [US-TICKER]"; der US-Ticker (z. B. KO) erlaubt den Abruf bei Nasdaq
 const USX = {};
@@ -52,7 +53,9 @@ async function nasdaq(t) {
       const r = await get(`https://api.nasdaq.com/api/quote/${encodeURIComponent(t)}/dividends?assetclass=${cls}`,
         { 'User-Agent': UA, Accept: 'application/json, text/plain, */*', Origin: 'https://www.nasdaq.com', Referer: 'https://www.nasdaq.com/' }, `${t} nasdaq ${cls}`);
       if (!r) continue;
-      const rows = (await r.json())?.data?.dividends?.rows || [];
+      const j = await r.json();
+      const rows = j?.data?.dividends?.rows || [];
+      if (!rows.length) note(t, `nasdaq Antwort: ${JSON.stringify(j).slice(0, 400)}`);
       const ev = rows.filter(x => /cash/i.test(x.type || 'cash')).map(x => ({
         ex: usDate(x.exOrEffDate), pay: usDate(x.paymentDate), decl: usDate(x.declarationDate),
         amount: parseFloat(String(x.amount || '').replace(/[^0-9.]/g, '')) })).filter(x => x.ex && x.ex >= since && x.amount > 0);
@@ -114,6 +117,20 @@ const BATCH = +process.env.DIV_BATCH || 5, MAXAGE = 20 * 3600e3;
 const since0 = t => t ? Date.now() - Date.parse(t) : Infinity;
 const isDue = s => since0(prev[s] && prev[s].at) > MAXAGE && since0(tried[s]) > 2 * 3600e3;
 const due = [...symbols].filter(isDue).sort((a, b) => since0(tried[b]) - since0(tried[a])).slice(0, BATCH);
+// Diagnose: wo stehen bei onvista Dividenden? (Feldnamen und ein Beispiel ins Fehlerprotokoll)
+async function onvistaProbe(s) {
+  const isin = ISIN[s]; if (!isin) return;
+  for (const kind of [FUND.has(s) ? 'funds' : 'stocks']) {
+    try {
+      const r = await fetch(`https://api.onvista.de/api/v1/${kind}/ISIN:${isin}/snapshot`, { headers: { 'User-Agent': UA, Accept: 'application/json' }, signal: AbortSignal.timeout(12000) });
+      if (!r.ok) { note(`${s} onvista`, `${r.status}`); continue; }
+      const j = await r.json(); const hits = [];
+      const walk = (o, path) => { if (!o || typeof o !== 'object' || hits.length > 6) return; for (const [k, v] of Object.entries(o)) { const pth = path + '.' + k; if (/divid|distribut|ausschütt/i.test(k)) hits.push(pth + ' = ' + JSON.stringify(v).slice(0, 350)); else walk(v, pth); } };
+      walk(j, ''); note(`${s} onvista`, `Felder: ${Object.keys(j).join(',')}`); hits.forEach(h => note(`${s} onvista`, h));
+    } catch (e) { note(`${s} onvista`, e.message); }
+  }
+}
+for (const s of ['CCC3.DE', 'IQQW.DE']) await onvistaProbe(s);
 const items = {}, missing = [];
 for (const s of symbols) if (prev[s] && !due.includes(s)) items[s] = prev[s];
 let fresh = 0;
