@@ -105,26 +105,33 @@ async function yahoo(sym) {
 }
 
 // Letzter Stand: fehlt ein Wertpapier diesmal, bleiben seine älteren Daten erhalten
-let prev = {};
-try { prev = JSON.parse(fs.readFileSync(out, 'utf8')).items || {}; } catch (e) {}
+let prev = {}, tried = {};
+try { const j = JSON.parse(fs.readFileSync(out, 'utf8')); prev = j.items || {}; tried = j.tried || {}; } catch (e) {}
+// Portionen: je Lauf nur die Wertpapiere mit den ältesten Daten (Nasdaq und Yahoo drosseln Serverabrufe stark).
+// Bei Läufen alle 15 Minuten ist nach rund einer Stunde alles da, danach wird jedes Wertpapier einmal am Tag erneuert.
+const BATCH = +process.env.DIV_BATCH || 5, MAXAGE = 20 * 3600e3;
+// Fehlversuche frühestens nach zwei Stunden wiederholen, damit sie die Portion nicht blockieren
+const since0 = t => t ? Date.now() - Date.parse(t) : Infinity;
+const isDue = s => since0(prev[s] && prev[s].at) > MAXAGE && since0(tried[s]) > 2 * 3600e3;
+const due = [...symbols].filter(isDue).sort((a, b) => since0(tried[b]) - since0(tried[a])).slice(0, BATCH);
 const items = {}, missing = [];
+for (const s of symbols) if (prev[s] && !due.includes(s)) items[s] = prev[s];
 let fresh = 0;
-for (const s of symbols) {
-  if (late()) { if (prev[s]) items[s] = { ...prev[s], stale: true }; missing.push(s); note(s, 'Zeitlimit'); continue; }
+for (const s of due) {
+  if (late()) { if (prev[s]) items[s] = prev[s]; note(s, 'Zeitlimit'); continue; }
+  tried[s] = new Date().toISOString();
   let it = NASDAQ[s] && !FUND.has(s) ? await nasdaq(NASDAQ[s]) : null;
   if (!it) it = await yahoo(YAHOO[s] || s);
   if (!it && NASDAQ[s]) it = await yahoo(NASDAQ[s]);
-  if (it) { it.ev.sort((a, b) => a.ex < b.ex ? -1 : 1); it.at = new Date().toISOString(); items[s] = it; fresh++; }
-  else if (prev[s]) { items[s] = { ...prev[s], stale: true }; missing.push(s); }
-  else missing.push(s);
-  await sleep(1500);
+  if (it) { it.ev.sort((a, b) => a.ex < b.ex ? -1 : 1); it.at = tried[s]; items[s] = it; fresh++; }
+  else if (prev[s]) items[s] = prev[s];
+  await sleep(3000);
 }
+for (const s of symbols) if (!items[s]) missing.push(s);
 const used = [...new Set(Object.values(items).map(x => x.src))];
-const data = { asOf: new Date().toISOString(), today, source: used.join(', ') || 'keine',
+const data = { asOf: Object.values(items).map(x => x.at).filter(Boolean).sort().pop() || null, checkedAt: new Date().toISOString(), due, tried, today, source: used.join(', ') || 'keine',
   note: 'Dividenden je Aktie in Originalwährung: ex = Ex-Tag, pay = Zahltag (falls bekannt), decl = Tag der Erklärung. Ohne Gewähr.', items, missing, errors };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(data));
 const fut = Object.values(items).reduce((a, x) => a + x.ev.filter(e => (e.pay || e.ex) >= today).length, 0);
-console.log(`Dividenden: ${Object.keys(items).length}/${symbols.size} Wertpapiere (${data.source}), ${fut} erklärte künftige Zahlungen, fehlend: ${missing.join(',') || '-'}`);
-// Weniger als 80 % frisch: Schritt gilt als fehlgeschlagen, damit der nächste Lauf es erneut versucht (kein Tages-Cache)
-if (fresh < symbols.size * 0.8) { console.log(`Nur ${fresh} von ${symbols.size} frisch abgerufen, nächster Lauf versucht es erneut.`); process.exitCode = 1; }
+console.log(due.length ? `Dividenden: ${fresh}/${due.length} dieser Portion abgerufen (${due.join(',')}), gesamt ${Object.keys(items).length}/${symbols.size}, ${fut} erklärte künftige Zahlungen, fehlend: ${missing.join(',') || '-'}` : `Dividenden: alle ${symbols.size} Wertpapiere jünger als 20 Stunden, nichts zu tun.`);
