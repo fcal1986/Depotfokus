@@ -9,6 +9,11 @@ on:
     # Schlusskurse nach US-Börsenschluss
     - cron: '37 21 * * 1-5'
   workflow_dispatch:
+    inputs:
+      dividenden_neu:
+        description: 'Dividenden jetzt neu abrufen (sonst höchstens einmal am Tag)'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -40,6 +45,33 @@ jobs:
       - name: Tageskurse abrufen
         continue-on-error: true
         run: node scripts/fetch-prices.mjs _site/prices.json
+      - name: Tag für den Dividenden-Cache
+        id: day
+        run: echo "day=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+      - name: Dividenden aus dem Cache
+        id: divcache
+        uses: actions/cache/restore@v4
+        with:
+          path: .divcache
+          key: dividends-v1-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
+          restore-keys: dividends-v1-
+      - name: Dividenden abrufen (Nasdaq, Yahoo Finance)
+        id: divfetch
+        if: steps.divcache.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: |
+          mkdir -p .divcache
+          node scripts/fetch-dividends.mjs .divcache/new.json
+          mv .divcache/new.json .divcache/dividends.json
+      - name: Dividenden für heute merken
+        if: steps.divfetch.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: .divcache
+          key: dividends-v1-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
+      - name: Dividenden veröffentlichen
+        run: |
+          if [ -f .divcache/dividends.json ]; then cp .divcache/dividends.json _site/dividends.json; else echo '{"asOf":null,"items":{},"missing":[],"errors":{"all":"Abruf fehlgeschlagen"}}' > _site/dividends.json; fi
       - name: Neue Berichte erkennen (SEC EDGAR)
         continue-on-error: true
         env:

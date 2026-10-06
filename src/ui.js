@@ -445,6 +445,7 @@ function standTeaser(){const ps=priceStatus(),rs=reportStatus();
   return `<a class="card stand-t" href="#stand"><span class="lbl">Datenstand</span>
    <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'von '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.uaBlocked?'Berichte: Abruf blockiert, Einrichtung nötig':rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
+   <span class="stand-l"><i class="dot ${AUTODIV&&AUTODIV.asOf?'ok':'off'}"></i><span>${AUTODIV&&AUTODIV.asOf?`Dividenden von ${esc(fmtAsOf(AUTODIV.asOf))}`:'Dividenden noch nicht gesammelt'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span></a>`}
 function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
   const chip=(k,t)=>`<span class="mode ${k}">${t}</span>`;
@@ -459,6 +460,12 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
    <dt>Zeitplan</dt><dd>Mo–Fr während der Handelszeit etwa alle 15 Minuten (Tradegate 8–22 Uhr), dazu Schlusskurse am Abend; die App sieht alle 5 Minuten nach</dd>
    <dt>Nächster Abruf</dt><dd>${fmtWhen(ps.next)} (geplant; GitHub startet geplante Läufe teils mit Verspätung)</dd>
    <dt>Genutzt für</dt><dd>${ps.pi.n} von ${ps.pi.of} deiner Positionen${ps.pi.on?'':' (abgeschaltet)'}</dd></dl></section>
+  <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Dividenden sammeln</h2>${chip('auto','automatisch')}</div>
+   <dl class="kv"><dt>Letzter Abruf</dt><dd>${AUTODIV&&AUTODIV.asOf?esc(fmtAsOf(AUTODIV.asOf)):'noch keiner'}</dd>
+   <dt>Ergebnis</dt><dd>${AUTODIV&&AUTODIV.items?Object.keys(AUTODIV.items).length:0} Wertpapiere${AUTODIV&&AUTODIV.missing&&AUTODIV.missing.length?`, fehlend: ${esc(AUTODIV.missing.join(', '))}`:''}</dd>
+   <dt>Quelle</dt><dd>${esc(AUTODIV&&AUTODIV.source||'–')}: Nasdaq für US-Aktien mit erklärten Zahltagen, sonst Yahoo Finance mit Ex-Tagen</dd>
+   <dt>Zeitplan</dt><dd>beim Veröffentlichen, höchstens einmal am Tag; manuell über Actions › GitHub Pages › „Dividenden jetzt neu abrufen“</dd></dl>
+   <a class="link" href="#kalender">Zum Dividendenkalender →</a></section>
   <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Neue Berichte erkennen</h2>${chip('auto','automatisch')}</div>
    <dl class="kv"><dt>Quelle</dt><dd>SEC EDGAR: Ergebnismeldungen (8-K), Quartals- und Jahresberichte, Mitteilungen (6-K)</dd>
    <dt>Letzte Prüfung</dt><dd>${rs.checkedAt?esc(fmtAsOf(rs.checkedAt)):'noch keine'}${rs.errs?` · ${rs.errs} Abrufe fehlgeschlagen`:''}</dd>
@@ -560,4 +567,4 @@ applyTheme();
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
-touchDay();saveFun();route();loadPrices();loadReports();
+touchDay();saveFun();route();loadPrices();loadReports();loadAutoDivs();
