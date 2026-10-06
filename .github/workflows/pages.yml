@@ -45,30 +45,27 @@ jobs:
       - name: Tageskurse abrufen
         continue-on-error: true
         run: node scripts/fetch-prices.mjs _site/prices.json
-      - name: Tag für den Dividenden-Cache
-        id: day
-        run: echo "day=$(date -u +%F)" >> "$GITHUB_OUTPUT"
-      - name: Dividenden aus dem Cache
-        id: divcache
+      - name: Dividenden, letzter Stand
         uses: actions/cache/restore@v4
         with:
           path: .divcache
-          key: dividends-v2-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
-          restore-keys: dividends-v2-
-      - name: Dividenden abrufen (Nasdaq, Yahoo Finance)
-        id: divfetch
-        if: steps.divcache.outputs.cache-hit != 'true'
+          key: dividends-v3-${{ github.run_id }}
+          restore-keys: dividends-v3-
+      - name: Dividenden abrufen (Nasdaq, Yahoo Finance; je Lauf die fünf ältesten)
         continue-on-error: true
-        timeout-minutes: 6
+        timeout-minutes: 4
+        env:
+          DIV_BATCH: ${{ github.event.inputs.dividenden_neu == 'true' && '17' || '5' }}
         run: |
           mkdir -p .divcache
+          [ "${{ github.event.inputs.dividenden_neu }}" = "true" ] && rm -f .divcache/dividends.json
           node scripts/fetch-dividends.mjs .divcache/dividends.json
-      - name: Dividenden merken (vollständig für heute, sonst als Teilstand)
-        if: steps.divfetch.outcome == 'success' || steps.divfetch.outcome == 'failure'
+      - name: Dividenden merken
+        if: hashFiles('.divcache/dividends.json') != ''
         uses: actions/cache/save@v4
         with:
           path: .divcache
-          key: ${{ steps.divfetch.outcome == 'success' && steps.divcache.outputs.cache-primary-key || format('dividends-v2-teil-{0}-{1}', github.run_id, github.run_attempt) }}
+          key: dividends-v3-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Dividenden veröffentlichen
         run: |
           if [ -f .divcache/dividends.json ]; then cp .divcache/dividends.json _site/dividends.json; else echo '{"asOf":null,"items":{},"missing":[],"errors":{"all":"Abruf fehlgeschlagen"}}' > _site/dividends.json; fi
