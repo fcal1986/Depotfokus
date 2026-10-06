@@ -1,0 +1,12 @@
+{
+ "meta": {
+  "version": 1,
+  "asOf": "2026-10-06",
+  "note": "Angekündigte Dividenden je Position, nur aus offiziellen Meldungen der Unternehmen. amount je Aktie in Originalwährung, ex und pay als ISO-Datum. src verweist auf data/info.json › sources. Nicht angekündigte Zahlungen schätzt die App aus den Umsätzen und kennzeichnet sie."
+ },
+ "items": [
+  {"sym": "13M.F", "label": "Monatsdividende Oktober 2026", "ex": "2026-10-08", "pay": "2026-10-15", "amount": 0.265, "ccy": "USD", "src": "mainDiv"},
+  {"sym": "13M.F", "label": "Monatsdividende November 2026", "ex": "2026-11-06", "pay": "2026-11-13", "amount": 0.265, "ccy": "USD", "src": "mainDiv"},
+  {"sym": "13M.F", "label": "Monatsdividende Dezember 2026", "ex": "2026-12-08", "pay": "2026-12-15", "amount": 0.265, "ccy": "USD", "src": "mainDiv"}
+ ]
+}

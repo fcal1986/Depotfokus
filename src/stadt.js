@@ -84,10 +84,10 @@ function stadtSVG(d,m){
     </g>`;x+=wide+GAP});
   const W=x+10;
   return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="stadt-svg" role="img" aria-label="Deine Depot-Stadt ${m?'in '+num(m/12,0)+' Jahren':'heute'}">
-    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCEBFF"/><stop offset="1" stop-color="#FFF1E3"/></linearGradient></defs>
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient></defs>
     <rect width="${W}" height="${H}" fill="url(#sky)"/>
-    <ellipse cx="${W*0.2}" cy="${base+40}" rx="${W*0.4}" ry="40" fill="#CFEFC7"/><ellipse cx="${W*0.8}" cy="${base+42}" rx="${W*0.45}" ry="44" fill="#BFE8B5"/>
-    <rect y="${base}" width="${W}" height="${H-base}" fill="#8FD18A"/><rect y="${base}" width="${W}" height="4" fill="#6FB86A"/>
+    <ellipse cx="${W*0.2}" cy="${base+40}" rx="${W*0.4}" ry="40" style="fill:var(--hill1)"/><ellipse cx="${W*0.8}" cy="${base+42}" rx="${W*0.45}" ry="44" style="fill:var(--hill2)"/>
+    <rect y="${base}" width="${W}" height="${H-base}" style="fill:var(--grass)"/><rect y="${base}" width="${W}" height="4" style="fill:var(--grass-edge)"/>
     ${out}</svg>`;
 }
 function stadtHTML(d){
