@@ -112,7 +112,7 @@ let prev = {}, tried = {};
 try { const j = JSON.parse(fs.readFileSync(out, 'utf8')); prev = j.items || {}; tried = j.tried || {}; } catch (e) {}
 // Portionen: je Lauf nur die Wertpapiere mit den ältesten Daten (Nasdaq und Yahoo drosseln Serverabrufe stark).
 // Bei Läufen alle 15 Minuten ist nach rund einer Stunde alles da, danach wird jedes Wertpapier einmal am Tag erneuert.
-const BATCH = +process.env.DIV_BATCH || 5, MAXAGE = 20 * 3600e3;
+const BATCH = +process.env.DIV_BATCH || 0, MAXAGE = 20 * 3600e3;
 // Fehlversuche frühestens nach zwei Stunden wiederholen, damit sie die Portion nicht blockieren
 const since0 = t => t ? Date.now() - Date.parse(t) : Infinity;
 const isDue = s => since0(prev[s] && prev[s].at) > MAXAGE && since0(tried[s]) > 2 * 3600e3;
@@ -130,7 +130,21 @@ async function onvistaProbe(s) {
     } catch (e) { note(`${s} onvista`, e.message); }
   }
 }
-for (const s of ['CCC3.DE', 'IQQW.DE']) await onvistaProbe(s);
+// Diagnose: Ausweichquellen ohne Schlüssel (Status und Anfang der Antwort)
+for (const [tag, u] of [
+  ['onvista dividends', 'https://api.onvista.de/api/v1/stocks/ISIN:US1912161007/dividends'],
+  ['onvista events', 'https://api.onvista.de/api/v1/stocks/ISIN:US1912161007/events'],
+  ['frankfurt', 'https://api.boerse-frankfurt.de/v1/data/dividend_information?isin=US1912161007&limit=10'],
+  ['stockanalysis', 'https://stockanalysis.com/api/symbol/s/ko/dividend'],
+  ['marketwatch', 'https://www.dividendchannel.com/symbol/ko/'],
+  ['ishares', 'https://www.ishares.com/de/privatanleger/de/produkte/251881/ishares-msci-world-ucits-etf-inc-fund/1478358465952.ajax?tab=distributions&fileType=json'],
+  ['alphavantage demo', 'https://www.alphavantage.co/query?function=DIVIDENDS&symbol=IBM&apikey=demo'],
+  ['nasdaq ko etf', 'https://api.nasdaq.com/api/quote/KO/dividends?assetclass=etf'],
+  ['nasdaq ko info', 'https://api.nasdaq.com/api/quote/KO/info?assetclass=stocks'],
+]) {
+  try { const r = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'application/json, text/html' }, signal: AbortSignal.timeout(12000) });
+    note('probe ' + tag, `${r.status} ${(await r.text()).replace(/\s+/g, ' ').slice(0, 300)}`); } catch (e) { note('probe ' + tag, e.message); }
+}
 const items = {}, missing = [];
 for (const s of symbols) if (prev[s] && !due.includes(s)) items[s] = prev[s];
 let fresh = 0;
