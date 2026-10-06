@@ -53,22 +53,21 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .divcache
-          key: dividends-v1-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
-          restore-keys: dividends-v1-
+          key: dividends-v2-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
+          restore-keys: dividends-v2-
       - name: Dividenden abrufen (Nasdaq, Yahoo Finance)
         id: divfetch
         if: steps.divcache.outputs.cache-hit != 'true'
         continue-on-error: true
         run: |
           mkdir -p .divcache
-          node scripts/fetch-dividends.mjs .divcache/new.json
-          mv .divcache/new.json .divcache/dividends.json
-      - name: Dividenden für heute merken
-        if: steps.divfetch.outcome == 'success'
+          node scripts/fetch-dividends.mjs .divcache/dividends.json
+      - name: Dividenden merken (vollständig für heute, sonst als Teilstand)
+        if: steps.divfetch.outcome == 'success' || steps.divfetch.outcome == 'failure'
         uses: actions/cache/save@v4
         with:
           path: .divcache
-          key: dividends-v1-${{ steps.day.outputs.day }}${{ github.event.inputs.dividenden_neu == 'true' && format('-{0}', github.run_id) || '' }}
+          key: ${{ steps.divfetch.outcome == 'success' && steps.divcache.outputs.cache-primary-key || format('dividends-v2-teil-{0}-{1}', github.run_id, github.run_attempt) }}
       - name: Dividenden veröffentlichen
         run: |
           if [ -f .divcache/dividends.json ]; then cp .divcache/dividends.json _site/dividends.json; else echo '{"asOf":null,"items":{},"missing":[],"errors":{"all":"Abruf fehlgeschlagen"}}' > _site/dividends.json; fi
