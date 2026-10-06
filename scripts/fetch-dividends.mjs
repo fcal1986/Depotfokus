@@ -130,20 +130,12 @@ async function onvistaProbe(s) {
     } catch (e) { note(`${s} onvista`, e.message); }
   }
 }
-// Diagnose: Ausweichquellen ohne Schlüssel (Status und Anfang der Antwort)
-for (const [tag, u] of [
-  ['onvista dividends', 'https://api.onvista.de/api/v1/stocks/ISIN:US1912161007/dividends'],
-  ['onvista events', 'https://api.onvista.de/api/v1/stocks/ISIN:US1912161007/events'],
-  ['frankfurt', 'https://api.boerse-frankfurt.de/v1/data/dividend_information?isin=US1912161007&limit=10'],
-  ['stockanalysis', 'https://stockanalysis.com/api/symbol/s/ko/dividend'],
-  ['marketwatch', 'https://www.dividendchannel.com/symbol/ko/'],
-  ['ishares', 'https://www.ishares.com/de/privatanleger/de/produkte/251881/ishares-msci-world-ucits-etf-inc-fund/1478358465952.ajax?tab=distributions&fileType=json'],
-  ['alphavantage demo', 'https://www.alphavantage.co/query?function=DIVIDENDS&symbol=IBM&apikey=demo'],
-  ['nasdaq ko etf', 'https://api.nasdaq.com/api/quote/KO/dividends?assetclass=etf'],
-  ['nasdaq ko info', 'https://api.nasdaq.com/api/quote/KO/info?assetclass=stocks'],
-]) {
-  try { const r = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'application/json, text/html' }, signal: AbortSignal.timeout(12000) });
-    note('probe ' + tag, `${r.status} ${(await r.text()).replace(/\s+/g, ' ').slice(0, 300)}`); } catch (e) { note('probe ' + tag, e.message); }
+// Diagnose: Aufbau der stockanalysis-Antwort
+for (const u of ['https://stockanalysis.com/api/symbol/s/ko/dividend', 'https://stockanalysis.com/api/symbol/s/o/dividend', 'https://stockanalysis.com/api/symbol/e/vt/dividend']) {
+  try { const r = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'application/json' }, signal: AbortSignal.timeout(12000) }); const j = await r.json(); const d = j.data || {};
+    note('probe ' + u.split('/').slice(-3).join('/'), `${r.status} keys=${Object.keys(d).join(',')}`);
+    for (const [k, v] of Object.entries(d)) { if (Array.isArray(v)) note('probe ' + u.split('/').slice(-2,-1)[0] + ' ' + k, `n=${v.length} ${JSON.stringify(v.slice(0, 2))}`); else if (v && typeof v === 'object') note('probe ' + u.split('/').slice(-2,-1)[0] + ' ' + k, JSON.stringify(v).slice(0, 300)); }
+  } catch (e) { note('probe ' + u, e.message); }
 }
 const items = {}, missing = [];
 for (const s of symbols) if (prev[s] && !due.includes(s)) items[s] = prev[s];
