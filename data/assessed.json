@@ -1,3 +1,12 @@
 {
- "processed": {}
+ "processed": {
+  "0001171843-26-006440": {
+   "sym": "NOV.DE",
+   "date": "2026-10-06",
+   "form": "6-K",
+   "status": "skipped",
+   "reason": "keine Ergebnismitteilung",
+   "at": "2026-10-06"
+  }
+ }
 }
