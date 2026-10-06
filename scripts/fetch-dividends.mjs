@@ -1,8 +1,9 @@
 // Sammelt Dividenden (Ex-Tag, Zahltag, Betrag je Aktie) für die bekannten Wertpapiere und schreibt dividends.json.
 // Läuft in GitHub Actions beim Veröffentlichen, höchstens einmal am Tag (Cache). Es werden keine Bestände übertragen,
 // nur öffentliche Symbole aus den Stammdaten (src/logic.js) und symbols.txt.
-// Quellen: Nasdaq (US-Aktien, inklusive bereits erklärter künftiger Zahlungen mit Zahltag),
-// sonst Yahoo Finance (Ex-Tage und Beträge der letzten zwei Jahre, ohne Zahltag).
+// Quellen der Reihe nach: stockanalysis.com (US-Aktien und US-ETFs, auch NYSE: Ex-Tag, Zahltag, bereits erklärte Zahlungen),
+// Nasdaq (nur an der Nasdaq notierte Aktien), Yahoo Finance (sperrt GitHub-Server meist mit 429).
+// UCITS-ETFs aus Europa haben bei diesen Quellen keine Daten; dafür schätzt die App aus deinen Umsätzen.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -11,15 +12,14 @@ const logic = fs.readFileSync('src/logic.js', 'utf8');
 const i0 = logic.indexOf('const STAMM={');
 const stamm = logic.slice(i0, logic.indexOf('};', i0));
 const symbols = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{(?:isin:'[A-Z0-9]{12}',)?bucket/g)].map(m => m[1]));
-const ISIN = Object.fromEntries([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{isin:'([A-Z0-9]{12})'/g)].map(m => [m[1], m[2]]));
 const FUND = new Set([...stamm.matchAll(/'([A-Z0-9.\-^=]+)':\{[^}]*fund:true/g)].map(m => m[1]));
 // symbols.txt: je Zeile "SYMBOL ISIN [US-TICKER]"; der US-Ticker (z. B. KO) erlaubt den Abruf bei Nasdaq
 const USX = {};
 if (fs.existsSync('symbols.txt')) fs.readFileSync('symbols.txt', 'utf8').split(/\r?\n/).map(l => l.replace(/#.*/, '').trim()).filter(Boolean).forEach(l => { const [sy, , us] = l.split(/\s+/); symbols.add(sy); if (/^[A-Z.]{1,6}$/.test(us || '')) USX[sy] = us; });
 
-// US-Ticker der Stammdaten (Nasdaq kennt Zahltage und erklärte künftige Dividenden)
+// US-Ticker der Stammdaten; Novo Nordisk über die US-ADR (1 ADR = 1 B-Aktie, Betrag in USD)
 const NASDAQ = { '9A2.F': 'ARCC', '13M.F': 'MAIN', 'WX4.F': 'OHI', 'RY6.F': 'O', 'PEP.DE': 'PEP', 'JNJ.DE': 'JNJ', 'CCC3.DE': 'KO', 'PRG.DE': 'PG',
-  'MSF.DE': 'MSFT', '3V64.DE': 'V', GOOG: 'GOOG', AAPL: 'AAPL', MA: 'MA', ...USX };
+  'MSF.DE': 'MSFT', '3V64.DE': 'V', 'NOV.DE': 'NVO', GOOG: 'GOOG', AAPL: 'AAPL', MA: 'MA', ...USX };
 // Yahoo-Symbol mit der Heimatbörse, wenn die deutsche Notiz keine Dividenden führt
 const YAHOO = { 'NOV.DE': 'NOVO-B.CO' };
 
@@ -47,6 +47,18 @@ async function get(url, headers, tag) {
 }
 const usDate = s => { const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[3]}-${m[1]}-${m[2]}` : null; };
 
+async function stockanalysis(t, etf) {
+  const r = await get(`https://stockanalysis.com/api/symbol/${etf ? 'e' : 's'}/${encodeURIComponent(t.toLowerCase())}/dividend`, { 'User-Agent': UA, Accept: 'application/json' }, `${t} stockanalysis`);
+  if (!r) return null;
+  try {
+    const h = (await r.json())?.data?.history || [];
+    const iso = v => /^\d{4}-\d{2}-\d{2}$/.test(v || '') ? v : null;
+    const ev = h.map(x => ({ ex: iso(x.dt), pay: iso(x.pay), decl: iso(x.dec), amount: parseFloat(String(x.amt || '').replace(/[^0-9.]/g, '')) }))
+      .filter(x => x.ex && x.ex >= since && x.amount > 0);
+    if (!ev.length) { note(t, 'stockanalysis leer'); return null; }
+    return { src: 'stockanalysis.com', ref: t + (t === 'NVO' ? ' (US-ADR)' : ''), ccy: 'USD', url: `https://stockanalysis.com/${etf ? 'etf' : 'stocks'}/${t.toLowerCase()}/dividend/`, ev };
+  } catch (e) { note(t, `stockanalysis ${e.message}`); return null; }
+}
 async function nasdaq(t) {
   for (const cls of ['stocks']) {
     try {
@@ -55,7 +67,6 @@ async function nasdaq(t) {
       if (!r) continue;
       const j = await r.json();
       const rows = j?.data?.dividends?.rows || [];
-      if (!rows.length) note(t, `nasdaq Antwort: ${JSON.stringify(j).slice(0, 400)}`);
       const ev = rows.filter(x => /cash/i.test(x.type || 'cash')).map(x => ({
         ex: usDate(x.exOrEffDate), pay: usDate(x.paymentDate), decl: usDate(x.declarationDate),
         amount: parseFloat(String(x.amount || '').replace(/[^0-9.]/g, '')) })).filter(x => x.ex && x.ex >= since && x.amount > 0);
@@ -98,6 +109,7 @@ async function yahoo(sym) {
       const ev = Object.values(d).map(x => ({ ex: new Date(x.date * 1000).toISOString().slice(0, 10), pay: null, decl: null, amount: x.amount }))
         .filter(x => x.ex >= since && x.amount > 0);
       if (!res) { note(sym, `yahoo ${host} leer`); continue; }
+      if (!ev.length) return null;
       // GBp (Pence) in Pfund umrechnen
       const gbp = ccy === 'GBp' || ccy === 'GBX';
       return { src: 'Yahoo Finance', ref: sym, ccy: gbp ? 'GBP' : ccy, url: `https://finance.yahoo.com/quote/${encodeURIComponent(sym)}/history/?filter=div`,
@@ -117,35 +129,16 @@ const BATCH = +process.env.DIV_BATCH || 0, MAXAGE = 20 * 3600e3;
 const since0 = t => t ? Date.now() - Date.parse(t) : Infinity;
 const isDue = s => since0(prev[s] && prev[s].at) > MAXAGE && since0(tried[s]) > 2 * 3600e3;
 const due = [...symbols].filter(isDue).sort((a, b) => since0(tried[b]) - since0(tried[a])).slice(0, BATCH);
-// Diagnose: wo stehen bei onvista Dividenden? (Feldnamen und ein Beispiel ins Fehlerprotokoll)
-async function onvistaProbe(s) {
-  const isin = ISIN[s]; if (!isin) return;
-  for (const kind of [FUND.has(s) ? 'funds' : 'stocks']) {
-    try {
-      const r = await fetch(`https://api.onvista.de/api/v1/${kind}/ISIN:${isin}/snapshot`, { headers: { 'User-Agent': UA, Accept: 'application/json' }, signal: AbortSignal.timeout(12000) });
-      if (!r.ok) { note(`${s} onvista`, `${r.status}`); continue; }
-      const j = await r.json(); const hits = [];
-      const walk = (o, path) => { if (!o || typeof o !== 'object' || hits.length > 6) return; for (const [k, v] of Object.entries(o)) { const pth = path + '.' + k; if (/divid|distribut|ausschütt/i.test(k)) hits.push(pth + ' = ' + JSON.stringify(v).slice(0, 350)); else walk(v, pth); } };
-      walk(j, ''); note(`${s} onvista`, `Felder: ${Object.keys(j).join(',')}`); hits.forEach(h => note(`${s} onvista`, h));
-    } catch (e) { note(`${s} onvista`, e.message); }
-  }
-}
-// Diagnose: Aufbau der stockanalysis-Antwort
-for (const u of ['https://stockanalysis.com/api/symbol/s/ko/dividend', 'https://stockanalysis.com/api/symbol/s/o/dividend', 'https://stockanalysis.com/api/symbol/e/vt/dividend']) {
-  try { const r = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'application/json' }, signal: AbortSignal.timeout(12000) }); const j = await r.json(); const d = j.data || {};
-    note('probe ' + u.split('/').slice(-3).join('/'), `${r.status} keys=${Object.keys(d).join(',')}`);
-    for (const [k, v] of Object.entries(d)) { if (Array.isArray(v)) note('probe ' + u.split('/').slice(-2,-1)[0] + ' ' + k, `n=${v.length} ${JSON.stringify(v.slice(0, 2))}`); else if (v && typeof v === 'object') note('probe ' + u.split('/').slice(-2,-1)[0] + ' ' + k, JSON.stringify(v).slice(0, 300)); }
-  } catch (e) { note('probe ' + u, e.message); }
-}
 const items = {}, missing = [];
 for (const s of symbols) if (prev[s] && !due.includes(s)) items[s] = prev[s];
 let fresh = 0;
 for (const s of due) {
   if (late()) { if (prev[s]) items[s] = prev[s]; note(s, 'Zeitlimit'); continue; }
   tried[s] = new Date().toISOString();
-  let it = NASDAQ[s] && !FUND.has(s) ? await nasdaq(NASDAQ[s]) : null;
+  const us = NASDAQ[s] || (/^[A-Z]{1,5}$/.test(s) ? s : null);
+  let it = us ? await stockanalysis(us, FUND.has(s)) : null;
+  if (!it && us && !FUND.has(s)) it = await nasdaq(us);
   if (!it) it = await yahoo(YAHOO[s] || s);
-  if (!it && NASDAQ[s]) it = await yahoo(NASDAQ[s]);
   if (it) { it.ev.sort((a, b) => a.ex < b.ex ? -1 : 1); it.at = tried[s]; items[s] = it; fresh++; }
   else if (prev[s]) items[s] = prev[s];
   await sleep(3000);
