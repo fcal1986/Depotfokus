@@ -59,6 +59,7 @@ jobs:
         id: divfetch
         if: steps.divcache.outputs.cache-hit != 'true'
         continue-on-error: true
+        timeout-minutes: 6
         run: |
           mkdir -p .divcache
           node scripts/fetch-dividends.mjs .divcache/dividends.json

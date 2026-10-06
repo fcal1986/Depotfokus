@@ -29,22 +29,25 @@ const note = (s, m) => { (errors[s] = errors[s] || []).push(m); };
 const today = new Date().toISOString().slice(0, 10);
 const since = new Date(Date.now() - 800 * 864e5).toISOString().slice(0, 10);
 // Abruf mit Wiederholung bei Ratenbegrenzung (429) und Serverfehlern
+// Gesamtzeit begrenzen, damit der Seitenaufbau nicht hängt; was fehlt, holt der nächste Lauf
+const DEADLINE = Date.now() + (+process.env.DIV_MAX_SECONDS || 240) * 1000;
+const late = () => Date.now() > DEADLINE;
 async function get(url, headers, tag) {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3 && !late(); i++) {
     try {
-      const r = await fetch(url, { headers });
+      const r = await fetch(url, { headers, signal: AbortSignal.timeout(12000) });
       if (r.ok) return r;
       note(tag, `${r.status}${i ? ' (Versuch ' + (i + 1) + ')' : ''}`);
       if (r.status !== 429 && r.status < 500) return null;
     } catch (e) { note(tag, e.message); }
-    await sleep(4000 * (i + 1));
+    if (i < 2) await sleep(3000 * (i + 1));
   }
   return null;
 }
 const usDate = s => { const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[3]}-${m[1]}-${m[2]}` : null; };
 
 async function nasdaq(t) {
-  for (const cls of ['stocks', 'etf']) {
+  for (const cls of ['stocks']) {
     try {
       const r = await get(`https://api.nasdaq.com/api/quote/${encodeURIComponent(t)}/dividends?assetclass=${cls}`,
         { 'User-Agent': UA, Accept: 'application/json, text/plain, */*', Origin: 'https://www.nasdaq.com', Referer: 'https://www.nasdaq.com/' }, `${t} nasdaq ${cls}`);
@@ -67,13 +70,13 @@ async function yahooSession() {
   try {
     let cookie = '';
     for (const u of ['https://fc.yahoo.com', 'https://finance.yahoo.com/']) {
-      const r = await fetch(u, { headers: { 'User-Agent': UA }, redirect: 'manual' });
+      const r = await fetch(u, { headers: { 'User-Agent': UA }, redirect: 'manual', signal: AbortSignal.timeout(10000) });
       const sc = typeof r.headers.getSetCookie === 'function' ? r.headers.getSetCookie() : [r.headers.get('set-cookie')].filter(Boolean);
       cookie = sc.map(c => c.split(';')[0]).join('; ');
       if (cookie) break;
     }
     if (!cookie) { note('yahoo', 'kein Cookie'); return ses; }
-    const c = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { 'User-Agent': UA, Cookie: cookie } });
+    const c = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { 'User-Agent': UA, Cookie: cookie }, signal: AbortSignal.timeout(10000) });
     const crumb = (await c.text()).trim();
     if (c.ok && crumb && crumb.length < 40 && !/[<{]/.test(crumb)) ses = { cookie, crumb }; else note('yahoo', `crumb ${c.status}`);
   } catch (e) { note('yahoo', e.message); }
@@ -107,6 +110,7 @@ try { prev = JSON.parse(fs.readFileSync(out, 'utf8')).items || {}; } catch (e) {
 const items = {}, missing = [];
 let fresh = 0;
 for (const s of symbols) {
+  if (late()) { if (prev[s]) items[s] = { ...prev[s], stale: true }; missing.push(s); note(s, 'Zeitlimit'); continue; }
   let it = NASDAQ[s] && !FUND.has(s) ? await nasdaq(NASDAQ[s]) : null;
   if (!it) it = await yahoo(YAHOO[s] || s);
   if (!it && NASDAQ[s]) it = await yahoo(NASDAQ[s]);
