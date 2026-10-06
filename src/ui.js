@@ -28,6 +28,7 @@ const ICON={
  gear:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>',
  pause:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
  play:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>',
+ contrast:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
  bars:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V14M10 20V9M16 20V5M22 20H2"/></svg>'
 };
 function weather(kind){
@@ -46,7 +47,7 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot'};
+const TABFOR={heute:'heute',kalender:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot'};
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -61,6 +62,7 @@ function route(){
     else if(r==='stand')html=vStand();
     else if(r==='zeit')html=vZeit();
     else if(r==='haus')html=vHaus(a[0]);
+    else if(r==='kalender')html=vKalender();
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   const ss0=document.getElementById('stadtScroll'),sl0=ss0?ss0.scrollLeft:null;
@@ -98,6 +100,7 @@ function vHeute(){
     <div class="col" style="gap:2px"><span class="small strong muted2">${now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}</span><h1 class="h1">${greet}</h1></div>
     <div class="row" style="gap:6px">
       <a href="#liga" class="chip-btn" aria-label="Lernserie: ${streak()} Tage, ${FUN.points} Wissenspunkte">${ICON.bars}<span>${streak()} ${streak()===1?'Tag':'Tage'}</span></a>
+      ${themeBtn()}
       <a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a>
     </div>
   </div>
@@ -118,6 +121,7 @@ function vHeute(){
     ${fresh.map(p=>{const n=newReports(p.symbol)[0];return `<a href="#pos/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag new">Neuer Bericht</span></span><span class="d">${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(p.symbol))}</span><span class="src">Erkannt bei der SEC am ${esc(deDate(REPORTS.checkedAt))}</span></a>`}).join('')}
     ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)} · Stand ${deDate(I.checked)}</span></a>`}).join(''):fresh.length?'':'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
+  ${kalTeaser(d)}
   ${zTeaser(d)}
   ${standTeaser()}
   <p class="hint">Keine Anlageberatung.</p>`;
@@ -222,6 +226,7 @@ function vDepot(){
   ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
   ${stadtHTML(d)}
   ${perfCard(d)}
+  ${kalTeaser(d)}
   <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
   <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
   <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
@@ -414,6 +419,7 @@ function vDaten(){return `
   <div class="card" id="pricesCard"></div>
   <div class="card" id="confirmCard" tabindex="-1"></div>
   <div class="card" id="extCard"></div>
+  <section class="card col" style="gap:8px"><h2 class="h2" style="margin:0">Darstellung</h2><div class="seg theme-seg" role="group" aria-label="Design">${[['system','System'],['light','Hell'],['dark','Dunkel']].map(([k,l])=>`<button type="button" data-themeset="${k}" aria-pressed="${(UI.theme||'system')===k}">${l}</button>`).join('')}</div><p class="hint">„System“ folgt der Einstellung deines Geräts. Gilt nur auf diesem Gerät.</p></section>
   <a class="card row between" href="#stand"><span class="col" style="gap:2px"><span class="strong">Datenstand und Ablauf</span><span class="small muted2">Was automatisch läuft, was manuell geprüft ist und wann</span></span><span aria-hidden="true">→</span></a>`}
 
 /* ---------------- Datenstand ---------------- */
@@ -478,6 +484,10 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
 /* ---------------- Ereignisse ---------------- */
 document.addEventListener('click',e=>{
   const t=e.target;
+  const kt=t.closest('[data-ktab]');if(kt){KAL.tab=kt.dataset.ktab;rerender();return}
+  const km=t.closest('[data-kmonth]');if(km){const el=document.getElementById('km-'+km.dataset.kmonth);if(el){el.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});const n=el.nextElementSibling;if(n&&n.matches('details'))n.querySelector('summary').focus({preventScroll:true})}else toast('In diesem Monat ist nichts angekündigt oder geschätzt.');return}
+  const ts=t.closest('[data-themeset]');if(ts){UI.theme=ts.dataset.themeset;saveUI();applyTheme();rerender();return}
+  if(t.closest('#themeToggle')){UI.theme=isDark()?'light':'dark';saveUI();applyTheme();rerender();toast(UI.theme==='dark'?'Dunkles Design':'Helles Design');return}
   const sb=t.closest('[data-story]');if(sb){if(tapLong){tapLong=false;return}storyStep(sb.dataset.story==='next'?1:-1);return}
   if(t.closest('#storyPause')){storyPaused?resumeStory():pauseStory();return}
   const un=t.closest('[data-understood]');if(un){const id=un.dataset.understood;if(!FUN.understood.includes(id)){FUN.understood.push(id);FUN.points+=10;touchDay();saveFun();toast('+10 Wissenspunkte')}rerender();return}
@@ -538,6 +548,15 @@ function handleFiles(list){let h=0,t=0,err=0;
   list.forEach(([name,text])=>{const a=analyzeCSV(text,name);if(a.kind==='transactions'){t++;stagedTx=stagedTx&&!stagedTx.error?mergeTx(stagedTx,a):a}else{h++;staged=a}if(a.error)err++});
   renderImport();toast(err?'Mindestens eine Datei ist nicht lesbar':`${h?'Bestand':''}${h&&t?' und ':''}${t?'Umsätze':''} geprüft, bitte kontrollieren`)}
 function changed(){const d=D();evaluateChanges(d);persist();rerender()}
+
+/* ---------------- Design: Hell, Dunkel oder wie das System ---------------- */
+const darkMQ=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+function isDark(){const t=UI.theme||'system';return t==='dark'||(t==='system'&&!!(darkMQ&&darkMQ.matches))}
+function applyTheme(){const r=document.documentElement,t=UI.theme||'system';if(t==='system')delete r.dataset.theme;else r.dataset.theme=t;
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',getComputedStyle(r).getPropertyValue('--ground').trim()||'#F5F6FA')}
+function themeBtn(){const dk=isDark();return `<button type="button" class="icon-btn" id="themeToggle" aria-label="${dk?'Zu hellem Design wechseln':'Zu dunklem Design wechseln'}">${ICON.contrast}</button>`}
+if(darkMQ&&darkMQ.addEventListener)darkMQ.addEventListener('change',()=>{if((UI.theme||'system')==='system'){applyTheme();rerender()}});
+applyTheme();
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
