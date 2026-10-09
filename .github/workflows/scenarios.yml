@@ -1,0 +1,79 @@
+name: Szenario-Monitor
+
+# Bewertet die drei Makroszenarien (A, B, C) wöchentlich neu, ausschließlich aus öffentlichen
+# Wirtschaftsdaten (EZB, Eurostat, FRED). Keine Depotdaten, kein API-Schlüssel, kein Sprachmodell.
+# Ablauf: Quellen abrufen → validieren und deduplizieren → Gewichte rechnen → erklären →
+# Snapshot prüfen → in data/scenarios/ speichern → Pages-Workflow anstoßen → Auslieferung prüfen.
+#
+# Zeit: Montag 07:20 Uhr Berliner Zeit. GitHub-Cron läuft in UTC; deshalb zwei Einträge
+# (05:20 UTC im Sommer, 06:20 UTC im Winter). Das Skript startet nur den ersten Lauf nach
+# 7 Uhr Berliner Zeit; ein verspäteter oder doppelter Lauf erzeugt keinen zweiten Wochenstand.
+
+on:
+  schedule:
+    - cron: '20 5 * * 1'
+    - cron: '20 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      trockenlauf:
+        description: 'Nur prüfen, nichts speichern'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # Snapshot committen
+  actions: write    # Pages-Workflow anstoßen (Bot-Pushes mit GITHUB_TOKEN lösen keine Workflows aus)
+
+concurrency:
+  group: scenarios
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Tests des Rechenkerns
+        run: node --test scripts/scenario-test.mjs
+      - name: Szenarien neu bewerten
+        id: run
+        timeout-minutes: 8
+        env:
+          SCEN_DRY: ${{ (github.event_name == 'push' || github.event.inputs.trockenlauf == 'true') && '1' || '0' }}
+        run: node scripts/scenario-run.mjs
+      - name: Dauerhaft speichern
+        id: save
+        if: steps.run.outputs.changed == 'true' && github.event_name != 'push' && github.event.inputs.trockenlauf != 'true'
+        env:
+          SID: ${{ steps.run.outputs.snapshot_id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scenarios
+          if git diff --cached --quiet; then echo "pushed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -q -m "Szenario-Monitor: ${SID} [skip ci]"
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then echo "pushed=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+            sleep $((i * 10))
+          done
+          echo "Push nach drei Versuchen fehlgeschlagen" >&2; exit 1
+      - name: Seite neu bauen
+        if: steps.save.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main -R "$GITHUB_REPOSITORY"
+      - name: Auslieferung prüfen
+        if: steps.save.outputs.pushed == 'true'
+        env:
+          SID: ${{ steps.run.outputs.snapshot_id }}
+          URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fsS "${URL}?v=$(date +%s)" | grep -q "\"snapshot_id\":\"${SID}\""; then echo "Veröffentlicht: ${SID} unter ${URL}"; exit 0; fi
+            sleep 30
+          done
+          echo "::error::${SID} ist nach 15 Minuten nicht unter ${URL} sichtbar. Actions › GitHub Pages prüfen." ; exit 1

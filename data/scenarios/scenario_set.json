@@ -1,0 +1,63 @@
+{
+  "scenario_set_id": "macro-2026-10-09_2029-10-09",
+  "scenario_definition_version": "1.0.0",
+  "created_at": "2026-10-09",
+  "horizon": { "start": "2026-10-09", "target_date": "2029-10-09" },
+  "label": "Szenario-Wahrscheinlichkeit – Modellschätzung",
+  "prior_note": "Startgewichte aus der bisherigen eigenen Szenarioanalyse (09.10.2026). Subjektive Modellannahmen, keine von einer Institution berechneten Wahrscheinlichkeiten.",
+  "rolling_note": "Das Ziel 2029-10-09 bleibt für alle Wochenvergleiche dieses Satzes fest. Ein neuer Dreijahreshorizont bekommt einen eigenen scenario_set_id und einen getrennten Verlauf.",
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "Zähe Erholung",
+      "short": "Schwaches bis moderates Wachstum, allmählich nachlassender Preisdruck, moderate Gewinnentwicklung.",
+      "definition": "Euroraum und USA wachsen über drei Jahre schwach bis moderat, ohne anhaltende Rezession und ohne breiten Investitions- und Produktivitätsschub. Die Inflation nähert sich langsam den Zielen, Unternehmensgewinne steigen moderat. Zwischenzeitliche Kursrückgänge sind möglich.",
+      "prior": 0.5,
+      "tone": "neutral",
+      "color": "--sc-a"
+    },
+    {
+      "id": "B",
+      "name": "Breiter Aufschwung",
+      "short": "Entspannung bei Energie und Handel, stärkere Investitionen und Produktivität, breite Gewinnverbesserung.",
+      "definition": "Energiepreise und Handelskonflikte entspannen sich, Investitionen (auch in KI und Digitalisierung) ziehen an und schlagen sich in messbar höherem Wachstum nieder. Die Gewinne verbessern sich breit, nicht nur in wenigen Sektoren. Zwischenzeitliche Kursrückgänge sind auch hier möglich.",
+      "prior": 0.2,
+      "tone": "good",
+      "color": "--sc-b"
+    },
+    {
+      "id": "C",
+      "name": "Längerer Wirtschafts- und Finanzmarktstress",
+      "short": "Anhaltende Energie-, Finanzierungs- oder Gewinnprobleme führen zu Stagnation, Rezession oder längerem Börsenstress.",
+      "definition": "Mindestens eine anhaltende Belastung (Energie, Finanzierung/Kredit oder Gewinne) führt zu Stagnation, Rezession oder einer längeren Phase mit Finanzmarktstress. Eine Rezession garantiert keinen negativen Aktienertrag bis zum Enddatum; das Szenario beschreibt den Wirtschaftsverlauf, nicht die Rendite.",
+      "prior": 0.3,
+      "tone": "bad",
+      "color": "--sc-c"
+    }
+  ],
+  "resolution": {
+    "evaluated_on": "2029-10-09",
+    "data_cutoff": "Nur Daten, die am 2029-10-09 veröffentlicht sind. Betrachtet werden die Quartale 2026-Q4 bis 2029-Q3 und die Monate 2026-10 bis 2029-09.",
+    "order": "Zuerst C prüfen, dann B, sonst A. Genau ein Szenario trifft zu.",
+    "rules": [
+      { "scenario": "C", "any_of": [
+        "Euroraum-BIP (real, saison- und kalenderbereinigt, Eurostat namq_10_gdp) wächst kumuliert vom 2026-Q3 bis 2029-Q3 um weniger als 1,5 % (rund 0,5 % pro Jahr), oder",
+        "der Euroraum hat im Zeitraum mindestens zwei aufeinanderfolgende Quartale mit negativem realem BIP-Wachstum gegenüber dem Vorquartal, oder",
+        "der EZB-Finanzstressindikator CISS liegt im Monatsdurchschnitt in mindestens sechs Monaten des Zeitraums über 0,30."
+      ] },
+      { "scenario": "B", "all_of": [
+        "C trifft nicht zu,",
+        "Euroraum-BIP wächst kumuliert vom 2026-Q3 bis 2029-Q3 um mindestens 5,0 % (rund 1,65 % pro Jahr),",
+        "die Kerninflation im Euroraum (HICP ohne Energie, Nahrungsmittel, Alkohol und Tabak, EZB) liegt im Durchschnitt der letzten zwölf Monate bis 2029-09 bei höchstens 2,5 %,",
+        "die US-Unternehmensgewinne nach Steuern (BEA, FRED CP) liegen im 2029-Q2 mindestens 15 % über dem 2026-Q2."
+      ] },
+      { "scenario": "A", "all_of": ["Weder C noch B trifft zu."] }
+    ],
+    "return_note": "Makroszenario und Renditeannahme sind getrennt. Auch in A oder B kann der Aktienmarkt zeitweise fallen, auch in C kann er bis 2029 steigen."
+  },
+  "calibration": {
+    "status": "nicht kalibriert",
+    "note": "Eine Trefferquote oder ein Brier-Wert ist erst nach der Auflösung am 2029-10-09 möglich. Wochenstände mit demselben Endziel sind keine unabhängigen Treffer; gewertet wird je Szenariosatz höchstens eine Prognose (vorab festgelegt: der erste Stand und der Durchschnitt aller Wochenstände, getrennt ausgewiesen).",
+    "brier": null
+  }
+}
