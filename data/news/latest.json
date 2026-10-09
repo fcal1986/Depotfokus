@@ -1,0 +1,530 @@
+{
+ "date": "2026-10-09",
+ "generated_at": "2026-10-09T14:50:50.485Z",
+ "result": "items",
+ "note": null,
+ "items": [
+  {
+   "id": "n-bd4c87ff6729",
+   "event_id": "ebd4c87ff6729",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "Mixed outlook for energy expenditures this winter",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68264",
+   "also": [],
+   "published_at": "2026-10-07T14:00:00.000Z",
+   "retrieved_at": "2026-10-09T14:50:50.485Z",
+   "created_at": "2026-10-09T14:50:50.485Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6961,
+    "truncated": false,
+    "hash": "4b8875b86f357cf1"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.8,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie",
+      "preise"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "US-Winter: Heizöl und Strom werden teurer, Erdgas und Propan günstiger",
+   "kurzfassung": "Die US-Energiebehörde erwartet für diesen Winter gemischte Heizkosten: Haushalte mit Heizöl oder Strom zahlen mehr, solche mit Erdgas oder Propan weniger.",
+   "facts": [
+    {
+     "text": "Die Behörde erwartet für Haushalte mit Heizöl einen Ausgabenanstieg von 21 % gegenüber dem letzten Winter.",
+     "quote": "We expect a 21% increase in spending on heating oil compared with last winter, driven by increasing global distillate prices."
+    },
+    {
+     "text": "Haushalte mit Stromheizung müssen im Schnitt mit 4 % höheren Stromrechnungen rechnen.",
+     "quote": "We expect the more than 40% of homes heating with electricity will experience a 4% increase in electricity bills on average."
+    },
+    {
+     "text": "Die Ausgaben sinken im Schnitt um 9 % bei Erdgas und um 3 % bei Propan.",
+     "quote": "We expect energy expenditures will decrease on average by 9% in homes heating with natural gas and by 3% in those heating with propane."
+    },
+    {
+     "text": "Die US-Vorräte an Destillaten sind niedrig, weil die weltweite Produktion gesunken ist und mehr exportiert wird.",
+     "quote": "We expect inventories will be about 11% below the five-year average in the fourth quarter of 2026."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 21,
+     "unit": "%",
+     "period": "Winter 2026/27 gegenüber Vorwinter",
+     "quote": "We expect a 21% increase in spending on heating oil compared with last winter"
+    },
+    {
+     "value": 34,
+     "unit": "%",
+     "period": "Winter 2026/27 gegenüber Vorwinter (Heizölpreis)",
+     "quote": "We forecast the price of heating oil will average 34% more this winter than last winter"
+    },
+    {
+     "value": -9,
+     "unit": "%",
+     "period": "Winter 2026/27 gegenüber Vorwinter (Erdgas)",
+     "quote": "We expect energy expenditures will decrease on average by 9% in homes heating with natural gas"
+    },
+    {
+     "value": 11,
+     "unit": "% unter Fünfjahresschnitt",
+     "period": "4. Quartal 2026 (Destillatvorräte)",
+     "quote": "We expect inventories will be about 11% below the five-year average in the fourth quarter of 2026."
+    }
+   ],
+   "alltag": "Wie viel Heizen kostet, hängt stark vom Brennstoff und vom Wetter ab. Wer mit Heizöl heizt, zahlt deutlich mehr, wer mit Erdgas heizt, spart. Das beeinflusst, wie viel Geld Haushalten für anderen Konsum bleibt.",
+   "finanzwirkung": "Höhere Heizkosten können das frei verfügbare Einkommen betroffener Haushalte verringern und so den Konsum dämpfen. Sinkende Gaskosten können das Gegenteil bewirken. Für Raffinerien und Ölhändler kann der höhere Preis den Umsatz steigern, ob auch der Gewinn steigt, hängt von Kosten und Mengen ab. Dass die Vorräte niedrig sind, kann Preise anfälliger für Schwankungen machen.",
+   "naechstes": {
+    "text": "Zu beobachten sind die Entwicklung der Destillatpreise und der Lagerbestände sowie das tatsächliche Winterwetter in Nordosten und Westen der USA.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "energie",
+    "preise"
+   ],
+   "regions": [
+    "USA",
+    "Welt"
+   ],
+   "sectors": [
+    "Energie",
+    "Rohstoffe"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Destillat",
+     "def": "Sammelbegriff für Kraftstoffe wie Diesel und Heizöl, die aus Rohöl hergestellt werden."
+    },
+    {
+     "term": "Raffinerie",
+     "def": "Anlage, die Rohöl zu Produkten wie Benzin, Diesel und Heizöl verarbeitet."
+    },
+    {
+     "term": "Lagerbestände",
+     "def": "Vorräte eines Rohstoffs oder Kraftstoffs, die zur Deckung der Nachfrage bereitstehen."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Unterschiedlich steigende und fallende Energiekosten belasten Haushalte unterschiedlich stark und passen eher zu einer zähen Erholung als zu einem breiten Aufschwung oder Stress."
+   },
+   "event_date": "2026-10-07",
+   "words": 168,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-25ba6f156334",
+   "event_id": "e25ba6f156334",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "FAO calls for urgent investment to protect food production as crises deepen across the Near East and North Africa",
+   "url": "https://www.fao.org/newsroom/detail/fao-calls-for-urgent-investment-to-protect-food-production-as-crises-deepen-across-the-near-east-and-north-africa/en",
+   "also": [],
+   "published_at": "2026-10-07T12:00:00.000Z",
+   "retrieved_at": "2026-10-09T14:50:50.485Z",
+   "created_at": "2026-10-09T14:50:50.485Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6964,
+    "truncated": false,
+    "hash": "acc4b7b6aff6e8c3"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.8,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "FAO fordert dringend Geld für Nahrungsproduktion in Nahost und Nordafrika",
+   "kurzfassung": "Die FAO warnt: Krisen und Geldmangel gefährden die Nahrungsproduktion im Nahen Osten und Nordafrika. Über 45 Millionen Menschen leiden unter schwerem Hunger.",
+   "facts": [
+    {
+     "text": "In Gaza, Libanon, Sudan, Syrien und Jemen haben mehr als 45 Millionen Menschen mit Hunger auf Krisenniveau oder schlimmer zu kämpfen.",
+     "quote": "more than 45 million people face crisis-level hunger or worse, as conflict and economic shocks are derailing food production destroying agricultural infrastructure and disrupting markets."
+    },
+    {
+     "text": "Für den Sudan ist erst ein kleiner Teil des benötigten Geldes zugesagt.",
+     "quote": "Yet only 23 percent of the $193 million required under the 2026–2028 Emergency Response Plan has been funded."
+    },
+    {
+     "text": "Im Jemen hat die FAO weniger als ein Prozent des benötigten Geldes gesichert.",
+     "quote": "FAO has secured less than 1 percent of the $87.9 million required under its 2027 Emergency and Resilience Plan."
+    },
+    {
+     "text": "Im Libanon sind laut Bericht mehr als 22 Prozent des Agrarlandes beschädigt.",
+     "quote": "More than 22 percent of the country’s agricultural land has reportedly been damaged"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 45,
+     "unit": "Millionen Menschen",
+     "period": "aktuelle Analysen 2025/2026",
+     "quote": "more than 45 million people face crisis-level hunger or worse"
+    },
+    {
+     "value": 23,
+     "unit": "Prozent der benötigten 193 Mio. US-Dollar finanziert",
+     "period": "Notfallplan 2026–2028 (Sudan)",
+     "quote": "only 23 percent of the $193 million required under the 2026–2028 Emergency Response Plan has been funded"
+    },
+    {
+     "value": 22,
+     "unit": "Prozent Agrarland beschädigt",
+     "period": "nach Eskalation im März 2026 (Libanon)",
+     "quote": "More than 22 percent of the country’s agricultural land has reportedly been damaged"
+    }
+   ],
+   "alltag": "Wo Felder, Bewässerung und Märkte zerstört sind, wird weniger Nahrung erzeugt, und Familien verlieren ihr Einkommen. Das erhöht den Bedarf an Hilfe. Früh eingesetzte Mittel wie Saatgut oder Tierfutter sollen laut FAO verhindern, dass sich der Hunger verschärft.",
+   "finanzwirkung": "Für börsennotierte Unternehmen ist die direkte Wirkung aus dieser Meldung nicht ablesbar. Sie kann aber ein Hinweis auf Risiken für Lieferketten und Agrarmärkte in der Region sein, wenn die Produktion weiter einbricht. Wie stark das globale Preise oder Gewinne betrifft, hängt davon ab, wie lange die Krisen dauern und ob Hilfsgelder fließen.",
+   "naechstes": {
+    "text": "Beobachten, ob Geber die geforderten Gelder bereitstellen und ob sich die Lage in Gaza und im Libanon im zweiten Halbjahr verschlechtert.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel"
+   ],
+   "regions": [
+    "Andere",
+    "Welt"
+   ],
+   "sectors": [
+    "Landwirtschaft",
+    "Lebensmittel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "akute Ernährungsunsicherheit",
+     "def": "Menschen haben kurzfristig nicht genug zu essen, oft wegen Krieg, Vertreibung oder wirtschaftlicher Not."
+    },
+    {
+     "term": "FAO",
+     "def": "Die Ernährungs- und Landwirtschaftsorganisation der Vereinten Nationen."
+    },
+    {
+     "term": "Notfall-Agrarhilfe",
+     "def": "Unterstützung wie Saatgut, Tierfutter oder Bewässerung, damit Familien in Krisen weiter Nahrung erzeugen können."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-07",
+   "words": 169,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-5fa28dffaa63",
+   "event_id": "e5fa28dffaa63",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Unternehmensinsolvenzen im Juli 2026: +8,0 % gegenüber Juli 2025",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_362_52411.html",
+   "also": [],
+   "published_at": "2026-10-09T06:00:00.000Z",
+   "retrieved_at": "2026-10-09T14:50:50.485Z",
+   "created_at": "2026-10-09T14:50:50.485Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 3534,
+    "truncated": false,
+    "hash": "98414a5cf07e0002"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Unternehmensinsolvenzen im Juli 2026 um 8,0 % höher als im Vorjahresmonat",
+   "kurzfassung": "Die Zahl der beantragten Unternehmensinsolvenzen in Deutschland liegt im Juli 2026 um 8,0 % über dem Vorjahresmonat, die Verbraucherinsolvenzen sind dagegen gesunken.",
+   "facts": [
+    {
+     "text": "Im Juli 2026 registrierten die Amtsgerichte 2 373 beantragte Unternehmensinsolvenzen, 8,0 % mehr als im Vorjahresmonat.",
+     "quote": "Im Juli 2026 haben die deutschen Amtsgerichte 2 373 beantragte Unternehmensinsolvenzen registriert. Wie das Statistische Bundesamt (Destatis) mitteilt, waren das 8,0 % mehr als im Vorjahresmonat."
+    },
+    {
+     "text": "Am häufigsten waren Insolvenzen in Verkehr und Lagerei, gefolgt vom Gastgewerbe und dem Baugewerbe.",
+     "quote": "Am höchsten war die Insolvenzhäufigkeit im Wirtschaftsabschnitt Verkehr und Lagerei mit 85,5 Fällen je 10 000 Unternehmen. Danach folgte das Gastgewerbe mit 70,0 Fällen und das Baugewerbe mit 62,9 Insolvenzen."
+    },
+    {
+     "text": "Die Verbraucherinsolvenzen gingen im Juli 2026 um 5,9 % zurück.",
+     "quote": "Im Juli 2026 gab es 7 111 Verbraucherinsolvenzen. Das waren 5,9 % weniger als im Vorjahresmonat."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 8,
+     "unit": "% Veränderung zum Vorjahresmonat",
+     "period": "Juli 2026",
+     "quote": "waren das 8,0 % mehr als im Vorjahresmonat"
+    },
+    {
+     "value": 21.9,
+     "unit": "Mrd. Euro Forderungen",
+     "period": "Januar bis Juli 2026",
+     "quote": "bezifferten die Amtsgerichte auf rund 21,9 Milliarden Euro"
+    },
+    {
+     "value": 42.8,
+     "unit": "Insolvenzen je 10 000 Unternehmen",
+     "period": "Januar bis Juli 2026",
+     "quote": "gab es von Januar bis Juli 2026 insgesamt 42,8 Unternehmensinsolvenzen"
+    }
+   ],
+   "alltag": "Mehr Unternehmensinsolvenzen können bedeuten, dass in einzelnen Branchen Aufträge und Arbeitsplätze unsicherer werden. Für Kunden und Lieferanten kann das heißen, dass Zahlungen ausfallen oder Verträge neu geregelt werden müssen.",
+   "finanzwirkung": "Steigende Insolvenzzahlen können für Banken und Lieferanten ein höheres Ausfallrisiko bedeuten. Gleichzeitig sind die gemeldeten Forderungen gesunken, weil 2025 mehr wirtschaftlich bedeutende Unternehmen betroffen waren; die Zahl allein sagt also wenig über die Schadenshöhe. Für Gewinne und Dividenden einzelner Unternehmen hängt es davon ab, wie stark sie mit betroffenen Branchen verbunden sind.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die Zahl der Unternehmensinsolvenzen in den kommenden Monatsmeldungen weiter über dem Vorjahresniveau liegt.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "unternehmen"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Transport",
+    "Bau",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Unternehmensinsolvenz",
+     "def": "Ein Unternehmen kann seine Rechnungen nicht mehr bezahlen und beantragt ein gerichtliches Verfahren."
+    },
+    {
+     "term": "Forderungen der Gläubiger",
+     "def": "Geld, das Banken, Lieferanten und andere von insolventen Unternehmen noch zu bekommen haben."
+    },
+    {
+     "term": "Insolvenzhäufigkeit",
+     "def": "Anzahl der Insolvenzen im Verhältnis zur Zahl aller Unternehmen."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Mehr Unternehmensinsolvenzen passen qualitativ zu einer zähen Erholung der deutschen Wirtschaft."
+   },
+   "event_date": "2026-10-09",
+   "words": 138,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Von Januar bis Juli 2026 gab es 6,9 % mehr Unternehmensinsolvenzen als im Vorjahreszeitraum, die Forderungen der Gläubiger lagen aber niedriger.",
+     "why": "Zahl nicht im Zitat: 6.9"
+    },
+    {
+     "part": "Zahl",
+     "text": "2373 Unternehmensinsolvenzen",
+     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-daf0a06be2c4",
+   "event_id": "edaf0a06be2c4",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Baupreise für Wohngebäude im August 2026: +5,5 % gegenüber August 2025",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_360_61261.html",
+   "also": [],
+   "published_at": "2026-10-09T06:00:00.000Z",
+   "retrieved_at": "2026-10-09T14:50:50.485Z",
+   "created_at": "2026-10-09T14:50:50.485Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 3551,
+    "truncated": false,
+    "hash": "6c12cc88ef3e7d99"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Neubau von Wohngebäuden: Baupreise steigen im August 2026 um 5,5 %",
+   "kurzfassung": "Der Neubau von Wohngebäuden war im August 2026 um 5,5 % teurer als ein Jahr zuvor. Der Anstieg ist stärker als im Mai 2026.",
+   "facts": [
+    {
+     "text": "Neubau konventionell gefertigter Wohngebäude kostete im August 2026 5,5 % mehr als im August 2025.",
+     "quote": "Die Preise für den Neubau konventionell gefertigter Wohngebäude in Deutschland sind im August 2026 gegenüber August 2025 um 5,5 % gestiegen."
+    },
+    {
+     "text": "Im Mai 2026 lag der Anstieg im Vorjahresvergleich noch bei 5,0 %.",
+     "quote": "Im Mai 2026, dem vorherigen Berichtsmonat der Statistik, hatte der Preisanstieg im Vorjahresvergleich 5,0 % betragen."
+    },
+    {
+     "text": "Gegenüber Mai 2026 stiegen die Baupreise um 1,0 %.",
+     "quote": "Baupreise im August 2026 gegenüber Mai 2026 um 1,0 %"
+    },
+    {
+     "text": "Instandhaltungsarbeiten an Wohngebäuden waren 6,0 % teurer als im Vorjahresmonat.",
+     "quote": "Diese lagen im August 2026 um 6,0 % über denen des Vorjahresmonats."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 5.5,
+     "unit": "%",
+     "period": "August 2026 gegenüber August 2025",
+     "quote": "im August 2026 gegenüber August 2025 um 5,5 % gestiegen"
+    },
+    {
+     "value": 5.4,
+     "unit": "%",
+     "period": "Rohbauarbeiten, August 2026 gegenüber August 2025",
+     "quote": "Die Preise für Rohbauarbeiten an Wohngebäuden waren im August 2026 um 5,4 % höher als im August 2025."
+    },
+    {
+     "value": 5.7,
+     "unit": "%",
+     "period": "Ausbauarbeiten, August 2026 gegenüber August 2025",
+     "quote": "Die Preise für Ausbauarbeiten lagen im August 2026 um 5,7 % über denen des Vorjahresmonats."
+    },
+    {
+     "value": 6.9,
+     "unit": "%",
+     "period": "Straßenbau, August 2026 gegenüber August 2025",
+     "quote": "Im Straßenbau erhöhten sich die Preise im August 2026 gegenüber August 2025 ebenfalls deutlich um 6,9 %."
+    }
+   ],
+   "alltag": "Wer baut, saniert oder repariert, muss für dieselben Arbeiten mehr bezahlen als vor einem Jahr. Das kann Bauvorhaben verteuern und die nötige Finanzierung erhöhen. Auch Preise für Instandhaltung steigen deutlich.",
+   "finanzwirkung": "Höhere Baupreise können den Umsatz von Bauunternehmen und Handwerksbetrieben steigern. Ob davon auch der Gewinn steigt, hängt davon ab, ob die Betriebe ihre eigenen Kosten weitergeben können. Wenn Bauherren wegen der Kosten Projekte verschieben, kann das die Nachfrage und damit das Geschäft der Branche dämpfen.",
+   "naechstes": {
+    "text": "Beobachten, ob sich der Preisanstieg im nächsten Berichtsmonat weiter beschleunigt oder abflacht.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "preise",
+    "industrie"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Bau",
+    "Immobilien"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Baupreisindex",
+     "def": "Misst, wie sich die Preise für Bauleistungen im Zeitverlauf verändern."
+    },
+    {
+     "term": "Rohbau",
+     "def": "Der Bauabschnitt mit Tragwerk wie Mauern, Beton und Dach, bevor der Innenausbau beginnt."
+    },
+    {
+     "term": "Vorjahresvergleich",
+     "def": "Vergleicht einen Monat mit dem gleichen Monat des Vorjahres."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-09",
+   "words": 133,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  }
+ ],
+ "previous": null,
+ "pipeline_version": "1.0.0"
+}
