@@ -1,0 +1,1288 @@
+{
+ "snapshot_id": "2026-W41",
+ "week_id": "2026-W41",
+ "revision": 1,
+ "revision_of": null,
+ "kind": "regular",
+ "scenario_set_id": "macro-2026-10-09_2029-10-09",
+ "scenario_definition_version": "1.0.0",
+ "model_version": "1.0.0",
+ "config_hash": "4bdc3a9385863038",
+ "target_date": "2029-10-09",
+ "generated_at": "2026-10-09T11:00:01.098Z",
+ "published_at": "2026-10-09T11:00:01.098Z",
+ "input_as_of": "2026-10-09T11:00:01.098Z",
+ "data_latest_period": "2026-10-08",
+ "data_oldest_period": "2026-06-30",
+ "last_successful_evaluation_at": "2026-10-09T11:00:01.098Z",
+ "previous_snapshot_id": null,
+ "status": "ok",
+ "status_text": "Neubewertung mit allen Quellen",
+ "data_quality": {
+  "coverage": 1,
+  "reliable": true,
+  "missing_critical": [],
+  "indicators_ok": 13,
+  "indicators_total": 13,
+  "groups": [
+   {
+    "id": "activity",
+    "name": "Konjunktur und Aktivität",
+    "weight": 0.25,
+    "x": 0.27,
+    "used": 2,
+    "total": 2
+   },
+   {
+    "id": "inflation",
+    "name": "Inflation und Geldpolitik",
+    "weight": 0.2,
+    "x": -0.1025,
+    "used": 3,
+    "total": 3
+   },
+   {
+    "id": "energy",
+    "name": "Energie und geopolitische Belastungen",
+    "weight": 0.15,
+    "x": -0.9015,
+    "used": 2,
+    "total": 2
+   },
+   {
+    "id": "credit",
+    "name": "Kreditbedingungen und Finanzmarktstress",
+    "weight": 0.25,
+    "x": 0.8486,
+    "used": 4,
+    "total": 4
+   },
+   {
+    "id": "earnings",
+    "name": "Unternehmensgewinne, Bewertungen und KI-Investitionen",
+    "weight": 0.15,
+    "x": 1,
+    "used": 2,
+    "total": 2
+   }
+  ],
+  "issues": [],
+  "not_covered": [
+   {
+    "group": "earnings",
+    "name": "Aktienbewertungen (z. B. KGV, CAPE)",
+    "reason": "Keine amtliche, frei abrufbare Quelle mit dokumentierter Methode. Wird nicht geschätzt und nicht aus dem Modellgedächtnis ergänzt."
+   },
+   {
+    "group": "earnings",
+    "name": "Unternehmensgewinne Euroraum",
+    "reason": "Keine amtliche, frei abrufbare Quartalsreihe. Die Gruppe stützt sich deshalb nur auf US-Daten."
+   },
+   {
+    "group": "energy",
+    "name": "Geopolitische Ereignisse",
+    "reason": "Kein amtlicher Index. Erfasst werden nur die Folgen über Energiepreise und Finanzstress."
+   }
+  ]
+ },
+ "raw_weights": {
+  "A": 0.5044697992416183,
+  "B": 0.26537186506381183,
+  "C": 0.23015833569456978
+ },
+ "computed_weights": {
+  "A": 0.5044697992416183,
+  "B": 0.26537186506381183,
+  "C": 0.23015833569456978
+ },
+ "display": {
+  "A": 50,
+  "B": 27,
+  "C": 23
+ },
+ "compare_to": {
+  "kind": "start",
+  "snapshot_id": null,
+  "week_id": null,
+  "date": "2026-10-09",
+  "display": {
+   "A": 50,
+   "B": 20,
+   "C": 30
+  },
+  "gap_weeks": null
+ },
+ "change_pp": {
+  "A": 0,
+  "B": 7,
+  "C": -7
+ },
+ "change_causes": [
+  "start"
+ ],
+ "method_note": null,
+ "summary": "B (Breiter Aufschwung) steigt um 7 Prozentpunkte auf 27 %; C (Längerer Wirtschafts- und Finanzmarktstress) sinkt um 7 Prozentpunkte auf 23 % gegenüber der Startannahme. Wichtigster Treiber: Reales BIP Euroraum, Veränderung zum Vorquartal.",
+ "drivers": {
+  "A": {
+   "support": [],
+   "against": []
+  },
+  "B": {
+   "support": [
+    {
+     "id": "EA_GDP_QQ",
+     "name": "Reales BIP Euroraum, Veränderung zum Vorquartal",
+     "group": "activity",
+     "effect": 0.09375,
+     "signal_before": 0,
+     "signal_after": 0.75,
+     "value": 0.6,
+     "value_text": "0,6 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table",
+     "source": "Eurostat",
+     "status": "ok",
+     "text": "Reales BIP Euroraum, Veränderung zum Vorquartal: 0,6 % (2. Quartal 2026) – spricht für Entspannung"
+    },
+    {
+     "id": "US_PROFITS_YOY",
+     "name": "US-Unternehmensgewinne nach Steuern, Veränderung zum Vorjahr",
+     "group": "earnings",
+     "effect": 0.075,
+     "signal_before": 0,
+     "signal_after": 1,
+     "value": 26.6088,
+     "value_text": "26,6 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/CP",
+     "source": "U.S. Bureau of Economic Analysis via FRED",
+     "status": "ok",
+     "text": "US-Unternehmensgewinne nach Steuern, Veränderung zum Vorjahr: 26,6 % (2. Quartal 2026) – spricht für Entspannung"
+    },
+    {
+     "id": "US_INFO_INV_YOY",
+     "name": "US-Investitionen in IT-Ausrüstung und Software (inkl. KI), Veränderung zum Vorjahr",
+     "group": "earnings",
+     "effect": 0.075,
+     "signal_before": 0,
+     "signal_after": 1,
+     "value": 19.7021,
+     "value_text": "19,7 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA",
+     "source": "U.S. Bureau of Economic Analysis via FRED",
+     "status": "ok",
+     "text": "US-Investitionen in IT-Ausrüstung und Software (inkl. KI), Veränderung zum Vorjahr: 19,7 % (2. Quartal 2026) – spricht für Entspannung"
+    }
+   ],
+   "against": [
+    {
+     "id": "EU_GAS",
+     "name": "Erdgaspreis Europa",
+     "group": "energy",
+     "effect": -0.074125,
+     "signal_before": 0,
+     "signal_after": -0.988,
+     "value": 17.93,
+     "value_text": "17,9 $/MMBtu",
+     "period": "2026-07",
+     "period_text": "Jul 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/PNGASEUUSDM",
+     "source": "IWF Primary Commodity Prices via FRED",
+     "status": "ok",
+     "text": "Erdgaspreis Europa: 17,9 $/MMBtu (Jul 2026) – spricht für Belastung"
+    },
+    {
+     "id": "BRENT_YOY",
+     "name": "Ölpreis Brent, Veränderung zum Vorjahr",
+     "group": "energy",
+     "effect": -0.0611055239549793,
+     "signal_before": 0,
+     "signal_after": -0.815,
+     "value": 20.3685,
+     "value_text": "20,4 %",
+     "period": "2026-07",
+     "period_text": "Jul 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/POILBREUSDM",
+     "source": "IWF Primary Commodity Prices via FRED",
+     "status": "ok",
+     "text": "Ölpreis Brent, Veränderung zum Vorjahr: 20,4 % (Jul 2026) – spricht für Belastung"
+    }
+   ]
+  },
+  "C": {
+   "support": [
+    {
+     "id": "EA_GDP_QQ",
+     "name": "Reales BIP Euroraum, Veränderung zum Vorquartal",
+     "group": "activity",
+     "effect": -0.09375,
+     "signal_before": 0,
+     "signal_after": 0.75,
+     "value": 0.6,
+     "value_text": "0,6 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table",
+     "source": "Eurostat",
+     "status": "ok",
+     "text": "Reales BIP Euroraum, Veränderung zum Vorquartal: 0,6 % (2. Quartal 2026) – spricht für Entspannung"
+    },
+    {
+     "id": "US_PROFITS_YOY",
+     "name": "US-Unternehmensgewinne nach Steuern, Veränderung zum Vorjahr",
+     "group": "earnings",
+     "effect": -0.075,
+     "signal_before": 0,
+     "signal_after": 1,
+     "value": 26.6088,
+     "value_text": "26,6 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/CP",
+     "source": "U.S. Bureau of Economic Analysis via FRED",
+     "status": "ok",
+     "text": "US-Unternehmensgewinne nach Steuern, Veränderung zum Vorjahr: 26,6 % (2. Quartal 2026) – spricht für Entspannung"
+    },
+    {
+     "id": "US_INFO_INV_YOY",
+     "name": "US-Investitionen in IT-Ausrüstung und Software (inkl. KI), Veränderung zum Vorjahr",
+     "group": "earnings",
+     "effect": -0.075,
+     "signal_before": 0,
+     "signal_after": 1,
+     "value": 19.7021,
+     "value_text": "19,7 %",
+     "period": "2026-Q2",
+     "period_text": "2. Quartal 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA",
+     "source": "U.S. Bureau of Economic Analysis via FRED",
+     "status": "ok",
+     "text": "US-Investitionen in IT-Ausrüstung und Software (inkl. KI), Veränderung zum Vorjahr: 19,7 % (2. Quartal 2026) – spricht für Entspannung"
+    }
+   ],
+   "against": [
+    {
+     "id": "EU_GAS",
+     "name": "Erdgaspreis Europa",
+     "group": "energy",
+     "effect": 0.074125,
+     "signal_before": 0,
+     "signal_after": -0.988,
+     "value": 17.93,
+     "value_text": "17,9 $/MMBtu",
+     "period": "2026-07",
+     "period_text": "Jul 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/PNGASEUUSDM",
+     "source": "IWF Primary Commodity Prices via FRED",
+     "status": "ok",
+     "text": "Erdgaspreis Europa: 17,9 $/MMBtu (Jul 2026) – spricht für Belastung"
+    },
+    {
+     "id": "BRENT_YOY",
+     "name": "Ölpreis Brent, Veränderung zum Vorjahr",
+     "group": "energy",
+     "effect": 0.0611055239549793,
+     "signal_before": 0,
+     "signal_after": -0.815,
+     "value": 20.3685,
+     "value_text": "20,4 %",
+     "period": "2026-07",
+     "period_text": "Jul 2026",
+     "kind": "start",
+     "url": "https://fred.stlouisfed.org/series/POILBREUSDM",
+     "source": "IWF Primary Commodity Prices via FRED",
+     "status": "ok",
+     "text": "Ölpreis Brent, Veränderung zum Vorjahr: 20,4 % (Jul 2026) – spricht für Belastung"
+    }
+   ]
+  }
+ },
+ "inputs": [
+  {
+   "id": "EA_ESI",
+   "group": "activity",
+   "role": "signal",
+   "name": "Wirtschaftsstimmung Euroraum (ESI)",
+   "unit": "Index, langjähriger Durchschnitt = 100",
+   "region": "Euroraum",
+   "frequency": "M",
+   "source": "Eurostat / EU-Kommission (DG ECFIN)",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/ei_bssi_m_r2/default/table",
+   "rule_text": "100 = neutral, 110 = volle Entspannung, 90 = volle Belastung",
+   "geo_used": "EA21",
+   "value": 97.9,
+   "period": "2026-09",
+   "basis": [
+    [
+     "2026-09",
+     97.9,
+     1
+    ]
+   ],
+   "age_days": 9,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-09-29T09:00:00.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": -0.21,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": -0.02625,
+    "C": 0.02625
+   },
+   "change": "start"
+  },
+  {
+   "id": "EA_GDP_QQ",
+   "group": "activity",
+   "role": "signal",
+   "name": "Reales BIP Euroraum, Veränderung zum Vorquartal",
+   "unit": "% zum Vorquartal",
+   "region": "Euroraum",
+   "frequency": "Q",
+   "source": "Eurostat",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table",
+   "rule_text": "0,3 % (Trend) = neutral, 0,7 % = volle Entspannung, −0,1 % = volle Belastung",
+   "geo_used": "EA21",
+   "value": 0.6,
+   "period": "2026-Q2",
+   "basis": [
+    [
+     "2026-Q2",
+     0.6,
+     1
+    ]
+   ],
+   "age_days": 101,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-09T09:00:00.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 0.75,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": 0.09375,
+    "C": -0.09375
+   },
+   "change": "start"
+  },
+  {
+   "id": "EA_HICP",
+   "group": "inflation",
+   "role": "signal",
+   "name": "Inflation Euroraum (HVPI)",
+   "unit": "% zum Vorjahresmonat",
+   "region": "Euroraum",
+   "frequency": "M",
+   "source": "Eurostat (HVPI nach ECOICOP 2)",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table",
+   "rule_text": "2 % = volle Entspannung, 1 % oder 3 % = neutral, 0 % oder 4 % = volle Belastung",
+   "geo_used": "EA",
+   "value": 3.8,
+   "period": "2026-09",
+   "basis": [
+    [
+     "2026-09",
+     3.8,
+     1
+    ]
+   ],
+   "age_days": 9,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-02T09:00:00.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": -0.8,
+   "issue": null,
+   "share": 0.333333,
+   "contrib": {
+    "A": 0,
+    "B": -0.053333,
+    "C": 0.053333
+   },
+   "change": "start"
+  },
+  {
+   "id": "EA_HICP_CORE",
+   "group": "inflation",
+   "role": "signal",
+   "name": "Kerninflation Euroraum (HVPI ohne Energie, Nahrungsmittel, Alkohol, Tabak)",
+   "unit": "% zum Vorjahresmonat",
+   "region": "Euroraum",
+   "frequency": "M",
+   "source": "Eurostat (HVPI nach ECOICOP 2)",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table",
+   "rule_text": "wie Gesamtinflation",
+   "geo_used": "EA",
+   "value": 2.5,
+   "period": "2026-09",
+   "basis": [
+    [
+     "2026-09",
+     2.5,
+     1
+    ]
+   ],
+   "age_days": 9,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-02T09:00:00.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 0.5,
+   "issue": null,
+   "share": 0.333333,
+   "contrib": {
+    "A": 0,
+    "B": 0.033333,
+    "C": -0.033333
+   },
+   "change": "start"
+  },
+  {
+   "id": "US_CORE_PCE",
+   "group": "inflation",
+   "role": "signal",
+   "name": "Kerninflation USA (PCE ohne Energie und Nahrungsmittel)",
+   "unit": "Index 2017 = 100, ausgewertet als % zum Vorjahresmonat",
+   "region": "USA",
+   "frequency": "M",
+   "source": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/PCEPILFE",
+   "rule_text": "2 % = volle Entspannung, 1 % oder 3 % = neutral",
+   "geo_used": null,
+   "value": 3.007596,
+   "period": "2026-08",
+   "basis": [
+    [
+     "2025-08",
+     126.646,
+     1
+    ],
+    [
+     "2026-08",
+     130.455,
+     1
+    ]
+   ],
+   "age_days": 39,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-09-30T12:43:28.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": -0.007596,
+   "issue": null,
+   "share": 0.333333,
+   "contrib": {
+    "A": 0,
+    "B": -0.000506,
+    "C": 0.000506
+   },
+   "change": "start"
+  },
+  {
+   "id": "ECB_DFR",
+   "group": "inflation",
+   "role": "context",
+   "name": "EZB-Einlagezins",
+   "unit": "% p. a.",
+   "region": "Euroraum",
+   "frequency": "D",
+   "source": "EZB Data Portal",
+   "url": "https://data.ecb.europa.eu/data/datasets/FM/FM.D.U2.EUR.4F.KR.DFR.LEV",
+   "rule_text": "Nur Kontext, fließt nicht in die Gewichte ein: Zinssenkungen können Entlastung oder Reaktion auf Schwäche sein.",
+   "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
+   "value": 2.5,
+   "period": "2026-10-09",
+   "basis": [
+    [
+     "2026-10-09",
+     2.5,
+     1
+    ]
+   ],
+   "age_days": 0,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-08T23:35:09.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "context",
+   "issue": null,
+   "x": null,
+   "share": null,
+   "contrib": null,
+   "change": "start"
+  },
+  {
+   "id": "BRENT_YOY",
+   "group": "energy",
+   "role": "signal",
+   "name": "Ölpreis Brent, Veränderung zum Vorjahr",
+   "unit": "US-Dollar je Barrel, ausgewertet als % zum Vorjahresmonat",
+   "region": "Welt",
+   "frequency": "M",
+   "source": "IWF Primary Commodity Prices via FRED",
+   "url": "https://fred.stlouisfed.org/series/POILBREUSDM",
+   "rule_text": "unverändert = neutral, −25 % = volle Entspannung, +25 % = volle Belastung",
+   "geo_used": null,
+   "value": 20.368508,
+   "period": "2026-07",
+   "basis": [
+    [
+     "2025-07",
+     69.56478260869565,
+     1
+    ],
+    [
+     "2026-07",
+     83.73409090909091,
+     1
+    ]
+   ],
+   "age_days": 70,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-08-17T18:51:14.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": -0.81474,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": -0.061106,
+    "C": 0.061106
+   },
+   "change": "start"
+  },
+  {
+   "id": "EU_GAS",
+   "group": "energy",
+   "role": "signal",
+   "name": "Erdgaspreis Europa",
+   "unit": "US-Dollar je Mio. BTU",
+   "region": "Europa",
+   "frequency": "M",
+   "source": "IWF Primary Commodity Prices via FRED",
+   "url": "https://fred.stlouisfed.org/series/PNGASEUUSDM",
+   "rule_text": "12 $ = neutral, 6 $ (Vorkrisenniveau) = volle Entspannung, 18 $ = volle Belastung",
+   "geo_used": null,
+   "value": 17.93,
+   "period": "2026-07",
+   "basis": [
+    [
+     "2026-07",
+     17.93,
+     1
+    ]
+   ],
+   "age_days": 70,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-08-17T18:51:13.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": -0.988333,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": -0.074125,
+    "C": 0.074125
+   },
+   "change": "start"
+  },
+  {
+   "id": "EA_CISS",
+   "group": "credit",
+   "role": "signal",
+   "name": "Finanzstressindikator Euroraum (CISS)",
+   "unit": "Index 0–1",
+   "region": "Euroraum",
+   "frequency": "D",
+   "source": "EZB Data Portal",
+   "url": "https://data.ecb.europa.eu/data/datasets/CISS/CISS.D.U2.Z0Z.4F.EC.SS_CIN.IDX",
+   "rule_text": "Mittel der letzten 20 Handelstage; 0,15 = neutral, 0,05 = volle Entspannung, 0,25 = volle Belastung",
+   "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
+   "value": 0.023797,
+   "period": "2026-10-08",
+   "basis": [
+    [
+     "2026-09-11",
+     0.032590912609744026,
+     1
+    ],
+    [
+     "2026-09-14",
+     0.03726025451754835,
+     1
+    ],
+    [
+     "2026-09-15",
+     0.03353856226046173,
+     1
+    ],
+    [
+     "2026-09-16",
+     0.031323176051097884,
+     1
+    ],
+    [
+     "2026-09-17",
+     0.027379952540663315,
+     1
+    ],
+    [
+     "2026-09-18",
+     0.03425691868734504,
+     1
+    ],
+    [
+     "2026-09-21",
+     0.030000362312858426,
+     1
+    ],
+    [
+     "2026-09-22",
+     0.025179498155430594,
+     1
+    ],
+    [
+     "2026-09-23",
+     0.024931168847273047,
+     1
+    ],
+    [
+     "2026-09-24",
+     0.022297085343786646,
+     1
+    ],
+    [
+     "2026-09-25",
+     0.018064330531313948,
+     1
+    ],
+    [
+     "2026-09-28",
+     0.015074343715052235,
+     1
+    ],
+    [
+     "2026-09-29",
+     0.013025300302951853,
+     1
+    ],
+    [
+     "2026-09-30",
+     0.013240937824567237,
+     1
+    ],
+    [
+     "2026-10-01",
+     0.022487184543154768,
+     1
+    ],
+    [
+     "2026-10-02",
+     0.024049956110226364,
+     1
+    ],
+    [
+     "2026-10-05",
+     0.02151807535302511,
+     1
+    ],
+    [
+     "2026-10-06",
+     0.016138308620478443,
+     1
+    ],
+    [
+     "2026-10-07",
+     0.01679122074355794,
+     1
+    ],
+    [
+     "2026-10-08",
+     0.016791219605616744,
+     1
+    ]
+   ],
+   "age_days": 1,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-09T08:13:25.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 1,
+   "issue": null,
+   "share": 0.25,
+   "contrib": {
+    "A": 0,
+    "B": 0.0625,
+    "C": -0.0625
+   },
+   "change": "start"
+  },
+  {
+   "id": "EA_HY_OAS",
+   "group": "credit",
+   "role": "signal",
+   "name": "Risikoaufschlag Hochzinsanleihen Euro",
+   "unit": "Prozentpunkte",
+   "region": "Euroraum",
+   "frequency": "D",
+   "source": "ICE BofA via FRED",
+   "url": "https://fred.stlouisfed.org/series/BAMLHE00EHYIOAS",
+   "rule_text": "Mittel der letzten 20 Handelstage; 4,0 = neutral, 2,75 = volle Entspannung, 5,25 = volle Belastung",
+   "geo_used": null,
+   "value": 2.8775,
+   "period": "2026-10-07",
+   "basis": [
+    [
+     "2026-09-10",
+     2.68,
+     1
+    ],
+    [
+     "2026-09-11",
+     2.68,
+     1
+    ],
+    [
+     "2026-09-14",
+     2.69,
+     1
+    ],
+    [
+     "2026-09-15",
+     2.75,
+     1
+    ],
+    [
+     "2026-09-16",
+     2.74,
+     1
+    ],
+    [
+     "2026-09-17",
+     2.69,
+     1
+    ],
+    [
+     "2026-09-18",
+     2.67,
+     1
+    ],
+    [
+     "2026-09-21",
+     2.73,
+     1
+    ],
+    [
+     "2026-09-22",
+     2.72,
+     1
+    ],
+    [
+     "2026-09-23",
+     2.66,
+     1
+    ],
+    [
+     "2026-09-24",
+     2.77,
+     1
+    ],
+    [
+     "2026-09-25",
+     2.79,
+     1
+    ],
+    [
+     "2026-09-28",
+     2.89,
+     1
+    ],
+    [
+     "2026-09-29",
+     2.94,
+     1
+    ],
+    [
+     "2026-09-30",
+     3,
+     1
+    ],
+    [
+     "2026-10-01",
+     3.17,
+     1
+    ],
+    [
+     "2026-10-02",
+     3.29,
+     1
+    ],
+    [
+     "2026-10-05",
+     3.32,
+     1
+    ],
+    [
+     "2026-10-06",
+     3.15,
+     1
+    ],
+    [
+     "2026-10-07",
+     3.22,
+     1
+    ]
+   ],
+   "age_days": 2,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-08T14:15:50.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 0.898,
+   "issue": null,
+   "share": 0.25,
+   "contrib": {
+    "A": 0,
+    "B": 0.056125,
+    "C": -0.056125
+   },
+   "change": "start"
+  },
+  {
+   "id": "US_HY_OAS",
+   "group": "credit",
+   "role": "signal",
+   "name": "Risikoaufschlag Hochzinsanleihen USA",
+   "unit": "Prozentpunkte",
+   "region": "USA",
+   "frequency": "D",
+   "source": "ICE BofA via FRED",
+   "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2",
+   "rule_text": "wie Euro-Hochzinsanleihen",
+   "geo_used": null,
+   "value": 2.875,
+   "period": "2026-10-07",
+   "basis": [
+    [
+     "2026-09-10",
+     2.7,
+     1
+    ],
+    [
+     "2026-09-11",
+     2.65,
+     1
+    ],
+    [
+     "2026-09-14",
+     2.71,
+     1
+    ],
+    [
+     "2026-09-15",
+     2.76,
+     1
+    ],
+    [
+     "2026-09-16",
+     2.7,
+     1
+    ],
+    [
+     "2026-09-17",
+     2.7,
+     1
+    ],
+    [
+     "2026-09-18",
+     2.68,
+     1
+    ],
+    [
+     "2026-09-21",
+     2.66,
+     1
+    ],
+    [
+     "2026-09-22",
+     2.68,
+     1
+    ],
+    [
+     "2026-09-23",
+     2.73,
+     1
+    ],
+    [
+     "2026-09-24",
+     2.8,
+     1
+    ],
+    [
+     "2026-09-25",
+     2.93,
+     1
+    ],
+    [
+     "2026-09-28",
+     3.02,
+     1
+    ],
+    [
+     "2026-09-29",
+     3.08,
+     1
+    ],
+    [
+     "2026-09-30",
+     3.12,
+     1
+    ],
+    [
+     "2026-10-01",
+     3.24,
+     1
+    ],
+    [
+     "2026-10-02",
+     3.1,
+     1
+    ],
+    [
+     "2026-10-05",
+     3.12,
+     1
+    ],
+    [
+     "2026-10-06",
+     3.03,
+     1
+    ],
+    [
+     "2026-10-07",
+     3.09,
+     1
+    ]
+   ],
+   "age_days": 2,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-08T14:15:46.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 0.9,
+   "issue": null,
+   "share": 0.25,
+   "contrib": {
+    "A": 0,
+    "B": 0.05625,
+    "C": -0.05625
+   },
+   "change": "start"
+  },
+  {
+   "id": "VIX",
+   "group": "credit",
+   "role": "signal",
+   "name": "Erwartete Schwankung US-Aktien (VIX)",
+   "unit": "Indexpunkte",
+   "region": "USA",
+   "frequency": "D",
+   "source": "Cboe via FRED",
+   "url": "https://fred.stlouisfed.org/series/VIXCLS",
+   "rule_text": "Mittel der letzten 20 Handelstage; 20 = neutral, 13 = volle Entspannung, 27 = volle Belastung",
+   "geo_used": null,
+   "value": 15.825,
+   "period": "2026-10-07",
+   "basis": [
+    [
+     "2026-09-10",
+     17.84,
+     1
+    ],
+    [
+     "2026-09-11",
+     15.84,
+     1
+    ],
+    [
+     "2026-09-14",
+     17.1,
+     1
+    ],
+    [
+     "2026-09-15",
+     17.2,
+     1
+    ],
+    [
+     "2026-09-16",
+     17.71,
+     1
+    ],
+    [
+     "2026-09-17",
+     15.44,
+     1
+    ],
+    [
+     "2026-09-18",
+     14.81,
+     1
+    ],
+    [
+     "2026-09-21",
+     14.87,
+     1
+    ],
+    [
+     "2026-09-22",
+     14.21,
+     1
+    ],
+    [
+     "2026-09-23",
+     15.18,
+     1
+    ],
+    [
+     "2026-09-24",
+     15.67,
+     1
+    ],
+    [
+     "2026-09-25",
+     14.87,
+     1
+    ],
+    [
+     "2026-09-28",
+     16.07,
+     1
+    ],
+    [
+     "2026-09-29",
+     16.04,
+     1
+    ],
+    [
+     "2026-09-30",
+     16.34,
+     1
+    ],
+    [
+     "2026-10-01",
+     16.39,
+     1
+    ],
+    [
+     "2026-10-02",
+     15.31,
+     1
+    ],
+    [
+     "2026-10-05",
+     15.52,
+     1
+    ],
+    [
+     "2026-10-06",
+     15.01,
+     1
+    ],
+    [
+     "2026-10-07",
+     15.08,
+     1
+    ]
+   ],
+   "age_days": 2,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-10-08T13:37:39.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 0.596429,
+   "issue": null,
+   "share": 0.25,
+   "contrib": {
+    "A": 0,
+    "B": 0.037277,
+    "C": -0.037277
+   },
+   "change": "start"
+  },
+  {
+   "id": "US_PROFITS_YOY",
+   "group": "earnings",
+   "role": "signal",
+   "name": "US-Unternehmensgewinne nach Steuern, Veränderung zum Vorjahr",
+   "unit": "Mrd. US-Dollar (Jahresrate), ausgewertet als % zum Vorjahresquartal",
+   "region": "USA",
+   "frequency": "Q",
+   "source": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/CP",
+   "rule_text": "+4 % = neutral, +12 % = volle Entspannung, −4 % = volle Belastung",
+   "geo_used": null,
+   "value": 26.608836,
+   "period": "2026-Q2",
+   "basis": [
+    [
+     "2025-Q2",
+     3380.441,
+     1
+    ],
+    [
+     "2026-Q2",
+     4279.937,
+     1
+    ]
+   ],
+   "age_days": 101,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-09-30T12:55:12.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 1,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": 0.075,
+    "C": -0.075
+   },
+   "change": "start"
+  },
+  {
+   "id": "US_INFO_INV_YOY",
+   "group": "earnings",
+   "role": "signal",
+   "name": "US-Investitionen in IT-Ausrüstung und Software (inkl. KI), Veränderung zum Vorjahr",
+   "unit": "Mrd. US-Dollar (Jahresrate), ausgewertet als % zum Vorjahresquartal",
+   "region": "USA",
+   "frequency": "Q",
+   "source": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA",
+   "rule_text": "+5 % = neutral, +15 % = volle Entspannung, −5 % = volle Belastung",
+   "geo_used": null,
+   "value": 19.702127,
+   "period": "2026-Q2",
+   "basis": [
+    [
+     "2025-Q2",
+     1374.816,
+     1
+    ],
+    [
+     "2026-Q2",
+     1645.684,
+     1
+    ]
+   ],
+   "age_days": 101,
+   "first_seen_at": "2026-10-09T11:00:01.098Z",
+   "revision": 1,
+   "source_updated_at": "2026-09-30T12:59:26.000Z",
+   "retrieved_at": "2026-10-09T11:00:01.098Z",
+   "status": "ok",
+   "x": 1,
+   "issue": null,
+   "share": 0.5,
+   "contrib": {
+    "A": 0,
+    "B": 0.075,
+    "C": -0.075
+   },
+   "change": "start"
+  }
+ ],
+ "sources": [
+  {
+   "name": "Eurostat / EU-Kommission (DG ECFIN)",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/ei_bssi_m_r2/default/table"
+  },
+  {
+   "name": "Eurostat",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table"
+  },
+  {
+   "name": "Eurostat (HVPI nach ECOICOP 2)",
+   "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_minr/default/table"
+  },
+  {
+   "name": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/PCEPILFE"
+  },
+  {
+   "name": "EZB Data Portal",
+   "url": "https://data.ecb.europa.eu/data/datasets/FM/FM.D.U2.EUR.4F.KR.DFR.LEV"
+  },
+  {
+   "name": "IWF Primary Commodity Prices via FRED",
+   "url": "https://fred.stlouisfed.org/series/POILBREUSDM"
+  },
+  {
+   "name": "IWF Primary Commodity Prices via FRED",
+   "url": "https://fred.stlouisfed.org/series/PNGASEUUSDM"
+  },
+  {
+   "name": "EZB Data Portal",
+   "url": "https://data.ecb.europa.eu/data/datasets/CISS/CISS.D.U2.Z0Z.4F.EC.SS_CIN.IDX"
+  },
+  {
+   "name": "ICE BofA via FRED",
+   "url": "https://fred.stlouisfed.org/series/BAMLHE00EHYIOAS"
+  },
+  {
+   "name": "ICE BofA via FRED",
+   "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2"
+  },
+  {
+   "name": "Cboe via FRED",
+   "url": "https://fred.stlouisfed.org/series/VIXCLS"
+  },
+  {
+   "name": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/CP"
+  },
+  {
+   "name": "U.S. Bureau of Economic Analysis via FRED",
+   "url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA"
+  }
+ ],
+ "input_hash": "9a6afdefdd6c059b",
+ "llm": {
+  "used": false,
+  "note": "Regelbasierte Erklärung ohne Sprachmodell."
+ }
+}

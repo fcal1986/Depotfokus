@@ -1,0 +1,97 @@
+{
+ "scenario_set_id": "macro-2026-10-09_2029-10-09",
+ "last_attempt_at": "2026-10-09T11:00:01.098Z",
+ "last_attempt_result": "new_snapshot",
+ "last_attempt_note": "B (Breiter Aufschwung) steigt um 7 Prozentpunkte auf 27 %; C (Längerer Wirtschafts- und Finanzmarktstress) sinkt um 7 Prozentpunkte auf 23 % gegenüber der Startannahme. Wichtigster Treiber: Reales BIP Euroraum, Veränderung zum Vorquartal.",
+ "last_attempt_snapshot_id": "2026-W41",
+ "last_successful_evaluation_at": "2026-10-09T11:00:01.098Z",
+ "next_scheduled_run": "2026-10-12T05:20:00.000Z",
+ "schedule": "Montag 07:20 Uhr (Europe/Berlin); manuell über Actions › Szenario-Monitor › Run workflow",
+ "sources": {
+  "EA_ESI": {
+   "status": "ok",
+   "new": 36,
+   "revised": 0,
+   "latest": "2026-09"
+  },
+  "EA_GDP_QQ": {
+   "status": "ok",
+   "new": 14,
+   "revised": 0,
+   "latest": "2026-Q2"
+  },
+  "EA_HICP": {
+   "status": "ok",
+   "new": 36,
+   "revised": 0,
+   "latest": "2026-09"
+  },
+  "EA_HICP_CORE": {
+   "status": "ok",
+   "new": 36,
+   "revised": 0,
+   "latest": "2026-09"
+  },
+  "US_CORE_PCE": {
+   "status": "ok",
+   "new": 47,
+   "revised": 0,
+   "latest": "2026-08"
+  },
+  "ECB_DFR": {
+   "status": "ok",
+   "new": 76,
+   "revised": 0,
+   "latest": "2026-10-09"
+  },
+  "BRENT_YOY": {
+   "status": "ok",
+   "new": 46,
+   "revised": 0,
+   "latest": "2026-07"
+  },
+  "EU_GAS": {
+   "status": "ok",
+   "new": 46,
+   "revised": 0,
+   "latest": "2026-07"
+  },
+  "EA_CISS": {
+   "status": "ok",
+   "new": 54,
+   "revised": 0,
+   "latest": "2026-10-08"
+  },
+  "EA_HY_OAS": {
+   "status": "ok",
+   "new": 53,
+   "revised": 0,
+   "latest": "2026-10-07"
+  },
+  "US_HY_OAS": {
+   "status": "ok",
+   "new": 53,
+   "revised": 0,
+   "latest": "2026-10-07"
+  },
+  "VIX": {
+   "status": "ok",
+   "new": 53,
+   "revised": 0,
+   "latest": "2026-10-07"
+  },
+  "US_PROFITS_YOY": {
+   "status": "ok",
+   "new": 15,
+   "revised": 0,
+   "latest": "2026-Q2"
+  },
+  "US_INFO_INV_YOY": {
+   "status": "ok",
+   "new": 15,
+   "revised": 0,
+   "latest": "2026-Q2"
+  }
+ },
+ "reliable": true
+}

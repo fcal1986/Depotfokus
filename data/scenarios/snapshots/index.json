@@ -1,0 +1,25 @@
+{
+ "scenario_set_id": "macro-2026-10-09_2029-10-09",
+ "snapshots": [
+  {
+   "snapshot_id": "2026-W41",
+   "week_id": "2026-W41",
+   "revision": 1,
+   "revision_of": null,
+   "status": "ok",
+   "display": {
+    "A": 50,
+    "B": 27,
+    "C": 23
+   },
+   "raw_weights": {
+    "A": 0.5044697992416183,
+    "B": 0.26537186506381183,
+    "C": 0.23015833569456978
+   },
+   "generated_at": "2026-10-09T11:00:01.098Z",
+   "model_version": "1.0.0",
+   "config_hash": "4bdc3a9385863038"
+  }
+ ]
+}
