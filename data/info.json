@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "novde_000117184326006374": {
+   "org": "Novo Nordisk A S",
+   "doc": "Mitteilung (SEC 6-K)",
+   "per": "Oktober 2026 (Ad-hoc-Mitteilung Nr. 59/2026)",
+   "date": "05.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/353278/000117184326006374/f6k_100226.htm"
   }
  },
  "positions": {
@@ -698,33 +705,49 @@
   },
   "NOV.DE": {
    "cik": 353278,
-   "checked": "2026-10-04",
-   "method": "manual",
-   "mood": "pos",
+   "checked": "2026-10-09",
+   "method": "claude",
+   "mood": "warn",
    "interp": "Nach einem gesenkten Ausblick im Februar hat Novo im August den Jahresausblick wieder angehoben.",
    "changes": {
-    "cmp": "H1 2026 gegenüber Ausblick vom Februar",
+    "cmp": "Mitteilung vom 2. Oktober 2026 gegenüber ursprünglich erwarteter FDA-Entscheidung im dritten Quartal 2026",
     "items": [
      {
       "kind": "company",
-      "t": "Jahresausblick angehoben, nachdem im Februar sinkende Umsätze und Gewinne erwartet wurden.",
+      "t": "FDA-Entscheidung zu Denecimig verzögert sich. Ursprünglich war sie für das dritte Quartal 2026 erwartet worden, einen neuen Termin nennt die FDA nicht.",
       "src": [
-       "novoQ2",
-       "novoFeb"
-      ]
+       "novde_000117184326006374"
+      ],
+      "quote": "The FDA has not communicated a new timeline for regulatory action on the BLA"
+     },
+     {
+      "kind": "company",
+      "t": "Grund der Verzögerung sind laufende Sanierungsmaßnahmen am Produktionsstandort, nicht Mängel bei Wirksamkeit oder Sicherheit.",
+      "src": [
+       "novde_000117184326006374"
+      ],
+      "quote": "The FDA has not identified any deficiencies related to the clinical efficacy or safety data submitted in the denecimig BLA"
      }
     ]
    },
    "facts": [
     {
      "kind": "company",
-     "t": "Zwischendividende 3,75 DKK je Aktie, gezahlt im August 2026.",
-     "src": "novo"
+     "t": "Novo sieht keine Auswirkung auf den Ausblick 2026 und peilt den US-Start von Denecimig im ersten Halbjahr 2027 an, vorbehaltlich der Zulassung.",
+     "src": "novde_000117184326006374",
+     "quote": "The extended FDA review time for the denecimig BLA has no impact on Novo's financial outlook for 2026 and pending regulatory decision, Novo aims to launch denecimig in the US in the first half of 2027"
     },
     {
      "kind": "company",
-     "t": "Aktienrückkaufprogramm über bis zu 15 Mrd. DKK läuft.",
-     "src": "novo"
+     "t": "Der Befund zum Standort betrifft laut Novo keine anderen vermarkteten Produkte.",
+     "src": "novde_000117184326006374",
+     "quote": "The feedback on the manufacturing site does not impact other marketed Novo products."
+    },
+    {
+     "kind": "company",
+     "t": "Denecimig erhielt am 17. September eine positive CHMP-Empfehlung. Die EMA-Zulassung steht noch aus.",
+     "src": "novde_000117184326006374",
+     "quote": "On 17 September, denecimig received a positive CHMP opinion and is currently pending marketing approval from the EMA"
     }
    ],
    "rules": [
@@ -733,13 +756,14 @@
      "q": "Senkt Novo den Jahresausblick erneut?",
      "metric": "Jahresausblick 2026",
      "cond": "Senkung gegenüber August 2026",
-     "per": "H1 2026",
-     "obs": "angehoben",
-     "prev": "Februar 2026: gesenkt",
+     "per": "Oktober 2026",
+     "obs": "Ausblick 2026 unverändert, keine Auswirkung durch die Verzögerung",
+     "prev": "H1 2026: angehoben",
      "status": "not_occurred",
-     "src": "novoQ2",
+     "src": "novde_000117184326006374",
      "next": "Bericht Q3 2026, Termin geschätzt Anfang November",
-     "why": "Der Ausblick war 2026 bereits einmal deutlich gesenkt worden."
+     "why": "Der Ausblick war 2026 bereits einmal deutlich gesenkt worden.",
+     "quote": "The additional FDA review time does not have an impact on Novo's financial outlook for 2026."
     },
     {
      "type": "goal",
@@ -751,7 +775,7 @@
      "prev": null,
      "status": "np",
      "src": null,
-     "next": "erst mit einer lizenzierten Marktdatenquelle",
+     "next": "Bericht Q3 2026, Termin geschätzt Anfang November",
      "why": "Für diese Kennzahl ist keine geprüfte Quelle hinterlegt."
     }
    ],
@@ -760,7 +784,14 @@
      "t": "Preisdruck in den USA",
      "why": "Nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0001171843-26-006374",
+    "form": "6-K",
+    "date": "2026-10-05",
+    "url": "https://www.sec.gov/Archives/edgar/data/353278/000117184326006374/f6k_100226.htm"
+   }
   },
   "MSF.DE": {
    "cik": 789019,
