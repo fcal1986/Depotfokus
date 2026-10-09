@@ -29,3 +29,16 @@ test('Kopfzeile zeigt nie „rund 0 €“, wenn nur der Devisenkurs fehlt; Stü
   assert.match(src, /function sharesAt\(d,p,ex\)/);
   assert.match(src, /t\.date<ex/);
 });
+
+test('Netto/Brutto-Umschalter: Brutto aus Dividendendaten, Umsätzen (Netto + Steuern) und Schätzungen', () => {
+  const body = src.slice(src.indexOf('const kalBrutto'), src.indexOf('const ccySym'));
+  const f = new Function('UI', body + '\nreturn kv;');
+  const ann = { net: 7.36, eurGross: 10 };
+  const got = { net: 7.36, t: { taxes: 2.64 } };
+  const est = { net: 14.72, qty: 20, basis: { value: 7.36, taxes: 2.64, shares: 10 } };
+  assert.equal(f({ kalMode: 'netto' })(ann), 7.36);
+  assert.equal(f({ kalMode: 'brutto' })(ann), 10);
+  assert.equal(f({ kalMode: 'brutto' })(got), 10);
+  assert.equal(f({ kalMode: 'brutto' })(est), 20);
+  assert.equal(f({})(est), 14.72, 'Standard ist netto');
+});

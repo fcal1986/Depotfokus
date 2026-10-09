@@ -380,6 +380,10 @@ details.krow summary::-webkit-details-marker{display:none}
 .nowrap{white-space:nowrap;margin-right:8px}
 a.src,.news-card,.kv dd,.quote{overflow-wrap:anywhere}
 article.col{min-width:0}
+/* Netto/Brutto-Umschalter im Dividendenkalender (auf dunkler Karte) */
+.kmode{display:inline-flex;background:var(--night-2);border-radius:99px;padding:3px;gap:2px}
+.kmode button{min-height:32px;min-width:64px;border:0;border-radius:99px;background:none;color:var(--night-text);font-weight:700;font-size:12.5px;cursor:pointer}
+.kmode button[aria-pressed="true"]{background:#fff;color:#14172E}
 </style>
 </head>
 <body>

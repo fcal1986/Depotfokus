@@ -380,6 +380,10 @@ details.krow summary::-webkit-details-marker{display:none}
 .nowrap{white-space:nowrap;margin-right:8px}
 a.src,.news-card,.kv dd,.quote{overflow-wrap:anywhere}
 article.col{min-width:0}
+/* Netto/Brutto-Umschalter im Dividendenkalender (auf dunkler Karte) */
+.kmode{display:inline-flex;background:var(--night-2);border-radius:99px;padding:3px;gap:2px}
+.kmode button{min-height:32px;min-width:64px;border:0;border-radius:99px;background:none;color:var(--night-text);font-weight:700;font-size:12.5px;cursor:pointer}
+.kmode button[aria-pressed="true"]{background:#fff;color:#14172E}
 </style>
 </head>
 <body>
@@ -1596,6 +1600,13 @@ function nextPayEstimate(a,basisPay){const pays=(a&&a.ev||[]).map(e=>e.pay).filt
 function sharesAt(d,p,ex){if(!ex)return null;const s=secFor(d,p);if(!s||s.mismatch||s.unknownCost&&!s.ok)return null;
   let n=0;d.tx.forEach(t=>{if(t.sk!==s.sk||!(t.date<ex)||!t.shares)return;if(t.type==='buy'||t.type==='in')n+=t.shares;else if(t.type==='sell'||t.type==='out')n-=t.shares});
   return n>1e-6?Math.round(n*1e6)/1e6:0}
+/* Netto/Brutto-Umschalter (gilt für alle Euro-Werte im Kalender, gemerkt auf diesem Gerät) */
+const kalBrutto=()=>UI.kalMode==='brutto';
+function kv(x){if(!kalBrutto())return x.net;
+  if(x.eurGross!=null)return x.eurGross;                       // Zahlung aus Dividendendaten: Brutto zum Devisenkurs
+  if(x.t)return x.net+(x.t.taxes||0);                           // erhalten: gebucht netto + gebuchte Steuern
+  if(x.basis&&x.basis.value!=null){const g=x.basis.value+(x.basis.taxes||0);return x.basis.shares&&x.qty?g/x.basis.shares*x.qty:g}  // Schätzung aus Umsätzen
+  return null}
 const ccySym=c=>({USD:'$',EUR:'€',DKK:'DKK',GBP:'£',CHF:'CHF'})[c]||c;
 
 /* Automatisch gesammelte Dividenden (dividends.json, von der GitHub Action beim Veröffentlichen) */
@@ -1647,7 +1658,7 @@ function kalModel(d){
   // Erhalten
   const got=m?d.tx.filter(t=>t.type==='div'&&t.date>start&&t.date<=today).map(t=>{const s=m.secs.find(x=>x.sk===t.sk);
     return {state:'paid',name:s&&s.pos?s.pos.name:(s&&s.name)||t.name||'Unbekanntes Wertpapier',pay:t.date,net:t.value,qty:t.shares,t}}).sort((a,b)=>a.pay<b.pay?1:a.pay>b.pay?-1:0):[];
-  const sum=l=>l.reduce((a,x)=>a+(x.net||0),0);
+  const sum=l=>l.reduce((a,x)=>a+(kv(x)||0),0);
   const months=[];for(let i=0;i<12;i++){const dt=new Date();dt.setDate(1);dt.setMonth(dt.getMonth()+i);const k=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}`;
     months.push({k,label:MONAT[dt.getMonth()],v:sum(items.filter(x=>x.pay.slice(0,7)===k))})}
   const noData=held.filter(p=>!auto.has(p)&&!(m&&m.secs.some(s=>s.pos===p&&s.held&&s.div12>0))&&!items.some(i=>i.p===p));
@@ -1659,7 +1670,7 @@ function kalModel(d){
 function autoLink(a){return a?`<a class="src" href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.src)}, Dividendenhistorie ${esc(a.ref)}, abgerufen ${esc(AUTODIV&&AUTODIV.asOf?fmtAsOf(AUTODIV.asOf):'')}</a>`:''}
 function kalRow(x){
   const tag=x.state==='announced'?'<span class="tag pos">angekündigt</span>':x.state==='estimated'?'<span class="tag warn">geschätzt</span>':'<span class="tag neutral">erhalten</span>';
-  const amt=x.net!=null?eur(x.net,2):`${num(x.gross,2)} ${ccySym(x.ccy)}`;
+  const v=kv(x),amt=v!=null?eur(v,2):`${num(x.gross,2)} ${ccySym(x.ccy)}`;
   const qn=q=>num(q,q%1?4:0);
   const money=()=>`<dt>Brutto</dt><dd class="num strong">${num(x.gross,2)} ${ccySym(x.ccy)}${x.eurGross!=null&&x.ccy!=='EUR'?` <span class="muted2">≈ ${eur(x.eurGross,2)}</span>`:''}</dd>
     <dt>Je Aktie</dt><dd class="num">${num(x.per,4)} ${ccySym(x.ccy)}</dd><dt>Stück</dt><dd class="num">${qn(x.qty)} <span class="muted2">${x.qtyBasis==='ex'?'am Ex-Tag laut Umsätzen':'heutiger Bestand'}</span></dd>
@@ -1691,7 +1702,7 @@ function vKalender(){
   const head=`${hubHead('einkommen','kalender')}
    ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot und Musterumsätze</span>':''}`;
   const sum=`<section class="dark col" style="gap:10px">
-    <div class="row between"><span class="lbl">${up?'Nächste 12 Monate':'Letzte 12 Monate'}</span><span class="small muted-night">netto</span></div>
+    <div class="row between"><span class="lbl">${up?'Nächste 12 Monate':'Letzte 12 Monate'}</span><span class="kmode" role="group" aria-label="Netto oder Brutto">${['netto','brutto'].map(k=>`<button type="button" data-kalmode="${k}" aria-pressed="${(UI.kalMode||'netto')===k}">${k==='netto'?'Netto':'Brutto'}</button>`).join('')}</span></div>
     ${up&&K.noFx.length&&!K.total?`<span class="big" style="font-size:26px">${K.gross.map(([c,v])=>`${num(v,0)} ${ccySym(c)}`).join(' + ')} brutto</span><span class="small sun-text">Devisenkurs ${esc(K.noFx.join(', '))} fehlt, Euro-Werte folgen mit dem nächsten Kursabruf.</span>`:`<span class="big" style="font-size:32px">${up?'rund ':''}${eur(up?K.total:K.totalGot)}</span>`}
     <span class="small muted-night">${up?`${K.nAnn} angekündigt, ${K.nEst} geschätzt${K.noEur?` · ${K.noEur} ohne Euro-Wert`:''} · im Monat Ø ${eur(K.total/12)}`:`${K.got.length} Buchungen aus deinen Umsätzen`}</span>
     ${up?`<div class="kbars" role="group" aria-label="Dividenden je Monat">${K.months.map(x=>`<button type="button" data-kmonth="${x.k}" class="${x.k===now?'now':''}" aria-label="${x.label}: ${eur(x.v)}"><span class="kv0">${x.v>=1?num(x.v,0):''}</span><i style="height:${Math.max(2,x.v/max*58)}px"></i><span>${x.label.slice(0,3)}</span></button>`).join('')}</div>`:''}
@@ -1701,9 +1712,9 @@ function vKalender(){
   const noAuto=!AUTODIV||!AUTODIV.asOf;
   if(!list.length)body=up?`<div class="empty">${noAuto?'Die gesammelten Dividendendaten sind noch nicht geladen. Sie entstehen beim Veröffentlichen der Seite auf GitHub und werden einmal am Tag aktualisiert.':'Für deine Positionen ist in den nächsten 12 Monaten keine Zahlung erklärt oder aus den letzten 12 Monaten zu erwarten.'}</div>`
     :`<div class="empty">${K.hasTx?'In den letzten 12 Monaten ist keine Dividende gebucht.':'Erhaltene Dividenden stehen in deinen Umsätzen. Importiere sie aus Portfolio Performance.'}</div>${K.hasTx?'':'<a class="btn" href="#daten">Umsätze importieren</a>'}`;
-  else body=groups.map(g=>{const [y,mo]=g.k.split('-');const s=g.items.reduce((a,x)=>a+(x.net||0),0);
+  else body=groups.map(g=>{const [y,mo]=g.k.split('-');const s=g.items.reduce((a,x)=>a+(kv(x)||0),0);
     return `<h2 class="kmon" id="km-${g.k}"><span>${MONAT[+mo-1]} ${y}</span><span class="num">${eur(s,2)}</span></h2>${g.items.map(kalRow).join('')}`}).join('');
-  const foot=up?`<p class="hint">Angekündigt heißt: vom Unternehmen erklärt, mit Quelle. Geschätzt heißt: Termin nach dem Muster des Vorjahres (fester Monatstag oder Wochentag, Wochenende → Werktag davor), Höhe wie zuletzt, für deinen heutigen Bestand. Stückzahl bei bekanntem Ex-Tag: dein Bestand am Ex-Tag laut Umsätzen. Daten ${noAuto?'noch nicht geladen':`von ${esc(AUTODIV.source)}, abgerufen ${esc(fmtAsOf(AUTODIV.asOf))}, für ${K.auto} von ${K.held} Positionen`}. Keine Anlageberatung.</p>`:'<p class="hint">Beträge netto, wie in Portfolio Performance gebucht.</p>';
+  const foot=up?`<p class="hint">${kalBrutto()?'Brutto: vor deutscher Steuer und ausländischer Quellensteuer, Fremdwährung zum heutigen EZB-Kurs.':'Netto: nach 26,375 % Abgeltungsteuer mit Soli, ohne Kirchensteuer und Sparerpauschbetrag.'} Angekündigt heißt: vom Unternehmen erklärt, mit Quelle. Geschätzt heißt: Termin nach dem Muster des Vorjahres (fester Monatstag oder Wochentag, Wochenende → Werktag davor), Höhe wie zuletzt, für deinen heutigen Bestand. Stückzahl bei bekanntem Ex-Tag: dein Bestand am Ex-Tag laut Umsätzen. Daten ${noAuto?'noch nicht geladen':`von ${esc(AUTODIV.source)}, abgerufen ${esc(fmtAsOf(AUTODIV.asOf))}, für ${K.auto} von ${K.held} Positionen`}. Keine Anlageberatung.</p>`:`<p class="hint">${kalBrutto()?'Beträge brutto: gebuchter Nettobetrag plus gebuchte Steuern aus Portfolio Performance.':'Beträge netto, wie in Portfolio Performance gebucht.'}</p>`;
   const gap=up&&K.noData.length?`<div class="banner"><b>Ohne Dividendendaten: ${esc(K.noData.map(p=>short(p.name)).join(', '))}</b><span>Für diese Positionen fehlen gesammelte Daten${K.hasTx?'':' und Umsätze'}. Trage sie in symbols.txt ein (Symbol, ISIN und für US-Aktien den US-Ticker), dann sammelt die Action sie beim nächsten Lauf.</span></div>`:'';
   return head+sum+seg+gap+body+foot;
 }
@@ -1714,7 +1725,7 @@ function kalTeaser(d){try{const K=kalModel(d),n=K.items[0];if(!n&&!K.hasTx&&!AUT
   const spark=`<svg class="zspark" viewBox="0 0 60 36" aria-hidden="true">${K.months.map((x,i)=>{const h=Math.max(1.5,x.v/max*30);return `<rect x="${i*5}" y="${34-h}" width="3.4" height="${h}" rx="1" fill="${i===0?'var(--accent)':'var(--pos)'}"/>`}).join('')}</svg>`;
   return `<a class="card zteaser" href="#kalender"><span class="col" style="gap:2px;min-width:0"><span class="lbl">Dividendenkalender</span>
     <span class="strong">${n?`Nächste: ${esc(short(n.name))} am ${isoShort(n.pay)}`:'Keine Zahlung in Sicht'}</span>
-    <span class="small muted2">${n?`${n.net!=null?(n.state==='estimated'?'rund ':'≈ ')+eur(n.net,2):num(n.gross,2)+' '+ccySym(n.ccy)}, ${n.state==='announced'?'angekündigt':'geschätzt'} · `:''}12 Monate rund ${eur(K.total)}</span></span>${spark}</a>`}catch(e){console.error(e);return ''}}
+    <span class="small muted2">${n?`${kv(n)!=null?(n.state==='estimated'?'rund ':'≈ ')+eur(kv(n),2)+(kalBrutto()?' brutto':''):num(n.gross,2)+' '+ccySym(n.ccy)}, ${n.state==='announced'?'angekündigt':'geschätzt'} · `:''}12 Monate rund ${eur(K.total)}</span></span>${spark}</a>`}catch(e){console.error(e);return ''}}
 
 /* =========================================================
    WIRTSCHAFT & SZENARIEN – Szenario-Wahrscheinlichkeit, Modellschätzung
@@ -2518,6 +2529,7 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
 document.addEventListener('click',e=>{
   const t=e.target;
   const kt=t.closest('[data-ktab]');if(kt){KAL.tab=kt.dataset.ktab;rerender();return}
+  const kmo=t.closest('[data-kalmode]');if(kmo){UI.kalMode=kmo.dataset.kalmode;saveUI();rerender();toast(kmo.dataset.kalmode==='brutto'?'Beträge brutto (vor Steuern)':'Beträge netto (nach Steuern)');return}
   const km=t.closest('[data-kmonth]');if(km){const el=document.getElementById('km-'+km.dataset.kmonth);if(el){el.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});const n=el.nextElementSibling;if(n&&n.matches('details'))n.querySelector('summary').focus({preventScroll:true})}else toast('In diesem Monat ist nichts angekündigt oder geschätzt.');return}
   const dv=t.closest('[data-depview]');if(dv){UI.depotView=dv.dataset.depview;saveUI();rerender();if(UI.depotView==='stadt')stadtCenter();return}
   const ts=t.closest('[data-themeset]');if(ts){UI.theme=ts.dataset.themeset;saveUI();applyTheme();rerender();return}
