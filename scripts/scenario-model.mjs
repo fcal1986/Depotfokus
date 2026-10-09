@@ -282,7 +282,7 @@ const round = (v, d) => Math.round(v * 10 ** d) / 10 ** d;
 function driverText(r) {
   const why = r.kind === 'revision' ? 'revidiert' : r.kind === 'new' ? 'neuer Wert' : r.kind === 'status' ? (r.signal_after == null ? 'fällt aus' : 'wieder verfügbar') : r.kind === 'start' ? 'Abweichung vom neutralen Startpunkt' : 'unverändert';
   const sig = r.signal_after == null ? 'kein gültiges Signal mehr' : r.signal_after > 0.05 ? 'spricht für Entspannung' : r.signal_after < -0.05 ? 'spricht für Belastung' : 'neutral';
-  return `${r.name}: ${r.value_text ?? '–'} (${r.period_text}, ${why}) – ${sig}`;
+  return `${r.name}: ${r.value_text ?? '–'} (${r.period_text}${r.kind === 'start' || r.kind === 'same' ? '' : ', ' + why}) – ${sig}`;
 }
 
 /* Kurze regelbasierte Wochenzusammenfassung */

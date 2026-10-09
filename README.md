@@ -5,6 +5,7 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 **Startseite (`index.html`):** eine App mit vier Bereichen.
 
 - **Heute:** Vermögen, Depot-Wetter (Abstand zu deinen Zielen), Storys wie bei WhatsApp (laufen automatisch weiter, rechts/links tippen, halten pausiert, danach folgt die nächste Position), Veränderungen je Position und Datenstand.
+- **Wirtschaft & Szenarien** (`#szenarien`, Karte auf Heute): drei feste Makroszenarien bis 09.10.2029 (A Zähe Erholung, B Breiter Aufschwung, C Längerer Stress) als „Szenario-Wahrscheinlichkeit – Modellschätzung“. Jeden Montag aus amtlichen Daten (EZB, Eurostat, FRED) mit festen Regeln neu gerechnet, ohne Sprachmodell: Veränderung zur Vorwoche in Prozentpunkten, belegte Treiber und Gegensignale, Verlauf 13/26/52 Wochen, jede Woche antippbar, Datenqualität und Ablauf, dazu eine getrennte Modellrechnung mit eigenen Renditeannahmen. Keine Trefferquote vor der Auflösung 2029. Details: [`docs/SZENARIEN.md`](docs/SZENARIEN.md).
 - **Datenstand und Ablauf** (`#stand`): was automatisch läuft (Kurse, Rechnen), was manuell geprüft ist (Einordnungen, Regeln), wann der nächste Kursabruf geplant ist und welche Berichte als Nächstes erwartet werden.
 - **Depot-Stadt** (oben im Depot): jede Position ein illustriertes Gebäude (Rechenzentrum, Getränkefabrik, Pflegeheim, Kreditbank, Weltviertel …). Höhe = Wert, gelbe Fenster = Dividende, Sonne/Wolke = Rückenwind/Gegenwind aus belegten Trends; mit dem Zeitregler wächst die Stadt (mittleres Szenario der Zeitreise). Antippen öffnet den Steckbrief (`#haus/…`): Was macht die Firma, was gehört dir (z. B. „7,7 Getränke pro Tag“), wohin geht dein Geld (Umsatz, Gewinn, Dividende, was in der Firma bleibt), wohin geht die Welt, macht die Firma es gut (Regeln plus Umwelt, Soziales, Führung mit Quellen). Dazu dein Warum: einmal ein Anleger-Profil, je Position bis zu zwei Gründe; der Entscheidungs-Check greift das auf. Daten: `data/world.json`, recherchiert am 05.10.2026, jede Zahl mit Quelle.
 - **Dividendenkalender** (`#kalender`, aus Heute und Depot): Zahlungen der nächsten 12 Monate je Monat mit Summe und Monatsbalken. **Angekündigt** heißt vom Unternehmen erklärt, mit Ex-Tag, Zahltag, Betrag je Aktie und Quelle (`data/dividends.json`). **Geschätzt** heißt gleicher Termin und gleiche Höhe wie deine Buchung vor einem Jahr, auf den heutigen Bestand hochgerechnet; ohne Umsätze gibt es keine Schätzungen. Dazu „Erhalten“: deine gebuchten Dividenden der letzten 12 Monate. Beträge netto, Fremdwährung zum aktuellen Devisenkurs.
@@ -43,7 +44,9 @@ Installierbar als App (Zum Home-Bildschirm) und offline nutzbar.
 
 ## Quelltext
 
-`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten), `src/zeit.js` (Zeitreise und Kurstipps), `src/stadt.js` (Depot-Stadt und Steckbriefe), `src/kalender.js` (Dividendenkalender) und `src/ui.js` (Oberfläche, Routing) sowie `data/info.json`, `data/resolved.json`, `data/world.json` und `data/dividends.json` zusammen. Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
+`python3 scripts/build.py` setzt `index.html` aus `src/shell.html` (Gerüst und CSS), `src/tx.js` (Umsätze, Rendite, Kurse), `src/logic.js` (Daten, CSV-Parser, Regeln, Rechner), `src/parts.js` (Import- und Datenkarten), `src/zeit.js` (Zeitreise und Kurstipps), `src/stadt.js` (Depot-Stadt und Steckbriefe), `src/kalender.js` (Dividendenkalender), `src/szenario.js` (Wirtschaft & Szenarien) und `src/ui.js` (Oberfläche, Routing) sowie `data/info.json`, `data/resolved.json`, `data/world.json`, `data/dividends.json` sowie Definitionen, Prüfstatus und den jüngsten Wochenstand aus `data/scenarios/` zusammen. Ältere Wochenstände lädt die App bei Bedarf aus `data/scenarios/snapshots/` (beim Veröffentlichen nach `_site` kopiert).
+
+**Szenario-Monitor:** `scripts/scenario-run.mjs` (Ablauf), `scripts/scenario-model.mjs` (Rechenkern), `scripts/scenario-sources.mjs` (Datenadapter), Tests `node --test scripts/scenario-test.mjs`, Workflow `.github/workflows/scenarios.yml` (Montag 07:20 Uhr Berliner Zeit, manuell über Actions › Szenario-Monitor › Run workflow). Die Action baut bei jedem Veröffentlichen neu. Musterumsätze sind erfunden (`scripts/gen_demo_tx.py`).
 
 ## Datenschutz
 
@@ -60,7 +63,7 @@ Settings › Pages › Source „GitHub Actions“. Jeder Push auf `main` veröf
 
 - Umsätze nur aus Euro-Konten. Steuerschätzung vereinfacht (ohne Kirchensteuer, Sparerpauschbetrag, Verlusttöpfe, Vorabpauschale).
 - Kurse etwa alle 15 Minuten, durch GitHub-Zeitpläne oft 15–30 Minuten alt; nur für Wertpapiere mit ISIN in den Stammdaten oder `symbols.txt`.
-- Kompass-Wahrscheinlichkeiten erst mit öffentlicher Trefferquote.
+- Kompass-Wahrscheinlichkeiten erst mit öffentlicher Trefferquote. Die Szenario-Wahrscheinlichkeiten sind ausdrücklich eine unkalibrierte Modellschätzung mit festen Regeln; Gewinne und KI-Investitionen nur aus US-Daten, Bewertungen nicht abgedeckt.
 - Berichte nur von der SEC (US-Unternehmen und ausländische Emittenten mit US-Notierung); keine Presseartikel, keine ETFs.
 - GitHub pausiert geplante Läufe in Repositories ohne Aktivität nach 60 Tagen; ein Commit oder manueller Start reaktiviert sie.
 - Familien-Rangliste braucht Benutzerkonten.
