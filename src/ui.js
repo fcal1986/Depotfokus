@@ -47,7 +47,7 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',kalender:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot'};
+const TABFOR={heute:'heute',kalender:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot',szenarien:'heute'};
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -63,6 +63,7 @@ function route(){
     else if(r==='zeit')html=vZeit();
     else if(r==='haus')html=vHaus(a[0]);
     else if(r==='kalender')html=vKalender();
+    else if(r==='szenarien')html=vSzen(a[0]);
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   const ss0=document.getElementById('stadtScroll'),sl0=ss0?ss0.scrollLeft:null;
@@ -121,6 +122,7 @@ function vHeute(){
     ${fresh.map(p=>{const n=newReports(p.symbol)[0];return `<a href="#pos/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag new">Neuer Bericht</span></span><span class="d">${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(p.symbol))}</span><span class="src">Erkannt bei der SEC am ${esc(deDate(REPORTS.checkedAt))}</span></a>`}).join('')}
     ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)} · Stand ${deDate(I.checked)}</span></a>`}).join(''):fresh.length?'':'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
+  ${scenTeaser()}
   ${kalTeaser(d)}
   ${zTeaser(d)}
   ${standTeaser()}
@@ -446,7 +448,8 @@ function standTeaser(){const ps=priceStatus(),rs=reportStatus();
    <span class="stand-l"><i class="dot ${ps.last&&!ps.stale?'ok':'warn'}"></i><span>Kurse ${ps.last?'von '+esc(fmtAsOf(PRICES.asOf)):'nicht verfügbar'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot ${rs.checkedAt?(rs.nNew?'warn':'ok'):'off'}"></i><span>${rs.uaBlocked?'Berichte: Abruf blockiert, Einrichtung nötig':rs.checkedAt?(rs.nNew?`${rs.nNew} ${rs.nNew>1?'neue Berichte':'neuer Bericht'}`:'Keine neuen Berichte'):'Berichte noch nicht geprüft'}</span><span class="muted2">automatisch</span></span>
    <span class="stand-l"><i class="dot ${AUTODIV&&AUTODIV.asOf?'ok':'off'}"></i><span>${AUTODIV&&AUTODIV.asOf?`Dividenden von ${esc(fmtAsOf(AUTODIV.asOf))}`:'Dividenden noch nicht gesammelt'}</span><span class="muted2">automatisch</span></span>
-   <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span></a>`}
+   <span class="stand-l"><i class="dot man"></i><span>Einordnungen vom ${deDate(rs.last)}</span><span class="muted2">${rs.auto?'Claude + Freigabe':'manuell'}</span></span>
+   ${SCEN?`<span class="stand-l"><i class="dot ${scStatusDot(SCEN.latest)}"></i><span>${SCEN.latest?`Szenarien ${weekLbl(SCEN.latest.week_id)}${SCEN.latest.status==='kept'?', nicht neu bewertet':''}`:'Szenarien noch nicht bewertet'}</span><span class="muted2">wöchentlich</span></span>`:''}</a>`}
 function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
   const chip=(k,t)=>`<span class="mode ${k}">${t}</span>`;
   const ext=(u,t)=>`<a class="link" href="${esc(u)}" target="_blank" rel="noopener">${t} ${ICON_EXT}</a>`;
@@ -481,6 +484,13 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
    <dt>Offene Vorschläge</dt><dd>${rs.props.length?rs.props.map(x=>ext(x.url,'#'+x.number+' '+esc(x.sym))).join(' · '):'keine'}</dd>
    <dt>Stand</dt><dd>${rs.pos.length} Positionen, ${rs.claude} davon automatisch eingeordnet, zuletzt ${deDate(rs.last)}</dd></dl>
    <p class="hint">Liga-Prognosen werden aufgelöst, sobald die neue Einordnung freigegeben ist.</p></section>
+  ${SCEN?`<section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Szenario-Monitor</h2>${chip('auto','automatisch')}</div>
+   <dl class="kv"><dt>Quellen</dt><dd>EZB, Eurostat, FRED (BEA, IWF, ICE BofA, Cboe); nur öffentliche Wirtschaftsdaten, keine Depotdaten</dd>
+   <dt>Letzter Stand</dt><dd>${SCEN.latest?`${weekLbl(SCEN.latest.week_id)} · ${esc(SCEN.latest.status_text)}`:'noch keiner'}</dd>
+   <dt>Letzter Prüfversuch</dt><dd>${SCEN.status&&SCEN.status.last_attempt_at?esc(fmtAsOf(SCEN.status.last_attempt_at)):'–'}</dd>
+   <dt>Zeitplan</dt><dd>Montag 07:20 Uhr, nächster Lauf ${fmtWhen(scNext())}; manuell über Actions › Szenario-Monitor › Run workflow</dd>
+   <dt>Verfahren</dt><dd>feste Regeln, ohne Sprachmodell; Prozentwerte sind eine Modellschätzung ohne Trefferquote</dd></dl>
+   <a class="link" href="#szenarien">Zu Wirtschaft & Szenarien →</a></section>`:''}
   <section class="card col" style="gap:8px"><div class="row between"><h2 class="h2" style="margin:0">Deine Daten</h2>${chip('dev','nur dieses Gerät')}</div>
    <dl class="kv"><dt>Bestand</dt><dd>${d.kind==='demo'?'Musterdepot (erfunden)':`${esc(d.fileName)}, übernommen ${esc(d.importedAt||'–')}`}</dd>
    <dt>Umsätze</dt><dd>${m?`${d.tx.length} Buchungen bis ${isoToDe(m.M.last)}`:'keine'}</dd>
