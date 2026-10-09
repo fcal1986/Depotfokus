@@ -510,6 +510,7 @@ function vStand(){const d=D(),ps=priceStatus(),rs=reportStatus(),m=txModel(d);
 document.addEventListener('click',e=>{
   const t=e.target;
   const kt=t.closest('[data-ktab]');if(kt){KAL.tab=kt.dataset.ktab;rerender();return}
+  const kmo=t.closest('[data-kalmode]');if(kmo){UI.kalMode=kmo.dataset.kalmode;saveUI();rerender();toast(kmo.dataset.kalmode==='brutto'?'Beträge brutto (vor Steuern)':'Beträge netto (nach Steuern)');return}
   const km=t.closest('[data-kmonth]');if(km){const el=document.getElementById('km-'+km.dataset.kmonth);if(el){el.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});const n=el.nextElementSibling;if(n&&n.matches('details'))n.querySelector('summary').focus({preventScroll:true})}else toast('In diesem Monat ist nichts angekündigt oder geschätzt.');return}
   const dv=t.closest('[data-depview]');if(dv){UI.depotView=dv.dataset.depview;saveUI();rerender();if(UI.depotView==='stadt')stadtCenter();return}
   const ts=t.closest('[data-themeset]');if(ts){UI.theme=ts.dataset.themeset;saveUI();applyTheme();rerender();return}
