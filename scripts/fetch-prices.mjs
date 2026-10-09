@@ -117,21 +117,23 @@ for (const s of symbols) {
   if (q) quotes[s] = q; else missing.push(s);
   await sleep(250);
 }
-const need = new Set(Object.values(quotes).map(q => (q.ccy === 'GBp' || q.ccy === 'GBX') ? 'GBP' : q.ccy).filter(c => c && c !== 'EUR'));
+// Devisen: immer USD, DKK, GBP, CHF (Dividenden zahlen in Fremdwährung, auch wenn alle Kurse in Euro von Tradegate kommen).
+// Zuerst der amtliche EZB-Referenzkurs, sonst Yahoo oder Stooq.
+const need = new Set(['USD', 'DKK', 'GBP', 'CHF', ...Object.values(quotes).map(q => (q.ccy === 'GBp' || q.ccy === 'GBX') ? 'GBP' : q.ccy).filter(c => c && c !== 'EUR')]);
+const fxSrc = {};
 for (const c of need) {
-  let r = batch[`EUR${c}=X`] || (ses ? null : await yahoo(`EUR${c}=X`));
-  if (!r) { const s = await stooq(`eur${c.toLowerCase()}`); if (s) r = s; }
-  if (!r) {
-    try {
-      const e = await fetch(`https://data-api.ecb.europa.eu/service/data/EXR/D.${c}.EUR.SP00.A?lastNObservations=1&format=csvdata`);
-      if (e.ok) { const rows = (await e.text()).trim().split(/\r?\n/); const h = rows[0].split(','), v = rows[rows.length - 1].split(','); const p = parseFloat(v[h.indexOf('OBS_VALUE')]); if (p > 0) r = { p }; }
-      else note(`EUR${c}`, `ecb ${e.status}`);
-    } catch (e) { note(`EUR${c}`, `ecb ${e.message}`); }
-  }
-  if (r) fx[c] = r.p;
+  let r = null;
+  try {
+    const e = await fetch(`https://data-api.ecb.europa.eu/service/data/EXR/D.${c}.EUR.SP00.A?lastNObservations=1&format=csvdata`, { headers: { Accept: 'text/csv' } });
+    if (e.ok) { const rows = (await e.text()).trim().split(/\r?\n/); const h = rows[0].split(','), v = rows[rows.length - 1].split(','); const p = parseFloat(v[h.indexOf('OBS_VALUE')]); if (p > 0) r = { p, src: `EZB-Referenzkurs ${v[h.indexOf('TIME_PERIOD')] || ''}`.trim() }; }
+    else note(`EUR${c}`, `ecb ${e.status}`);
+  } catch (e) { note(`EUR${c}`, `ecb ${e.message}`); }
+  if (!r) { const y = batch[`EUR${c}=X`] || await yahoo(`EUR${c}=X`); if (y) r = { p: y.p, src: 'Yahoo Finance' }; }
+  if (!r) { const s = await stooq(`eur${c.toLowerCase()}`); if (s) r = { p: s.p, src: 'Stooq' }; }
+  if (r) { fx[c] = r.p; fxSrc[c] = r.src; } else missing.push(`EUR${c}`);
 }
 const used = [...new Set(Object.values(quotes).map(q => q.src))];
-const data = { schedule: process.env.PRICE_CRON || '*/15 6-20 * * 1-5|37 21 * * 1-5', asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, missing, errors };
+const data = { schedule: process.env.PRICE_CRON || '*/15 6-20 * * 1-5|37 21 * * 1-5', asOf: new Date().toISOString(), source: used.join(', ') || 'keine', note: 'Verzögerte Kurse, ohne Gewähr', quotes, fx, fxSrc, missing, errors };
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, JSON.stringify(data));
 console.log(`Kurse: ${Object.keys(quotes).length}/${symbols.size} (${data.source}), Devisen: ${Object.keys(fx).join(',') || '-'}, fehlend: ${missing.join(',') || '-'}`);
