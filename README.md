@@ -2,7 +2,17 @@
 
 Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verkaufsentscheidungen gut zu begründen.
 
-**Startseite (`index.html`):** eine App mit vier Bereichen.
+**Startseite (`index.html`):** eine App mit fünf Tabs nach Aufgabe (Muster aus Apple Human Interface Guidelines und Material 3: 3–5 feste Ziele unten, Neues als Badge, Seltenes eine Ebene tiefer):
+
+| Tab | Inhalt |
+|---|---|
+| **Übersicht** (`#heute`) | Stories, Vermögen, bis zu drei Neuigkeiten, Szenario-Karte, Lernserie |
+| **Depot** (`#depot`) | Depot-Wetter, Umschalter Liste/Stadt, Wertentwicklung, Abweichungen, Positionen mit Kompass und Check |
+| **Einkommen** | Unterseiten Dividenden (`#kalender`), Plan (`#plan`), Zeitreise (`#zeit`) |
+| **Welt** | Unterseiten Szenarien (`#szenarien`), Berichte (`#berichte`); Badge bei neuen Berichten |
+| **Lernen** (`#liga`) | Prognose-Liga, Quiz, Kurstipps, Entscheidungsnotizen |
+
+Zahnrad oben rechts: Einstellungen (Import, Darstellung, Datenstand). Die einzelnen Funktionen im Detail:
 
 - **Heute:** Vermögen, Depot-Wetter (Abstand zu deinen Zielen), Storys wie bei WhatsApp (laufen automatisch weiter, rechts/links tippen, halten pausiert, danach folgt die nächste Position), Veränderungen je Position und Datenstand.
 - **Wirtschaft & Szenarien** (`#szenarien`, Karte auf Heute): drei feste Makroszenarien bis 09.10.2029 (A Zähe Erholung, B Breiter Aufschwung, C Längerer Stress) als „Szenario-Wahrscheinlichkeit – Modellschätzung“. Jeden Montag aus amtlichen Daten (EZB, Eurostat, FRED) mit festen Regeln neu gerechnet, ohne Sprachmodell: Veränderung zur Vorwoche in Prozentpunkten, belegte Treiber und Gegensignale, Verlauf 13/26/52 Wochen, jede Woche antippbar, Datenqualität und Ablauf, dazu eine getrennte Modellrechnung mit eigenen Renditeannahmen. Keine Trefferquote vor der Auflösung 2029. Details: [`docs/SZENARIEN.md`](docs/SZENARIEN.md).

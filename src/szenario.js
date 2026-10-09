@@ -49,7 +49,7 @@ function scenTeaser(){
 /* ---------- Detailansicht #szenarien ---------- */
 function vSzen(arg){
   SCX.demo=arg==='demo';
-  const back=`<div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><div class="col"><h1 class="h1" style="font-size:26px">Wirtschaft & Szenarien</h1><span class="small muted2">${SC_LABEL}</span></div></div>`;
+  const back=hubHead('welt','szenarien',`<span class="small strong muted2">${SC_LABEL}</span>`);
   if(!SCEN)return back+'<div class="empty">Szenariodaten fehlen in dieser Version.</div>';
   const set=scSet(),D0=scData(),L=D0.latest;
   const head=`${back}${SCX.demo?'<a href="#szenarien" class="demo-bar"><span class="chip-demo">UI-Testdaten</span><span>Erfundene Beispielwerte, kein Live-Verlauf. Zur echten Ansicht.</span></a>':''}

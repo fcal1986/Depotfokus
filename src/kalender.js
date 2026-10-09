@@ -99,7 +99,7 @@ function vKalender(){
   const d=D(),K=kalModel(d),up=KAL.tab==='kommend',list=up?K.items:K.got;
   const max=Math.max(1,...K.months.map(x=>x.v)),now=K.today.slice(0,7);
   const groups=[];list.forEach(x=>{const k=x.pay.slice(0,7);let g=groups[groups.length-1];if(!g||g.k!==k){g={k,items:[]};groups.push(g)}g.items.push(x)});
-  const head=`<div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Dividendenkalender</h1></div>
+  const head=`${hubHead('einkommen','kalender')}
    ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot und Musterumsätze</span>':''}`;
   const sum=`<section class="dark col" style="gap:10px">
     <div class="row between"><span class="lbl">${up?'Nächste 12 Monate':'Letzte 12 Monate'}</span><span class="small muted-night">netto</span></div>

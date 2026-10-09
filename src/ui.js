@@ -47,7 +47,11 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',kalender:'heute',depot:'depot',pos:'depot',check:'depot',plan:'plan',liga:'liga',daten:'heute',stand:'heute',zeit:'plan',haus:'depot',szenarien:'heute'};
+const TABFOR={heute:'heute',story:'heute',daten:'heute',stand:'heute',depot:'depot',pos:'depot',check:'depot',haus:'depot',kalender:'einkommen',plan:'einkommen',zeit:'einkommen',szenarien:'welt',berichte:'welt',liga:'liga'};
+/* Bereiche mit Unterseiten: Einkommen (Dividenden, Plan, Zeitreise) und Welt (Szenarien, Berichte) */
+const HUBS={einkommen:{t:'Einkommen',sub:[['kalender','Dividenden'],['plan','Plan'],['zeit','Zeitreise']]},welt:{t:'Welt',sub:[['szenarien','Szenarien'],['berichte','Berichte']]}};
+function hubHead(hub,cur,extra=''){const H=HUBS[hub];return `<div class="row between"><h1 class="h1" style="font-size:28px">${H.t}</h1><a href="#daten" class="icon-btn" aria-label="Einstellungen, Daten und Import">${ICON.gear}</a></div>
+  <nav class="hubseg" aria-label="${H.t}">${H.sub.map(([k,l])=>`<a href="#${k}"${k===cur?' aria-current="page"':''}>${l}</a>`).join('')}</nav>${extra}`}
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
 function route(){
   const {r,a}=parse();const v=$('#view');let html='';
@@ -64,16 +68,22 @@ function route(){
     else if(r==='haus')html=vHaus(a[0]);
     else if(r==='kalender')html=vKalender();
     else if(r==='szenarien')html=vSzen(a[0]);
+    else if(r==='berichte')html=vBerichte();
+    else if(r==='einkommen')html=(location.replace('#'+((UI.hub&&UI.hub.einkommen)||'kalender')),'');
+    else if(r==='welt')html=(location.replace('#'+((UI.hub&&UI.hub.welt)||'szenarien')),'');
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   const ss0=document.getElementById('stadtScroll'),sl0=ss0?ss0.scrollLeft:null;
   v.innerHTML=html;v.className=r==='story'?'story':'screen';
   const full=r==='story'||r==='check';$('#tabs').hidden=full;v.classList.toggle('sub',full);
-  document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===(TABFOR[r]||'heute'))x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
+  const tab=TABFOR[r]||'heute';
+  if(HUBS[tab]&&HUBS[tab].sub.some(([k])=>k===r)){UI.hub=Object.assign({},UI.hub,{[tab]:r});saveUI()}
+  document.querySelectorAll('#tabs a').forEach(x=>{if(x.dataset.tab===tab)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');if(HUBS[x.dataset.tab])x.setAttribute('href','#'+((UI.hub&&UI.hub[x.dataset.tab])||HUBS[x.dataset.tab].sub[0][0]))});
+  updateBadges();
   if(r==='daten'){renderSourceCard();renderImport();renderTxCard();renderPrices();renderConfirm();renderExt()}
   if(r==='plan')renderGoalSum2();
   if(r==='story')armStory();else stopStory();
-  if(r==='depot'){const ss=document.getElementById('stadtScroll');if(route.keep&&sl0!=null&&ss)ss.scrollLeft=sl0;else stadtCenter()}
+  if(r==='depot'&&UI.depotView==='stadt'){const ss=document.getElementById('stadtScroll');if(route.keep&&sl0!=null&&ss)ss.scrollLeft=sl0;else stadtCenter()}
   if(!route.keep){window.scrollTo(0,0);const h=v.querySelector('h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
   route.keep=false;
 }
@@ -86,13 +96,6 @@ function vHeute(){
   const greet=hr<11?'Guten Morgen':hr<18?'Guten Tag':'Guten Abend';
   const st=storyPositions();
   const crit=c.dev.filter(x=>x.lvl==='crit'),warn=c.dev.filter(x=>x.lvl==='warn');
-  const gs=goalState(d);
-  let w;
-  if(!gs.ok)w={k:'none',t:'Noch kein Wetterbericht',d:'Lege in „Plan“ deine Zielverteilung fest, dann vergleichen wir dein Depot damit.',go:'#plan'};
-  else if(crit.length)w={k:'rain',t:'Wechselhaft',d:crit[0].t+(crit.length>1?` und ${crit.length-1} weitere deutliche Abweichung${crit.length>2?'en':''}`:'')+'.',go:'#depot'};
-  else if(warn.length)w={k:'cloud',t:'Leicht bewölkt',d:warn[0].t+'.',go:'#depot'};
-  else w={k:'sun',t:'Heiter',d:'Dein Depot liegt nah an deinen Vorgaben.',go:'#depot'};
-  if(c.incomplete&&gs.ok)w.d+=' Vorläufig, weil Positionen fehlen.';
   const rank={neg:0,warn:1,pos:2,neutral:3};
   const fresh=st.filter(p=>newReports(p.symbol).length);
   const changes=st.filter(p=>!fresh.includes(p)&&INFO[p.symbol].changes.items.length).sort((a,b)=>(rank[MOOD[a.symbol]||'neutral']-rank[MOOD[b.symbol]||'neutral'])||posValue(b)-posValue(a)).slice(0,Math.max(1,3-fresh.length));
@@ -101,8 +104,7 @@ function vHeute(){
     <div class="col" style="gap:2px"><span class="small strong muted2">${now.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}</span><h1 class="h1">${greet}</h1></div>
     <div class="row" style="gap:6px">
       <a href="#liga" class="chip-btn" aria-label="Lernserie: ${streak()} Tage, ${FUN.points} Wissenspunkte">${ICON.bars}<span>${streak()} ${streak()===1?'Tag':'Tage'}</span></a>
-      ${themeBtn()}
-      <a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a>
+      <a href="#daten" class="icon-btn" aria-label="Einstellungen, Daten und Import">${ICON.gear}</a>
     </div>
   </div>
   ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
@@ -116,16 +118,12 @@ function vHeute(){
   </section>
   ${eventsHTML(d)}
   ${c.incomplete?`<a href="#daten" class="banner"><b>Zuordnungen prüfen</b><span>Ohne Bestätigung ${(tt.open+noBucket(d).length)===1?'fehlt 1 Position':'fehlen '+(tt.open+noBucket(d).length)+' Positionen'} in Gewichten und Zielvergleich.</span></a>`:''}
-  <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
   <section class="col" style="gap:8px">
-    <h2 class="h2">Was sich geändert hat</h2>
+    <div class="row between"><h2 class="h2" style="margin:0">Was sich geändert hat</h2><a class="link" href="#berichte">Alle Berichte →</a></div>
     ${fresh.map(p=>{const n=newReports(p.symbol)[0];return `<a href="#pos/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag new">Neuer Bericht</span></span><span class="d">${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(p.symbol))}</span><span class="src">Erkannt bei der SEC am ${esc(deDate(REPORTS.checkedAt))}</span></a>`}).join('')}
     ${changes.length?changes.map(p=>{const I=INFO[p.symbol],m=MOOD[p.symbol]||'neutral';return `<a href="#story/${encodeURIComponent(p.id)}" class="card col change"><span class="row between"><span class="t">${esc(p.name)}</span><span class="tag ${m}">${MOODTXT[m]}</span></span><span class="d">${esc(I.changes.items[0].t)}</span><span class="src">${esc(I.changes.cmp)} · Stand ${deDate(I.checked)}</span></a>`}).join(''):fresh.length?'':'<p class="hint">Für deine Positionen liegen noch keine geprüften Veränderungen vor.</p>'}
   </section>
   ${scenTeaser()}
-  ${kalTeaser(d)}
-  ${zTeaser(d)}
-  ${standTeaser()}
   <p class="hint">Keine Anlageberatung.</p>`;
 }
 function valLine(d){const pi=priceInfo(d);const exp=d.kind==='demo'?'Exportwerte vom 04.10.2026':`Exportwerte aus ${esc(d.fileName)}${d.valuationDate?', Stichtag '+esc(d.valuationDate):''}`;
@@ -223,17 +221,25 @@ function vDepot(){
   const nb=noBucket(d);if(nb.length)list+=`<div class="grph"><span>Ohne Baustein</span></div>`+nb.map(p=>posRow(p,T)).join('');
   const out=d.positions.filter(p=>!isIncluded(p));if(out.length)list+=`<div class="grph"><span>Nicht eingerechnet</span></div>`+out.map(p=>posRow(p,T)).join('');
   if(d.accounts.length)list+=`<div class="grph"><span class="row" style="gap:8px"><i class="dot" style="background:var(--s6)"></i>Verrechnungskonto</span><span class="num">${eur(tt.acct)}</span></div>`;
+  const stadt=UI.depotView==='stadt',w=depotWeather(d,c);
   return `
-  <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Daten und Import">${ICON.gear}</a></div>
+  <div class="row between"><h1 class="h1" style="font-size:28px">Dein Depot</h1><a href="#daten" class="icon-btn" aria-label="Einstellungen, Daten und Import">${ICON.gear}</a></div>
   ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
-  ${stadtHTML(d)}
+  <a href="${w.go}" class="card row" style="gap:14px">${weather(w.k)}<div class="col" style="gap:2px;min-width:0"><span class="lbl">Depot-Wetter</span><span class="h3">${esc(w.t)}</span><span class="small muted2">${esc(w.d)}</span></div></a>
+  <div class="seg view-seg" role="group" aria-label="Ansicht"><button type="button" data-depview="liste" aria-pressed="${!stadt}">Liste</button><button type="button" data-depview="stadt" aria-pressed="${stadt}">Stadt</button></div>
+  ${stadt?stadtHTML(d):`<section class="card"><h2 class="h2">Positionen</h2>${list}</section>`}
   ${perfCard(d)}
-  ${kalTeaser(d)}
   <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
   <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
   <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
-  <section class="card"><h2 class="h2">Positionen</h2>${list}</section>`;
+  ${stadt?`<section class="card"><h2 class="h2">Positionen</h2>${list}</section>`:''}`;
 }
+function depotWeather(d,c){const gs=goalState(d),crit=c.dev.filter(x=>x.lvl==='crit'),warn=c.dev.filter(x=>x.lvl==='warn');let w;
+  if(!gs.ok)w={k:'none',t:'Noch kein Wetterbericht',d:'Lege unter Einkommen › Plan deine Zielverteilung fest, dann vergleichen wir dein Depot damit.',go:'#plan'};
+  else if(crit.length)w={k:'rain',t:'Wechselhaft',d:crit[0].t+(crit.length>1?` und ${crit.length-1} weitere deutliche Abweichung${crit.length>2?'en':''}`:'')+'.',go:'#depot'};
+  else if(warn.length)w={k:'cloud',t:'Leicht bewölkt',d:warn[0].t+'.',go:'#depot'};
+  else w={k:'sun',t:'Heiter',d:'Dein Depot liegt nah an deinen Vorgaben.',go:'#depot'};
+  if(c.incomplete&&gs.ok)w.d+=' Vorläufig, weil Positionen fehlen.';return w}
 function perfCard(d){const m=txModel(d);
   if(!m)return `<section class="card col" style="gap:8px" id="perf"><h2 class="h2">Wertentwicklung</h2><div class="empty">Für Gewinn, Ausschüttungen und Rendite braucht Depotfokus deine Umsätze aus Portfolio Performance.</div><a class="btn" href="#daten">Umsätze importieren</a></section>`;
   const kp=(l,v,c='')=>`<div class="kpi"><span class="small muted2">${l}</span><span class="num strong ${c}">${v}</span></div>`;
@@ -335,8 +341,7 @@ function vPlan(){
   if(!d.goals)goals=`<div class="empty">Du hast noch keine Zielverteilung. Ohne Ziele gibt es keinen Vergleich und keine Verteilung der Sparrate.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn solid" id="goalsFromNow" type="button">Heutige Verteilung übernehmen</button><button class="btn" id="goalsEmpty" type="button">Leer beginnen</button></div>`;
   else goals=B.map(b=>{const raw=goalRaw[b.id];return `<div class="goal"><i class="dot" style="background:var(${b.c})" aria-hidden="true"></i><label for="g_${b.id}" class="col"><span class="strong">${b.name}</span><span class="small muted2 num">heute ${T?pct(V[b.id]/T,1):'–'}</span></label><span class="row" style="gap:6px;flex-wrap:nowrap"><input class="numin" type="text" inputmode="decimal" id="g_${b.id}" data-goal="${b.id}" value="${esc(raw?raw.v:d.goals[b.id])}" ${raw?'aria-invalid="true"':''} aria-describedby="ge_${b.id}"> %</span><span class="err" id="ge_${b.id}">${raw?esc(raw.msg):''}</span></div>`}).join('')+`<div class="row between" style="margin-top:8px"><span id="goalSum" class="num" role="status"></span><button class="link" id="goalsFromNow" type="button">Heutige Verteilung</button></div>`;
   return `
-  <h1 class="h1" style="font-size:28px">Dein Plan</h1>
-  ${zTeaser(d)}
+  ${hubHead('einkommen','plan')}
   <section class="card col" style="gap:6px"><div class="row between"><h2 class="h2">1. Meine Zielverteilung</h2>${d.goalsSource==='example'?'<span class="chip-demo">Beispiel</span>':''}</div>${goals}
     <label class="field" for="maxSingle" style="margin-top:10px">Grenze je Einzelwert in % (leer = keine)<input class="numin" type="text" inputmode="decimal" id="maxSingle" value="${d.maxSingle??''}"><span class="err" id="maxErr"></span></label>
     <p class="hint">Zur Orientierung: Stiftung Warentest beschreibt im Pantoffel-Portfolio Mischungen mit 25, 50 oder 75 % Aktien. Keine Empfehlung für dich.</p></section>
@@ -397,7 +402,7 @@ function vLiga(){
     ${qButtons(next,pr,false)}<button type="button" class="btn light" data-resolve="${esc(next.id)}" ${pr.a?'':'disabled'}>Auflösen</button></section>`}
   else quiz=`<section class="card"><p>Alle ${retro.length} Rückblick-Fragen beantwortet. Neue kommen mit dem nächsten geprüften Bericht.</p></section>`;
   return `
-  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Prognose-Liga</h1><span class="small strong muted2">${FUN.points} Punkte · ${streak()} ${streak()===1?'Tag':'Tage'}</span></div>
+  <div class="row between" style="align-items:baseline"><h1 class="h1" style="font-size:28px">Lernen</h1><span class="small strong muted2">${FUN.points} Punkte · ${streak()} ${streak()===1?'Tag':'Tage'}</span></div>
   <p class="small muted2">Punkte gibt es für gut kalibrierte Einschätzungen, nicht für Käufe oder Verkäufe.</p>
   <section class="card col" style="gap:6px"><span class="strong">Deine Treffsicherheit</span>
    ${cb?`<div class="kpis">${[['Aufgelöst',cb.n],['Richtig',`${cb.hits} (${num(cb.rate,0)} %)`],['Ø Sicherheit',num(cb.conf,0)+' %'],['Brier-Wert',num(cb.brier,3)]].map(([l,v])=>`<div class="kpi"><span class="small muted2">${l}</span><span class="num strong">${v}</span></div>`).join('')}</div>
@@ -414,7 +419,7 @@ function vLiga(){
 
 /* ---------------- Daten ---------------- */
 function vDaten(){return `
-  <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Daten &amp; Import</h1></div>
+  <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Einstellungen</h1></div>
   <div class="card" id="sourceCard"></div>
   <div class="card" id="importCard" tabindex="-1"></div>
   <div class="card" id="txCard"></div>
@@ -503,6 +508,7 @@ document.addEventListener('click',e=>{
   const t=e.target;
   const kt=t.closest('[data-ktab]');if(kt){KAL.tab=kt.dataset.ktab;rerender();return}
   const km=t.closest('[data-kmonth]');if(km){const el=document.getElementById('km-'+km.dataset.kmonth);if(el){el.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});const n=el.nextElementSibling;if(n&&n.matches('details'))n.querySelector('summary').focus({preventScroll:true})}else toast('In diesem Monat ist nichts angekündigt oder geschätzt.');return}
+  const dv=t.closest('[data-depview]');if(dv){UI.depotView=dv.dataset.depview;saveUI();rerender();if(UI.depotView==='stadt')stadtCenter();return}
   const ts=t.closest('[data-themeset]');if(ts){UI.theme=ts.dataset.themeset;saveUI();applyTheme();rerender();return}
   if(t.closest('#themeToggle')){UI.theme=isDark()?'light':'dark';saveUI();applyTheme();rerender();toast(UI.theme==='dark'?'Dunkles Design':'Helles Design');return}
   const sb=t.closest('[data-story]');if(sb){if(tapLong){tapLong=false;return}storyStep(sb.dataset.story==='next'?1:-1);return}
@@ -574,6 +580,20 @@ function applyTheme(){const r=document.documentElement,t=UI.theme||'system';if(t
 function themeBtn(){const dk=isDark();return `<button type="button" class="icon-btn" id="themeToggle" aria-label="${dk?'Zu hellem Design wechseln':'Zu dunklem Design wechseln'}">${ICON.contrast}</button>`}
 if(darkMQ&&darkMQ.addEventListener)darkMQ.addEventListener('change',()=>{if((UI.theme||'system')==='system'){applyTheme();rerender()}});
 applyTheme();
+
+/* ---------------- Welt › Berichte ---------------- */
+function vBerichte(){const rs=reportStatus();
+  const rows=rs.pos.slice().sort((a,b)=>(b.n.length-a.n.length)||((INFO[a.p.symbol].checked<INFO[b.p.symbol].checked)?1:-1));
+  return hubHead('welt','berichte')+`
+  <p class="small muted2">Neue Pflichtmitteilungen der Unternehmen (SEC) und die geprüften Veränderungen je Position. ${rs.checkedAt?`Zuletzt geprüft ${esc(fmtAsOf(rs.checkedAt))}.`:'Noch nicht geprüft.'}</p>
+  ${rows.map(x=>{const I=x.I,n=x.n[0],m=MOOD[x.p.symbol]||'neutral',ch=I.changes.items[0],r=(I.rules||[]).find(y=>y.status!=='np');
+    return `<a href="#${n?'pos':'story'}/${encodeURIComponent(x.p.id)}" class="card col change"><span class="row between"><span class="t">${esc(x.p.name)}</span>${n?'<span class="tag new">Neuer Bericht</span>':`<span class="tag ${m}">${MOODTXT[m]}</span>`}</span>
+     <span class="d">${n?`${esc(n.label)} vom ${deDate(n.date)}. ${esc(newsLine(x.p.symbol))}`:ch?esc(ch.t):esc(I.interp)}</span>
+     <span class="src">Einordnung vom ${deDate(I.checked)} · ${methodTxt(I)}${r&&!n?` · erwartet: ${esc(r.next)}`:''}</span></a>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine geprüften Einordnungen.</p>'}
+  <a class="card row between" href="#stand"><span class="col" style="gap:2px"><span class="strong">Datenstand und Ablauf</span><span class="small muted2">Was automatisch läuft und wann</span></span><span aria-hidden="true">→</span></a>`}
+/* Badge am Tab „Welt“: neue Berichte */
+function updateBadges(){const b=document.getElementById('badge-welt');if(!b)return;let n=0;try{n=reportStatus().nNew}catch(e){}
+  b.hidden=!n;b.textContent=n>9?'9+':String(n);const a=b.closest('a');if(a)a.setAttribute('aria-label',n?`Welt, ${n} ${n>1?'neue Berichte':'neuer Bericht'}`:'Welt')}
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
