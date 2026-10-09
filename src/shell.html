@@ -339,6 +339,32 @@ details.krow summary::-webkit-details-marker{display:none}
 .krow[open] summary{border-bottom:1px solid var(--line-soft)}
 .kdet{padding:2px 14px 12px;display:flex;flex-direction:column;gap:6px}
 .theme-seg{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* Wirtschaft & Szenarien: feste Farben je Szenario (A blau, B grün, C rot-orange), in Hell und Dunkel lesbar */
+:root{--sc-a:#2a6fd6;--sc-b:#14966a;--sc-c:#d2501f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sc-a:#78a6ff;--sc-b:#4fd1a1;--sc-c:#ff8a5c}}
+:root[data-theme="dark"]{--sc-a:#78a6ff;--sc-b:#4fd1a1;--sc-c:#ff8a5c}
+.sc-good{color:var(--pos);font-weight:700}.sc-bad{color:var(--neg);font-weight:700}.sc-flat{color:var(--ink-2);font-weight:700}
+.sc-mini{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px}.sc-mini i{display:block;height:100%}
+.sc-pct{font-size:30px;line-height:1;white-space:nowrap}
+.sc-bar{position:relative;display:block;height:10px;border-radius:5px;background:var(--line-soft)}
+.sc-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px}
+.sc-bar b{position:absolute;top:-3px;bottom:-3px;width:2px;margin-left:-1px;background:var(--ink)}
+.sc-row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 0;border-top:1px solid var(--line-soft)}
+.sc-ul{margin:2px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.sc-drv.agt{color:var(--ink-2)}
+.sc-drvbox{padding-top:8px;border-top:1px solid var(--line-soft)}
+.sc-seg{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sc-chart{display:block;overflow:visible;touch-action:pan-y}
+.sc-legend{flex-wrap:wrap}
+.sc-weeks{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.sc-weeks .mchip{flex:none}
+.sc-grp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:6px 0;border-top:1px solid var(--line-soft)}
+.sc-grp .sc-sig{grid-column:1/-1}
+.sc-sig{position:relative;display:block;height:8px;border-radius:4px;background:var(--line-soft);margin:2px 0}
+.sc-sig i{position:absolute;top:0;bottom:0;border-radius:4px}.sc-sig i.up{background:var(--pos)}.sc-sig i.dn{background:var(--neg)}
+.sc-sig b{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--ink-3)}
+.sc-sig.na{background:none;height:auto}
+.sc-inp{display:flex;flex-direction:column;gap:3px;padding:10px 0;border-top:1px solid var(--line-soft)}
+.sc-ret .numin{width:72px}
 </style>
 </head>
 <body>

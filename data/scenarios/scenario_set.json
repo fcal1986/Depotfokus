@@ -48,7 +48,7 @@
       { "scenario": "B", "all_of": [
         "C trifft nicht zu,",
         "Euroraum-BIP wächst kumuliert vom 2026-Q3 bis 2029-Q3 um mindestens 5,0 % (rund 1,65 % pro Jahr),",
-        "die Kerninflation im Euroraum (HICP ohne Energie, Nahrungsmittel, Alkohol und Tabak, EZB) liegt im Durchschnitt der letzten zwölf Monate bis 2029-09 bei höchstens 2,5 %,",
+        "die Kerninflation im Euroraum (HVPI ohne Energie, Nahrungsmittel, Alkohol und Tabak, Eurostat prc_hicp_minr) liegt im Durchschnitt der letzten zwölf Monate bis 2029-09 bei höchstens 2,5 %,",
         "die US-Unternehmensgewinne nach Steuern (BEA, FRED CP) liegen im 2029-Q2 mindestens 15 % über dem 2026-Q2."
       ] },
       { "scenario": "A", "all_of": ["Weder C noch B trifft zu."] }
