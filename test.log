@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: Feeds werden geparst, alte und ausgeschlossene Meldungen fallen weg, Dubletten werden ein Ereignis
+ok 1 - Feeds werden geparst, alte und ausgeschlossene Meldungen fallen weg, Dubletten werden ein Ereignis
+  ---
+  duration_ms: 4.492488
+  ...
+# Subtest: Falsche Zahlen, Einheiten und Vorzeichen werden verworfen
+ok 2 - Falsche Zahlen, Einheiten und Vorzeichen werden verworfen
+  ---
+  duration_ms: 2.313675
+  ...
+# Subtest: „Preise sinken“ bei fallender Inflationsrate, unbelegte Erwartungen und Pauschalurteile werden nicht veröffentlicht
+ok 3 - „Preise sinken“ bei fallender Inflationsrate, unbelegte Erwartungen und Pauschalurteile werden nicht veröffentlicht
+  ---
+  duration_ms: 0.892206
+  ...
+# Subtest: Abgeleitete Zahl in der Überschrift (0,25 Prozentpunkte aus 25 Basispunkten) wird nicht übernommen
+ok 4 - Abgeleitete Zahl in der Überschrift (0,25 Prozentpunkte aus 25 Basispunkten) wird nicht übernommen
+  ---
+  duration_ms: 0.221641
+  ...
+# Subtest: Angekündigte und erwartete Dividenden werden unterschieden
+ok 5 - Angekündigte und erwartete Dividenden werden unterschieden
+  ---
+  duration_ms: 0.617185
+  ...
+# Subtest: Lauf mit Modell: geprüfte Meldungen, stabile IDs, wiederholter Lauf ohne neue Modellaufrufe
+ok 6 - Lauf mit Modell: geprüfte Meldungen, stabile IDs, wiederholter Lauf ohne neue Modellaufrufe
+  ---
+  duration_ms: 14.04859
+  ...
+# Subtest: Korrektur der Quelle ergibt sichtbare Revision mit gleicher ID
+ok 7 - Korrektur der Quelle ergibt sichtbare Revision mit gleicher ID
+  ---
+  duration_ms: 3.59926
+  ...
+# Subtest: Ohne API-Schlüssel: belegte Kurzmeldungen ohne erfundene Einordnung
+ok 8 - Ohne API-Schlüssel: belegte Kurzmeldungen ohne erfundene Einordnung
+  ---
+  duration_ms: 2.026506
+  ...
+# Subtest: Modellfehler und irrelevante Quellen: Kurzmeldung bzw. zurückgehalten
+ok 9 - Modellfehler und irrelevante Quellen: Kurzmeldung bzw. zurückgehalten
+  ---
+  duration_ms: 1.424143
+  ...
+# Subtest: Quellenausfall: letzte gültige Ausgabe bleibt mit ursprünglichem Datum; ruhiger Tag ist zulässig
+ok 10 - Quellenausfall: letzte gültige Ausgabe bleibt mit ursprünglichem Datum; ruhiger Tag ist zulässig
+  ---
+  duration_ms: 3.669486
+  ...
+# Subtest: Geplante Läufe: Sommer-/Winterzeit
+ok 11 - Geplante Läufe: Sommer-/Winterzeit
+  ---
+  duration_ms: 1.382781
+  ...
+# Subtest: Kurzmeldung nimmt nur einen echten Satz aus der Quelle
+ok 12 - Kurzmeldung nimmt nur einen echten Satz aus der Quelle
+  ---
+  duration_ms: 0.114932
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 79.275338
