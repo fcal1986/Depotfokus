@@ -71,7 +71,7 @@ function vZeit(){
   const risk=zRiskItems(d,S.items),tm=txModel(d);
   const act=tm&&tm.M.div12?tm.M.div12/12:null;
   return `
-  <div class="row" style="gap:6px"><a href="#plan" class="icon-btn" aria-label="Zurück zum Plan">${ICON.back}</a><div class="col"><span class="lbl">Zeitreise</span><h1 class="big" style="font-size:24px">Deine monatliche Dividende</h1></div></div>
+  ${hubHead('einkommen','zeit','<h2 class="h2" style="margin:4px 0 0">Deine monatliche Dividende in Zukunft</h2>')}
   ${d.kind==='demo'?'<span class="chip-demo" style="align-self:flex-start">Musterdepot</span>':''}
   <section class="dark col" style="gap:4px" id="zHead">${zHeadHTML(d,S,m)}</section>
   <section class="card col" style="gap:6px">
