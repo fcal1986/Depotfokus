@@ -74,7 +74,9 @@ export async function fetchPage(url, get, maxChars = 14000) {
   const r = await get(url, 'text/html');
   if (/pdf/i.test(r.type) || /\.pdf($|\?)/i.test(url)) throw new Error('PDF wird nicht ausgewertet');
   let h = r.text.replace(/<(nav|header|footer|aside|form|noscript)\b[\s\S]*?<\/\1>/gi, ' ');
-  const main = tag(h, 'main') || tag(h, 'article') || tag(h, 'body') || h;
+  // Fed und ähnliche Seiten: Inhalt ab dem Artikelbereich
+  const art = /<div[^>]+id="(article|content|main-content|maincontent)"[^>]*>([\s\S]*)/i.exec(h);
+  const main = tag(h, 'main') || tag(h, 'article') || (art ? art[2] : null) || tag(h, 'body') || h;
   const text = stripTags(main);
   if (text.length < 200) throw new Error('Seite enthält kaum Text');
   return { text: text.slice(0, maxChars), truncated: text.length > maxChars, final_url: r.url };

@@ -96,6 +96,7 @@ export function checkArticle(out, evidence, enums) {
   }
   const kern = out.kernaussage && numbersOk(out.kernaussage, pool).ok && !RX.advice.test(out.kernaussage) && !(RX.pricesFall.test(out.kernaussage) && !RX.deflationEvidence.test(pool)) ? out.kernaussage.trim() : (facts[0] ? facts[0].text : '');
   const title = out.title && numbersOk(out.title, pool).ok && !RX.advice.test(out.title) && out.title.length <= 110 ? out.title.trim() : null;
+  if (out.title && !title) log.push({ part: 'Überschrift', text: out.title, why: 'Überschrift enthält unbelegte Zahl oder ist zu lang; Originaltitel der Quelle wird gezeigt' });
   const glossary = (out.glossary || []).filter(g => g.term && g.def && !numbersIn(g.def).length && g.def.length <= 220).slice(0, 4);
   const companies = (out.companies || []).filter(c => c.name && (norm(ev).includes(norm(c.name)) || (c.ticker && new RegExp(`\\b${c.ticker.replace(/[^\w.]/g, '')}\\b`).test(ev)) || (c.isin && ev.includes(c.isin))));
   const pick = (arr, allowed) => (arr || []).filter(x => allowed.includes(x));
@@ -104,7 +105,7 @@ export function checkArticle(out, evidence, enums) {
   const interpOk = !interpErr.length && facts.length > 0;
   interpErr.forEach(e => log.push({ part: 'Einordnung', why: e }));
   return {
-    publishable: facts.length > 0 && !!title,
+    publishable: facts.length > 0,
     interpOk,
     article: {
       title, kurzfassung: kern, facts, numbers,

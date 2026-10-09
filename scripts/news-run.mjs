@@ -50,7 +50,7 @@ export function selectCandidates(feeds, cfg, registry, now) {
   const events = [];
   for (const it of items.sort((a, b) => a.published_at < b.published_at ? 1 : -1)) {
     const hit = events.find(e => e.canons.includes(it.canon) || (similar(e.title, it.title) >= 0.6 && Math.abs(Date.parse(e.published_at) - Date.parse(it.published_at)) < 1.5 * 864e5));
-    if (hit) { if (!hit.canons.includes(it.canon)) { hit.canons.push(it.canon); hit.also.push({ source_id: it.source_id, url: it.url, title: it.title }) } continue; }
+    if (hit) { if (!hit.canons.includes(it.canon)) hit.canons.push(it.canon); if (it.source_id !== hit.source_id && !hit.also.some(x => x.source_id === it.source_id)) hit.also.push({ source_id: it.source_id, url: it.url, title: it.title }); continue; }
     events.push({ title: it.title, url: it.url, published_at: it.published_at, summary: it.summary, source_id: it.source_id, source: it.source, canons: [it.canon], also: [] });
   }
   for (const e of events) {
@@ -95,16 +95,16 @@ const SCHEMA = {
   properties: {
     relevant: { type: 'boolean' }, title: { type: 'string', description: 'sachliche Überschrift, höchstens 90 Zeichen' },
     kernaussage: { type: 'string', description: 'eine Kernaussage, höchstens 30 Wörter' }, event_date: { type: 'string', description: 'YYYY-MM-DD laut Quelle' },
-    facts: { type: 'array', maxItems: 4, items: { type: 'object', additionalProperties: false, required: ['text', 'quote'], properties: { text: str, quote: str } } },
-    numbers: { type: 'array', maxItems: 6, items: { type: 'object', additionalProperties: false, required: ['value', 'unit', 'period', 'quote'], properties: { value: { type: 'number' }, unit: str, period: str, quote: str } } },
+    facts: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['text', 'quote'], properties: { text: str, quote: str } } },
+    numbers: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['value', 'unit', 'period', 'quote'], properties: { value: { type: 'number' }, unit: str, period: str, quote: str } } },
     alltag: str, finanzwirkung: str,
     naechstes: { type: 'object', additionalProperties: false, required: ['text', 'date', 'quote'], properties: { text: str, date: { type: ['string', 'null'] }, quote: { type: ['string', 'null'] } } },
     categories: { type: 'array', items: { type: 'string', enum: ENUMS.categories } },
     regions: { type: 'array', items: { type: 'string', enum: ENUMS.regions } },
     sectors: { type: 'array', items: { type: 'string', enum: ENUMS.sectors } },
-    companies: { type: 'array', maxItems: 5, items: { type: 'object', additionalProperties: false, required: ['name', 'ticker', 'isin'], properties: { name: str, ticker: { type: ['string', 'null'] }, isin: { type: ['string', 'null'] } } } },
+    companies: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['name', 'ticker', 'isin'], properties: { name: str, ticker: { type: ['string', 'null'] }, isin: { type: ['string', 'null'] } } } },
     dividend: { type: 'object', additionalProperties: false, required: ['status', 'quote'], properties: { status: { type: 'string', enum: ['angekündigt', 'erwartet', 'nicht erwähnt'] }, quote: { type: ['string', 'null'] } } },
-    glossary: { type: 'array', maxItems: 4, items: { type: 'object', additionalProperties: false, required: ['term', 'def'], properties: { term: str, def: str } } },
+    glossary: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['term', 'def'], properties: { term: str, def: str } } },
     scenario_link: { type: ['object', 'null'], additionalProperties: false, required: ['scenario', 'why'], properties: { scenario: { type: 'string', enum: ['A', 'B', 'C'] }, why: str } }
   }
 };
@@ -113,8 +113,8 @@ export function claudeClient({ key, model, maxTokens }) {
   return async function ask(ev, evidence) {
     const body = {
       model, max_tokens: maxTokens, system: SYSTEM,
-      tools: [{ name: 'nachricht', description: 'Verständlich aufbereitete, belegte Wirtschaftsnachricht', input_schema: SCHEMA }],
-      tool_choice: { type: 'tool', name: 'nachricht' },
+      // Strukturierte Ausgabe (output_config.format); erzwungene Werkzeugaufrufe lehnt Sonnet 5.5 ab
+      output_config: { format: { type: 'json_schema', schema: SCHEMA } },
       messages: [{ role: 'user', content: `Quelle: ${ev.source.name} (${ev.source.region}), veröffentlicht ${ev.published_at.slice(0, 10)}, ${ev.url}\nOriginaltitel: ${ev.title}\n\n<quelle>\n${evidence.text}\n</quelle>` }]
     };
     for (let i = 0; i < 3; i++) {
@@ -122,9 +122,13 @@ export function claudeClient({ key, model, maxTokens }) {
       if (r.status === 429 || r.status >= 500) { await new Promise(s => setTimeout(s, 4000 * (i + 1))); continue; }
       const j = await r.json();
       if (!r.ok) throw new Error(`Claude API ${r.status}: ${j?.error?.message || ''}`);
-      const tu = (j.content || []).find(c => c.type === 'tool_use');
-      if (!tu) throw new Error('keine strukturierte Antwort');
-      return { out: tu.input, usage: j.usage || {} };
+      if (j.stop_reason === 'refusal') throw new Error('Modell hat abgelehnt');
+      if (j.stop_reason === 'max_tokens') throw new Error('Antwort abgeschnitten (max_tokens)');
+      const tb = (j.content || []).find(c => c.type === 'text');
+      if (!tb) throw new Error('keine strukturierte Antwort');
+      let out; try { out = JSON.parse(tb.text) } catch { throw new Error('Antwort ist kein gültiges JSON') }
+      ['facts', 'numbers', 'glossary', 'companies'].forEach(k => { if (Array.isArray(out[k])) out[k] = out[k].slice(0, { facts: 4, numbers: 6, glossary: 4, companies: 5 }[k]) });
+      return { out, usage: j.usage || {} };
     }
     throw new Error('Claude API nicht erreichbar');
   };
@@ -132,7 +136,9 @@ export function claudeClient({ key, model, maxTokens }) {
 
 /* Kurzmeldung ohne Sprachmodell: Originaltitel und erster belegter Satz, Einordnung fehlt ausdrücklich */
 export function briefFrom(ev, evidence) {
-  const sent = (evidence ? evidence.text : ev.summary || '').split(/(?<=[.!?])\s+/).map(s => s.trim()).find(s => s.length >= 40 && s.length <= 300 && !/cookie|javascript|skip to|official website/i.test(s));
+  const BOIL = /cookie|javascript|skip to|official website|\.gov|https|padlock|lock icon|seite teilen|pressemitteilung nr|newsletter|share this|drucken|^presse$/i;
+  const sent = (evidence ? evidence.text : '').split(/\n+/).flatMap(l => l.split(/(?<=[.!?])\s+/)).map(s => s.trim())
+    .find(s => s.length >= 60 && s.length <= 300 && s.split(/\s+/).length >= 9 && /[.!?]$/.test(s) && !BOIL.test(s) && s !== ev.title);
   return { title: ev.title, kurzfassung: null, facts: sent && evidence ? [{ text: null, quote: sent }] : [], numbers: [], alltag: null, finanzwirkung: null, naechstes: null, categories: ev.categories_hint || [], regions: [], sectors: [], companies: [], dividend: { status: 'nicht erwähnt' }, glossary: [], scenario_link: null, event_date: ev.published_at.slice(0, 10), words: 0, length_ok: false };
 }
 
@@ -199,7 +205,7 @@ export async function run({ dir = 'data/news', now = new Date(), get, ask, model
         else {
           const c = checkArticle(r.out, evidence, ENUMS);
           if (!c.publishable) art = { ...base, ...briefFrom(ev, evidence), status: 'zurückgehalten', held_reason: 'Keine Aussage hat die Belegprüfung bestanden.', check_log: c.log, model };
-          else art = { ...base, ...c.article, status: c.interpOk ? 'geprüft' : 'nur_fakten', check_log: c.log, check_note: c.interpOk ? 'Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose.' : 'Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt.', model };
+          else art = { ...base, ...c.article, title: c.article.title || ev.title, title_is_original: !c.article.title, status: c.interpOk ? 'geprüft' : 'nur_fakten', check_log: c.log, check_note: c.interpOk ? 'Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose.' : 'Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt.', model };
         }
       } catch (e) { log(`${ev.event_id}: Sprachmodell-Fehler ${e.message}`); art = { ...base, ...briefFrom(ev, evidence), status: 'kurzmeldung', check_note: `Sprachmodell nicht verfügbar (${String(e.message).slice(0, 80)}). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt.` }; }
     }
