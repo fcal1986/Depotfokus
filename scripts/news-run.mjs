@@ -79,12 +79,12 @@ Regeln:
 - Eine niedrigere Inflationsrate heißt: Preise steigen langsamer. Sie heißt nicht, dass Preise sinken.
 - facts: 1 bis 4 Sätze mit je einem wörtlichen, zusammenhängenden Zitat aus der Quelle (Originalsprache, 20–300 Zeichen). Jede Zahl im Satz muss im Zitat stehen.
 - numbers: wichtige Zahlen mit Einheit, Bezugszeitraum und Zitat.
-- alltag: 2–3 Sätze. Warum betrifft uns das? Verbindung zu Preisen, Arbeit, Konsum oder Finanzierung. Einordnung, keine neuen Fakten.
+- alltag: 2–3 Sätze. Warum betrifft uns das? Verbindung zu Preisen, Arbeit, Konsum oder Finanzierung. Einordnung, keine neuen Fakten: keine Vergleiche, Größenordnungen oder Ursachen, die nicht in facts stehen.
 - finanzwirkung: 2–3 Sätze. Bedingte Wirkungskette für Unternehmen, Aktien und Dividenden mit Gegeneffekten ("kann", "wenn", "hängt davon ab"). Trenne Umsatz, Gewinn und verfügbares Geld. Keine Pauschalaussagen wie "sinkende Zinsen lassen Aktien steigen". Keine Kursziele, keine Kauf- oder Verkaufssignale, keine Gewinner-/Verliererlisten.
 - Dividenden nur als "angekündigt", wenn die Quelle eine Erklärung oder Ankündigung enthält; sonst "erwartet" (mit Beleg) oder "nicht erwähnt".
 - naechstes: was als Nächstes zu beobachten ist; Datum nur, wenn es in der Quelle steht (dann mit Zitat).
 - glossary: höchstens vier Fachbegriffe aus deinem Text mit einer einfachen Erklärung ohne Zahlen.
-- scenario_link: optional qualitativer Bezug zu A (zähe Erholung), B (breiter Aufschwung) oder C (längerer Wirtschafts- und Finanzmarktstress); sonst null.
+- scenario_link: nur wenn die Quelle direkt Wachstum, Preise, Zinsen, Energie, Kredit oder Finanzmärkte großer Volkswirtschaften betrifft, ein qualitativer Bezug zu A (zähe Erholung), B (breiter Aufschwung) oder C (längerer Wirtschafts- und Finanzmarktstress); sonst null.
 - Gesamtlänge facts + alltag + finanzwirkung + naechstes: etwa 100 bis 160 Wörter.
 - relevant=false, wenn die Quelle keine wirtschaftlich bedeutsame Neuigkeit enthält (z. B. Personalie, Rede ohne Entscheidung, Verwaltungsnotiz).`;
 

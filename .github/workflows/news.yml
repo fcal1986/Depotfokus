@@ -1,0 +1,80 @@
+name: Nachrichten
+
+# Tägliche Wirtschaftsnachrichten aus amtlichen Quellen (EZB, Eurostat, Destatis, Bundesbank, Fed, BEA, EIA, IWF, FAO).
+# Ablauf: abrufen → normalisieren → deduplizieren → auswählen → mit Claude verständlich aufbereiten →
+# jede Tatsache gegen die Quelle prüfen → data/news/ speichern → Pages-Workflow anstoßen → Auslieferung prüfen.
+# Ohne Secret ANTHROPIC_API_KEY entstehen nur belegte Kurzmeldungen ohne Einordnung.
+#
+# Zeit: täglich 08:20 Uhr Berliner Zeit. GitHub-Cron läuft in UTC; deshalb zwei Einträge
+# (06:20 UTC im Sommer, 07:20 UTC im Winter). Das Skript startet nur den ersten Lauf nach 8 Uhr
+# Berliner Zeit und nur einmal je Tag; verspätete Zweitläufe enden ohne Änderung.
+
+on:
+  schedule:
+    - cron: '20 6 * * *'
+    - cron: '20 7 * * *'
+  workflow_dispatch:
+    inputs:
+      erneut:
+        description: 'Heute erneut auswerten (bereits geprüfte, unveränderte Meldungen werden nicht erneut an Claude geschickt)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write   # Tagesauswahl committen
+  actions: write    # Pages-Workflow anstoßen (Bot-Pushes mit GITHUB_TOKEN lösen keine Workflows aus)
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Tests
+        run: node --test scripts/news-test.mjs
+      - name: Nachrichten abrufen, aufbereiten und prüfen
+        id: run
+        timeout-minutes: 12
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: ${{ vars.DEPOTFOKUS_MODEL || 'claude-sonnet-5-5' }}
+          NEWS_FORCE: ${{ github.event.inputs.erneut == 'true' && '1' || '0' }}
+        run: node scripts/news-run.mjs
+      - name: Dauerhaft speichern
+        id: save
+        if: steps.run.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news
+          if git diff --cached --quiet; then echo "pushed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -q -m "Nachrichten: $(jq -r .date data/news/latest.json) [skip ci]"
+          for i in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then echo "pushed=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+            sleep $((i * 10))
+          done
+          echo "Push nach drei Versuchen fehlgeschlagen" >&2; exit 1
+      - name: Seite neu bauen
+        if: steps.save.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main -R "$GITHUB_REPOSITORY"
+      - name: Auslieferung prüfen
+        if: steps.save.outputs.pushed == 'true'
+        env:
+          URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: |
+          want=$(jq -r .generated_at data/news/latest.json)
+          for i in $(seq 1 30); do
+            got=$(curl -fsS "${URL}data/news/latest.json?v=$(date +%s)" | jq -r .generated_at 2>/dev/null || true)
+            if [ "$got" = "$want" ] && curl -fsS "${URL}?v=$(date +%s)" | grep -q "$want"; then echo "Veröffentlicht: Nachrichten vom ${want} unter ${URL}"; exit 0; fi
+            sleep 30
+          done
+          echo "::error::Nachrichten ${want} nach 15 Minuten nicht unter ${URL} sichtbar. Actions › GitHub Pages prüfen."; exit 1

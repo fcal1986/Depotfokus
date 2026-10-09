@@ -46,6 +46,10 @@ jobs:
           mkdir -p _site/data/scenarios/snapshots
           cp data/scenarios/*.json _site/data/scenarios/ 2>/dev/null || true
           cp data/scenarios/snapshots/*.json _site/data/scenarios/snapshots/ 2>/dev/null || true
+          # Nachrichten: aktuelle Auswahl, Status und Tagesarchiv
+          mkdir -p _site/data/news/archive
+          cp data/news/latest.json data/news/status.json _site/data/news/ 2>/dev/null || true
+          cp data/news/archive/*.json _site/data/news/archive/ 2>/dev/null || true
       - name: Tageskurse abrufen
         continue-on-error: true
         run: node scripts/fetch-prices.mjs _site/prices.json

@@ -188,3 +188,19 @@ test('Kurzmeldung nimmt nur einen echten Satz aus der Quelle', () => {
   const b = briefFrom({ title: 'X', published_at: '2026-10-11T00:00:00Z' }, { text: 'Skip to main content. ' + PAGE_RATE });
   assert.ok(PAGE_RATE.includes(b.facts[0].quote)); assert.equal(b.facts[0].text, null);
 });
+
+/* ---------- Datenschutz: Depotzuordnung nur lokal ---------- */
+test('Depotzuordnung läuft im Browser und überträgt keine Bestände', () => {
+  const src = fs.readFileSync(path.join(ROOT, 'src/news.js'), 'utf8');
+  const fetches = [...src.matchAll(/fetch\(([^,)]+)/g)].map(m => m[1]);
+  assert.deepEqual(fetches, ['`data/news/archive/${day}.json`'], 'nur statische Archivdateien werden geladen');
+  assert.ok(!/XMLHttpRequest|sendBeacon|navigator\.sendBeacon|WebSocket/.test(src));
+  const pipeline = ['news-run.mjs', 'news-sources.mjs', 'news-check.mjs'].map(f => fs.readFileSync(path.join(ROOT, 'scripts', f), 'utf8')).join('\n');
+  assert.ok(!/localStorage|OWN_KEY|positions|depotfokus-v/.test(pipeline), 'die Pipeline kennt keine persönlichen Daten');
+  // newsMatch ausführen (rein funktional)
+  const body = src.slice(src.indexOf('const NEWS_SECTORS='), src.indexOf('function newsCard'));
+  const fn = new Function('STAMM', body.replace(/^const newsAll[\s\S]*?\n(?=function newsToday)/m, '').replace(/function newsToday[\s\S]*?\n(?=\/\*)/, '') + '\nreturn newsMatch;')({ 'PEP.DE': { isin: 'US7134481081' } });
+  const pos = [{ symbol: 'PEP.DE', name: 'PepsiCo' }, { symbol: 'MSF.DE', name: 'Microsoft' }, { symbol: 'XYZ', name: 'Eigene Aktie', isin: 'US0000000001' }];
+  assert.deepEqual(fn({ sectors: ['Lebensmittel'], companies: [] }, pos).map(p => p.name), ['PepsiCo']);
+  assert.deepEqual(fn({ sectors: [], companies: [{ name: 'X', isin: 'US0000000001' }] }, pos).map(p => p.name), ['Eigene Aktie']);
+});

@@ -47,9 +47,9 @@ function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
 
 /* ---------------- Routing ---------------- */
-const TABFOR={heute:'heute',story:'heute',daten:'heute',stand:'heute',depot:'depot',pos:'depot',check:'depot',haus:'depot',kalender:'einkommen',plan:'einkommen',zeit:'einkommen',szenarien:'welt',berichte:'welt',liga:'liga'};
+const TABFOR={heute:'heute',story:'heute',daten:'heute',stand:'heute',depot:'depot',pos:'depot',check:'depot',haus:'depot',kalender:'einkommen',plan:'einkommen',zeit:'einkommen',szenarien:'welt',berichte:'welt',nachrichten:'welt',nachricht:'welt',liga:'liga'};
 /* Bereiche mit Unterseiten: Einkommen (Dividenden, Plan, Zeitreise) und Welt (Szenarien, Berichte) */
-const HUBS={einkommen:{t:'Einkommen',sub:[['kalender','Dividenden'],['plan','Plan'],['zeit','Zeitreise']]},welt:{t:'Welt',sub:[['szenarien','Szenarien'],['berichte','Berichte']]}};
+const HUBS={einkommen:{t:'Einkommen',sub:[['kalender','Dividenden'],['plan','Plan'],['zeit','Zeitreise']]},welt:{t:'Welt',sub:[['nachrichten','Nachrichten'],['szenarien','Szenarien'],['berichte','Berichte']]}};
 function hubHead(hub,cur,extra=''){const H=HUBS[hub];return `<div class="row between"><h1 class="h1" style="font-size:28px">${H.t}</h1><a href="#daten" class="icon-btn" aria-label="Einstellungen, Daten und Import">${ICON.gear}</a></div>
   <nav class="hubseg" aria-label="${H.t}">${H.sub.map(([k,l])=>`<a href="#${k}"${k===cur?' aria-current="page"':''}>${l}</a>`).join('')}</nav>${extra}`}
 function parse(){const h=decodeURIComponent((location.hash||'#heute').slice(1));const [r,...a]=h.split('/');return {r:r||'heute',a}}
@@ -69,8 +69,10 @@ function route(){
     else if(r==='kalender')html=vKalender();
     else if(r==='szenarien')html=vSzen(a[0]);
     else if(r==='berichte')html=vBerichte();
+    else if(r==='nachrichten')html=vNachrichten(a[0]);
+    else if(r==='nachricht')html=vNachricht(a[0]);
     else if(r==='einkommen')html=(location.replace('#'+((UI.hub&&UI.hub.einkommen)||'kalender')),'');
-    else if(r==='welt')html=(location.replace('#'+((UI.hub&&UI.hub.welt)||'szenarien')),'');
+    else if(r==='welt')html=(location.replace('#'+((UI.hub&&UI.hub.welt)||'nachrichten')),'');
     else html=vHeute();
   }catch(e){html=`<div class="card"><b>Diese Ansicht konnte nicht geladen werden.</b><p class="hint">${esc(e.message)}</p><a class="btn" href="#heute">Zum Start</a></div>`;console.error(e)}
   const ss0=document.getElementById('stadtScroll'),sl0=ss0?ss0.scrollLeft:null;
@@ -117,6 +119,7 @@ function vHeute(){
     <span class="small muted-night">${tt.open?`${tt.open>1?tt.open+' Positionen mit ungeklärtem Wert fehlen':'1 Position mit ungeklärtem Wert fehlt'}. `:''}${valLine(d)}</span>
   </section>
   ${eventsHTML(d)}
+  ${newsTeaser()}
   ${c.incomplete?`<a href="#daten" class="banner"><b>Zuordnungen prüfen</b><span>Ohne Bestätigung ${(tt.open+noBucket(d).length)===1?'fehlt 1 Position':'fehlen '+(tt.open+noBucket(d).length)+' Positionen'} in Gewichten und Zielvergleich.</span></a>`:''}
   <section class="col" style="gap:8px">
     <div class="row between"><h2 class="h2" style="margin:0">Was sich geändert hat</h2><a class="link" href="#berichte">Alle Berichte →</a></div>
@@ -592,8 +595,9 @@ function vBerichte(){const rs=reportStatus();
      <span class="src">Einordnung vom ${deDate(I.checked)} · ${methodTxt(I)}${r&&!n?` · erwartet: ${esc(r.next)}`:''}</span></a>`}).join('')||'<p class="hint">Für deine Positionen gibt es noch keine geprüften Einordnungen.</p>'}
   <a class="card row between" href="#stand"><span class="col" style="gap:2px"><span class="strong">Datenstand und Ablauf</span><span class="small muted2">Was automatisch läuft und wann</span></span><span aria-hidden="true">→</span></a>`}
 /* Badge am Tab „Welt“: neue Berichte */
-function updateBadges(){const b=document.getElementById('badge-welt');if(!b)return;let n=0;try{n=reportStatus().nNew}catch(e){}
-  b.hidden=!n;b.textContent=n>9?'9+':String(n);const a=b.closest('a');if(a)a.setAttribute('aria-label',n?`Welt, ${n} ${n>1?'neue Berichte':'neuer Bericht'}`:'Welt')}
+function updateBadges(){const b=document.getElementById('badge-welt');if(!b)return;let r=0,m=0;try{r=reportStatus().nNew}catch(e){}
+  try{const T=newsToday();if(!T.none&&!T.old)m=T.items.filter(x=>!newsOld(x)&&!(UI.newsRead||[]).includes(x.id)).length}catch(e){}
+  const n=r+m;b.hidden=!n;b.textContent=n>9?'9+':String(n);const a=b.closest('a');if(a)a.setAttribute('aria-label',n?`Welt, ${[m?`${m} ungelesene ${m>1?'Nachrichten':'Nachricht'}`:'',r?`${r} ${r>1?'neue Berichte':'neuer Bericht'}`:''].filter(Boolean).join(', ')}`:'Welt')}
 
 /* Start */
 evaluateChanges(DEMO,true);if(OWN&&OWN.baseline==null)evaluateChanges(OWN,true);
