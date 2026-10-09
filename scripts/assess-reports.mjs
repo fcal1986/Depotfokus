@@ -71,8 +71,8 @@ const SCHEMA = {
     mood: { type: 'string', enum: ['pos', 'warn', 'neg', 'neutral'] },
     interp: { type: 'string' },
     changes_cmp: { type: 'string', description: 'z. B. "Q3 2026 gegenüber Q2 2026"' },
-    changes: { type: 'array', maxItems: 3, items: { type: 'object', additionalProperties: false, required: ['kind', 't', 'quote'], properties: { kind: { type: 'string', enum: ['metric', 'company'] }, t: { type: 'string' }, quote: { type: 'string' } } } },
-    facts: { type: 'array', maxItems: 4, items: { type: 'object', additionalProperties: false, required: ['kind', 't', 'quote'], properties: { kind: { type: 'string', enum: ['metric', 'company'] }, t: { type: 'string' }, quote: { type: 'string' } } } },
+    changes: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['kind', 't', 'quote'], properties: { kind: { type: 'string', enum: ['metric', 'company'] }, t: { type: 'string' }, quote: { type: 'string' } } } },
+    facts: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['kind', 't', 'quote'], properties: { kind: { type: 'string', enum: ['metric', 'company'] }, t: { type: 'string' }, quote: { type: 'string' } } } },
     rules: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['q', 'per', 'obs', 'status', 'quote', 'next'], properties: { q: { type: 'string' }, per: { type: 'string' }, obs: { type: 'string' }, status: { type: 'string', enum: ['met', 'not_met', 'occurred', 'not_occurred', 'np'] }, quote: { type: 'string' }, next: { type: 'string', description: 'Nächster Bericht, z. B. "Bericht Q4 2026, Termin geschätzt Ende Januar"' } } } },
     notes: { type: 'string', description: 'Unsicherheiten oder Grenzen der Einordnung' }
   }
@@ -87,9 +87,9 @@ async function askClaude(sym, entry, f, doc, name) {
   };
   const text = doc.text.length > 120000 ? doc.text.slice(0, 120000) + '\n[gekürzt]' : doc.text;
   const body = {
-    model: MODEL, max_tokens: 4000, system: SYSTEM,
-    tools: [{ name: 'einordnung', description: 'Neue Einordnung der Position auf Basis des Berichts', input_schema: SCHEMA }],
-    tool_choice: { type: 'tool', name: 'einordnung' },
+    model: MODEL, max_tokens: 16000, // Sonnet 5.5 denkt standardmäßig vorab; genug Platz für Denken und Antwort system: SYSTEM,
+    // Strukturierte Ausgabe (output_config.format); erzwungene Werkzeugaufrufe lehnt Sonnet 5.5 ab
+    output_config: { format: { type: 'json_schema', schema: SCHEMA } },
     messages: [{ role: 'user', content: `Kontext (JSON):\n${JSON.stringify(ctx, null, 1)}\n\nBericht (Text):\n<bericht>\n${text}\n</bericht>` }]
   };
   for (let i = 0; i < 3; i++) {
@@ -97,9 +97,12 @@ async function askClaude(sym, entry, f, doc, name) {
     if (r.status === 429 || r.status >= 500) { await new Promise(s => setTimeout(s, 5000 * (i + 1))); continue; }
     const j = await r.json();
     if (!r.ok) throw new Error(`Claude API ${r.status}: ${j?.error?.message || ''}`);
-    const tu = (j.content || []).find(c => c.type === 'tool_use');
-    if (!tu) throw new Error('Claude API: keine strukturierte Antwort');
-    return { input: tu.input, usage: j.usage || {} };
+    if (j.stop_reason === 'refusal' || j.stop_reason === 'max_tokens') throw new Error(`Claude API: Antwort unvollständig (${j.stop_reason})`);
+    const tb = (j.content || []).find(c => c.type === 'text');
+    if (!tb) throw new Error('Claude API: keine strukturierte Antwort');
+    let input; try { input = JSON.parse(tb.text) } catch { throw new Error('Claude API: kein gültiges JSON') }
+    ['changes', 'facts'].forEach(k => { if (Array.isArray(input[k])) input[k] = input[k].slice(0, k === 'changes' ? 3 : 4) });
+    return { input, usage: j.usage || {} };
   }
   throw new Error('Claude API nicht erreichbar');
 }

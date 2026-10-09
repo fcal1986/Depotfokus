@@ -6,15 +6,16 @@ Persönliches Werkzeug, um ein Wertpapierdepot zu verstehen und Kauf- oder Verka
 
 | Tab | Inhalt |
 |---|---|
-| **Übersicht** (`#heute`) | Stories, Vermögen, bis zu drei Neuigkeiten, Szenario-Karte, Lernserie |
+| **Übersicht** (`#heute`) | Stories, Vermögen, „Wirtschaft heute“ (bis zu drei Nachrichten), Neuigkeiten zu Positionen, Szenario-Karte, Lernserie |
 | **Depot** (`#depot`) | Depot-Wetter, Umschalter Liste/Stadt, Wertentwicklung, Abweichungen, Positionen mit Kompass und Check |
 | **Einkommen** | Unterseiten Dividenden (`#kalender`), Plan (`#plan`), Zeitreise (`#zeit`) |
-| **Welt** | Unterseiten Szenarien (`#szenarien`), Berichte (`#berichte`); Badge bei neuen Berichten |
+| **Welt** | Unterseiten Nachrichten (`#nachrichten`), Szenarien (`#szenarien`), Berichte (`#berichte`); Badge bei neuen Berichten und ungelesenen Nachrichten |
 | **Lernen** (`#liga`) | Prognose-Liga, Quiz, Kurstipps, Entscheidungsnotizen |
 
 Zahnrad oben rechts: Einstellungen (Import, Darstellung, Datenstand). Die einzelnen Funktionen im Detail:
 
 - **Heute:** Vermögen, Depot-Wetter (Abstand zu deinen Zielen), Storys wie bei WhatsApp (laufen automatisch weiter, rechts/links tippen, halten pausiert, danach folgt die nächste Position), Veränderungen je Position und Datenstand.
+- **Nachrichten** (`#nachrichten`): täglich höchstens fünf wichtige Wirtschaftsentwicklungen aus amtlichen Quellen (EZB, Eurostat, Destatis, Bundesbank, Fed, BEA, EIA, IWF, FAO), von Claude in einfachem Deutsch erklärt: was passiert ist, warum es uns betrifft, was es für Unternehmen, Aktien und Dividenden bedeuten könnte und was als Nächstes zählt. Jede Tatsache ist per Skript gegen ein wörtliches Zitat der Quelle geprüft; die Einordnung ist gekennzeichnet. Täglich 08:20 Uhr (`.github/workflows/news.yml`). Details: [`docs/NACHRICHTEN.md`](docs/NACHRICHTEN.md).
 - **Wirtschaft & Szenarien** (`#szenarien`, Karte auf Heute): drei feste Makroszenarien bis 09.10.2029 (A Zähe Erholung, B Breiter Aufschwung, C Längerer Stress) als „Szenario-Wahrscheinlichkeit – Modellschätzung“. Jeden Montag aus amtlichen Daten (EZB, Eurostat, FRED) mit festen Regeln neu gerechnet, ohne Sprachmodell: Veränderung zur Vorwoche in Prozentpunkten, belegte Treiber und Gegensignale, Verlauf 13/26/52 Wochen, jede Woche antippbar, Datenqualität und Ablauf, dazu eine getrennte Modellrechnung mit eigenen Renditeannahmen. Keine Trefferquote vor der Auflösung 2029. Details: [`docs/SZENARIEN.md`](docs/SZENARIEN.md).
 - **Datenstand und Ablauf** (`#stand`): was automatisch läuft (Kurse, Rechnen), was manuell geprüft ist (Einordnungen, Regeln), wann der nächste Kursabruf geplant ist und welche Berichte als Nächstes erwartet werden.
 - **Depot-Stadt** (oben im Depot): jede Position ein illustriertes Gebäude (Rechenzentrum, Getränkefabrik, Pflegeheim, Kreditbank, Weltviertel …). Höhe = Wert, gelbe Fenster = Dividende, Sonne/Wolke = Rückenwind/Gegenwind aus belegten Trends; mit dem Zeitregler wächst die Stadt (mittleres Szenario der Zeitreise). Antippen öffnet den Steckbrief (`#haus/…`): Was macht die Firma, was gehört dir (z. B. „7,7 Getränke pro Tag“), wohin geht dein Geld (Umsatz, Gewinn, Dividende, was in der Firma bleibt), wohin geht die Welt, macht die Firma es gut (Regeln plus Umwelt, Soziales, Führung mit Quellen). Dazu dein Warum: einmal ein Anleger-Profil, je Position bis zu zwei Gründe; der Entscheidungs-Check greift das auf. Daten: `data/world.json`, recherchiert am 05.10.2026, jede Zahl mit Quelle.

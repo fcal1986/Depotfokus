@@ -2,7 +2,7 @@
 """Setzt index.html aus src/shell.html und den Skriptteilen zusammen."""
 import pathlib
 root=pathlib.Path(__file__).resolve().parent.parent
-parts=['tx.js','logic.js','parts.js','zeit.js','stadt.js','kalender.js','szenario.js','ui.js']
+parts=['tx.js','logic.js','parts.js','zeit.js','stadt.js','kalender.js','szenario.js','news.js','ui.js']
 import json
 data=json.loads((root/'data'/'info.json').read_text())
 resolved=json.loads((root/'data'/'resolved.json').read_text())
@@ -26,7 +26,16 @@ if (sd/'scenario_set.json').exists():
           'config':{k:cfg[k] for k in ('model_version','method_label','formula','beta','beta_reason','loadings_reason','signal_direction','missing_rule','correlation_rule')}|{'critical_rule':cfg['critical']['rule'],'groups':[{'id':g['id'],'name':g['name'],'weight':g['weight']} for g in cfg['groups']]},
           'index':[{k:s[k] for k in ('snapshot_id','week_id','revision','status','display','generated_at','model_version')} for s in snaps],
           'status':rj(sd/'status.json',{}),'latest':latest}
-head='/* Einordnungen und Auflösungen aus data/*.json (beim Build eingebettet) */\nconst DATA='+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\nconst RESOLVED_DATA='+json.dumps(resolved,ensure_ascii=False,separators=(',',':'))+';\nconst WORLD='+json.dumps(world,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\nconst DIVS='+json.dumps(divs,ensure_ascii=False,separators=(',',':'))+';\nconst SCEN='+json.dumps(scen,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n'
+# Nachrichten: aktuelle Auswahl, Prüfstatus (ohne Prüfprotokolle) und Tagesverzeichnis; Archivtage lädt die App bei Bedarf
+nd=root/'data'/'news'
+news=None
+if (nd/'latest.json').exists():
+    st=rj(nd/'status.json',{})
+    st={k:v for k,v in st.items() if k!='held'}|{'held':[{'title':h['title'],'why':h['why']} for h in rj(nd/'status.json',{}).get('held',[])]}
+    news={'latest':rj(nd/'latest.json'),'status':st,'days':rj(nd/'archive'/'index.json',{'days':[]})['days'][:60]}
+elif (nd/'sources.json').exists():
+    news={'latest':None,'status':{},'days':[]}
+head='/* Einordnungen und Auflösungen aus data/*.json (beim Build eingebettet) */\nconst DATA='+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\nconst RESOLVED_DATA='+json.dumps(resolved,ensure_ascii=False,separators=(',',':'))+';\nconst WORLD='+json.dumps(world,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\nconst DIVS='+json.dumps(divs,ensure_ascii=False,separators=(',',':'))+';\nconst NEWS='+json.dumps(news,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\nconst SCEN='+json.dumps(scen,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n'
 js=head+'\n'.join((root/'src'/p).read_text() for p in parts)
 shell=(root/'src'/'shell.html').read_text()
 assert '/*__SCRIPT__*/' in shell
