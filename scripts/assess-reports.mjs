@@ -87,7 +87,7 @@ async function askClaude(sym, entry, f, doc, name) {
   };
   const text = doc.text.length > 120000 ? doc.text.slice(0, 120000) + '\n[gekürzt]' : doc.text;
   const body = {
-    model: MODEL, max_tokens: 4000, system: SYSTEM,
+    model: MODEL, max_tokens: 16000, // Sonnet 5.5 denkt standardmäßig vorab; genug Platz für Denken und Antwort system: SYSTEM,
     // Strukturierte Ausgabe (output_config.format); erzwungene Werkzeugaufrufe lehnt Sonnet 5.5 ab
     output_config: { format: { type: 'json_schema', schema: SCHEMA } },
     messages: [{ role: 'user', content: `Kontext (JSON):\n${JSON.stringify(ctx, null, 1)}\n\nBericht (Text):\n<bericht>\n${text}\n</bericht>` }]

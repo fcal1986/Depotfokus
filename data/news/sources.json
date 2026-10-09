@@ -10,7 +10,7 @@
     "timeout_ms": 20000,
     "retries": 2,
     "window_days": 3,
-    "max_tokens_per_article": 2500
+    "max_tokens_per_article": 4000
   },
   "sources": [
     {

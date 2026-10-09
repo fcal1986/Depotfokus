@@ -113,7 +113,9 @@ export function claudeClient({ key, model, maxTokens }) {
   return async function ask(ev, evidence) {
     const body = {
       model, max_tokens: maxTokens, system: SYSTEM,
-      // Strukturierte Ausgabe (output_config.format); erzwungene Werkzeugaufrufe lehnt Sonnet 5.5 ab
+      // Strukturierte Ausgabe (output_config.format); erzwungene Werkzeugaufrufe lehnt Sonnet 5.5 ab.
+      // Sonnet 5.5 denkt standardmäßig vorab; für kurze Texte abgeschaltet (niedrigste Stufe laut Doku).
+      ...(/sonnet-5-5/.test(model) ? { thinking: { type: 'between_tools' } } : {}),
       output_config: { format: { type: 'json_schema', schema: SCHEMA } },
       messages: [{ role: 'user', content: `Quelle: ${ev.source.name} (${ev.source.region}), veröffentlicht ${ev.published_at.slice(0, 10)}, ${ev.url}\nOriginaltitel: ${ev.title}\n\n<quelle>\n${evidence.text}\n</quelle>` }]
     };
