@@ -2,7 +2,6 @@
  "date": "2026-10-10",
  "generated_at": "2026-10-10T12:40:32.300Z",
  "result": "items",
- "note": null,
  "items": [
   {
    "id": "n-bd4c87ff6729",
@@ -401,6 +400,12 @@
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   }
  ],
- "previous": null,
- "pipeline_version": "1.0.0"
+ "held": [
+  {
+   "event_id": "e207f8b03d6fb",
+   "title": "Minutes of the Federal Open Market Committee, September 15-16, 2026",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261007a.htm",
+   "why": "Vom Modell als nicht wirtschaftlich bedeutsam eingestuft."
+  }
+ ]
 }

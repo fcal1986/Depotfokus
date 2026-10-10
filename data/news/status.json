@@ -1,68 +1,68 @@
 {
- "last_run_at": "2026-10-09T14:50:50.485Z",
- "last_success_at": "2026-10-09T14:50:50.485Z",
+ "last_run_at": "2026-10-10T12:40:32.300Z",
+ "last_success_at": "2026-10-10T12:40:32.300Z",
  "last_result": "items",
- "last_note": "4 Meldungen, 1 zurückgehalten, 0 aus dem Zwischenspeicher",
+ "last_note": "3 Meldungen, 1 zurückgehalten, 4 aus dem Zwischenspeicher",
  "sources": {
   "ecb": {
    "ok": true,
    "feed_url": "https://www.ecb.europa.eu/rss/press.html",
    "items": 15,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "eurostat": {
    "ok": true,
    "feed_url": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_mode=view&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=CAT_PREREL",
    "items": 11,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "destatis": {
    "ok": true,
    "feed_url": "https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml",
    "items": 10,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "bundesbank": {
    "ok": true,
    "feed_url": "https://www.bundesbank.de/service/rss/de/633286/feed.rss",
    "items": 10,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "fed": {
    "ok": true,
    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
    "items": 20,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "bls": {
    "ok": false,
    "error": "https://www.bls.gov/feed/bls_latest.rss: HTTP 403",
-   "at": "2026-10-09T14:50:50.485Z",
+   "at": "2026-10-10T12:40:32.300Z",
    "last_ok_at": null
   },
   "bea": {
    "ok": true,
    "feed_url": "https://apps.bea.gov/rss/rss.xml",
    "items": 48,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "eia": {
    "ok": true,
    "feed_url": "https://www.eia.gov/rss/todayinenergy.xml",
    "items": 15,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   },
   "imf": {
    "ok": false,
    "error": "https://www.imf.org/en/News/rss?language=eng: HTTP 404",
-   "at": "2026-10-09T14:50:50.485Z",
+   "at": "2026-10-10T12:40:32.300Z",
    "last_ok_at": null
   },
   "fao": {
    "ok": true,
    "feed_url": "https://www.fao.org/feeds/fao-newsroom-rss",
    "items": 19,
-   "at": "2026-10-09T14:50:50.485Z"
+   "at": "2026-10-10T12:40:32.300Z"
   }
  },
  "held": [
@@ -70,17 +70,16 @@
    "event_id": "e207f8b03d6fb",
    "title": "Minutes of the Federal Open Market Committee, September 15-16, 2026",
    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261007a.htm",
-   "why": "Vom Modell als nicht wirtschaftlich bedeutsam eingestuft.",
-   "log": null
+   "why": "Vom Modell als nicht wirtschaftlich bedeutsam eingestuft."
   }
  ],
  "model": "claude-sonnet-5-5",
  "llm": "aktiv",
  "usage": {
-  "input_tokens": 25235,
-  "output_tokens": 7148,
-  "calls": 5,
-  "cached": 0,
-  "cost_usd": 0.122
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "calls": 0,
+  "cached": 4,
+  "cost_usd": 0
  }
 }
