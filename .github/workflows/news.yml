@@ -5,14 +5,21 @@ name: Nachrichten
 # jede Tatsache gegen die Quelle prüfen → data/news/ speichern → Pages-Workflow anstoßen → Auslieferung prüfen.
 # Ohne Secret ANTHROPIC_API_KEY entstehen nur belegte Kurzmeldungen ohne Einordnung.
 #
-# Zeit: täglich 08:20 Uhr Berliner Zeit. GitHub-Cron läuft in UTC; deshalb zwei Einträge
-# (06:20 UTC im Sommer, 07:20 UTC im Winter). Das Skript startet nur den ersten Lauf nach 8 Uhr
-# Berliner Zeit und nur einmal je Tag; verspätete Zweitläufe enden ohne Änderung.
+# Zeit: täglich ab 08:20 Uhr Berliner Zeit. GitHub-Cron läuft in UTC und startet geplante Läufe
+# bei hoher Last stark verspätet oder gar nicht (beobachtet: 6 Stunden später). Deshalb mehrere
+# Ersatztermine bis in den Nachmittag. Das Skript wertet nur einmal je Tag aus und frühestens ab
+# 8 Uhr Berliner Zeit (Sommer und Winter); alle weiteren Läufe enden nach wenigen Sekunden ohne Änderung.
 
 on:
   schedule:
     - cron: '20 6 * * *'
     - cron: '20 7 * * *'
+    - cron: '47 7 * * *'
+    - cron: '13 8 * * *'
+    - cron: '41 9 * * *'
+    - cron: '17 11 * * *'
+    - cron: '53 13 * * *'
+    - cron: '29 16 * * *'
   workflow_dispatch:
     inputs:
       erneut:
@@ -37,10 +44,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Schon erledigt?
+        id: pre
+        if: github.event_name == 'schedule'
+        run: |
+          today=$(TZ=Europe/Berlin date +%F); hour=$(TZ=Europe/Berlin date +%H)
+          have=$(jq -r '.date // ""' data/news/latest.json 2>/dev/null || true)
+          if [ "$have" = "$today" ] || [ "$hour" -lt 8 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; echo "Nichts zu tun (Stand $have, $hour Uhr)."; fi
       - name: Tests
+        if: steps.pre.outputs.skip != 'true'
         run: node --test scripts/news-test.mjs
       - name: Nachrichten abrufen, aufbereiten und prüfen
         id: run
+        if: steps.pre.outputs.skip != 'true'
         timeout-minutes: 12
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
