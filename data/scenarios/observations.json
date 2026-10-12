@@ -441,7 +441,7 @@
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_bssi_m_r2?format=JSON&lang=EN&geo=EA21&sinceTimePeriod=2023-10&indic=BS-ESI-I&s_adj=SA",
    "source_updated_at": "2026-09-29T09:00:00.000Z",
    "geo_used": "EA21",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -620,9 +620,9 @@
     }
    },
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/namq_10_gdp?format=JSON&lang=EN&geo=EA21&sinceTimePeriod=2023-Q1&unit=CLV_PCH_PRE&s_adj=SCA&na_item=B1GQ",
-   "source_updated_at": "2026-10-09T09:00:00.000Z",
+   "source_updated_at": "2026-10-09T21:00:00.000Z",
    "geo_used": "EA21",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -1067,7 +1067,7 @@
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?format=JSON&lang=EN&geo=EA&sinceTimePeriod=2023-10&unit=RCH_A&coicop18=TOTAL",
    "source_updated_at": "2026-10-02T09:00:00.000Z",
    "geo_used": "EA",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -1512,7 +1512,7 @@
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?format=JSON&lang=EN&geo=EA&sinceTimePeriod=2023-10&unit=RCH_A&coicop18=TOT_X_NRG_FOOD",
    "source_updated_at": "2026-10-02T09:00:00.000Z",
    "geo_used": "EA",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -2089,7 +2089,7 @@
    "source_url": "https://fred.stlouisfed.org/series/PCEPILFE",
    "source_updated_at": "2026-09-30T12:43:28.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -3009,12 +3009,48 @@
        "seen_at": "2026-10-09T11:00:01.098Z"
       }
      ]
+    },
+    "2026-10-10": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
+    },
+    "2026-10-11": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
+    },
+    "2026-10-12": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
     }
    },
-   "source_url": "https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?format=csvdata&startPeriod=2026-07-26",
-   "source_updated_at": "2026-10-08T23:35:09.000Z",
+   "source_url": "https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?format=csvdata&startPeriod=2026-07-29",
+   "source_updated_at": "2026-10-11T23:35:35.000Z",
    "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -3579,7 +3615,7 @@
    "source_url": "https://fred.stlouisfed.org/series/POILBREUSDM",
    "source_updated_at": "2026-08-17T18:51:14.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -4144,7 +4180,7 @@
    "source_url": "https://fred.stlouisfed.org/series/PNGASEUUSDM",
    "source_updated_at": "2026-08-17T18:51:13.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -4802,10 +4838,10 @@
      ]
     }
    },
-   "source_url": "https://data-api.ecb.europa.eu/service/data/CISS/D.U2.Z0Z.4F.EC.SS_CIN.IDX?format=csvdata&startPeriod=2026-07-26",
+   "source_url": "https://data-api.ecb.europa.eu/service/data/CISS/D.U2.Z0Z.4F.EC.SS_CIN.IDX?format=csvdata&startPeriod=2026-07-29",
    "source_updated_at": "2026-10-09T08:13:25.000Z",
    "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -5449,12 +5485,24 @@
        "seen_at": "2026-10-09T11:00:01.098Z"
       }
      ]
+    },
+    "2026-10-08": {
+     "v": 3.26,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 3.26,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/BAMLHE00EHYIOAS",
-   "source_updated_at": "2026-10-08T14:15:50.000Z",
+   "source_updated_at": "2026-10-09T13:10:42.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -6098,12 +6146,24 @@
        "seen_at": "2026-10-09T11:00:01.098Z"
       }
      ]
+    },
+    "2026-10-08": {
+     "v": 3.15,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 3.15,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2",
-   "source_updated_at": "2026-10-08T14:15:46.000Z",
+   "source_updated_at": "2026-10-09T13:08:04.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -6747,12 +6807,24 @@
        "seen_at": "2026-10-09T11:00:01.098Z"
       }
      ]
+    },
+    "2026-10-08": {
+     "v": 15.41,
+     "rev": 1,
+     "first_seen_at": "2026-10-12T09:08:28.321Z",
+     "history": [
+      {
+       "v": 15.41,
+       "rev": 1,
+       "seen_at": "2026-10-12T09:08:28.321Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/VIXCLS",
-   "source_updated_at": "2026-10-08T13:37:39.000Z",
+   "source_updated_at": "2026-10-09T13:38:33.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -6945,7 +7017,7 @@
    "source_url": "https://fred.stlouisfed.org/series/CP",
    "source_updated_at": "2026-09-30T12:55:12.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -7138,7 +7210,7 @@
    "source_url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA",
    "source_updated_at": "2026-09-30T12:59:26.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-09T11:00:01.098Z",
+   "last_success_at": "2026-10-12T09:08:28.321Z",
    "last_fetch_status": "ok",
    "last_error": null
   }
