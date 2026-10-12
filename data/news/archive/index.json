@@ -1,6 +1,11 @@
 {
  "days": [
   {
+   "date": "2026-10-12",
+   "count": 0,
+   "result": "none"
+  },
+  {
    "date": "2026-10-11",
    "count": 2,
    "result": "items"
