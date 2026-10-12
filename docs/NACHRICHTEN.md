@@ -83,7 +83,7 @@ Jede Meldung enthält: `id`, `event_id`, `revision`, Titel, Kurzfassung, Fakten 
 
 ## Betrieb
 
-- **Zeitplan:** täglich 08:20 Uhr Berliner Zeit (Sommer und Winter), nur ein Lauf je Tag. Manuell über Actions › Nachrichten › Run workflow.
+- **Zeitplan:** täglich ab 08:20 Uhr Berliner Zeit (Sommer und Winter), nur eine Auswertung je Tag. Weil GitHub geplante Läufe bei hoher Last stark verspätet oder gar nicht startet (beobachtet: rund 6 Stunden), gibt es Ersatztermine bis 18:29 Uhr; bereits erledigte Tage enden nach wenigen Sekunden. Manuell über Actions › Nachrichten › Run workflow.
 - **Veröffentlichen:** Commit von `data/news`, danach `workflow_dispatch` des Pages-Workflows. Der Lauf prüft, dass `data/news/latest.json` und die App den neuen Stand ausliefern.
 - **Einrichtung:** keine weitere. `ANTHROPIC_API_KEY` ist bereits als Secret hinterlegt. Ohne Schlüssel entstehen nur Kurzmeldungen.
 - **Kosten:** gemessen im ersten echten Lauf rund 25 000 Eingabe- und 7 000 Ausgabe-Token für fünf Meldungen. Mit den im Repository hinterlegten Preisen (2 $ bzw. 10 $ je Mio. Token) sind das etwa 0,12 $ am Tag, also höchstens rund 4 $ im Monat. Unveränderte Meldungen kosten nichts. Aktuelle Preise: https://www.anthropic.com/pricing. Höchstens 80 Abrufe und 12 Minuten je Lauf.

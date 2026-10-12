@@ -43,7 +43,7 @@ function newsStatusLine(){const S=NEWS.status||{},L=NEWS.latest;
    <dt>Letzter Lauf</dt><dd>${S.last_run_at?esc(fmtAsOf(S.last_run_at))+' · '+esc(res):'–'}</dd>
    <dt>Letzter Erfolg</dt><dd>${S.last_success_at?esc(fmtAsOf(S.last_success_at)):'–'}</dd>
    <dt>Aufbereitung</dt><dd>${S.llm==='aktiv'?`Claude (${esc(S.model||'')}), danach automatische Belegprüfung`:'ohne Sprachmodell: nur Originaltitel und wörtliche Sätze'}</dd>
-   <dt>Zeitplan</dt><dd>täglich gegen 8:20 Uhr; manuell über Actions › Nachrichten › Run workflow</dd>
+   <dt>Zeitplan</dt><dd>täglich ab 8:20 Uhr mit Ersatzterminen bis zum Nachmittag (GitHub startet geplante Läufe teils verspätet); manuell über Actions › Nachrichten › Run workflow</dd>
    <dt>Quellen</dt><dd>${Object.entries(S.sources||{}).map(([k,v])=>`<span class="nowrap"><i class="dot ${v.ok?'ok':'warn'}"></i> ${esc(k.toUpperCase())}</span>`).join(' ')}</dd>
    ${(S.held||[]).length?`<dt>Zurückgehalten</dt><dd>${S.held.map(h=>`${esc(h.title)} – ${esc(h.why)}`).join('<br>')}</dd>`:''}</dl>
    <p class="small muted2"><b>Daten geprüft</b> heißt: Jede Tatsache ist durch ein wörtliches Zitat aus der abgerufenen Quelle belegt, und jede Zahl steht in diesem Zitat. Die Einordnung ist als solche gekennzeichnet; daraus folgt keine Kursprognose. Nur amtliche Quellen (EZB, Eurostat, Destatis, Bundesbank, Fed, BEA, EIA, IWF, FAO).</p></details>`}

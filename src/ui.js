@@ -17,7 +17,8 @@ const deDate=s=>s&&/^\d{4}-\d{2}-\d{2}/.test(s)?s.slice(0,10).split('-').reverse
 function newReports(sym){const r=REPORTS&&REPORTS.positions&&REPORTS.positions[sym],I=INFO[sym];if(!r||!I)return [];const since=I.assessedFrom&&I.assessedFrom.date>I.checked?I.assessedFrom.date:I.checked;return (r.new||[]).filter(f=>f.date>since)}
 const proposalFor=sym=>REPORTS&&(REPORTS.proposals||[]).find(x=>x.sym===sym)||null;
 const methodTxt=I=>I&&I.method==='claude'?'von Claude eingeordnet, von dir freigegeben':'manuell geprüft';
-const storyKey=p=>{const n=newReports(p.symbol)[0];return p.id+'@'+(INFO[p.symbol]&&INFO[p.symbol].checked||'')+(n?'#'+n.acc:'')};
+const storyKey=p=>{const n=p.id===HEUTE_ID?null:newReports(p.symbol)[0];return p.id+'@'+(INFO[p.symbol]&&INFO[p.symbol].checked||'')+(n?'#'+n.acc:'')+'@'+dailyKey(storySlides(p))};
+const storyFresh=p=>storySlides(p).some(s=>s.fresh||s.kind==='news');
 const ICON_EXT='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 function newsLine(sym){const n=newReports(sym)[0];if(!n)return '';const pr=proposalFor(sym);
   return pr?`Ein Vorschlag zur neuen Einordnung liegt zur Freigabe bereit (Pull Request #${pr.number}).`:REPORTS&&REPORTS.assessEnabled?'Die automatische Einordnung folgt beim nächsten Lauf; danach gibst du sie frei.':'Noch nicht eingeordnet.'}
@@ -40,8 +41,12 @@ function weather(kind){
   return `<svg width="48" height="48" style="flex:none" viewBox="0 0 48 48" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">${body}</svg>`;
 }
 const posById=id=>D().positions.find(p=>p.id===id);
-const hasStory=p=>{const I=INFO[p.symbol];return I&&!I.etf&&isIncluded(p)};
-function storyPositions(){const d=D();return d.positions.filter(hasStory).sort((a,b)=>posValue(b)-posValue(a))}
+const HEUTE={id:HEUTE_ID,name:'Heute',symbol:null};
+const hasStory=p=>{if(!p)return false;if(p.id===HEUTE_ID)return true;if(!isIncluded(p))return false;const I=INFO[p.symbol];return !!(I&&!I.etf)||dailySlides(p).length>0};
+function storyPositions(){const d=D();return d.positions.filter(p=>p.id!==HEUTE_ID&&hasStory(p)).sort((a,b)=>posValue(b)-posValue(a))}
+const storyList=()=>[HEUTE,...storyPositions()];
+const infoPositions=()=>storyPositions().filter(p=>INFO[p.symbol]&&!INFO[p.symbol].etf);
+const storyById=id=>id===HEUTE_ID?HEUTE:posById(id);
 function srcText(k){const s=S[k];return s?`${esc(s.org)}, ${esc(s.doc)}, ${esc(s.per)}, ${esc(s.date)}`:'Quelle nicht verfügbar'}
 function srcLink(k){const s=S[k];return s?`<a class="src" href="${s.url}" target="_blank" rel="noopener">${srcText(k)}</a>`:'<span class="src">Quelle nicht verfügbar</span>'}
 const kindTag=k=>`<span class="kind ${k}">${k==='metric'?'Kennzahl':k==='company'?'Unternehmensangabe':'Einordnung'}</span>`;
@@ -96,7 +101,7 @@ window.addEventListener('hashchange',route);
 function vHeute(){
   const d=D(),tt=totals(d),c=checkModel(d),now=new Date(),hr=now.getHours();
   const greet=hr<11?'Guten Morgen':hr<18?'Guten Tag':'Guten Abend';
-  const st=storyPositions();
+  const st=infoPositions();
   const crit=c.dev.filter(x=>x.lvl==='crit'),warn=c.dev.filter(x=>x.lvl==='warn');
   const rank={neg:0,warn:1,pos:2,neutral:3};
   const fresh=st.filter(p=>newReports(p.symbol).length);
@@ -110,7 +115,7 @@ function vHeute(){
     </div>
   </div>
   ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
-  ${st.length?`<div class="stories" aria-label="Neuigkeiten zu deinen Positionen">${st.map(p=>`<a href="#story/${encodeURIComponent(p.id)}" class="story-b"><span class="ring ${FUN.seen.includes(storyKey(p))?'seen':''}${newReports(p.symbol).length?' fresh':''}"><span class="av">${esc(initials(p.name))}</span></span><span class="n">${esc(short(p.name))}</span></a>`).join('')}</div>`:''}
+  <div class="stories" aria-label="Tagesmeldungen">${storyList().map(p=>{const seen=FUN.seen.includes(storyKey(p));return `<a href="#story/${encodeURIComponent(p.id)}" class="story-b" aria-label="${esc(p.name)}${seen?', gesehen':', neu'}"><span class="ring ${seen?'seen':''}${!seen&&storyFresh(p)?' fresh':''}"><span class="av${p.id===HEUTE_ID?' av-heute':''}">${p.id===HEUTE_ID?new Date().getDate():esc(initials(p.name))}</span></span><span class="n">${esc(p.id===HEUTE_ID?'Heute':short(p.name))}</span></a>`}).join('')}</div>
   <section class="dark col" style="gap:6px">
     <div class="row between"><span class="lbl">Dein Vermögen</span>${d.kind==='demo'?'<span class="chip-demo">Muster</span>':''}</div>
     <div class="row" style="align-items:baseline;gap:8px;flex-wrap:wrap"><span class="big" style="font-size:34px">${eur(tt.sum)}</span>${tt.open?'<span class="warn-text">unvollständig</span>':''}</div>
@@ -146,7 +151,8 @@ const short=n=>{const w=n.split(/[\s(]+/)[0];return w.length>9?w.slice(0,8)+'.':
    Nach dem letzten Teil folgt die Story der nächsten Position. */
 let storyIdx=0,storyId=null,storyT=null,storyRem=0,storyStart=0,storyPaused=false,storySpeed=1,tapDown=0,tapLong=false;
 const reducedMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-function storySlides(p){const I=INFO[p.symbol];const sl=[];
+function storySlides(p){if(p.id===HEUTE_ID)return heuteSlides();const I=INFO[p.symbol];const sl=dailySlides(p);
+  if(!I||I.etf)return sl.length?sl:[{lbl:'Heute',kind:'day',tag:'Info',t:'Heute keine Tagesmeldung',sub:''}];
   const n=newReports(p.symbol)[0];if(n)sl.push({lbl:'Bei der SEC erkannt',kind:'news',t:`Neuer Bericht: ${n.label} vom ${deDate(n.date)}.`,sub:newsLine(p.symbol)+` Die folgende Einordnung ist vom ${deDate(I.checked)}.`,url:n.url,src:null});
   sl.push({lbl:'Einordnung',kind:'interp',t:I.interp,src:null});
   I.changes.items.forEach(c=>sl.push({lbl:'Was sich verändert hat · '+I.changes.cmp,kind:c.kind,t:c.t,src:c.src[0]}));
@@ -155,17 +161,17 @@ function storySlides(p){const I=INFO[p.symbol];const sl=[];
   return sl}
 const slideDur=s=>Math.round(Math.min(14000,Math.max(6000,3500+(s.t.length+(s.rule?140:0)+(s.sub?s.sub.length:0))*45))*storySpeed);
 function vStory(id){
-  const p=posById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
+  const p=storyById(id);if(!p||!hasStory(p))return `<div class="col" style="gap:14px"><h1 class="big" style="font-size:26px">Keine Story verfügbar</h1><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p><a class="btn light" href="#heute">Zurück</a></div>`;
   if(storyId!==id){storyId=id;storyIdx=0}
   {const sk=storyKey(p);if(!FUN.seen.includes(sk)){FUN.seen.push(sk);FUN.seen=FUN.seen.slice(-300);saveFun()}}
-  const sl=storySlides(p);storyIdx=Math.min(storyIdx,sl.length-1);const s=sl[storyIdx],tt=totals(D());
-  const list=storyPositions(),k=list.findIndex(x=>x.id===id);
+  const sl=storySlides(p);storyIdx=Math.min(storyIdx,sl.length-1);const s=sl[storyIdx],tt=totals(D()),isH=p.id===HEUTE_ID,I0=INFO[p.symbol];
+  const list=storyList(),k=list.findIndex(x=>x.id===id);
   const und=FUN.understood.includes(id);
   return `
   <div class="prog" role="progressbar" aria-label="Teil ${storyIdx+1} von ${sl.length}" aria-valuemin="1" aria-valuemax="${sl.length}" aria-valuenow="${storyIdx+1}">${sl.map((_,i)=>`<span class="${i<storyIdx?'done':i===storyIdx?'cur':''}"><i></i></span>`).join('')}</div>
   <div class="row">
-    <span class="av light">${esc(initials(p.name))}</span>
-    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'} · Stand ${deDate(INFO[p.symbol].checked)}, ${methodTxt(INFO[p.symbol])}</span></div>
+    <span class="av light">${isH?new Date().getDate():esc(initials(p.name))}</span>
+    <div class="col" style="flex:1;min-width:0"><span class="strong">${esc(p.name)}</span><span class="small muted-night">${isH?'Deine Tagesmeldungen':`${pct(posValue(p)/tt.sum)} ${D().kind==='demo'?'des Musterdepots':'deines Depots'}${s.kind==='day'?' · Tagesmeldung':I0&&!I0.etf?` · Stand ${deDate(I0.checked)}, ${methodTxt(I0)}`:''}`}</span></div>
     <button type="button" class="icon-btn night" id="storyPause" aria-label="${reducedMotion()?'Automatisch weiter':'Pause'}">${reducedMotion()?ICON.play:ICON.pause}</button>
     <a href="#heute" class="icon-btn night" aria-label="Story schließen">${ICON.close}</a>
   </div>
@@ -174,21 +180,25 @@ function vStory(id){
     <button type="button" class="tap prev" data-story="prev" aria-label="Vorheriger Teil"></button>
     <button type="button" class="tap next" data-story="next" aria-label="${storyIdx<sl.length-1?'Nächster Teil':k<list.length-1?'Nächste Story: '+esc(list[k+1].name):'Stories beenden'}"></button>
     <span class="lbl night">${esc(s.lbl)}</span>
-    ${s.kind==='news'?'<span class="tag new" style="align-self:flex-start">Neuer Bericht</span>':s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
+    ${s.kind==='news'?'<span class="tag new" style="align-self:flex-start">Neuer Bericht</span>':s.kind==='day'?`<span class="tag ${s.fresh?'new':'neutral'}" style="align-self:flex-start">${esc(s.tag||'Heute')}</span>`:s.kind!=='rule'&&s.kind!=='interp'?`<span>${kindTag(s.kind)}</span>`:''}
     <h1 class="big story-h">${esc(s.t)}</h1>
     ${s.rule?`<div class="story-box"><div class="row between"><span>Stand ${esc(s.rule.per)}</span><span class="st ${stCls(s.rule)}">${STATUS[s.rule.type][s.rule.status]}</span></div><span class="small muted-night">${esc(s.rule.metric)}: ${esc(s.rule.cond)}${s.rule.obs?` · beobachtet ${esc(s.rule.obs)}`:''}</span><span class="small muted-night">Nächste Prüfung: ${esc(s.rule.next)}</span></div>`:''}
     ${s.kind==='news'?`<span class="small muted-night">${esc(s.sub)}</span><a class="story-link" href="${esc(s.url)}" target="_blank" rel="noopener">Bericht bei der SEC öffnen ${ICON_EXT}</a>`:''}
+    ${s.kind==='day'&&s.sub?`<span class="story-sub">${esc(s.sub)}</span>`:''}
+    ${s.kind==='day'&&s.link?`<a class="story-link" href="${esc(s.link.href)}">${esc(s.link.label)} →</a>`:''}
+    ${s.kind==='day'&&s.url?`<a class="story-link" href="${esc(s.url)}" target="_blank" rel="noopener">Quelle öffnen ${ICON_EXT}</a>`:''}
+    ${s.srcTxt?`<span class="small muted-night">Quelle: ${esc(s.srcTxt)}</span>`:''}
     ${s.src?`<span class="small muted-night">Quelle: ${srcText(s.src)}</span>`:s.kind==='interp'?'<span class="small muted-night">Interpretation von Depotfokus auf Basis der Quellen</span>':''}
   </div>
   <div class="col" style="gap:10px">
     <span class="small muted-night center">${k>=0?`Story ${k+1} von ${list.length}`:''}${k<list.length-1?` · danach ${esc(list[k+1].name)}`:''}</span>
-    <a href="#pos/${encodeURIComponent(id)}" class="btn light">Tiefer einsteigen</a>
+    <a href="${isH?'#nachrichten':'#pos/'+encodeURIComponent(id)}" class="btn light">${isH?'Alle Nachrichten':'Tiefer einsteigen'}</a>
     <button type="button" class="btn ghost-dark" data-understood="${esc(id)}">${und?'Verstanden ✓':'Verstanden · +10 Wissen'}</button>
   </div>`;
 }
 function stopStory(){clearTimeout(storyT);storyT=null}
 function armStory(){
-  stopStory();const p=posById(storyId);if(!p||!hasStory(p))return;const sl=storySlides(p);
+  stopStory();const p=storyById(storyId);if(!p||!hasStory(p))return;const sl=storySlides(p);
   storyRem=slideDur(sl[storyIdx]);storyPaused=false;const v=$('#view');v.classList.remove('paused');
   const bar=v.querySelector('.prog .cur i');if(bar)bar.style.animationDuration=storyRem+'ms';
   if(reducedMotion()){storyPaused=true;v.classList.add('paused','manual');return}
@@ -200,7 +210,7 @@ function pauseBtn(){const b=$('#storyPause');if(b){b.innerHTML=storyPaused?ICON.
 function storyStep(dir){
   if(parse().r!=='story')return;
   if(!FUN.storyHint){FUN.storyHint=true;saveFun()}
-  const list=storyPositions(),p=posById(storyId);if(!p)return;const sl=storySlides(p),k=list.findIndex(x=>x.id===storyId);
+  const list=storyList(),p=storyById(storyId);if(!p)return;const sl=storySlides(p),k=list.findIndex(x=>x.id===storyId);
   const i=storyIdx+dir;stopStory();
   if(i>=sl.length){const n=list[k+1];if(n)location.replace('#story/'+encodeURIComponent(n.id));else location.replace('#heute');return}
   if(i<0){const pr=list[k-1];if(pr)location.replace('#story/'+encodeURIComponent(pr.id));else{storyIdx=0;rerender()}return}
@@ -445,7 +455,7 @@ const fmtWhen=d=>d?d.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month
 function priceStatus(){const pi=priceInfo(D()),cron=(PRICES&&PRICES.schedule)||PRICE_CRON,next=cronNext(cron);
   const last=PRICES&&PRICES.asOf?new Date(PRICES.asOf):null,age=last?(Date.now()-last)/864e5:null;
   return {pi,next,last,stale:age!=null&&age>4,n:PRICES&&PRICES.quotes?Object.keys(PRICES.quotes).length:0,src:PRICES&&PRICES.source}}
-function reportStatus(){const pos=storyPositions().map(p=>({p,I:INFO[p.symbol],n:newReports(p.symbol),pr:proposalFor(p.symbol)}));
+function reportStatus(){const pos=infoPositions().map(p=>({p,I:INFO[p.symbol],n:newReports(p.symbol),pr:proposalFor(p.symbol)}));
   const nNew=pos.filter(x=>x.n.length).length,claude=pos.filter(x=>x.I.method==='claude').length;
   const last=pos.map(x=>x.I.checked).sort().pop();
   return {pos,nNew,claude,last,checkedAt:REPORTS&&REPORTS.checkedAt,auto:!!(REPORTS&&REPORTS.assessEnabled),model:REPORTS&&REPORTS.model,props:(REPORTS&&REPORTS.proposals)||[],errs:REPORTS?Object.keys(REPORTS.errors||{}).length:0,uaBlocked:!!(REPORTS&&Object.values(REPORTS.errors||{}).some(e=>/Undeclared Automated Tool/i.test(e)))}}

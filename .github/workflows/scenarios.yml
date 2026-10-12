@@ -9,10 +9,18 @@ name: Szenario-Monitor
 # (05:20 UTC im Sommer, 06:20 UTC im Winter). Das Skript startet nur den ersten Lauf nach
 # 7 Uhr Berliner Zeit; ein verspäteter oder doppelter Lauf erzeugt keinen zweiten Wochenstand.
 
+# Ersatztermine: GitHub startet geplante Läufe teils Stunden später oder lässt sie aus.
+# Fällt der ganze Montag aus, holt der Dienstag die Bewertung derselben Kalenderwoche nach.
 on:
   schedule:
     - cron: '20 5 * * 1'
     - cron: '20 6 * * 1'
+    - cron: '43 7 * * 1'
+    - cron: '17 9 * * 1'
+    - cron: '51 11 * * 1'
+    - cron: '23 14 * * 1'
+    - cron: '37 6 * * 2'
+    - cron: '11 12 * * 2'
   workflow_dispatch:
     inputs:
       trockenlauf:
