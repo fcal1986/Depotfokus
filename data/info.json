@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "jnjde_000020040626000189": {
+   "org": "Johnson & Johnson",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q3 2026",
+   "date": "13.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000189/a2026q3exhibit991.htm"
   }
  },
  "positions": {
@@ -537,19 +544,20 @@
   },
   "JNJ.DE": {
    "cik": 200406,
-   "checked": "2026-10-04",
-   "method": "manual",
-   "mood": "pos",
+   "checked": "2026-10-13",
+   "method": "claude",
+   "mood": "neutral",
    "interp": "Neue Medikamente gleichen den Rückgang bei Stelara aus; das Unternehmen hat die Jahresprognose angehoben.",
    "changes": {
-    "cmp": "Q2 2026 gegenüber der vorherigen Prognose",
+    "cmp": "Q3 2026 gegenüber Q2 2026 bzw. der Prognose vom 29. Juli 2026",
     "items": [
      {
       "kind": "company",
-      "t": "Prognose für das bereinigte EPS um 0,13 $ auf 11,68 $ angehoben.",
+      "t": "Prognose für das bereinigte EPS 2026 um 0,06 $ auf 11,10 $ (Mittelwert) angehoben, Spanne 11,05–11,15 $ (zuvor 10,96–11,11 $).",
       "src": [
-       "jnj"
-      ]
+       "jnjde_000020040626000189"
+      ],
+      "quote": "increasing adjusted EPS* guidance by $0.06 to $11.10 or 2.9% at the midpoint"
      }
     ]
    },
@@ -571,13 +579,14 @@
      "q": "Senkt J&J die Jahresprognose?",
      "metric": "Prognose bereinigtes EPS 2026",
      "cond": "unter 11,68 $",
-     "per": "Q2 2026",
-     "obs": "angehoben auf 11,68 $",
-     "prev": null,
+     "per": "Q3 2026",
+     "obs": "Prognose angehoben: bereinigtes EPS 2026 11,05–11,15 $ (Mittelwert 11,10 $), zuvor Mittelwert 11,04 $.",
+     "prev": "Q2 2026: angehoben auf 11,68 $",
      "status": "not_occurred",
-     "src": "jnj",
-     "next": "Bericht Q3 2026, Termin geschätzt Mitte Oktober",
-     "why": "Die Prognose zeigt, wie das Unternehmen selbst das Jahr einschätzt."
+     "src": "jnjde_000020040626000189",
+     "next": "Bericht Q4 2026, Termin geschätzt Ende Januar 2027",
+     "why": "Die Prognose zeigt, wie das Unternehmen selbst das Jahr einschätzt.",
+     "quote": "Strong operational performance results in the Company increasing 2026 guidance with estimated reported sales of $101.2 Billion or 7.4% at the midpoint and increasing adjusted EPS* guidance by $0.06 to $11.10 or 2.9% at the midpoint"
     }
    ],
    "themes": [
@@ -585,7 +594,14 @@
      "t": "Talk-Rechtsstreit",
      "why": "Ausgang und Kosten offener Verfahren sind nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0000200406-26-000189",
+    "form": "8-K",
+    "date": "2026-10-13",
+    "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000189/a2026q3exhibit991.htm"
+   }
   },
   "CCC3.DE": {
    "cik": 21344,
