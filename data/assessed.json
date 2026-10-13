@@ -37,6 +37,22 @@
    "status": "branch",
    "branch": "bericht/NOV_DE--0001171843-26-006374",
    "at": "2026-10-09"
+  },
+  "0000200406-26-000189": {
+   "sym": "JNJ.DE",
+   "date": "2026-10-13",
+   "form": "8-K",
+   "status": "branch",
+   "branch": "bericht/JNJ_DE--0000200406-26-000189",
+   "at": "2026-10-13"
+  },
+  "0001171843-26-006585": {
+   "sym": "NOV.DE",
+   "date": "2026-10-13",
+   "form": "6-K",
+   "status": "skipped",
+   "reason": "keine Ergebnismitteilung",
+   "at": "2026-10-13"
   }
  }
 }
