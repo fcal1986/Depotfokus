@@ -8,7 +8,9 @@
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_364_611.html": "e961ed848793b",
   "fao.org/newsroom/detail/world-food-forum-2026--fao-s-hand-in-hand-investment-forum-opens-with-record--20.16-billion-in-proposed-investments/en": "e1dd9086ad643",
   "destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_42_p002.html": "efa5327b79df9",
-  "fao.org/newsroom/detail/world-food-forum-2026--fao-director-general-opens-5th-science-and-innovation-forum/en": "eca42e1431126"
+  "fao.org/newsroom/detail/world-food-forum-2026--fao-director-general-opens-5th-science-and-innovation-forum/en": "eca42e1431126",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_367_61211.html": "e7f67b9d7ec46",
+  "ecb.europa.eu/press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html": "e2ab6cbdf9440"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -1154,6 +1156,290 @@
     "scenario_link": null,
     "event_date": "2026-10-13",
     "words": 185,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e7f67b9d7ec46": {
+   "revision": 1,
+   "evidence_hash": "1f49a158a2141d1b",
+   "first_seen_at": "2026-10-14T12:02:01.321Z",
+   "last_seen_at": "2026-10-14T12:02:01.321Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_367_61211.html",
+   "article": {
+    "id": "n-7f67b9d7ec46",
+    "event_id": "e7f67b9d7ec46",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Erzeugerpreise landwirtschaftlicher Produkte im August 2026: -7,0 % gegenüber August 2025",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_367_61211.html",
+    "also": [],
+    "published_at": "2026-10-14T06:00:00.000Z",
+    "retrieved_at": "2026-10-14T12:02:01.321Z",
+    "created_at": "2026-10-14T12:02:01.321Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 5189,
+     "truncated": false,
+     "hash": "1f49a158a2141d1b"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Agrarpreise im August 2026: Jahresminus von 7,0 %, aber starker Anstieg zum Vormonat",
+    "kurzfassung": "Die Erzeugerpreise der Landwirtschaft liegen 7,0 % unter dem Vorjahr, stiegen aber gegenüber Juli um 5,5 %. Pflanzliche Produkte verteuern sich, tierische werden billiger.",
+    "facts": [
+     {
+      "text": "Die Erzeugerpreise landwirtschaftlicher Produkte lagen im August 2026 um 7,0 % unter dem Vorjahresmonat; im Juli waren es noch -13,7 %.",
+      "quote": "Die Erzeugerpreise landwirtschaftlicher Produkte waren im August 2026 um 7,0 % niedriger als im August 2025. Im Juli 2026 hatte die Veränderungsrate gegenüber dem Vorjahresmonat bei -13,7 % gelegen"
+     },
+     {
+      "text": "Gegenüber Juli 2026 stiegen die Erzeugerpreise um 5,5 %, der stärkste Monatsanstieg seit März 2022.",
+      "quote": "stiegen die Erzeugerpreise landwirtschaftlicher Produkte im August 2026 gegenüber Juli 2026 um 5,5 %. Das war der stärkste Anstieg im Vormonatsvergleich seit März 2022"
+     },
+     {
+      "text": "Speisekartoffeln kosteten im August 2026 61,5 % mehr als ein Jahr zuvor und fast doppelt so viel wie im Juli.",
+      "quote": "Diese waren im August 2026 um 61,5 % höher als im August 2025."
+     }
+    ],
+    "numbers": [
+     {
+      "value": -7,
+      "unit": "% zum Vorjahresmonat",
+      "period": "August 2026",
+      "quote": "um 7,0 % niedriger als im August 2025"
+     },
+     {
+      "value": 5.5,
+      "unit": "% zum Vormonat",
+      "period": "August 2026",
+      "quote": "gegenüber Juli 2026 um 5,5 %"
+     },
+     {
+      "value": 12.3,
+      "unit": "% zum Vorjahresmonat (pflanzliche Erzeugnisse)",
+      "period": "August 2026",
+      "quote": "Die Preise für pflanzliche Erzeugnisse stiegen im August 2026 um 12,3 % gegenüber dem Vorjahresmonat."
+     },
+     {
+      "value": -16.6,
+      "unit": "% zum Vorjahresmonat (Tiere und tierische Erzeugnisse)",
+      "period": "August 2026",
+      "quote": "Die Preise für Tiere und tierische Erzeugnisse sanken hingegen um 16,6 %."
+     }
+    ],
+    "alltag": "Erzeugerpreise sind die Preise, die Landwirte für ihre Produkte erhalten, nicht die Preise im Supermarkt. Sie zeigen aber, wie sich Kosten am Anfang der Lebensmittelkette entwickeln. Für Landwirte bedeuten sinkende Milch- und Schweinepreise weniger Einnahmen, höhere Preise bei Kartoffeln und Getreide mehr.",
+    "finanzwirkung": "Für Lebensmittelhersteller und Handel kann es die Einkaufskosten verändern: Teurere Kartoffeln und Getreide können sie belasten, billigere Milch und Fleisch können sie entlasten. Ob sich das in Umsatz oder Gewinn zeigt, hängt davon ab, ob und wie schnell Preise weitergegeben werden. Für Agrarbetriebe kann das je nach Produktmix sehr unterschiedlich ausfallen.",
+    "naechstes": {
+     "text": "Zu beobachten ist, ob sich der starke Monatsanstieg im September fortsetzt und ob die Jahresrate weiter Richtung null geht.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "lebensmittel",
+     "preise"
+    ],
+    "regions": [
+     "Deutschland"
+    ],
+    "sectors": [
+     "Landwirtschaft",
+     "Lebensmittel",
+     "Einzelhandel"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Erzeugerpreise",
+      "def": "Preise, die Produzenten, hier Landwirte, für ihre Waren erhalten, ohne Umsatzsteuer."
+     },
+     {
+      "term": "Vorjahresvergleich",
+      "def": "Vergleich eines Monats mit demselben Monat des Vorjahres."
+     },
+     {
+      "term": "Vormonatsvergleich",
+      "def": "Vergleich eines Monats mit dem direkt davor liegenden Monat."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-14",
+    "words": 168,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Der Milchpreis lag 23,9 % unter dem Vorjahr, Schlachtschweine waren 19,0 % billiger.",
+      "why": "Zahl nicht im Zitat: 19"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e2ab6cbdf9440": {
+   "revision": 1,
+   "evidence_hash": "70e134f78f3c4906",
+   "first_seen_at": "2026-10-14T12:02:01.321Z",
+   "last_seen_at": "2026-10-14T12:02:01.321Z",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html",
+   "article": {
+    "id": "n-2ab6cbdf9440",
+    "event_id": "e2ab6cbdf9440",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Philip R. Lane: The AI opportunity for Europe",
+    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html",
+    "also": [],
+    "published_at": "2026-10-13T18:30:00.000Z",
+    "retrieved_at": "2026-10-14T12:02:01.321Z",
+    "created_at": "2026-10-14T12:02:01.321Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 13457,
+     "truncated": false,
+     "hash": "70e134f78f3c4906"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "EZB-Direktor Lane: KI treibt Investitionen im Euroraum, Europa hinkt USA hinterher",
+    "kurzfassung": "Die EZB sieht KI schon jetzt als wichtigen Treiber der Wirtschaft im Euroraum, ordnet Europas Rückstand gegenüber den USA ein und warnt vor Risiken an den Finanzmärkten.",
+    "facts": [
+     {
+      "text": "Unternehmen im Euroraum stecken dieses Jahr etwa 10 Prozent ihrer Gesamtinvestitionen in KI. KI-bezogene Kredite machen rund ein Viertel des jüngsten Kreditwachstums an Firmen aus.",
+      "quote": "firms are set to devote around 10 per cent of their total investment to AI this year"
+     },
+     {
+      "text": "52 Prozent der Beschäftigten nutzen laut EZB-Umfrage KI bei der Arbeit, 2024 waren es 26 Prozent.",
+      "quote": "52 per cent now reporting that they use AI at work, compared with 26 per cent in 2024"
+     },
+     {
+      "text": "Europa liegt bei der KI-Rechenkapazität weit hinter den USA. Die USA stellen 75 Prozent der weltweiten Kapazität, Europa nur 5 Prozent.",
+      "quote": "the United States hosts 75 per cent of the global aggregate, whereas Europe hosts just 5 per cent"
+     },
+     {
+      "text": "Der weltweite KI-Boom trägt wohl zu höheren langfristigen Zinsen bei. Das verschärft laut Lane die Finanzierungsbedingungen im Euroraum spürbar.",
+      "quote": "the increase in long-term interest rates constitutes a material tightening of financial conditions for the euro area"
+     }
+    ],
+    "numbers": [
+     {
+      "value": 10,
+      "unit": "Prozent der Gesamtinvestitionen",
+      "period": "2026",
+      "quote": "around 10 per cent of their total investment to AI this year"
+     },
+     {
+      "value": 52,
+      "unit": "Prozent der Beschäftigten",
+      "period": "aktuell, Vergleich 2024: 26 Prozent",
+      "quote": "52 per cent now reporting that they use AI at work, compared with 26 per cent in 2024"
+     },
+     {
+      "value": 64,
+      "unit": "Prozent der Unternehmen (experimentelle oder moderate KI-Nutzung)",
+      "period": "viertes Quartal 2025",
+      "quote": "64 per cent of firms said they were using it either experimentally or moderately"
+     },
+     {
+      "value": 75,
+      "unit": "Prozent der weltweiten KI-Rechenkapazität (USA)",
+      "period": "aktuell",
+      "quote": "the United States hosts 75 per cent of the global aggregate, whereas Europe hosts just 5 per cent"
+     }
+    ],
+    "alltag": "KI verändert schon jetzt Arbeit und Investitionen. Die Einstellungspläne sind laut EZB verhalten, das trifft vor allem Berufseinsteiger. Höhere langfristige Zinsen können Kredite für Haushalte und Unternehmen teurer machen.",
+    "finanzwirkung": "Wenn Firmen mehr in KI investieren, kann das die Nachfrage nach Zulieferern und Digitaldiensten stützen. Ob daraus höhere Gewinne und Dividenden werden, hängt davon ab, ob die Produktivität tatsächlich steigt. Höhere Langfristzinsen und hohe Bewertungen von KI-Firmen können Finanzierung verteuern und Kursrisiken erhöhen, falls sich die Stimmung dreht.",
+    "naechstes": {
+     "text": "Beobachten: ob sich die KI-Nutzung in messbarer Produktivität zeigt, wie sich Beschäftigung und Löhne entwickeln und wie sich KI-bezogene Finanzrisiken entwickeln.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "zinsen",
+     "industrie",
+     "unternehmen"
+    ],
+    "regions": [
+     "Euroraum",
+     "USA"
+    ],
+    "sectors": [
+     "Technologie",
+     "Halbleiter",
+     "Banken",
+     "Breiter Markt"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Potenzialwachstum",
+      "def": "Das Tempo, mit dem eine Volkswirtschaft auf Dauer wachsen kann, ohne dass Preise stark anziehen."
+     },
+     {
+      "term": "Finanzierungsbedingungen",
+      "def": "Wie teuer und leicht es für Haushalte, Firmen und Staaten ist, an Kredit oder Kapital zu kommen."
+     },
+     {
+      "term": "Private Credit",
+      "def": "Kredite, die nicht über Banken oder Börsen, sondern direkt von spezialisierten Fonds vergeben werden."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "A",
+     "why": "Die Rede beschreibt KI als langfristige Wachstumschance, aber mit bisher kaum messbarer Produktivitätswirkung, verhaltener Beschäftigung und höheren Langfristzinsen. Das passt qualitativ zu einer zähen Erholung."
+    },
+    "event_date": "2026-10-13",
+    "words": 179,
     "length_ok": true,
     "title_is_original": false,
     "status": "geprüft",

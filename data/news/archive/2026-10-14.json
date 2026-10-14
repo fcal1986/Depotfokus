@@ -1,0 +1,541 @@
+{
+ "date": "2026-10-14",
+ "generated_at": "2026-10-14T12:02:01.321Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-961ed848793b",
+   "event_id": "e961ed848793b",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Inflationsrate im September 2026 bei +3,3 %",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_364_611.html",
+   "also": [],
+   "published_at": "2026-10-13T06:00:00.000Z",
+   "retrieved_at": "2026-10-13T14:20:05.822Z",
+   "created_at": "2026-10-13T14:20:05.822Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 10510,
+    "truncated": false,
+    "hash": "245733308e18dc00"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Inflation in Deutschland steigt im September 2026 auf 3,3 %",
+   "kurzfassung": "Die Verbraucherpreise stiegen im September 2026 um 3,3 % gegenüber dem Vorjahresmonat, getrieben von Energie: Kraftstoffe und Heizöl verteuerten sich stark.",
+   "facts": [
+    {
+     "text": "Die Inflationsrate lag im September 2026 bei 3,3 % und damit über den Werten von August (2,9 %) und Juli (2,8 %).",
+     "quote": "lag im September 2026 bei +3,3 %. Damit hat sich die Teuerung der Verbraucherpreise erneut verstärkt, nachdem sie im August 2026 bei +2,9 % und im Juli 2026 bei +2,8 % gelegen hatte."
+    },
+    {
+     "text": "Energieprodukte waren im September 2026 um 14,9 % teurer als ein Jahr zuvor.",
+     "quote": "Die Preise für Energieprodukte insgesamt lagen im September 2026 um 14,9 % höher als im September 2025."
+    },
+    {
+     "text": "Kraftstoffe verteuerten sich um 37,1 %, leichtes Heizöl um 74,9 % gegenüber dem Vorjahresmonat.",
+     "quote": "die Preise für Kraftstoffe deutlich um 37,1 % (August 2026: +27,7 %) und für leichtes Heizöl noch stärker um 74,9 % (August 2026: +49,6 %)"
+    },
+    {
+     "text": "Die Kerninflation ohne Nahrungsmittel und Energie lag unverändert bei 2,4 %.",
+     "quote": "lag im September 2026 wie bereits im August und Juli 2026 bei +2,4 % und damit weiterhin unter der Gesamtteuerung"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 3.3,
+     "unit": "%",
+     "period": "September 2026 zum Vorjahresmonat",
+     "quote": "lag im September 2026 bei +3,3 %"
+    },
+    {
+     "value": 0.6,
+     "unit": "%",
+     "period": "September 2026 zum Vormonat",
+     "quote": "stiegen die Verbraucherpreise insgesamt im September 2026 um 0,6 %"
+    },
+    {
+     "value": 14.9,
+     "unit": "%",
+     "period": "Energiepreise, September 2026 zum Vorjahresmonat",
+     "quote": "lagen im September 2026 um 14,9 % höher als im September 2025"
+    },
+    {
+     "value": 0.4,
+     "unit": "%",
+     "period": "Nahrungsmittel, September 2026 zum Vorjahresmonat",
+     "quote": "Nahrungsmittel verteuerten sich im September 2026 mit +0,4 % gegenüber dem Vorjahresmonat"
+    }
+   ],
+   "alltag": "Preise steigen schneller als in den Vormonaten, vor allem beim Tanken und Heizen. Das belastet Haushalte, die viel fahren oder mit Öl heizen. Nahrungsmittel verteuerten sich dagegen nur leicht, und Strom wurde günstiger.",
+   "finanzwirkung": "Höhere Energiekosten können die Kosten von Unternehmen erhöhen und die Gewinne belasten, wenn sie Preise nicht weitergeben können. Weniger verfügbares Geld bei Haushalten kann den Konsum dämpfen, was auf Umsätze im Einzelhandel wirken kann. Ob dies Dividenden berührt, hängt von der Lage des einzelnen Unternehmens ab. Eine höhere Inflation kann zudem die Zinserwartungen verändern, mit offener Wirkung auf Finanzierungskosten.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die zum 1. Oktober 2026 in Kraft getretene Energiesteuersenkung (Tankrabatt) die Kraftstoffpreise im Oktober entlastet.",
+    "date": "2026-10-01",
+    "quote": "da sie erst zum 1. Oktober 2026 in Kraft trat"
+   },
+   "categories": [
+    "preise",
+    "energie"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Energie",
+    "Transport",
+    "Konsumgüter",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Inflationsrate",
+     "def": "Sie zeigt, wie stark die Preise im Vergleich zum Vorjahr gestiegen sind."
+    },
+    {
+     "term": "Kerninflation",
+     "def": "Die Preisentwicklung ohne Nahrungsmittel und Energie, die oft stark schwanken."
+    },
+    {
+     "term": "Verbraucherpreisindex",
+     "def": "Ein Maß für die Preisentwicklung eines typischen Warenkorbs von Haushalten."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "C",
+    "why": "Energiepreise treiben die Inflation; hält der Preisdruck an, kann das Wachstum und die Finanzierungsbedingungen belasten."
+   },
+   "event_date": "2026-10-13",
+   "words": 171,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-1dd9086ad643",
+   "event_id": "e1dd9086ad643",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "World Food Forum 2026: FAO’s Hand-in-Hand Investment Forum opens with record $20.16 billion in proposed investments",
+   "url": "https://www.fao.org/newsroom/detail/world-food-forum-2026--fao-s-hand-in-hand-investment-forum-opens-with-record--20.16-billion-in-proposed-investments/en",
+   "also": [],
+   "published_at": "2026-10-13T12:00:00.000Z",
+   "retrieved_at": "2026-10-13T14:20:05.822Z",
+   "created_at": "2026-10-13T14:20:05.822Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7674,
+    "truncated": false,
+    "hash": "faadd75fda95a8df"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.8,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "FAO-Forum: Rekordsumme von 20,16 Mrd. US-Dollar für Agrar- und Ernährungsprojekte vorgeschlagen",
+   "kurzfassung": "38 Länder und fünf regionale Initiativen stellen bei der FAO Agrarprojekte im Umfang von 20,16 Mrd. US-Dollar vor. Das sind mehr als die 17,3 Mrd. US-Dollar von 2025.",
+   "facts": [
+    {
+     "text": "Auf dem Hand-in-Hand-Investitionsforum in Rom werden Projekte über 20,16 Mrd. US-Dollar vorgeschlagen. 38 Länder und fünf regionale Initiativen beteiligen sich.",
+     "quote": "with 38 countries and five regional initiatives presenting a record $20.16 billion in proposed agrifood investments."
+    },
+    {
+     "text": "Im Jahr 2025 lag die vorgeschlagene Summe bei 17,3 Mrd. US-Dollar.",
+     "quote": "In 2025, governments pitched investment cases for $17.3 billion."
+    },
+    {
+     "text": "Seit 2022 sind 7,88 Mrd. US-Dollar an Finanzierung zugesagt oder in Verhandlung.",
+     "quote": "Of this amount, $7.88 billion in financing has been committed or under negotiation."
+    },
+    {
+     "text": "Die FAO begründet das Modell damit, dass hohe Risiken viele Chancen blockieren. Internationale Finanzinstitutionen sollen frühe Verluste auffangen, private Investoren Kapital bringen.",
+     "quote": "international financial institutions help absorb early losses and private investors bring capital to scale."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 20.16,
+     "unit": "Mrd. US-Dollar",
+     "period": "Forum 2026",
+     "quote": "a record $20.16 billion in proposed agrifood investments"
+    },
+    {
+     "value": 17.3,
+     "unit": "Mrd. US-Dollar",
+     "period": "Forum 2025",
+     "quote": "In 2025, governments pitched investment cases for $17.3 billion."
+    },
+    {
+     "value": 7.88,
+     "unit": "Mrd. US-Dollar",
+     "period": "seit 2022 zugesagt oder in Verhandlung",
+     "quote": "$7.88 billion in financing has been committed or under negotiation"
+    },
+    {
+     "value": 1.2,
+     "unit": "Mrd. US-Dollar",
+     "period": "Portfolio Ghanas 2026",
+     "quote": "Ghana is presenting a $1.2 billion investment portfolio"
+    }
+   ],
+   "alltag": "Es geht um Anbau, Verarbeitung und Export von Kaffee, Kakao, Fleisch und Grundnahrungsmitteln. Mehr Produktion in diesen Ländern kann langfristig das Angebot erweitern und Einkommen auf dem Land stützen. Bisher sind es nur Vorschläge, kein fester Geldfluss.",
+   "finanzwirkung": "Zugesagtes Geld ist erst ein kleiner Teil der Vorschläge. Ob daraus Umsatz wird, hängt davon ab, ob Projekte tatsächlich finanziert und umgesetzt werden. Das kann Chancen für Entwicklungsbanken, Agrarhändler und Verarbeiter bedeuten. Gewinne und Dividenden sind davon aber nicht ableitbar, denn Risiken und Verzögerungen können das Bild ändern.",
+   "naechstes": {
+    "text": "Beobachten, wie viele der vorgestellten Projekte in bilateralen Gesprächen in Finanzierungen münden.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel",
+    "unternehmen"
+   ],
+   "regions": [
+    "Welt"
+   ],
+   "sectors": [
+    "Landwirtschaft",
+    "Lebensmittel",
+    "Staat"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Agrifood-Investition",
+     "def": "Geld für Landwirtschaft und Lebensmittelverarbeitung."
+    },
+    {
+     "term": "De-Risking",
+     "def": "Maßnahmen, die das Verlustrisiko für Geldgeber senken."
+    },
+    {
+     "term": "Wertschöpfungskette",
+     "def": "Alle Schritte vom Anbau bis zum Verkauf eines Produkts."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-13",
+   "words": 162,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-7f67b9d7ec46",
+   "event_id": "e7f67b9d7ec46",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Erzeugerpreise landwirtschaftlicher Produkte im August 2026: -7,0 % gegenüber August 2025",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_367_61211.html",
+   "also": [],
+   "published_at": "2026-10-14T06:00:00.000Z",
+   "retrieved_at": "2026-10-14T12:02:01.321Z",
+   "created_at": "2026-10-14T12:02:01.321Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5189,
+    "truncated": false,
+    "hash": "1f49a158a2141d1b"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Agrarpreise im August 2026: Jahresminus von 7,0 %, aber starker Anstieg zum Vormonat",
+   "kurzfassung": "Die Erzeugerpreise der Landwirtschaft liegen 7,0 % unter dem Vorjahr, stiegen aber gegenüber Juli um 5,5 %. Pflanzliche Produkte verteuern sich, tierische werden billiger.",
+   "facts": [
+    {
+     "text": "Die Erzeugerpreise landwirtschaftlicher Produkte lagen im August 2026 um 7,0 % unter dem Vorjahresmonat; im Juli waren es noch -13,7 %.",
+     "quote": "Die Erzeugerpreise landwirtschaftlicher Produkte waren im August 2026 um 7,0 % niedriger als im August 2025. Im Juli 2026 hatte die Veränderungsrate gegenüber dem Vorjahresmonat bei -13,7 % gelegen"
+    },
+    {
+     "text": "Gegenüber Juli 2026 stiegen die Erzeugerpreise um 5,5 %, der stärkste Monatsanstieg seit März 2022.",
+     "quote": "stiegen die Erzeugerpreise landwirtschaftlicher Produkte im August 2026 gegenüber Juli 2026 um 5,5 %. Das war der stärkste Anstieg im Vormonatsvergleich seit März 2022"
+    },
+    {
+     "text": "Speisekartoffeln kosteten im August 2026 61,5 % mehr als ein Jahr zuvor und fast doppelt so viel wie im Juli.",
+     "quote": "Diese waren im August 2026 um 61,5 % höher als im August 2025."
+    }
+   ],
+   "numbers": [
+    {
+     "value": -7,
+     "unit": "% zum Vorjahresmonat",
+     "period": "August 2026",
+     "quote": "um 7,0 % niedriger als im August 2025"
+    },
+    {
+     "value": 5.5,
+     "unit": "% zum Vormonat",
+     "period": "August 2026",
+     "quote": "gegenüber Juli 2026 um 5,5 %"
+    },
+    {
+     "value": 12.3,
+     "unit": "% zum Vorjahresmonat (pflanzliche Erzeugnisse)",
+     "period": "August 2026",
+     "quote": "Die Preise für pflanzliche Erzeugnisse stiegen im August 2026 um 12,3 % gegenüber dem Vorjahresmonat."
+    },
+    {
+     "value": -16.6,
+     "unit": "% zum Vorjahresmonat (Tiere und tierische Erzeugnisse)",
+     "period": "August 2026",
+     "quote": "Die Preise für Tiere und tierische Erzeugnisse sanken hingegen um 16,6 %."
+    }
+   ],
+   "alltag": "Erzeugerpreise sind die Preise, die Landwirte für ihre Produkte erhalten, nicht die Preise im Supermarkt. Sie zeigen aber, wie sich Kosten am Anfang der Lebensmittelkette entwickeln. Für Landwirte bedeuten sinkende Milch- und Schweinepreise weniger Einnahmen, höhere Preise bei Kartoffeln und Getreide mehr.",
+   "finanzwirkung": "Für Lebensmittelhersteller und Handel kann es die Einkaufskosten verändern: Teurere Kartoffeln und Getreide können sie belasten, billigere Milch und Fleisch können sie entlasten. Ob sich das in Umsatz oder Gewinn zeigt, hängt davon ab, ob und wie schnell Preise weitergegeben werden. Für Agrarbetriebe kann das je nach Produktmix sehr unterschiedlich ausfallen.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob sich der starke Monatsanstieg im September fortsetzt und ob die Jahresrate weiter Richtung null geht.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel",
+    "preise"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Landwirtschaft",
+    "Lebensmittel",
+    "Einzelhandel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Erzeugerpreise",
+     "def": "Preise, die Produzenten, hier Landwirte, für ihre Waren erhalten, ohne Umsatzsteuer."
+    },
+    {
+     "term": "Vorjahresvergleich",
+     "def": "Vergleich eines Monats mit demselben Monat des Vorjahres."
+    },
+    {
+     "term": "Vormonatsvergleich",
+     "def": "Vergleich eines Monats mit dem direkt davor liegenden Monat."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-14",
+   "words": 168,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Der Milchpreis lag 23,9 % unter dem Vorjahr, Schlachtschweine waren 19,0 % billiger.",
+     "why": "Zahl nicht im Zitat: 19"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-2ab6cbdf9440",
+   "event_id": "e2ab6cbdf9440",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "Philip R. Lane: The AI opportunity for Europe",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html",
+   "also": [],
+   "published_at": "2026-10-13T18:30:00.000Z",
+   "retrieved_at": "2026-10-14T12:02:01.321Z",
+   "created_at": "2026-10-14T12:02:01.321Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 13457,
+    "truncated": false,
+    "hash": "70e134f78f3c4906"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "EZB-Direktor Lane: KI treibt Investitionen im Euroraum, Europa hinkt USA hinterher",
+   "kurzfassung": "Die EZB sieht KI schon jetzt als wichtigen Treiber der Wirtschaft im Euroraum, ordnet Europas Rückstand gegenüber den USA ein und warnt vor Risiken an den Finanzmärkten.",
+   "facts": [
+    {
+     "text": "Unternehmen im Euroraum stecken dieses Jahr etwa 10 Prozent ihrer Gesamtinvestitionen in KI. KI-bezogene Kredite machen rund ein Viertel des jüngsten Kreditwachstums an Firmen aus.",
+     "quote": "firms are set to devote around 10 per cent of their total investment to AI this year"
+    },
+    {
+     "text": "52 Prozent der Beschäftigten nutzen laut EZB-Umfrage KI bei der Arbeit, 2024 waren es 26 Prozent.",
+     "quote": "52 per cent now reporting that they use AI at work, compared with 26 per cent in 2024"
+    },
+    {
+     "text": "Europa liegt bei der KI-Rechenkapazität weit hinter den USA. Die USA stellen 75 Prozent der weltweiten Kapazität, Europa nur 5 Prozent.",
+     "quote": "the United States hosts 75 per cent of the global aggregate, whereas Europe hosts just 5 per cent"
+    },
+    {
+     "text": "Der weltweite KI-Boom trägt wohl zu höheren langfristigen Zinsen bei. Das verschärft laut Lane die Finanzierungsbedingungen im Euroraum spürbar.",
+     "quote": "the increase in long-term interest rates constitutes a material tightening of financial conditions for the euro area"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 10,
+     "unit": "Prozent der Gesamtinvestitionen",
+     "period": "2026",
+     "quote": "around 10 per cent of their total investment to AI this year"
+    },
+    {
+     "value": 52,
+     "unit": "Prozent der Beschäftigten",
+     "period": "aktuell, Vergleich 2024: 26 Prozent",
+     "quote": "52 per cent now reporting that they use AI at work, compared with 26 per cent in 2024"
+    },
+    {
+     "value": 64,
+     "unit": "Prozent der Unternehmen (experimentelle oder moderate KI-Nutzung)",
+     "period": "viertes Quartal 2025",
+     "quote": "64 per cent of firms said they were using it either experimentally or moderately"
+    },
+    {
+     "value": 75,
+     "unit": "Prozent der weltweiten KI-Rechenkapazität (USA)",
+     "period": "aktuell",
+     "quote": "the United States hosts 75 per cent of the global aggregate, whereas Europe hosts just 5 per cent"
+    }
+   ],
+   "alltag": "KI verändert schon jetzt Arbeit und Investitionen. Die Einstellungspläne sind laut EZB verhalten, das trifft vor allem Berufseinsteiger. Höhere langfristige Zinsen können Kredite für Haushalte und Unternehmen teurer machen.",
+   "finanzwirkung": "Wenn Firmen mehr in KI investieren, kann das die Nachfrage nach Zulieferern und Digitaldiensten stützen. Ob daraus höhere Gewinne und Dividenden werden, hängt davon ab, ob die Produktivität tatsächlich steigt. Höhere Langfristzinsen und hohe Bewertungen von KI-Firmen können Finanzierung verteuern und Kursrisiken erhöhen, falls sich die Stimmung dreht.",
+   "naechstes": {
+    "text": "Beobachten: ob sich die KI-Nutzung in messbarer Produktivität zeigt, wie sich Beschäftigung und Löhne entwickeln und wie sich KI-bezogene Finanzrisiken entwickeln.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "zinsen",
+    "industrie",
+    "unternehmen"
+   ],
+   "regions": [
+    "Euroraum",
+    "USA"
+   ],
+   "sectors": [
+    "Technologie",
+    "Halbleiter",
+    "Banken",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Potenzialwachstum",
+     "def": "Das Tempo, mit dem eine Volkswirtschaft auf Dauer wachsen kann, ohne dass Preise stark anziehen."
+    },
+    {
+     "term": "Finanzierungsbedingungen",
+     "def": "Wie teuer und leicht es für Haushalte, Firmen und Staaten ist, an Kredit oder Kapital zu kommen."
+    },
+    {
+     "term": "Private Credit",
+     "def": "Kredite, die nicht über Banken oder Börsen, sondern direkt von spezialisierten Fonds vergeben werden."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Die Rede beschreibt KI als langfristige Wachstumschance, aber mit bisher kaum messbarer Produktivitätswirkung, verhaltener Beschäftigung und höheren Langfristzinsen. Das passt qualitativ zu einer zähen Erholung."
+   },
+   "event_date": "2026-10-13",
+   "words": 179,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  }
+ ],
+ "held": []
+}
