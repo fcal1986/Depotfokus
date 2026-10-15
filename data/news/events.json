@@ -10,7 +10,9 @@
   "destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_42_p002.html": "efa5327b79df9",
   "fao.org/newsroom/detail/world-food-forum-2026--fao-director-general-opens-5th-science-and-innovation-forum/en": "eca42e1431126",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_367_61211.html": "e7f67b9d7ec46",
-  "ecb.europa.eu/press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html": "e2ab6cbdf9440"
+  "ecb.europa.eu/press/key/date/2026/html/ecb.sp261013~9db9bf4fd6.en.html": "e2ab6cbdf9440",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N070_61.html": "edeb8cf39253f",
+  "ec.europa.eu/eurostat/product?code=4-15102026-ap": "e771a9296a620"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -1444,6 +1446,294 @@
     "title_is_original": false,
     "status": "geprüft",
     "check_log": [],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "edeb8cf39253f": {
+   "revision": 1,
+   "evidence_hash": "6b68e19fb16c4c59",
+   "first_seen_at": "2026-10-15T11:39:22.627Z",
+   "last_seen_at": "2026-10-15T11:39:22.627Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N070_61.html",
+   "article": {
+    "id": "n-deb8cf39253f",
+    "event_id": "edeb8cf39253f",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Niedrigere Ernte und deutliche Preisanstiege bei Kartoffeln",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N070_61.html",
+    "also": [],
+    "published_at": "2026-10-15T06:00:00.000Z",
+    "retrieved_at": "2026-10-15T11:39:22.627Z",
+    "created_at": "2026-10-15T11:39:22.627Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 4340,
+     "truncated": false,
+     "hash": "6b68e19fb16c4c59"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel",
+       "preise"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Kartoffelernte 2026 deutlich kleiner – Preise steigen auf mehreren Stufen",
+    "kurzfassung": "Wegen Hitze und Trockenheit fällt die Kartoffelernte 2026 um ein Viertel kleiner aus. Kartoffeln kosten Verbraucher im September 11,3 % mehr als vor einem Jahr.",
+    "facts": [
+     {
+      "text": "Die Erzeugerpreise für Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat. Das ist der stärkste Anstieg seit August 2023.",
+      "quote": "Die Erzeugerpreise von Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat."
+     },
+     {
+      "text": "Die Ernte liegt nach vorläufigen Ergebnissen bei 10,4 Millionen Tonnen und damit 24,8 % unter dem Vorjahr (13,9 Millionen Tonnen).",
+      "quote": "Die Ernte von Kartoffeln wird im Jahr 2026 nach vorläufigen Ergebnissen mit 10,4 Millionen Tonnen knapp ein Viertel (-24,8 %) unter der Ernte des Vorjahres (13,9 Millionen Tonnen) liegen."
+     },
+     {
+      "text": "Als Hauptgrund für geringere Erträge gelten Hitze und Trockenheit im Sommer.",
+      "quote": "Grund dafür dürften vor allem die extreme Hitze und Trockenheit des diesjährigen Sommers sein."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 11.3,
+      "unit": "%",
+      "period": "September 2026 gegenüber September 2025 (Verbraucherpreise Kartoffeln)",
+      "quote": "Im September 2026 mussten Verbraucherinnen und Verbraucher für Kartoffeln 11,3 % mehr als im Vorjahresmonat bezahlen"
+     },
+     {
+      "value": 61.5,
+      "unit": "%",
+      "period": "August 2026 gegenüber August 2025 (Erzeugerpreise Speisekartoffeln)",
+      "quote": "Die Erzeugerpreise von Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat."
+     },
+     {
+      "value": 10.4,
+      "unit": "Millionen Tonnen",
+      "period": "Ernte 2026 (vorläufig)",
+      "quote": "Die Ernte von Kartoffeln wird im Jahr 2026 nach vorläufigen Ergebnissen mit 10,4 Millionen Tonnen"
+     },
+     {
+      "value": 3.3,
+      "unit": "%",
+      "period": "September 2026 gegenüber September 2025 (Verbraucherpreise insgesamt)",
+      "quote": "Die Verbraucherpreise insgesamt stiegen im September 2026 um 3,3 % gegenüber dem Vorjahresmonat, darunter Nahrungsmittel insgesamt um 0,4 %."
+     }
+    ],
+    "alltag": "Kartoffeln sind ein Grundnahrungsmittel, ihr Preisanstieg ist im Einkaufskorb direkt sichtbar. Insgesamt stiegen Nahrungsmittel aber nur um 0,4 %, der Effekt bleibt also auf einzelne Produkte begrenzt. Bei verarbeiteten Produkten wie Tiefkühl-Pommes sanken die Preise sogar.",
+    "finanzwirkung": "Landwirte können höhere Preise teilweise auffangen, doch weniger Menge kann den Umsatz schmälern, und Hitzeschäden können Erträge und Gewinne belasten. Händler und Verarbeiter von Kartoffeln müssen höhere Einkaufspreise eventuell tragen oder weitergeben; wie stark das den Gewinn trifft, hängt von ihrer Preismacht ab. Für Haushalte bedeutet eine Verteuerung einzelner Lebensmittel weniger verfügbares Geld für anderes, der Effekt ist hier aber klein.",
+    "naechstes": {
+     "text": "Zu beobachten ist, ob die Verbraucherpreise für Kartoffeln in den kommenden Monaten weiter steigen und wie sich die endgültigen Ernteergebnisse entwickeln.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "lebensmittel",
+     "preise"
+    ],
+    "regions": [
+     "Deutschland"
+    ],
+    "sectors": [
+     "Lebensmittel",
+     "Landwirtschaft",
+     "Einzelhandel"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Erzeugerpreis",
+      "def": "Der Preis, den Landwirte oder Hersteller für ihre Produkte beim Verkauf erhalten, bevor der Handel sie an Verbraucher weitergibt."
+     },
+     {
+      "term": "Vorjahresmonat",
+      "def": "Derselbe Monat im Jahr davor, mit dem ein aktueller Wert verglichen wird."
+     },
+     {
+      "term": "Selbstversorgungsgrad",
+      "def": "Anteil des heimischen Bedarfs, der durch die eigene Erzeugung im Land gedeckt wird."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-15",
+    "words": 171,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Verbraucher zahlten im September 2026 für Kartoffeln 11,3 % mehr als im Vorjahresmonat. Tiefgefrorene Pommes frites waren dagegen 4,7 % billiger.",
+      "why": "Zahl nicht im Zitat: 4.7"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e771a9296a620": {
+   "revision": 1,
+   "evidence_hash": "c62b044866c5f9d8",
+   "first_seen_at": "2026-10-15T11:39:22.627Z",
+   "last_seen_at": "2026-10-15T11:39:22.627Z",
+   "url": "https://ec.europa.eu/eurostat/product?code=4-15102026-ap",
+   "article": {
+    "id": "n-771a9296a620",
+    "event_id": "e771a9296a620",
+    "revision": 1,
+    "source": {
+     "id": "eurostat",
+     "name": "Eurostat",
+     "short": "Eurostat",
+     "region": "EU/Euroraum",
+     "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+     "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+    },
+    "original_title": "Industrial production down by 0.5% in the euro area and by 0.3% in the EU",
+    "url": "https://ec.europa.eu/eurostat/product?code=4-15102026-ap",
+    "also": [],
+    "published_at": "2026-10-15T09:00:00.000Z",
+    "retrieved_at": "2026-10-15T11:39:22.627Z",
+    "created_at": "2026-10-15T11:39:22.627Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 11575,
+     "truncated": false,
+     "hash": "c62b044866c5f9d8"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Industrieproduktion im Euroraum sinkt im August um 0,5 %",
+    "kurzfassung": "Die Industrie im Euroraum hat im August 2026 weniger produziert als im Juli, und auch im Jahresvergleich liegt die Produktion niedriger.",
+    "facts": [
+     {
+      "text": "Im Euroraum sank die Industrieproduktion im August gegenüber dem Juli um 0,5 %, in der EU um 0,3 %.",
+      "quote": "In August 2026, compared with July 2026, seasonally adjusted industrial production decreased by 0.5% in the euro area and by 0.3% in the EU"
+     },
+     {
+      "text": "Gegenüber August 2025 lag die Produktion im Euroraum um 1,1 % niedriger, in der EU um 0,2 %.",
+      "quote": "In August 2026, compared with August 2025, industrial production decreased by 1.1% in the euro area and by 0.2% in the EU ."
+     },
+     {
+      "text": "Der Juli-Wert wurde nach unten korrigiert: von minus 0,1 % auf minus 0,3 % im Euroraum.",
+      "quote": "the monthly percentage change for July 2026 has been revised from -0.1% to -0.3% in the euro area"
+     }
+    ],
+    "numbers": [
+     {
+      "value": -0.5,
+      "unit": "% (Vormonatsvergleich)",
+      "period": "August 2026 gegenüber Juli 2026, Euroraum",
+      "quote": "decreased by 0.5% in the euro area and by 0.3% in the EU"
+     },
+     {
+      "value": -1.1,
+      "unit": "% (Jahresvergleich)",
+      "period": "August 2026 gegenüber August 2025, Euroraum",
+      "quote": "industrial production decreased by 1.1% in the euro area"
+     },
+     {
+      "value": -9.1,
+      "unit": "% (Jahresvergleich)",
+      "period": "August 2026, kurzlebige Verbrauchsgüter, Euroraum",
+      "quote": "decreased for non-durable consumer goods by 9.1%."
+     },
+     {
+      "value": 3.1,
+      "unit": "% (Jahresvergleich)",
+      "period": "August 2026, Energie, Euroraum",
+      "quote": "increased for energy by 3.1%,"
+     }
+    ],
+    "alltag": "Wenn die Industrie weniger produziert, kann das Aufträge, Arbeitszeiten und Beschäftigung in Fabriken und bei Zulieferern belasten. Besonders deutlich fiel die Herstellung kurzlebiger Konsumgüter. Das kann Hersteller und Händler solcher Waren betreffen.",
+    "finanzwirkung": "Eine schwächere Industrieproduktion kann Umsatz und Gewinn von Industrieunternehmen belasten, wenn weniger Mengen verkauft werden. Das hängt aber davon ab, ob sich der Rückgang fortsetzt und wie stark einzelne Branchen betroffen sind. Investitionsgüter und Energie legten im Jahresvergleich zu, sodass die Wirkung je nach Unternehmen unterschiedlich ausfallen kann. Für Dividenden zählt am Ende der Gewinn, nicht die Produktionsmenge allein.",
+    "naechstes": {
+     "text": "Zu beobachten ist, ob die Produktion in den Folgemonaten weiter sinkt oder sich stabilisiert; die Werte können zudem noch revidiert werden.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "industrie"
+    ],
+    "regions": [
+     "Euroraum",
+     "EU"
+    ],
+    "sectors": [
+     "Industrie",
+     "Konsumgüter",
+     "Energie"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Industrieproduktion",
+      "def": "Misst, wie viel die Industrie (ohne Bau) mengenmäßig herstellt, bereinigt um Preise."
+     },
+     {
+      "term": "Saisonbereinigt",
+      "def": "Regelmäßige Schwankungen im Jahresverlauf, etwa durch Ferien oder Feiertage, werden herausgerechnet."
+     },
+     {
+      "term": "Investitionsgüter",
+      "def": "Waren, die Unternehmen für die Produktion nutzen, zum Beispiel Maschinen."
+     },
+     {
+      "term": "Vormonatsvergleich",
+      "def": "Vergleich eines Monats mit dem direkt davor liegenden Monat."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "A",
+     "why": "Rückläufige Produktion im Monats- und Jahresvergleich passt qualitativ zu einer zähen Erholung der Wirtschaft im Euroraum."
+    },
+    "event_date": "2026-10-15",
+    "words": 165,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Die Produktion von Verbrauchsgütern (kurzlebig) fiel im Euroraum gegenüber dem Vormonat um 2,7 %, die von Investitionsgütern stieg um 0,4 %.",
+      "why": "Zahl nicht im Zitat: 0.4"
+     }
+    ],
     "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
    },
    "history": []

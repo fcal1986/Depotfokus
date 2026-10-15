@@ -1,78 +1,78 @@
 {
- "last_run_at": "2026-10-14T12:02:01.321Z",
- "last_success_at": "2026-10-14T12:02:01.321Z",
+ "last_run_at": "2026-10-15T11:39:22.627Z",
+ "last_success_at": "2026-10-15T11:39:22.627Z",
  "last_result": "items",
- "last_note": "4 Meldungen, 0 zurückgehalten, 2 aus dem Zwischenspeicher",
+ "last_note": "5 Meldungen, 0 zurückgehalten, 3 aus dem Zwischenspeicher",
  "sources": {
   "ecb": {
    "ok": true,
    "feed_url": "https://www.ecb.europa.eu/rss/press.html",
    "items": 15,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "eurostat": {
    "ok": true,
    "feed_url": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_mode=view&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=CAT_PREREL",
    "items": 11,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "destatis": {
    "ok": true,
    "feed_url": "https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml",
    "items": 10,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "bundesbank": {
    "ok": true,
    "feed_url": "https://www.bundesbank.de/service/rss/de/633286/feed.rss",
    "items": 10,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "fed": {
    "ok": true,
    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
    "items": 20,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "bls": {
    "ok": false,
    "error": "https://www.bls.gov/feed/bls_latest.rss: HTTP 403",
-   "at": "2026-10-14T12:02:01.321Z",
+   "at": "2026-10-15T11:39:22.627Z",
    "last_ok_at": null
   },
   "bea": {
    "ok": true,
    "feed_url": "https://apps.bea.gov/rss/rss.xml",
    "items": 48,
-   "at": "2026-10-14T12:02:01.321Z"
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "eia": {
    "ok": true,
    "feed_url": "https://www.eia.gov/rss/todayinenergy.xml",
-   "items": 15,
-   "at": "2026-10-14T12:02:01.321Z"
+   "items": 16,
+   "at": "2026-10-15T11:39:22.627Z"
   },
   "imf": {
    "ok": false,
    "error": "https://www.imf.org/en/News/rss?language=eng: HTTP 404",
-   "at": "2026-10-14T12:02:01.321Z",
+   "at": "2026-10-15T11:39:22.627Z",
    "last_ok_at": null
   },
   "fao": {
    "ok": true,
    "feed_url": "https://www.fao.org/feeds/fao-newsroom-rss",
-   "items": 21,
-   "at": "2026-10-14T12:02:01.321Z"
+   "items": 20,
+   "at": "2026-10-15T11:39:22.627Z"
   }
  },
  "held": [],
  "model": "claude-sonnet-5-5",
  "llm": "aktiv",
  "usage": {
-  "input_tokens": 13739,
-  "output_tokens": 3432,
+  "input_tokens": 15544,
+  "output_tokens": 3615,
   "calls": 2,
-  "cached": 2,
-  "cost_usd": 0.062
+  "cached": 3,
+  "cost_usd": 0.067
  }
 }
