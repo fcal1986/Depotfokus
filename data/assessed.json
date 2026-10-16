@@ -53,6 +53,13 @@
    "status": "skipped",
    "reason": "keine Ergebnismitteilung",
    "at": "2026-10-13"
+  },
+  "0001396440-26-000106": {
+   "sym": "13M.F",
+   "date": "2026-10-15",
+   "form": "8-K",
+   "status": "irrelevant",
+   "at": "2026-10-16"
   }
  }
 }
