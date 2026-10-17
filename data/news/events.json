@@ -15,7 +15,10 @@
   "ec.europa.eu/eurostat/product?code=4-15102026-ap": "e771a9296a620",
   "ec.europa.eu/eurostat/product?code=6-16102026-bp": "e7733aba1a579",
   "ec.europa.eu/eurostat/product?code=2-16102026-ap": "ef6fc3a10fc37",
-  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_370_3111.html": "e853300b27052"
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_370_3111.html": "e853300b27052",
+  "eia.gov/todayinenergy/detail.php?id=68324": "e8bace3bc0c5c",
+  "fao.org/newsroom/detail/world-food-forum-2026-closes-with-renewed-commitment-to-end-hunger/en": "e8f645e1a00fb",
+  "fao.org/newsroom/detail/world-food-day-2026--make-innovation-inclusive-and-impactful-for-resilient-agrifood-systems/en": "ee6fda4898c5e"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -2123,6 +2126,378 @@
       "why": "Zahl, Einheit oder Zeitraum nicht belegt"
      }
     ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e8bace3bc0c5c": {
+   "revision": 1,
+   "evidence_hash": "5469f16622cc71b2",
+   "first_seen_at": "2026-10-17T10:52:53.246Z",
+   "last_seen_at": "2026-10-17T10:52:53.246Z",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68324",
+   "article": {
+    "id": "n-8bace3bc0c5c",
+    "event_id": "e8bace3bc0c5c",
+    "revision": 1,
+    "source": {
+     "id": "eia",
+     "name": "U.S. Energy Information Administration",
+     "short": "EIA",
+     "region": "USA/Welt",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+    },
+    "original_title": "U.S. small-scale solar generation has quadrupled in the last decade",
+    "url": "https://www.eia.gov/todayinenergy/detail.php?id=68324",
+    "also": [],
+    "published_at": "2026-10-16T14:00:00.000Z",
+    "retrieved_at": "2026-10-17T10:52:53.246Z",
+    "created_at": "2026-10-17T10:52:53.246Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 8074,
+     "truncated": false,
+     "hash": "5469f16622cc71b2"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.3,
+     "why": {
+      "source": 0.8,
+      "categories": [
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "US-Kleinsolaranlagen erzeugen heute rund fünfmal so viel Strom wie vor zehn Jahren",
+    "kurzfassung": "Strom aus kleinen Solaranlagen in den USA, vor allem auf Dächern, ist in zehn Jahren stark gewachsen. Kalifornien liefert mit 37 % den größten Anteil, das Wachstum verlangsamt sich aber.",
+    "facts": [
+     {
+      "text": "Kalifornien stellte 2025 mit 37 % den größten Teil der US-Erzeugung aus kleinen Solaranlagen.",
+      "quote": "California accounted for 37% (34,411 GWh) of total U.S. small-scale solar generation in 2025."
+     },
+     {
+      "text": "Das jährliche Wachstum der Erzeugung hat sich seit 2022 verlangsamt.",
+      "quote": "Although generation from small-scale solar continues to grow year over year, the rate of growth has declined since 2022."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 92979,
+      "unit": "Gigawattstunden",
+      "period": "2025",
+      "quote": "has increased from 18,812 gigawatthours (GWh) to 92,979 GWh over the last decade"
+     },
+     {
+      "value": 37,
+      "unit": "Prozent Anteil Kaliforniens",
+      "period": "2025",
+      "quote": "California accounted for 37% (34,411 GWh) of total U.S. small-scale solar generation in 2025."
+     },
+     {
+      "value": 25,
+      "unit": "Prozent Wachstum gegenüber Vorjahr",
+      "period": "2022",
+      "quote": "when total generation grew by 25% compared with the previous year"
+     }
+    ],
+    "alltag": "Immer mehr Haushalte erzeugen einen Teil ihres Stroms selbst. Das kann ihren Strombezug aus dem Netz verringern. Wie stark sich das auf Rechnungen auswirkt, geht aus der Quelle nicht hervor.",
+    "finanzwirkung": "Der Ausbau kann Anbietern von Solaranlagen, Installateuren und Netzbetreibern neue Aufträge bringen. Gleichzeitig kann sinkender Strombezug aus dem Netz die Umsätze von Versorgern belasten. Wie sich das auf Gewinne und Dividenden einzelner Unternehmen auswirkt, hängt von Förderprogrammen und Marktbedingungen ab.",
+    "naechstes": {
+     "text": "Beobachten lässt sich, ob sich das Wachstum weiter verlangsamt und wie sich Fördermodelle wie Net Billing in Kalifornien auswirken.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "energie"
+    ],
+    "regions": [
+     "USA"
+    ],
+    "sectors": [
+     "Energie",
+     "Technologie"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Gigawattstunde",
+      "def": "Eine Maßeinheit für erzeugte Strommenge; eine Gigawattstunde entspricht einer Million Kilowattstunden."
+     },
+     {
+      "term": "Net Metering",
+      "def": "Ein Abrechnungsmodell, bei dem Haushalte ins Netz eingespeisten Solarstrom mit ihrem Strombezug verrechnen können."
+     },
+     {
+      "term": "Photovoltaik",
+      "def": "Technik, die Sonnenlicht direkt in elektrischen Strom umwandelt."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-16",
+    "words": 113,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Die Stromerzeugung aus kleinen Solaranlagen (unter 1 Megawatt) stieg laut Schätzung der US-Energiebehörde EIA in zehn Jahren von 18.812 auf 92.979 Gigawattstunden.",
+      "why": "Erwartung oder Prognose ohne Beleg"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e8f645e1a00fb": {
+   "revision": 1,
+   "evidence_hash": "685cc3baaa9fbd89",
+   "first_seen_at": "2026-10-17T10:52:53.246Z",
+   "last_seen_at": "2026-10-17T10:52:53.246Z",
+   "url": "https://www.fao.org/newsroom/detail/world-food-forum-2026-closes-with-renewed-commitment-to-end-hunger/en",
+   "article": {
+    "id": "n-8f645e1a00fb",
+    "event_id": "e8f645e1a00fb",
+    "revision": 1,
+    "source": {
+     "id": "fao",
+     "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+     "short": "FAO",
+     "region": "Welt",
+     "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+     "license_url": "https://www.fao.org/contact-us/terms/en/"
+    },
+    "original_title": "World Food Forum 2026 closes with renewed commitment to end hunger",
+    "url": "https://www.fao.org/newsroom/detail/world-food-forum-2026-closes-with-renewed-commitment-to-end-hunger/en",
+    "also": [],
+    "published_at": "2026-10-16T12:00:00.000Z",
+    "retrieved_at": "2026-10-17T10:52:53.246Z",
+    "created_at": "2026-10-17T10:52:53.246Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 6637,
+     "truncated": false,
+     "hash": "685cc3baaa9fbd89"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.3,
+     "why": {
+      "source": 0.8,
+      "categories": [
+       "lebensmittel"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Welternährungsforum 2026: Rekordbeteiligung und 20,16 Mrd. US-Dollar an Investitionsvorschlägen",
+    "kurzfassung": "Das Welternährungsforum der FAO in Rom endete mit Rekordteilnahme. Beim Investitionsforum wurden Agrar- und Ernährungsprojekte über 20,16 Milliarden US-Dollar vorgestellt. Das sind bisher nur Vorschläge, keine beschlossenen Mittel.",
+    "facts": [
+     {
+      "text": "Das Forum fand vom 8. bis 16. Oktober in Rom statt. Mehr als 90.000 Menschen aus 189 Ländern nahmen teil, vor Ort waren es 32.000.",
+      "quote": "More than 90,000 people from 189 countries participated, with in-person attendance doubling from the previous year, to 32,000."
+     },
+     {
+      "text": "Beim Investitionsforum stellten 38 Länder und fünf regionale Initiativen Agrar- und Ernährungsprojekte mit einem Investitionsvolumen von 20,16 Mrd. US-Dollar vor.",
+      "quote": "The Hand-in-Hand Investment Forum saw 38 countries and five regional initiatives present a record $20.16 billion in proposed agrifood investments."
+     },
+     {
+      "text": "FAO-Generaldirektor Qu Dongyu sagte, Innovation wirke nur begrenzt, wenn sie im Labor bleibe oder für Kleinbauern unbezahlbar sei.",
+      "quote": "innovation has limited impact if it remains confined to laboratories or beyond the financial reach of smallholder farmers."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 20.16,
+      "unit": "Mrd. US-Dollar",
+      "period": "Forum 8.–16. Oktober 2026",
+      "quote": "present a record $20.16 billion in proposed agrifood investments"
+     },
+     {
+      "value": 90000,
+      "unit": "Teilnehmende",
+      "period": "Forum 8.–16. Oktober 2026",
+      "quote": "More than 90,000 people from 189 countries participated"
+     },
+     {
+      "value": 38,
+      "unit": "Länder",
+      "period": "Investitionsforum 2026",
+      "quote": "The Hand-in-Hand Investment Forum saw 38 countries and five regional initiatives present"
+     }
+    ],
+    "alltag": "Ob genug Geld in Landwirtschaft und Ernährung fließt, kann langfristig beeinflussen, wie sicher und bezahlbar Lebensmittel sind. Die Zahlen aus Rom sind jedoch Vorschläge. Sie sagen noch nichts darüber, wann oder ob Projekte umgesetzt werden.",
+    "finanzwirkung": "Wenn aus den vorgeschlagenen Investitionen tatsächlich Aufträge werden, kann das für Unternehmen aus Landwirtschaft, Technik und Finanzierung zusätzlichen Umsatz bedeuten. Ob daraus Gewinn wird, hängt von Finanzierung, Risiken und Umsetzung ab. Eine Wirkung auf Aktien oder Dividenden lässt sich aus der Meldung nicht ableiten.",
+    "naechstes": {
+     "text": "Beobachten, welche der vorgeschlagenen Investitionen tatsächlich finanziert und umgesetzt werden.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "lebensmittel"
+    ],
+    "regions": [
+     "Welt"
+    ],
+    "sectors": [
+     "Landwirtschaft",
+     "Lebensmittel"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Agrifood-Systeme",
+      "def": "Alle Schritte von der Landwirtschaft über Verarbeitung und Handel bis zum Essen auf dem Teller."
+     },
+     {
+      "term": "Kleinbauern",
+      "def": "Landwirte mit kleinen Betrieben, die oft nur begrenzten Zugang zu Geld und Technik haben."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-16",
+    "words": 152,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "ee6fda4898c5e": {
+   "revision": 1,
+   "evidence_hash": "859257c142fd3844",
+   "first_seen_at": "2026-10-17T10:52:53.246Z",
+   "last_seen_at": "2026-10-17T10:52:53.246Z",
+   "url": "https://www.fao.org/newsroom/detail/world-food-day-2026--make-innovation-inclusive-and-impactful-for-resilient-agrifood-systems/en",
+   "article": {
+    "id": "n-e6fda4898c5e",
+    "event_id": "ee6fda4898c5e",
+    "revision": 1,
+    "source": {
+     "id": "fao",
+     "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+     "short": "FAO",
+     "region": "Welt",
+     "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+     "license_url": "https://www.fao.org/contact-us/terms/en/"
+    },
+    "original_title": "World Food Day 2026: Make innovation inclusive and impactful for resilient agrifood systems",
+    "url": "https://www.fao.org/newsroom/detail/world-food-day-2026--make-innovation-inclusive-and-impactful-for-resilient-agrifood-systems/en",
+    "also": [],
+    "published_at": "2026-10-16T12:00:00.000Z",
+    "retrieved_at": "2026-10-17T10:52:53.246Z",
+    "created_at": "2026-10-17T10:52:53.246Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 6558,
+     "truncated": false,
+     "hash": "859257c142fd3844"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.3,
+     "why": {
+      "source": 0.8,
+      "categories": [
+       "lebensmittel"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Welternährungstag 2026: FAO fordert breit nutzbare Innovation in der Landwirtschaft",
+    "kurzfassung": "Die FAO betont am Welternährungstag, dass neue Technologien Bauern und Landgemeinden erreichen müssen. Dafür seien dauerhafte Investitionen und Partnerschaften nötig.",
+    "facts": [
+     {
+      "text": "FAO-Generaldirektor Qu Dongyu warnt, dass die Lücke zwischen dem, was die Wissenschaft kann, und dem, was bei den Landwirten ankommt, zu groß ist.",
+      "quote": "the gap between what science can do and what reaches the world’s farmers remains too wide"
+     },
+     {
+      "text": "Innovation soll verändern, wie Lebensmittel erzeugt, gelagert, transportiert und vermarktet werden. Entscheidend sei, sie im großen Maßstab nutzbar zu machen. Das erfordere dauerhafte Investitionen und Partnerschaften.",
+      "quote": "What is crucial is translating innovation into impact and making it available at scale, which demands sustained investment and partnerships."
+     },
+     {
+      "text": "Die Satellitenplattform CropWatch Cloud zur Ernteüberwachung wird von 32 Ländern genutzt.",
+      "quote": "The platform, led by Professor Bingfang Wu, has been adopted by 32 countries"
+     }
+    ],
+    "numbers": [
+     {
+      "value": 32,
+      "unit": "Länder",
+      "period": "2026",
+      "quote": "has been adopted by 32 countries"
+     },
+     {
+      "value": 170,
+      "unit": "Länder",
+      "period": "2026",
+      "quote": "while CropWatch Bulletin reaches users in 170 countries"
+     },
+     {
+      "value": 150,
+      "unit": "Länder mit Veranstaltungen",
+      "period": "2026",
+      "quote": "events marking the occasion held in more than 50 languages in more than 150 countries around the world"
+     }
+    ],
+    "alltag": "Wie Lebensmittel erzeugt, gelagert und transportiert werden, wirkt sich auf Verfügbarkeit und Preise aus. Die Meldung enthält aber keine Beschlüsse oder Zahlen zu Preisen. Sie zeigt vor allem, wohin die FAO die Aufmerksamkeit lenkt.",
+    "finanzwirkung": "Wenn aus den Forderungen tatsächlich zusätzliche Investitionen werden, könnte das Unternehmen in Landwirtschaft, Lagerung und Transport Aufträge bringen. Ob daraus Umsatz oder Gewinn entsteht, hängt von Finanzierung und Umsetzung ab. Konkrete Zusagen oder Dividenden nennt die Quelle nicht.",
+    "naechstes": {
+     "text": "Zu beobachten ist, ob aus den Aufrufen konkrete Investitionszusagen und Partnerschaften werden. Ein Termin dafür wird nicht genannt.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "lebensmittel"
+    ],
+    "regions": [
+     "Welt"
+    ],
+    "sectors": [
+     "Landwirtschaft",
+     "Lebensmittel"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Agrar- und Ernährungssystem",
+      "def": "Alles, was zur Lebensmittelversorgung gehört: Erzeugung, Lagerung, Transport, Verarbeitung und Verkauf."
+     },
+     {
+      "term": "Nachernteverluste",
+      "def": "Lebensmittel, die nach der Ernte durch schlechte Verarbeitung oder Lagerung verloren gehen."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-16",
+    "words": 150,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
     "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
    },
    "history": []

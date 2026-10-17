@@ -1,0 +1,615 @@
+{
+ "date": "2026-10-17",
+ "generated_at": "2026-10-17T10:52:53.246Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-deb8cf39253f",
+   "event_id": "edeb8cf39253f",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Niedrigere Ernte und deutliche Preisanstiege bei Kartoffeln",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N070_61.html",
+   "also": [],
+   "published_at": "2026-10-15T06:00:00.000Z",
+   "retrieved_at": "2026-10-15T11:39:22.627Z",
+   "created_at": "2026-10-15T11:39:22.627Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 4340,
+    "truncated": false,
+    "hash": "6b68e19fb16c4c59"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "preise"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Kartoffelernte 2026 deutlich kleiner – Preise steigen auf mehreren Stufen",
+   "kurzfassung": "Wegen Hitze und Trockenheit fällt die Kartoffelernte 2026 um ein Viertel kleiner aus. Kartoffeln kosten Verbraucher im September 11,3 % mehr als vor einem Jahr.",
+   "facts": [
+    {
+     "text": "Die Erzeugerpreise für Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat. Das ist der stärkste Anstieg seit August 2023.",
+     "quote": "Die Erzeugerpreise von Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat."
+    },
+    {
+     "text": "Die Ernte liegt nach vorläufigen Ergebnissen bei 10,4 Millionen Tonnen und damit 24,8 % unter dem Vorjahr (13,9 Millionen Tonnen).",
+     "quote": "Die Ernte von Kartoffeln wird im Jahr 2026 nach vorläufigen Ergebnissen mit 10,4 Millionen Tonnen knapp ein Viertel (-24,8 %) unter der Ernte des Vorjahres (13,9 Millionen Tonnen) liegen."
+    },
+    {
+     "text": "Als Hauptgrund für geringere Erträge gelten Hitze und Trockenheit im Sommer.",
+     "quote": "Grund dafür dürften vor allem die extreme Hitze und Trockenheit des diesjährigen Sommers sein."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 11.3,
+     "unit": "%",
+     "period": "September 2026 gegenüber September 2025 (Verbraucherpreise Kartoffeln)",
+     "quote": "Im September 2026 mussten Verbraucherinnen und Verbraucher für Kartoffeln 11,3 % mehr als im Vorjahresmonat bezahlen"
+    },
+    {
+     "value": 61.5,
+     "unit": "%",
+     "period": "August 2026 gegenüber August 2025 (Erzeugerpreise Speisekartoffeln)",
+     "quote": "Die Erzeugerpreise von Speisekartoffeln lagen im August 2026 um 61,5 % über dem Vorjahresmonat."
+    },
+    {
+     "value": 10.4,
+     "unit": "Millionen Tonnen",
+     "period": "Ernte 2026 (vorläufig)",
+     "quote": "Die Ernte von Kartoffeln wird im Jahr 2026 nach vorläufigen Ergebnissen mit 10,4 Millionen Tonnen"
+    },
+    {
+     "value": 3.3,
+     "unit": "%",
+     "period": "September 2026 gegenüber September 2025 (Verbraucherpreise insgesamt)",
+     "quote": "Die Verbraucherpreise insgesamt stiegen im September 2026 um 3,3 % gegenüber dem Vorjahresmonat, darunter Nahrungsmittel insgesamt um 0,4 %."
+    }
+   ],
+   "alltag": "Kartoffeln sind ein Grundnahrungsmittel, ihr Preisanstieg ist im Einkaufskorb direkt sichtbar. Insgesamt stiegen Nahrungsmittel aber nur um 0,4 %, der Effekt bleibt also auf einzelne Produkte begrenzt. Bei verarbeiteten Produkten wie Tiefkühl-Pommes sanken die Preise sogar.",
+   "finanzwirkung": "Landwirte können höhere Preise teilweise auffangen, doch weniger Menge kann den Umsatz schmälern, und Hitzeschäden können Erträge und Gewinne belasten. Händler und Verarbeiter von Kartoffeln müssen höhere Einkaufspreise eventuell tragen oder weitergeben; wie stark das den Gewinn trifft, hängt von ihrer Preismacht ab. Für Haushalte bedeutet eine Verteuerung einzelner Lebensmittel weniger verfügbares Geld für anderes, der Effekt ist hier aber klein.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die Verbraucherpreise für Kartoffeln in den kommenden Monaten weiter steigen und wie sich die endgültigen Ernteergebnisse entwickeln.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel",
+    "preise"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Lebensmittel",
+    "Landwirtschaft",
+    "Einzelhandel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Erzeugerpreis",
+     "def": "Der Preis, den Landwirte oder Hersteller für ihre Produkte beim Verkauf erhalten, bevor der Handel sie an Verbraucher weitergibt."
+    },
+    {
+     "term": "Vorjahresmonat",
+     "def": "Derselbe Monat im Jahr davor, mit dem ein aktueller Wert verglichen wird."
+    },
+    {
+     "term": "Selbstversorgungsgrad",
+     "def": "Anteil des heimischen Bedarfs, der durch die eigene Erzeugung im Land gedeckt wird."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-15",
+   "words": 171,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Verbraucher zahlten im September 2026 für Kartoffeln 11,3 % mehr als im Vorjahresmonat. Tiefgefrorene Pommes frites waren dagegen 4,7 % billiger.",
+     "why": "Zahl nicht im Zitat: 4.7"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-8bace3bc0c5c",
+   "event_id": "e8bace3bc0c5c",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "U.S. small-scale solar generation has quadrupled in the last decade",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68324",
+   "also": [],
+   "published_at": "2026-10-16T14:00:00.000Z",
+   "retrieved_at": "2026-10-17T10:52:53.246Z",
+   "created_at": "2026-10-17T10:52:53.246Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8074,
+    "truncated": false,
+    "hash": "5469f16622cc71b2"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "US-Kleinsolaranlagen erzeugen heute rund fünfmal so viel Strom wie vor zehn Jahren",
+   "kurzfassung": "Strom aus kleinen Solaranlagen in den USA, vor allem auf Dächern, ist in zehn Jahren stark gewachsen. Kalifornien liefert mit 37 % den größten Anteil, das Wachstum verlangsamt sich aber.",
+   "facts": [
+    {
+     "text": "Kalifornien stellte 2025 mit 37 % den größten Teil der US-Erzeugung aus kleinen Solaranlagen.",
+     "quote": "California accounted for 37% (34,411 GWh) of total U.S. small-scale solar generation in 2025."
+    },
+    {
+     "text": "Das jährliche Wachstum der Erzeugung hat sich seit 2022 verlangsamt.",
+     "quote": "Although generation from small-scale solar continues to grow year over year, the rate of growth has declined since 2022."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 92979,
+     "unit": "Gigawattstunden",
+     "period": "2025",
+     "quote": "has increased from 18,812 gigawatthours (GWh) to 92,979 GWh over the last decade"
+    },
+    {
+     "value": 37,
+     "unit": "Prozent Anteil Kaliforniens",
+     "period": "2025",
+     "quote": "California accounted for 37% (34,411 GWh) of total U.S. small-scale solar generation in 2025."
+    },
+    {
+     "value": 25,
+     "unit": "Prozent Wachstum gegenüber Vorjahr",
+     "period": "2022",
+     "quote": "when total generation grew by 25% compared with the previous year"
+    }
+   ],
+   "alltag": "Immer mehr Haushalte erzeugen einen Teil ihres Stroms selbst. Das kann ihren Strombezug aus dem Netz verringern. Wie stark sich das auf Rechnungen auswirkt, geht aus der Quelle nicht hervor.",
+   "finanzwirkung": "Der Ausbau kann Anbietern von Solaranlagen, Installateuren und Netzbetreibern neue Aufträge bringen. Gleichzeitig kann sinkender Strombezug aus dem Netz die Umsätze von Versorgern belasten. Wie sich das auf Gewinne und Dividenden einzelner Unternehmen auswirkt, hängt von Förderprogrammen und Marktbedingungen ab.",
+   "naechstes": {
+    "text": "Beobachten lässt sich, ob sich das Wachstum weiter verlangsamt und wie sich Fördermodelle wie Net Billing in Kalifornien auswirken.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "energie"
+   ],
+   "regions": [
+    "USA"
+   ],
+   "sectors": [
+    "Energie",
+    "Technologie"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Gigawattstunde",
+     "def": "Eine Maßeinheit für erzeugte Strommenge; eine Gigawattstunde entspricht einer Million Kilowattstunden."
+    },
+    {
+     "term": "Net Metering",
+     "def": "Ein Abrechnungsmodell, bei dem Haushalte ins Netz eingespeisten Solarstrom mit ihrem Strombezug verrechnen können."
+    },
+    {
+     "term": "Photovoltaik",
+     "def": "Technik, die Sonnenlicht direkt in elektrischen Strom umwandelt."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-16",
+   "words": 113,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Die Stromerzeugung aus kleinen Solaranlagen (unter 1 Megawatt) stieg laut Schätzung der US-Energiebehörde EIA in zehn Jahren von 18.812 auf 92.979 Gigawattstunden.",
+     "why": "Erwartung oder Prognose ohne Beleg"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-8f645e1a00fb",
+   "event_id": "e8f645e1a00fb",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "World Food Forum 2026 closes with renewed commitment to end hunger",
+   "url": "https://www.fao.org/newsroom/detail/world-food-forum-2026-closes-with-renewed-commitment-to-end-hunger/en",
+   "also": [],
+   "published_at": "2026-10-16T12:00:00.000Z",
+   "retrieved_at": "2026-10-17T10:52:53.246Z",
+   "created_at": "2026-10-17T10:52:53.246Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6637,
+    "truncated": false,
+    "hash": "685cc3baaa9fbd89"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Welternährungsforum 2026: Rekordbeteiligung und 20,16 Mrd. US-Dollar an Investitionsvorschlägen",
+   "kurzfassung": "Das Welternährungsforum der FAO in Rom endete mit Rekordteilnahme. Beim Investitionsforum wurden Agrar- und Ernährungsprojekte über 20,16 Milliarden US-Dollar vorgestellt. Das sind bisher nur Vorschläge, keine beschlossenen Mittel.",
+   "facts": [
+    {
+     "text": "Das Forum fand vom 8. bis 16. Oktober in Rom statt. Mehr als 90.000 Menschen aus 189 Ländern nahmen teil, vor Ort waren es 32.000.",
+     "quote": "More than 90,000 people from 189 countries participated, with in-person attendance doubling from the previous year, to 32,000."
+    },
+    {
+     "text": "Beim Investitionsforum stellten 38 Länder und fünf regionale Initiativen Agrar- und Ernährungsprojekte mit einem Investitionsvolumen von 20,16 Mrd. US-Dollar vor.",
+     "quote": "The Hand-in-Hand Investment Forum saw 38 countries and five regional initiatives present a record $20.16 billion in proposed agrifood investments."
+    },
+    {
+     "text": "FAO-Generaldirektor Qu Dongyu sagte, Innovation wirke nur begrenzt, wenn sie im Labor bleibe oder für Kleinbauern unbezahlbar sei.",
+     "quote": "innovation has limited impact if it remains confined to laboratories or beyond the financial reach of smallholder farmers."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 20.16,
+     "unit": "Mrd. US-Dollar",
+     "period": "Forum 8.–16. Oktober 2026",
+     "quote": "present a record $20.16 billion in proposed agrifood investments"
+    },
+    {
+     "value": 90000,
+     "unit": "Teilnehmende",
+     "period": "Forum 8.–16. Oktober 2026",
+     "quote": "More than 90,000 people from 189 countries participated"
+    },
+    {
+     "value": 38,
+     "unit": "Länder",
+     "period": "Investitionsforum 2026",
+     "quote": "The Hand-in-Hand Investment Forum saw 38 countries and five regional initiatives present"
+    }
+   ],
+   "alltag": "Ob genug Geld in Landwirtschaft und Ernährung fließt, kann langfristig beeinflussen, wie sicher und bezahlbar Lebensmittel sind. Die Zahlen aus Rom sind jedoch Vorschläge. Sie sagen noch nichts darüber, wann oder ob Projekte umgesetzt werden.",
+   "finanzwirkung": "Wenn aus den vorgeschlagenen Investitionen tatsächlich Aufträge werden, kann das für Unternehmen aus Landwirtschaft, Technik und Finanzierung zusätzlichen Umsatz bedeuten. Ob daraus Gewinn wird, hängt von Finanzierung, Risiken und Umsetzung ab. Eine Wirkung auf Aktien oder Dividenden lässt sich aus der Meldung nicht ableiten.",
+   "naechstes": {
+    "text": "Beobachten, welche der vorgeschlagenen Investitionen tatsächlich finanziert und umgesetzt werden.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel"
+   ],
+   "regions": [
+    "Welt"
+   ],
+   "sectors": [
+    "Landwirtschaft",
+    "Lebensmittel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Agrifood-Systeme",
+     "def": "Alle Schritte von der Landwirtschaft über Verarbeitung und Handel bis zum Essen auf dem Teller."
+    },
+    {
+     "term": "Kleinbauern",
+     "def": "Landwirte mit kleinen Betrieben, die oft nur begrenzten Zugang zu Geld und Technik haben."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-16",
+   "words": 152,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-e6fda4898c5e",
+   "event_id": "ee6fda4898c5e",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "World Food Day 2026: Make innovation inclusive and impactful for resilient agrifood systems",
+   "url": "https://www.fao.org/newsroom/detail/world-food-day-2026--make-innovation-inclusive-and-impactful-for-resilient-agrifood-systems/en",
+   "also": [],
+   "published_at": "2026-10-16T12:00:00.000Z",
+   "retrieved_at": "2026-10-17T10:52:53.246Z",
+   "created_at": "2026-10-17T10:52:53.246Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6558,
+    "truncated": false,
+    "hash": "859257c142fd3844"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Welternährungstag 2026: FAO fordert breit nutzbare Innovation in der Landwirtschaft",
+   "kurzfassung": "Die FAO betont am Welternährungstag, dass neue Technologien Bauern und Landgemeinden erreichen müssen. Dafür seien dauerhafte Investitionen und Partnerschaften nötig.",
+   "facts": [
+    {
+     "text": "FAO-Generaldirektor Qu Dongyu warnt, dass die Lücke zwischen dem, was die Wissenschaft kann, und dem, was bei den Landwirten ankommt, zu groß ist.",
+     "quote": "the gap between what science can do and what reaches the world’s farmers remains too wide"
+    },
+    {
+     "text": "Innovation soll verändern, wie Lebensmittel erzeugt, gelagert, transportiert und vermarktet werden. Entscheidend sei, sie im großen Maßstab nutzbar zu machen. Das erfordere dauerhafte Investitionen und Partnerschaften.",
+     "quote": "What is crucial is translating innovation into impact and making it available at scale, which demands sustained investment and partnerships."
+    },
+    {
+     "text": "Die Satellitenplattform CropWatch Cloud zur Ernteüberwachung wird von 32 Ländern genutzt.",
+     "quote": "The platform, led by Professor Bingfang Wu, has been adopted by 32 countries"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 32,
+     "unit": "Länder",
+     "period": "2026",
+     "quote": "has been adopted by 32 countries"
+    },
+    {
+     "value": 170,
+     "unit": "Länder",
+     "period": "2026",
+     "quote": "while CropWatch Bulletin reaches users in 170 countries"
+    },
+    {
+     "value": 150,
+     "unit": "Länder mit Veranstaltungen",
+     "period": "2026",
+     "quote": "events marking the occasion held in more than 50 languages in more than 150 countries around the world"
+    }
+   ],
+   "alltag": "Wie Lebensmittel erzeugt, gelagert und transportiert werden, wirkt sich auf Verfügbarkeit und Preise aus. Die Meldung enthält aber keine Beschlüsse oder Zahlen zu Preisen. Sie zeigt vor allem, wohin die FAO die Aufmerksamkeit lenkt.",
+   "finanzwirkung": "Wenn aus den Forderungen tatsächlich zusätzliche Investitionen werden, könnte das Unternehmen in Landwirtschaft, Lagerung und Transport Aufträge bringen. Ob daraus Umsatz oder Gewinn entsteht, hängt von Finanzierung und Umsetzung ab. Konkrete Zusagen oder Dividenden nennt die Quelle nicht.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob aus den Aufrufen konkrete Investitionszusagen und Partnerschaften werden. Ein Termin dafür wird nicht genannt.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "lebensmittel"
+   ],
+   "regions": [
+    "Welt"
+   ],
+   "sectors": [
+    "Landwirtschaft",
+    "Lebensmittel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Agrar- und Ernährungssystem",
+     "def": "Alles, was zur Lebensmittelversorgung gehört: Erzeugung, Lagerung, Transport, Verarbeitung und Verkauf."
+    },
+    {
+     "term": "Nachernteverluste",
+     "def": "Lebensmittel, die nach der Ernte durch schlechte Verarbeitung oder Lagerung verloren gehen."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-16",
+   "words": 150,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-7733aba1a579",
+   "event_id": "e7733aba1a579",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Euro area international trade in goods deficit €16.1 bn",
+   "url": "https://ec.europa.eu/eurostat/product?code=6-16102026-bp",
+   "also": [],
+   "published_at": "2026-10-16T09:00:00.000Z",
+   "retrieved_at": "2026-10-16T11:33:04.737Z",
+   "created_at": "2026-10-16T11:33:04.737Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8621,
+    "truncated": false,
+    "hash": "da0d2e970881af45"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Euroraum: Handelsdefizit von 16,1 Mrd. Euro im August 2026",
+   "kurzfassung": "Der Euroraum importierte im August 2026 deutlich mehr Waren, als er ausführte. Die Importe stiegen stärker als die Exporte, vor allem bei Energie, Maschinen und Fahrzeugen.",
+   "facts": [
+    {
+     "text": "Der Euroraum hatte im August 2026 ein Defizit im Warenhandel mit dem Rest der Welt von 16,1 Mrd. Euro, nach 1,7 Mrd. Euro im August 2025.",
+     "quote": "The first estimates of euro area balance showed a €16.1 bn deficit in trade in goods with the rest of the world in August 2026, compared with a deficit of €1.7 bn in August 2025."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 16.7,
+     "unit": "% Importwachstum zum Vorjahresmonat",
+     "period": "August 2026",
+     "quote": "Imports from the rest of the world stood at €243.8 bn, a rise of 16.7% compared with August 2025 (€208.9 bn)."
+    }
+   ],
+   "alltag": "Der Handelssaldo zeigt, ob eine Volkswirtschaft mehr Waren ins Ausland verkauft oder von dort kauft. Höhere Energieimporte können Haushalte und Betriebe über Strom-, Heiz- und Spritkosten belasten. Schwächere Maschinen- und Fahrzeugexporte können sich auf Arbeitsplätze in der Industrie auswirken.",
+   "finanzwirkung": "Exportorientierte Industrieunternehmen können Umsatz verlieren, wenn ihr Auslandsgeschäft schwächer wird. Ob das den Gewinn drückt, hängt von Kosten und Preisen ab. Höhere Energieimporte können Unternehmen belasten, die viel Energie brauchen. Aussagen zu Dividenden lassen sich daraus nicht ableiten.",
+   "naechstes": {
+    "text": "Beobachten: ob sich das Defizit in den nächsten Monatsdaten fortsetzt und wie sich Energie sowie Maschinen und Fahrzeuge entwickeln.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "energie",
+    "industrie",
+    "preise"
+   ],
+   "regions": [
+    "Euroraum",
+    "EU"
+   ],
+   "sectors": [
+    "Energie",
+    "Industrie",
+    "Transport"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Handelsbilanz",
+     "def": "Unterschied zwischen dem Wert der ausgeführten und der eingeführten Waren."
+    },
+    {
+     "term": "Defizit",
+     "def": "Die Einfuhren sind größer als die Ausfuhren."
+    },
+    {
+     "term": "Extra-Euroraum-Handel",
+     "def": "Warenhandel zwischen dem Euroraum und Ländern außerhalb davon."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Schwächere Handelsbilanz und höhere Energieimporte passen qualitativ zu einer zähen Erholung mit Belastungen für die Industrie."
+   },
+   "event_date": "2026-10-16",
+   "words": 122,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Die Importe wuchsen mit 16,7 % deutlich schneller als die Exporte mit 9,9 % (jeweils gegenüber August 2025).",
+     "why": "Zahl nicht im Zitat: 16.7"
+    },
+    {
+     "part": "Fakt",
+     "text": "Hauptgrund für den Rückgang des Saldos waren Maschinen und Fahrzeuge: Aus einem Überschuss von 7,2 Mrd. Euro wurde ein Defizit von 0,7 Mrd. Euro. Das Energiedefizit stieg von 21,3 auf 26,7 Mrd. Euro.",
+     "why": "Zahl nicht im Zitat: 7.2, 0.7"
+    },
+    {
+     "part": "Zahl",
+     "text": "-16.1",
+     "why": "Vorzeichen nicht belegt"
+    },
+    {
+     "part": "Zahl",
+     "text": "-5.4",
+     "why": "Vorzeichen nicht belegt"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  }
+ ],
+ "held": []
+}
