@@ -1,223 +1,101 @@
 {
- "date": "2026-10-18",
- "generated_at": "2026-10-18T11:18:10.201Z",
+ "date": "2026-10-19",
+ "generated_at": "2026-10-19T13:30:49.653Z",
  "result": "items",
  "note": null,
  "items": [
   {
-   "id": "n-7733aba1a579",
-   "event_id": "e7733aba1a579",
+   "id": "n-80b6b5260386",
+   "event_id": "e80b6b5260386",
    "revision": 1,
    "source": {
-    "id": "eurostat",
-    "name": "Eurostat",
-    "short": "Eurostat",
-    "region": "EU/Euroraum",
-    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
-    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
    },
-   "original_title": "Euro area international trade in goods deficit €16.1 bn",
-   "url": "https://ec.europa.eu/eurostat/product?code=6-16102026-bp",
+   "original_title": "Hybrid sales rise while battery electric sales remain lower after tax credit expiration",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68325",
    "also": [],
-   "published_at": "2026-10-16T09:00:00.000Z",
-   "retrieved_at": "2026-10-16T11:33:04.737Z",
-   "created_at": "2026-10-16T11:33:04.737Z",
+   "published_at": "2026-10-19T14:00:00.000Z",
+   "retrieved_at": "2026-10-19T13:30:49.653Z",
+   "created_at": "2026-10-19T13:30:49.653Z",
    "evidence": {
     "kind": "page",
-    "chars": 8621,
+    "chars": 7419,
     "truncated": false,
-    "hash": "da0d2e970881af45"
+    "hash": "f49e0d8dcfeeffad"
    },
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2,
+    "score": 2.3,
     "why": {
-     "source": 1,
+     "source": 0.8,
      "categories": [
-      "industrie"
+      "zinsen"
      ],
      "core": false,
-     "fresh": false,
+     "fresh": true,
      "sensational": false
     }
    },
-   "title": "Euroraum: Handelsdefizit von 16,1 Mrd. Euro im August 2026",
-   "kurzfassung": "Der Euroraum importierte im August 2026 deutlich mehr Waren, als er ausführte. Die Importe stiegen stärker als die Exporte, vor allem bei Energie, Maschinen und Fahrzeugen.",
+   "title": "USA: Hybridautos legen zu, reine E-Autos nach Ende der Steuergutschrift schwächer",
+   "kurzfassung": "Nach dem Ende der US-Steuergutschriften für Elektroautos sinkt deren Marktanteil, während Hybridfahrzeuge weiter Anteile gewinnen.",
    "facts": [
     {
-     "text": "Der Euroraum hatte im August 2026 ein Defizit im Warenhandel mit dem Rest der Welt von 16,1 Mrd. Euro, nach 1,7 Mrd. Euro im August 2025.",
-     "quote": "The first estimates of euro area balance showed a €16.1 bn deficit in trade in goods with the rest of the world in August 2026, compared with a deficit of €1.7 bn in August 2025."
+     "text": "Im dritten Quartal 2026 waren 23 % der neu verkauften Pkw und leichten Nutzfahrzeuge in den USA Hybrid-, Batterie- oder Plug-in-Hybridfahrzeuge, nach 24 % ein Jahr zuvor.",
+     "quote": "23% of new light-duty vehicles sold in the United States were hybrid electric, battery electric, or plug-in hybrid electric vehicles, down slightly from 24% in 3Q25."
+    },
+    {
+     "text": "Reine Elektroautos kamen im dritten Quartal 2026 auf 6 % der Neuverkäufe, nach 10 % im dritten Quartal 2025.",
+     "quote": "In 3Q26, battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
+    },
+    {
+     "text": "Hybridfahrzeuge gewannen weiter Marktanteile und erreichten 16 % der Verkäufe. Sie waren von den ausgelaufenen Steuergutschriften nicht erfasst.",
+     "quote": "hybrid electric vehicles continued to gain market share, reaching 16% of light-duty vehicle sales."
+    },
+    {
+     "text": "Zwei Bundessteuergutschriften für neue Elektrofahrzeuge liefen am 30. September 2025 aus.",
+     "quote": "Two tax credits for purchasing or leasing new electric vehicles expired on September 30, 2025"
     }
    ],
    "numbers": [
     {
-     "value": 16.7,
-     "unit": "% Importwachstum zum Vorjahresmonat",
-     "period": "August 2026",
-     "quote": "Imports from the rest of the world stood at €243.8 bn, a rise of 16.7% compared with August 2025 (€208.9 bn)."
-    }
-   ],
-   "alltag": "Der Handelssaldo zeigt, ob eine Volkswirtschaft mehr Waren ins Ausland verkauft oder von dort kauft. Höhere Energieimporte können Haushalte und Betriebe über Strom-, Heiz- und Spritkosten belasten. Schwächere Maschinen- und Fahrzeugexporte können sich auf Arbeitsplätze in der Industrie auswirken.",
-   "finanzwirkung": "Exportorientierte Industrieunternehmen können Umsatz verlieren, wenn ihr Auslandsgeschäft schwächer wird. Ob das den Gewinn drückt, hängt von Kosten und Preisen ab. Höhere Energieimporte können Unternehmen belasten, die viel Energie brauchen. Aussagen zu Dividenden lassen sich daraus nicht ableiten.",
-   "naechstes": {
-    "text": "Beobachten: ob sich das Defizit in den nächsten Monatsdaten fortsetzt und wie sich Energie sowie Maschinen und Fahrzeuge entwickeln.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "energie",
-    "industrie",
-    "preise"
-   ],
-   "regions": [
-    "Euroraum",
-    "EU"
-   ],
-   "sectors": [
-    "Energie",
-    "Industrie",
-    "Transport"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Handelsbilanz",
-     "def": "Unterschied zwischen dem Wert der ausgeführten und der eingeführten Waren."
+     "value": 6,
+     "unit": "% der Neuverkäufe",
+     "period": "3. Quartal 2026",
+     "quote": "battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
     },
     {
-     "term": "Defizit",
-     "def": "Die Einfuhren sind größer als die Ausfuhren."
+     "value": 12,
+     "unit": "% der Neuverkäufe",
+     "period": "September 2025",
+     "quote": "Battery electric vehicles made up a record 12% of light-duty vehicle sales in September 2025"
     },
     {
-     "term": "Extra-Euroraum-Handel",
-     "def": "Warenhandel zwischen dem Euroraum und Ländern außerhalb davon."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "A",
-    "why": "Schwächere Handelsbilanz und höhere Energieimporte passen qualitativ zu einer zähen Erholung mit Belastungen für die Industrie."
-   },
-   "event_date": "2026-10-16",
-   "words": 122,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [
-    {
-     "part": "Fakt",
-     "text": "Die Importe wuchsen mit 16,7 % deutlich schneller als die Exporte mit 9,9 % (jeweils gegenüber August 2025).",
-     "why": "Zahl nicht im Zitat: 16.7"
-    },
-    {
-     "part": "Fakt",
-     "text": "Hauptgrund für den Rückgang des Saldos waren Maschinen und Fahrzeuge: Aus einem Überschuss von 7,2 Mrd. Euro wurde ein Defizit von 0,7 Mrd. Euro. Das Energiedefizit stieg von 21,3 auf 26,7 Mrd. Euro.",
-     "why": "Zahl nicht im Zitat: 7.2, 0.7"
-    },
-    {
-     "part": "Zahl",
-     "text": "-16.1",
-     "why": "Vorzeichen nicht belegt"
-    },
-    {
-     "part": "Zahl",
-     "text": "-5.4",
-     "why": "Vorzeichen nicht belegt"
-    }
-   ],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-f6fc3a10fc37",
-   "event_id": "ef6fc3a10fc37",
-   "revision": 1,
-   "source": {
-    "id": "eurostat",
-    "name": "Eurostat",
-    "short": "Eurostat",
-    "region": "EU/Euroraum",
-    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
-    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
-   },
-   "original_title": "Annual inflation up to 3.8% in the euro area",
-   "url": "https://ec.europa.eu/eurostat/product?code=2-16102026-ap",
-   "also": [],
-   "published_at": "2026-10-16T09:00:00.000Z",
-   "retrieved_at": "2026-10-16T11:33:04.737Z",
-   "created_at": "2026-10-16T11:33:04.737Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 6667,
-    "truncated": false,
-    "hash": "a5b4ebbfc9cdb1f2"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "preise"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Inflation im Euroraum steigt im September 2026 auf 3,8 %",
-   "kurzfassung": "Die Preise im Euroraum steigen schneller: Die Jahresrate liegt im September bei 3,8 %, vor allem wegen deutlich teurerer Energie.",
-   "facts": [
-    {
-     "text": "Die jährliche Inflationsrate im Euroraum lag im September 2026 bei 3,8 %, nach 3,2 % im August. Ein Jahr zuvor waren es 2,2 %.",
-     "quote": "The euro area annual inflation rate was 3.8 % in September 2026 , up from 3.2% in August . A year earlier, the rate was 2.2 %."
-    },
-    {
-     "text": "Energie und Dienstleistungen trugen am stärksten zur Rate bei: Energie mit 1,71 und Dienstleistungen mit 1,52 Prozentpunkten.",
-     "quote": "energy (+1.71 percentage points, pp), services (+1.52 percentage points, pp)"
-    },
-    {
-     "text": "Gegenüber August stieg die Inflation in 23 Mitgliedstaaten, in einem fiel sie, in drei blieb sie stabil.",
-     "quote": "annual inflation fell in one Member State, remained stable in three and rose in twenty-three"
-    }
-   ],
-   "numbers": [
-    {
-     "value": 3.8,
-     "unit": "%",
-     "period": "September 2026, Vorjahresvergleich",
-     "quote": "The euro area annual inflation rate was 3.8 % in September 2026"
-    },
-    {
-     "value": 18.9,
-     "unit": "%",
-     "period": "Energiepreise, September 2026, Vorjahresvergleich",
-     "quote": "Energy\n90.3\n-0.4\n10.8\n10.8\n8.5\n10.3\n14.3\n18.9"
-    },
-    {
-     "value": 0.6,
-     "unit": "%",
-     "period": "September 2026, Vormonatsvergleich",
-     "quote": "Euro area\n2.2\n3.0\n3.2\n2.8\n2.9\n3.2\n3.8\n0.6"
+     "value": 2,
+     "unit": "% der zugelassenen Fahrzeuge",
+     "period": "2024",
+     "quote": "electric vehicles accounted for 2% of all registered light-duty vehicles in the United States."
     }
    ],
    "alltag": null,
    "finanzwirkung": null,
    "naechstes": null,
    "categories": [
-    "preise",
-    "energie"
+    "energie",
+    "industrie"
    ],
    "regions": [
-    "Euroraum",
-    "EU"
+    "USA"
    ],
    "sectors": [
+    "Industrie",
     "Energie",
-    "Breiter Markt"
+    "Transport"
    ],
    "companies": [],
    "dividend": {
@@ -225,146 +103,22 @@
    },
    "glossary": [],
    "scenario_link": null,
-   "event_date": "2026-10-16",
-   "words": 157,
+   "event_date": "2026-10-19",
+   "words": 199,
    "length_ok": true,
    "title_is_original": false,
    "status": "nur_fakten",
    "check_log": [
     {
      "part": "Einordnung",
-     "why": "finanzwirkung: Empfehlungssprache"
+     "why": "alltag: Zahl ohne Beleg (50000)"
+    },
+    {
+     "part": "Einordnung",
+     "why": "alltag: Empfehlungssprache"
     }
    ],
    "check_note": "Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt."
-  },
-  {
-   "id": "n-853300b27052",
-   "event_id": "e853300b27052",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Baugenehmigungen für Wohnungen im August 2026: +6,8 % zum Vorjahresmonat",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_370_3111.html",
-   "also": [],
-   "published_at": "2026-10-16T06:00:00.000Z",
-   "retrieved_at": "2026-10-16T11:33:04.737Z",
-   "created_at": "2026-10-16T11:33:04.737Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 3853,
-    "truncated": false,
-    "hash": "50afd130b49b6dcb"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "zinsen"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Baugenehmigungen für Wohnungen steigen im August 2026 um 6,8 %",
-   "kurzfassung": "In Deutschland wurde im August 2026 der Bau von 20 600 Wohnungen genehmigt, 6,8 % mehr als im Vorjahresmonat. Der Aufwärtstrend hält seit Jahresbeginn an.",
-   "facts": [
-    {
-     "text": "Im August 2026 wurde der Bau von 20 600 Wohnungen genehmigt, 6,8 % mehr als im August 2025.",
-     "quote": "Im August 2026 wurde in Deutschland der Bau von 20 600 Wohnungen genehmigt. Wie das Statistische Bundesamt (Destatis) mitteilt, waren das 6,8 % oder 1 300 Baugenehmigungen mehr als im August 2025."
-    },
-    {
-     "text": "Von Januar bis August 2026 stiegen die genehmigten Neubauwohnungen in Wohngebäuden um 12,7 % gegenüber dem Vorjahreszeitraum.",
-     "quote": "In neu zu errichtenden Wohngebäuden wurden von Januar bis August 2026 insgesamt 137 500 Wohnungen genehmigt, das waren 12,7 % oder 15 400 Neubauwohnungen mehr als im Vorjahreszeitraum."
-    },
-    {
-     "text": "In Mehrfamilienhäusern, der größten Gebäudeart, wurden 90 600 Neubauwohnungen genehmigt, 14,5 % mehr als im Vorjahreszeitraum.",
-     "quote": "In Mehrfamilienhäusern, der zahlenmäßig stärksten Gebäudeart, genehmigten die Bauaufsichtsbehörden 90 600 Neubauwohnungen. Das war ein Anstieg um 14,5 % (+11 500) gegenüber dem Vorjahreszeitraum."
-    },
-    {
-     "text": "Die Zahlen können sich später ändern, weil Behörden Genehmigungen oft verspätet melden.",
-     "quote": "Bei den Ergebnissen ist zu beachten, dass Baugenehmigungen häufig nicht in den Berichtsmonat ihrer Erteilung, sondern durch Nachmeldungen der Baubehörden erst später in die Statistik einfließen."
-    }
-   ],
-   "numbers": [
-    {
-     "value": 6.8,
-     "unit": "% zum Vorjahresmonat",
-     "period": "August 2026",
-     "quote": "waren das 6,8 % oder 1 300 Baugenehmigungen mehr als im August 2025"
-    },
-    {
-     "value": 12.1,
-     "unit": "% zum Vorjahreszeitraum",
-     "period": "Januar bis August 2026",
-     "quote": "Das waren 12,1 % oder 18 300 Wohnungen mehr als von Januar bis August 2025."
-    }
-   ],
-   "alltag": "Eine Baugenehmigung ist nur der erste Schritt. Gebaut ist damit noch nichts. Mehr Genehmigungen können aber später mehr Wohnraum bedeuten, und das kann den Druck auf den Wohnungsmarkt verringern. Die Entwicklung betrifft auch Bauarbeitsplätze und Aufträge im Handwerk.",
-   "finanzwirkung": "Mehr Genehmigungen können für Bauunternehmen, Baustoffhersteller und Handwerksbetriebe später mehr Aufträge und Umsatz bedeuten. Ob daraus auch mehr Gewinn und Dividenden werden, hängt von Baukosten, Finanzierungsbedingungen und der tatsächlichen Bautätigkeit ab. Weil nicht jede Genehmigung umgesetzt wird, ist der Zusammenhang nicht automatisch.",
-   "naechstes": {
-    "text": "Zu beobachten ist, ob die Genehmigungen auch in den kommenden Monaten über dem Vorjahr liegen und ob daraus tatsächlich Bauvorhaben entstehen.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "industrie",
-    "preise"
-   ],
-   "regions": [
-    "Deutschland"
-   ],
-   "sectors": [
-    "Bau",
-    "Immobilien"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Baugenehmigung",
-     "def": "Die amtliche Erlaubnis, ein Bauvorhaben zu errichten. Sie bedeutet nicht, dass schon gebaut wird."
-    },
-    {
-     "term": "Nachmeldung",
-     "def": "Eine verspätete Meldung einer Behörde an die Statistik. Sie kann frühere Zahlen nachträglich verändern."
-    },
-    {
-     "term": "Mehrfamilienhaus",
-     "def": "Ein Wohngebäude mit mehr als zwei Wohnungen."
-    }
-   ],
-   "scenario_link": null,
-   "event_date": "2026-10-16",
-   "words": 164,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [
-    {
-     "part": "Zahl",
-     "text": "20600 Wohnungen",
-     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
-    },
-    {
-     "part": "Zahl",
-     "text": "169400 Wohnungen",
-     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
-    }
-   ],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   }
  ],
  "previous": null,

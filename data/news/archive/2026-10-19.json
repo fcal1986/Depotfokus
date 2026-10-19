@@ -1,0 +1,124 @@
+{
+ "date": "2026-10-19",
+ "generated_at": "2026-10-19T13:30:49.653Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-80b6b5260386",
+   "event_id": "e80b6b5260386",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "Hybrid sales rise while battery electric sales remain lower after tax credit expiration",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68325",
+   "also": [],
+   "published_at": "2026-10-19T14:00:00.000Z",
+   "retrieved_at": "2026-10-19T13:30:49.653Z",
+   "created_at": "2026-10-19T13:30:49.653Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7419,
+    "truncated": false,
+    "hash": "f49e0d8dcfeeffad"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "USA: Hybridautos legen zu, reine E-Autos nach Ende der Steuergutschrift schwächer",
+   "kurzfassung": "Nach dem Ende der US-Steuergutschriften für Elektroautos sinkt deren Marktanteil, während Hybridfahrzeuge weiter Anteile gewinnen.",
+   "facts": [
+    {
+     "text": "Im dritten Quartal 2026 waren 23 % der neu verkauften Pkw und leichten Nutzfahrzeuge in den USA Hybrid-, Batterie- oder Plug-in-Hybridfahrzeuge, nach 24 % ein Jahr zuvor.",
+     "quote": "23% of new light-duty vehicles sold in the United States were hybrid electric, battery electric, or plug-in hybrid electric vehicles, down slightly from 24% in 3Q25."
+    },
+    {
+     "text": "Reine Elektroautos kamen im dritten Quartal 2026 auf 6 % der Neuverkäufe, nach 10 % im dritten Quartal 2025.",
+     "quote": "In 3Q26, battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
+    },
+    {
+     "text": "Hybridfahrzeuge gewannen weiter Marktanteile und erreichten 16 % der Verkäufe. Sie waren von den ausgelaufenen Steuergutschriften nicht erfasst.",
+     "quote": "hybrid electric vehicles continued to gain market share, reaching 16% of light-duty vehicle sales."
+    },
+    {
+     "text": "Zwei Bundessteuergutschriften für neue Elektrofahrzeuge liefen am 30. September 2025 aus.",
+     "quote": "Two tax credits for purchasing or leasing new electric vehicles expired on September 30, 2025"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 6,
+     "unit": "% der Neuverkäufe",
+     "period": "3. Quartal 2026",
+     "quote": "battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
+    },
+    {
+     "value": 12,
+     "unit": "% der Neuverkäufe",
+     "period": "September 2025",
+     "quote": "Battery electric vehicles made up a record 12% of light-duty vehicle sales in September 2025"
+    },
+    {
+     "value": 2,
+     "unit": "% der zugelassenen Fahrzeuge",
+     "period": "2024",
+     "quote": "electric vehicles accounted for 2% of all registered light-duty vehicles in the United States."
+    }
+   ],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [
+    "USA"
+   ],
+   "sectors": [
+    "Industrie",
+    "Energie",
+    "Transport"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-10-19",
+   "words": 199,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "nur_fakten",
+   "check_log": [
+    {
+     "part": "Einordnung",
+     "why": "alltag: Zahl ohne Beleg (50000)"
+    },
+    {
+     "part": "Einordnung",
+     "why": "alltag: Empfehlungssprache"
+    }
+   ],
+   "check_note": "Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt."
+  }
+ ],
+ "held": []
+}
