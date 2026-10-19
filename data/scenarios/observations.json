@@ -441,7 +441,7 @@
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_bssi_m_r2?format=JSON&lang=EN&geo=EA21&sinceTimePeriod=2023-10&indic=BS-ESI-I&s_adj=SA",
    "source_updated_at": "2026-09-29T09:00:00.000Z",
    "geo_used": "EA21",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -620,9 +620,9 @@
     }
    },
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/namq_10_gdp?format=JSON&lang=EN&geo=EA21&sinceTimePeriod=2023-Q1&unit=CLV_PCH_PRE&s_adj=SCA&na_item=B1GQ",
-   "source_updated_at": "2026-10-09T21:00:00.000Z",
+   "source_updated_at": "2026-10-19T09:00:00.000Z",
    "geo_used": "EA21",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -1065,9 +1065,9 @@
     }
    },
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?format=JSON&lang=EN&geo=EA&sinceTimePeriod=2023-10&unit=RCH_A&coicop18=TOTAL",
-   "source_updated_at": "2026-10-02T09:00:00.000Z",
+   "source_updated_at": "2026-10-16T21:00:00.000Z",
    "geo_used": "EA",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -1510,9 +1510,9 @@
     }
    },
    "source_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_minr?format=JSON&lang=EN&geo=EA&sinceTimePeriod=2023-10&unit=RCH_A&coicop18=TOT_X_NRG_FOOD",
-   "source_updated_at": "2026-10-02T09:00:00.000Z",
+   "source_updated_at": "2026-10-16T21:00:00.000Z",
    "geo_used": "EA",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -2089,7 +2089,7 @@
    "source_url": "https://fred.stlouisfed.org/series/PCEPILFE",
    "source_updated_at": "2026-09-30T12:43:28.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -3045,12 +3045,96 @@
        "seen_at": "2026-10-12T09:08:28.321Z"
       }
      ]
+    },
+    "2026-10-13": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-14": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-15": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-16": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-17": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-18": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-19": {
+     "v": 2.5,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 2.5,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
     }
    },
-   "source_url": "https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?format=csvdata&startPeriod=2026-07-29",
-   "source_updated_at": "2026-10-11T23:35:35.000Z",
+   "source_url": "https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?format=csvdata&startPeriod=2026-08-05",
+   "source_updated_at": "2026-10-18T23:37:36.000Z",
    "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -3615,7 +3699,7 @@
    "source_url": "https://fred.stlouisfed.org/series/POILBREUSDM",
    "source_updated_at": "2026-08-17T18:51:14.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -4180,7 +4264,7 @@
    "source_url": "https://fred.stlouisfed.org/series/PNGASEUUSDM",
    "source_updated_at": "2026-08-17T18:51:13.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -4670,178 +4754,308 @@
      ]
     },
     "2026-09-21": {
-     "v": 0.030000362312858426,
-     "rev": 1,
+     "v": 0.030055667428152664,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.030000362312858426,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.030055667428152664,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-22": {
-     "v": 0.025179498155430594,
-     "rev": 1,
+     "v": 0.02523577444292898,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.025179498155430594,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.02523577444292898,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-23": {
-     "v": 0.024931168847273047,
-     "rev": 1,
+     "v": 0.024941287463872943,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.024931168847273047,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.024941287463872943,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-24": {
-     "v": 0.022297085343786646,
-     "rev": 1,
+     "v": 0.02235096771729764,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.022297085343786646,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.02235096771729764,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-25": {
-     "v": 0.018064330531313948,
-     "rev": 1,
+     "v": 0.018108441193594418,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.018064330531313948,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.018108441193594418,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-28": {
-     "v": 0.015074343715052235,
-     "rev": 1,
+     "v": 0.015121417664510282,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.015074343715052235,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.015121417664510282,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-29": {
-     "v": 0.013025300302951853,
-     "rev": 1,
+     "v": 0.013036713433985549,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.013025300302951853,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.013036713433985549,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-09-30": {
-     "v": 0.013240937824567237,
-     "rev": 1,
+     "v": 0.01325086168456975,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.013240937824567237,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.01325086168456975,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-01": {
-     "v": 0.022487184543154768,
-     "rev": 1,
+     "v": 0.022543986860053752,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.022487184543154768,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.022543986860053752,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-02": {
-     "v": 0.024049956110226364,
-     "rev": 1,
+     "v": 0.02411316456380302,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.024049956110226364,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.02411316456380302,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-05": {
-     "v": 0.02151807535302511,
-     "rev": 1,
+     "v": 0.021480955172230802,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.02151807535302511,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.021480955172230802,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-06": {
-     "v": 0.016138308620478443,
-     "rev": 1,
+     "v": 0.016107655512907475,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.016138308620478443,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.016107655512907475,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-07": {
-     "v": 0.01679122074355794,
-     "rev": 1,
+     "v": 0.0167135380203621,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.01679122074355794,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.0167135380203621,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     },
     "2026-10-08": {
-     "v": 0.016791219605616744,
-     "rev": 1,
+     "v": 0.016718023444611672,
+     "rev": 2,
      "first_seen_at": "2026-10-09T11:00:01.098Z",
      "history": [
       {
        "v": 0.016791219605616744,
        "rev": 1,
        "seen_at": "2026-10-09T11:00:01.098Z"
+      },
+      {
+       "v": 0.016718023444611672,
+       "rev": 2,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-09": {
+     "v": 0.014510740752707366,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 0.014510740752707366,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-12": {
+     "v": 0.012681537424695861,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 0.012681537424695861,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-13": {
+     "v": 0.011540146703899648,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 0.011540146703899648,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-14": {
+     "v": 0.010407961750544691,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 0.010407961750544691,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-15": {
+     "v": 0.010829273830833533,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 0.010829273830833533,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
       }
      ]
     }
    },
-   "source_url": "https://data-api.ecb.europa.eu/service/data/CISS/D.U2.Z0Z.4F.EC.SS_CIN.IDX?format=csvdata&startPeriod=2026-07-29",
-   "source_updated_at": "2026-10-09T08:13:25.000Z",
+   "source_url": "https://data-api.ecb.europa.eu/service/data/CISS/D.U2.Z0Z.4F.EC.SS_CIN.IDX?format=csvdata&startPeriod=2026-08-05",
+   "source_updated_at": "2026-10-16T12:13:25.000Z",
    "geo_used": "U2 (Euroraum, wechselnde Zusammensetzung)",
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -5497,12 +5711,72 @@
        "seen_at": "2026-10-12T09:08:28.321Z"
       }
      ]
+    },
+    "2026-10-09": {
+     "v": 3.24,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.24,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-12": {
+     "v": 3.23,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.23,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-13": {
+     "v": 3.27,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.27,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-14": {
+     "v": 3.26,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.26,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-15": {
+     "v": 3.36,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.36,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/BAMLHE00EHYIOAS",
-   "source_updated_at": "2026-10-09T13:10:42.000Z",
+   "source_updated_at": "2026-10-16T13:58:24.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -6158,12 +6432,72 @@
        "seen_at": "2026-10-12T09:08:28.321Z"
       }
      ]
+    },
+    "2026-10-09": {
+     "v": 3.11,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.11,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-12": {
+     "v": 3.11,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.11,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-13": {
+     "v": 3.16,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.16,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-14": {
+     "v": 3.25,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.25,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-15": {
+     "v": 3.23,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 3.23,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2",
-   "source_updated_at": "2026-10-09T13:08:04.000Z",
+   "source_updated_at": "2026-10-16T13:59:55.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -6819,12 +7153,72 @@
        "seen_at": "2026-10-12T09:08:28.321Z"
       }
      ]
+    },
+    "2026-10-09": {
+     "v": 14.84,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 14.84,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-12": {
+     "v": 15.21,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 15.21,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-13": {
+     "v": 15.27,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 15.27,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-14": {
+     "v": 16.87,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 16.87,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
+    },
+    "2026-10-15": {
+     "v": 16.46,
+     "rev": 1,
+     "first_seen_at": "2026-10-19T10:47:04.954Z",
+     "history": [
+      {
+       "v": 16.46,
+       "rev": 1,
+       "seen_at": "2026-10-19T10:47:04.954Z"
+      }
+     ]
     }
    },
    "source_url": "https://fred.stlouisfed.org/series/VIXCLS",
-   "source_updated_at": "2026-10-09T13:38:33.000Z",
+   "source_updated_at": "2026-10-16T13:37:32.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -7017,7 +7411,7 @@
    "source_url": "https://fred.stlouisfed.org/series/CP",
    "source_updated_at": "2026-09-30T12:55:12.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   },
@@ -7210,7 +7604,7 @@
    "source_url": "https://fred.stlouisfed.org/series/A679RC1Q027SBEA",
    "source_updated_at": "2026-09-30T12:59:26.000Z",
    "geo_used": null,
-   "last_success_at": "2026-10-12T09:08:28.321Z",
+   "last_success_at": "2026-10-19T10:47:04.954Z",
    "last_fetch_status": "ok",
    "last_error": null
   }
