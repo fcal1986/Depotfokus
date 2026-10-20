@@ -1,9 +1,255 @@
 {
- "date": "2026-10-19",
- "generated_at": "2026-10-19T13:30:49.653Z",
+ "date": "2026-10-20",
+ "generated_at": "2026-10-20T11:47:13.304Z",
  "result": "items",
  "note": null,
  "items": [
+  {
+   "id": "n-1b60a3257a68",
+   "event_id": "e1b60a3257a68",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Rohöl im Wert von 30,0 Milliarden Euro im Zeitraum Januar bis August 2026 importiert",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_372_51.html",
+   "also": [],
+   "published_at": "2026-10-20T06:00:00.000Z",
+   "retrieved_at": "2026-10-20T11:47:13.304Z",
+   "created_at": "2026-10-20T11:47:13.304Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5159,
+    "truncated": false,
+    "hash": "8ed2215214e3bb4f"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Deutschland zahlt für Rohöl-Importe 21,7 % mehr bei gleicher Menge",
+   "kurzfassung": "Deutschland importierte von Januar bis August 2026 etwa gleich viel Rohöl wie im Vorjahr, zahlte dafür aber wegen höherer Preise deutlich mehr.",
+   "facts": [
+    {
+     "text": "Die Menge sank um 0,6 %, der Wert stieg um 21,7 %. Die Quelle nennt Preissteigerungen im Zuge der Konflikte im Nahen Osten als Grund.",
+     "quote": "nahm der Import damit mengenmäßig um 0,6 % ab, während er wertmäßig um 21,7 % stieg. Grund dafür waren die Preissteigerungen bei Rohöl im Zuge der Konflikte im Nahen Osten."
+    },
+    {
+     "text": "Wichtigste Lieferländer waren die Vereinigten Staaten, Norwegen und Kasachstan. Aus Russland wurde seit 2025 kein Rohöl mehr nachgewiesen.",
+     "quote": "Wichtigste Lieferländer deutscher Rohölimporte waren im Zeitraum Januar bis August 2026 die Vereinigten Staaten, Norwegen und Kasachstan."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 30,
+     "unit": "Mrd. Euro",
+     "period": "Januar bis August 2026",
+     "quote": "49,1 Millionen Tonnen Rohöl im Wert von 30,0 Milliarden Euro"
+    },
+    {
+     "value": 21.7,
+     "unit": "%",
+     "period": "Januar bis August 2026 gegenüber Vorjahreszeitraum (Wert)",
+     "quote": "während er wertmäßig um 21,7 % stieg"
+    },
+    {
+     "value": 607,
+     "unit": "Euro je Tonne",
+     "period": "August 2026",
+     "quote": "Im August 2026 betrug der Durchschnittwert je importierter Tonne Rohöl 607 Euro."
+    },
+    {
+     "value": 768,
+     "unit": "Euro je Tonne",
+     "period": "Mai 2026",
+     "quote": "Der bisherige Höchststand im Jahr 2026 wurde im Mai mit 768 Euro verzeichnet."
+    }
+   ],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "preise"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Energie",
+    "Rohstoffe",
+    "Industrie",
+    "Transport"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-10-20",
+   "words": 167,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "nur_fakten",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Von Januar bis August 2026 importierte Deutschland 49,1 Millionen Tonnen Rohöl im Wert von 30,0 Milliarden Euro. Im Vorjahreszeitraum waren es 49,4 Millionen Tonnen für 24,6 Milliarden Euro.",
+     "why": "Zahl nicht im Zitat: 49.4, 24.6"
+    },
+    {
+     "part": "Fakt",
+     "text": "Der Durchschnittswert je Tonne lag im August bei 607 Euro. Der Höchststand 2026 war im Mai mit 768 Euro, in den Monaten Juni und Juli gingen die Werte zurück.",
+     "why": "Zahl nicht im Zitat: 768"
+    },
+    {
+     "part": "Einordnung",
+     "why": "naechstes: Zahl ohne Beleg (600)"
+    }
+   ],
+   "check_note": "Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt."
+  },
+  {
+   "id": "n-3699aa9897da",
+   "event_id": "e3699aa9897da",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Gastgewerbeumsatz im August 2026 real 1,3 % niedriger als im Vormonat",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_374_45213.html",
+   "also": [],
+   "published_at": "2026-10-20T06:00:00.000Z",
+   "retrieved_at": "2026-10-20T11:47:13.304Z",
+   "created_at": "2026-10-20T11:47:13.304Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 4536,
+    "truncated": false,
+    "hash": "e9d69cd5b6cbcb48"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "energie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Gastgewerbe: Umsatz im August real um 1,3 % unter Vormonat",
+   "kurzfassung": "Das deutsche Gastgewerbe hat im August 2026 real weniger umgesetzt als im Juli; im Jahresvergleich liegt der reale Umsatz deutlich niedriger, der nominale leicht höher.",
+   "facts": [
+    {
+     "text": "Der reale Umsatz des Gastgewerbes sank im August 2026 gegenüber Juli um 1,3 %, der nominale um 1,2 %.",
+     "quote": "kalender- und saisonbereinigt real (preisbereinigt) 1,3 % und nominal (nicht preisbereinigt) 1,2 % weniger umgesetzt als im Juli 2026"
+    },
+    {
+     "text": "Gegenüber August 2025 sank der Umsatz real um 4,2 %, während er nominal um 2,7 % stieg.",
+     "quote": "Im Vergleich zum Vorjahresmonat August 2025 sank der Umsatz real um 4,2 %, wohingegen er nominal um 2,7 % stieg."
+    },
+    {
+     "text": "In der Gastronomie ging der Umsatz im Monatsvergleich real um 1,8 % zurück.",
+     "quote": "In der Gastronomie sank der Umsatz im August 2026 gegenüber Juli 2026 real um 1,8 % und nominal um 1,7 %."
+    },
+    {
+     "text": "Hotels und andere Beherbergungsbetriebe legten im Monatsvergleich real um 0,4 % zu.",
+     "quote": "Umsatzzuwachs von real 0,4 % und nominal 0,3 %"
+    }
+   ],
+   "numbers": [
+    {
+     "value": -1.3,
+     "unit": "% (real, zum Vormonat)",
+     "period": "August 2026 gegenüber Juli 2026",
+     "quote": "kalender- und saisonbereinigt real (preisbereinigt) 1,3 % und nominal (nicht preisbereinigt) 1,2 % weniger umgesetzt als im Juli 2026"
+    },
+    {
+     "value": -4.2,
+     "unit": "% (real, zum Vorjahresmonat)",
+     "period": "August 2026 gegenüber August 2025",
+     "quote": "Im Vergleich zum Vorjahresmonat August 2025 sank der Umsatz real um 4,2 %, wohingegen er nominal um 2,7 % stieg."
+    },
+    {
+     "value": -1.8,
+     "unit": "% (real, Gastronomie, zum Vormonat)",
+     "period": "August 2026 gegenüber Juli 2026",
+     "quote": "In der Gastronomie sank der Umsatz im August 2026 gegenüber Juli 2026 real um 1,8 % und nominal um 1,7 %."
+    }
+   ],
+   "alltag": "Das Gastgewerbe umfasst Restaurants, Cafés und Hotels. Steigt der nominale Umsatz, der reale aber sinkt, wird mit höheren Preisen nicht mehr verkauft. Das kann für Gäste höhere Preise bei gleichzeitig weniger Besuchen bedeuten.",
+   "finanzwirkung": "Ein sinkender realer Umsatz kann die Auslastung von Betrieben belasten. Ob daraus auch weniger Gewinn wird, hängt von Kosten, Preisen und Personalaufwand ab. Für Aktien und Dividenden einzelner Unternehmen sagt diese Branchenzahl allein wenig aus.",
+   "naechstes": {
+    "text": "Beobachten, ob die Umsätze im September wieder steigen oder der Rückgang anhält; die Zahlen werden zudem revidiert.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "preise",
+    "unternehmen"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Konsumgüter",
+    "Einzelhandel"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "real (preisbereinigt)",
+     "def": "Der Wert wird um Preisänderungen bereinigt und zeigt, wie sich die verkaufte Menge entwickelt."
+    },
+    {
+     "term": "nominal",
+     "def": "Der Wert wird ohne Bereinigung um Preisänderungen angegeben."
+    },
+    {
+     "term": "kalender- und saisonbereinigt",
+     "def": "Der Wert ist um Feiertage, Wochentage und jahreszeitliche Schwankungen bereinigt."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-20",
+   "words": 146,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
   {
    "id": "n-80b6b5260386",
    "event_id": "e80b6b5260386",
