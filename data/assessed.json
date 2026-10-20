@@ -60,6 +60,14 @@
    "form": "8-K",
    "status": "irrelevant",
    "at": "2026-10-16"
+  },
+  "0001171843-26-006685": {
+   "sym": "NOV.DE",
+   "date": "2026-10-19",
+   "form": "6-K",
+   "status": "skipped",
+   "reason": "keine Ergebnismitteilung",
+   "at": "2026-10-20"
   }
  }
 }
