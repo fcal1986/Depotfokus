@@ -1,9 +1,143 @@
 {
- "date": "2026-10-20",
- "generated_at": "2026-10-20T11:47:13.304Z",
+ "date": "2026-10-21",
+ "generated_at": "2026-10-21T11:59:05.728Z",
  "result": "items",
  "note": null,
  "items": [
+  {
+   "id": "n-e6f7e22ad039",
+   "event_id": "ee6f7e22ad039",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Euro area government deficit at 3.0% and EU at 3.1% of GDP",
+   "url": "https://ec.europa.eu/eurostat/product?code=2-21102026-ap",
+   "also": [],
+   "published_at": "2026-10-21T09:00:00.000Z",
+   "retrieved_at": "2026-10-21T11:59:05.728Z",
+   "created_at": "2026-10-21T11:59:05.728Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 14000,
+    "truncated": true,
+    "hash": "b339a32efc38aa1d"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Euroraum-Staatsdefizit bleibt 2025 bei 3,0 % des BIP, Schuldenquote steigt",
+   "kurzfassung": "Das Staatsdefizit im Euroraum liegt 2025 unverändert bei 3,0 % der Wirtschaftsleistung, die Staatsschulden steigen aber auf 87,7 %.",
+   "facts": [
+    {
+     "text": "Das Defizit der Euro-Staaten lag 2025 wie 2024 bei 3,0 % des Bruttoinlandsprodukts (BIP), in der EU bei 3,1 %.",
+     "quote": "In the euro area (EA20) the government deficit to GDP ratio remained unchanged at 3.0% in 2024 and 2025. In the EU , it also remained unchanged at 3.1%"
+    },
+    {
+     "text": "Die Schuldenquote des Euroraums stieg von 86,6 % auf 87,7 %, die der EU von 80,3 % auf 81,5 %.",
+     "quote": "In the euro area the government debt to GDP ratio increased from 86.6% at the end of 2024 to 87.7% at the end of 2025, and in the EU from 80.3% to 81.5%."
+    },
+    {
+     "text": "Die höchsten Defizite meldeten Rumänien, Polen, Belgien und Frankreich; elf Staaten lagen bei 3 % oder darüber.",
+     "quote": "The highest deficits were recorded in Romania (‑7.8%), Poland (-7.2%), Belgium (-5.2%) and France (‑5.1%). Eleven Member States had deficits equal to or higher than 3% of GDP."
+    },
+    {
+     "text": "Im Euroraum stiegen 2025 sowohl Staatsausgaben als auch Staatseinnahmen im Verhältnis zum BIP gegenüber 2024.",
+     "quote": "Government revenue and expenditure ratios increased both in the euro area and the EU compared to 2024."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 3,
+     "unit": "% des BIP",
+     "period": "2025",
+     "quote": "the government deficit to GDP ratio remained unchanged at 3.0% in 2024 and 2025"
+    },
+    {
+     "value": 87.7,
+     "unit": "% des BIP",
+     "period": "Ende 2025",
+     "quote": "increased from 86.6% at the end of 2024 to 87.7% at the end of 2025"
+    },
+    {
+     "value": 49.8,
+     "unit": "% des BIP",
+     "period": "2025",
+     "quote": "the government total expenditure to GDP ratio in the euro area stood at 49.8% of GDP"
+    },
+    {
+     "value": 46.8,
+     "unit": "% des BIP",
+     "period": "2025",
+     "quote": "the government total revenue to GDP ratio stood at 46.8%"
+    }
+   ],
+   "alltag": "Die Staaten geben weiter mehr aus, als sie einnehmen, und finanzieren die Lücke mit Schulden. Das betrifft indirekt auch uns: Spätere Steuern, staatliche Leistungen und die Kosten für Staatskredite hängen davon ab, wie stark die Schulden wachsen. Ein Defizit bedeutet nicht, dass die Schulden sinken oder steigen müssen, die Quote kann auch durch Wirtschaftswachstum schwanken.",
+   "finanzwirkung": "Höhere Staatsschulden können die Nachfrage der Anleger nach Staatsanleihen und damit die Zinskosten der Staaten beeinflussen. Das kann sich auf Banken, Versicherungen und die Finanzierungskosten von Unternehmen auswirken, hängt aber von Wachstum, Inflation und der Geldpolitik ab. Staatliche Ausgaben können Umsätze einzelner Branchen stützen, während höhere Steuern oder Zinsen Gewinne und verfügbares Geld belasten können.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die Staaten mit Defiziten über 3 % ihre Haushalte anpassen und wie sich die Schuldenquoten weiter entwickeln.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "zinsen",
+    "preise"
+   ],
+   "regions": [
+    "Euroraum",
+    "EU"
+   ],
+   "sectors": [
+    "Staat",
+    "Banken",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Defizit",
+     "def": "Der Staat gibt in einem Jahr mehr aus, als er einnimmt."
+    },
+    {
+     "term": "Schuldenquote",
+     "def": "Die gesamten Staatsschulden im Verhältnis zur jährlichen Wirtschaftsleistung eines Landes."
+    },
+    {
+     "term": "Bruttoinlandsprodukt (BIP)",
+     "def": "Der Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr erzeugt."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Anhaltende Defizite und leicht steigende Schuldenquoten passen zu einer zähen Erholung, in der der finanzielle Spielraum der Staaten begrenzt bleibt."
+   },
+   "event_date": "2026-10-21",
+   "words": 203,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
   {
    "id": "n-1b60a3257a68",
    "event_id": "e1b60a3257a68",
@@ -31,7 +165,7 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 3.5,
+    "score": 3,
     "why": {
      "source": 1,
      "categories": [
@@ -39,7 +173,7 @@
       "industrie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -153,7 +287,7 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 3.5,
+    "score": 3,
     "why": {
      "source": 1,
      "categories": [
@@ -161,7 +295,7 @@
       "energie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -249,122 +383,6 @@
    "status": "geprüft",
    "check_log": [],
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-80b6b5260386",
-   "event_id": "e80b6b5260386",
-   "revision": 1,
-   "source": {
-    "id": "eia",
-    "name": "U.S. Energy Information Administration",
-    "short": "EIA",
-    "region": "USA/Welt",
-    "license": "US-Bundesbehörde, gemeinfrei",
-    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
-   },
-   "original_title": "Hybrid sales rise while battery electric sales remain lower after tax credit expiration",
-   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68325",
-   "also": [],
-   "published_at": "2026-10-19T14:00:00.000Z",
-   "retrieved_at": "2026-10-19T13:30:49.653Z",
-   "created_at": "2026-10-19T13:30:49.653Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 7419,
-    "truncated": false,
-    "hash": "f49e0d8dcfeeffad"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2.3,
-    "why": {
-     "source": 0.8,
-     "categories": [
-      "zinsen"
-     ],
-     "core": false,
-     "fresh": true,
-     "sensational": false
-    }
-   },
-   "title": "USA: Hybridautos legen zu, reine E-Autos nach Ende der Steuergutschrift schwächer",
-   "kurzfassung": "Nach dem Ende der US-Steuergutschriften für Elektroautos sinkt deren Marktanteil, während Hybridfahrzeuge weiter Anteile gewinnen.",
-   "facts": [
-    {
-     "text": "Im dritten Quartal 2026 waren 23 % der neu verkauften Pkw und leichten Nutzfahrzeuge in den USA Hybrid-, Batterie- oder Plug-in-Hybridfahrzeuge, nach 24 % ein Jahr zuvor.",
-     "quote": "23% of new light-duty vehicles sold in the United States were hybrid electric, battery electric, or plug-in hybrid electric vehicles, down slightly from 24% in 3Q25."
-    },
-    {
-     "text": "Reine Elektroautos kamen im dritten Quartal 2026 auf 6 % der Neuverkäufe, nach 10 % im dritten Quartal 2025.",
-     "quote": "In 3Q26, battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
-    },
-    {
-     "text": "Hybridfahrzeuge gewannen weiter Marktanteile und erreichten 16 % der Verkäufe. Sie waren von den ausgelaufenen Steuergutschriften nicht erfasst.",
-     "quote": "hybrid electric vehicles continued to gain market share, reaching 16% of light-duty vehicle sales."
-    },
-    {
-     "text": "Zwei Bundessteuergutschriften für neue Elektrofahrzeuge liefen am 30. September 2025 aus.",
-     "quote": "Two tax credits for purchasing or leasing new electric vehicles expired on September 30, 2025"
-    }
-   ],
-   "numbers": [
-    {
-     "value": 6,
-     "unit": "% der Neuverkäufe",
-     "period": "3. Quartal 2026",
-     "quote": "battery electric vehicle sales were 6% of new light-duty vehicles sold, down from 10% in 3Q25"
-    },
-    {
-     "value": 12,
-     "unit": "% der Neuverkäufe",
-     "period": "September 2025",
-     "quote": "Battery electric vehicles made up a record 12% of light-duty vehicle sales in September 2025"
-    },
-    {
-     "value": 2,
-     "unit": "% der zugelassenen Fahrzeuge",
-     "period": "2024",
-     "quote": "electric vehicles accounted for 2% of all registered light-duty vehicles in the United States."
-    }
-   ],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "energie",
-    "industrie"
-   ],
-   "regions": [
-    "USA"
-   ],
-   "sectors": [
-    "Industrie",
-    "Energie",
-    "Transport"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-10-19",
-   "words": 199,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "nur_fakten",
-   "check_log": [
-    {
-     "part": "Einordnung",
-     "why": "alltag: Zahl ohne Beleg (50000)"
-    },
-    {
-     "part": "Einordnung",
-     "why": "alltag: Empfehlungssprache"
-    }
-   ],
-   "check_note": "Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt."
   }
  ],
  "previous": null,
