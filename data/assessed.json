@@ -68,6 +68,13 @@
    "status": "skipped",
    "reason": "keine Ergebnismitteilung",
    "at": "2026-10-20"
+  },
+  "0000200406-26-000197": {
+   "sym": "JNJ.DE",
+   "date": "2026-10-21",
+   "form": "10-Q",
+   "status": "irrelevant",
+   "at": "2026-10-22"
   }
  }
 }
