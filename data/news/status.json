@@ -1,68 +1,68 @@
 {
- "last_run_at": "2026-10-21T11:59:05.728Z",
- "last_success_at": "2026-10-21T11:59:05.728Z",
+ "last_run_at": "2026-10-22T12:01:36.997Z",
+ "last_success_at": "2026-10-22T12:01:36.997Z",
  "last_result": "items",
- "last_note": "3 Meldungen, 1 zurückgehalten, 2 aus dem Zwischenspeicher",
+ "last_note": "4 Meldungen, 1 zurückgehalten, 4 aus dem Zwischenspeicher",
  "sources": {
   "ecb": {
    "ok": true,
    "feed_url": "https://www.ecb.europa.eu/rss/press.html",
    "items": 15,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "eurostat": {
    "ok": true,
    "feed_url": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_mode=view&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=CAT_PREREL",
    "items": 11,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "destatis": {
    "ok": true,
    "feed_url": "https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml",
    "items": 10,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "bundesbank": {
    "ok": true,
    "feed_url": "https://www.bundesbank.de/service/rss/de/633286/feed.rss",
    "items": 10,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "fed": {
    "ok": true,
    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
    "items": 20,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "bls": {
    "ok": false,
    "error": "https://www.bls.gov/feed/bls_latest.rss: HTTP 403",
-   "at": "2026-10-21T11:59:05.728Z",
+   "at": "2026-10-22T12:01:36.997Z",
    "last_ok_at": null
   },
   "bea": {
    "ok": true,
    "feed_url": "https://apps.bea.gov/rss/rss.xml",
    "items": 48,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "eia": {
    "ok": true,
    "feed_url": "https://www.eia.gov/rss/todayinenergy.xml",
    "items": 19,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   },
   "imf": {
    "ok": false,
    "error": "https://www.imf.org/en/News/rss?language=eng: HTTP 404",
-   "at": "2026-10-21T11:59:05.728Z",
+   "at": "2026-10-22T12:01:36.997Z",
    "last_ok_at": null
   },
   "fao": {
    "ok": true,
    "feed_url": "https://www.fao.org/feeds/fao-newsroom-rss",
    "items": 22,
-   "at": "2026-10-21T11:59:05.728Z"
+   "at": "2026-10-22T12:01:36.997Z"
   }
  },
  "held": [
@@ -70,17 +70,16 @@
    "event_id": "ee84b44f64fa8",
    "title": "Piero Cipollone: Pontes and Appia: unlocking opportunities for banks",
    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261021_1~d190f2c349.en.pdf",
-   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
-   "log": null
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
   }
  ],
  "model": "claude-sonnet-5-5",
  "llm": "aktiv",
  "usage": {
-  "input_tokens": 10719,
-  "output_tokens": 1733,
+  "input_tokens": 4817,
+  "output_tokens": 1417,
   "calls": 1,
-  "cached": 2,
-  "cost_usd": 0.039
+  "cached": 4,
+  "cost_usd": 0.024
  }
 }
