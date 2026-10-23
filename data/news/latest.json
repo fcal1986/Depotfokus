@@ -1,6 +1,6 @@
 {
- "date": "2026-10-22",
- "generated_at": "2026-10-22T12:01:36.997Z",
+ "date": "2026-10-23",
+ "generated_at": "2026-10-23T11:47:18.226Z",
  "result": "items",
  "note": null,
  "items": [
@@ -139,252 +139,6 @@
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   },
   {
-   "id": "n-1b60a3257a68",
-   "event_id": "e1b60a3257a68",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Rohöl im Wert von 30,0 Milliarden Euro im Zeitraum Januar bis August 2026 importiert",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_372_51.html",
-   "also": [],
-   "published_at": "2026-10-20T06:00:00.000Z",
-   "retrieved_at": "2026-10-20T11:47:13.304Z",
-   "created_at": "2026-10-20T11:47:13.304Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 5159,
-    "truncated": false,
-    "hash": "8ed2215214e3bb4f"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 3,
-    "why": {
-     "source": 1,
-     "categories": [
-      "energie",
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Deutschland zahlt für Rohöl-Importe 21,7 % mehr bei gleicher Menge",
-   "kurzfassung": "Deutschland importierte von Januar bis August 2026 etwa gleich viel Rohöl wie im Vorjahr, zahlte dafür aber wegen höherer Preise deutlich mehr.",
-   "facts": [
-    {
-     "text": "Die Menge sank um 0,6 %, der Wert stieg um 21,7 %. Die Quelle nennt Preissteigerungen im Zuge der Konflikte im Nahen Osten als Grund.",
-     "quote": "nahm der Import damit mengenmäßig um 0,6 % ab, während er wertmäßig um 21,7 % stieg. Grund dafür waren die Preissteigerungen bei Rohöl im Zuge der Konflikte im Nahen Osten."
-    },
-    {
-     "text": "Wichtigste Lieferländer waren die Vereinigten Staaten, Norwegen und Kasachstan. Aus Russland wurde seit 2025 kein Rohöl mehr nachgewiesen.",
-     "quote": "Wichtigste Lieferländer deutscher Rohölimporte waren im Zeitraum Januar bis August 2026 die Vereinigten Staaten, Norwegen und Kasachstan."
-    }
-   ],
-   "numbers": [
-    {
-     "value": 30,
-     "unit": "Mrd. Euro",
-     "period": "Januar bis August 2026",
-     "quote": "49,1 Millionen Tonnen Rohöl im Wert von 30,0 Milliarden Euro"
-    },
-    {
-     "value": 21.7,
-     "unit": "%",
-     "period": "Januar bis August 2026 gegenüber Vorjahreszeitraum (Wert)",
-     "quote": "während er wertmäßig um 21,7 % stieg"
-    },
-    {
-     "value": 607,
-     "unit": "Euro je Tonne",
-     "period": "August 2026",
-     "quote": "Im August 2026 betrug der Durchschnittwert je importierter Tonne Rohöl 607 Euro."
-    },
-    {
-     "value": 768,
-     "unit": "Euro je Tonne",
-     "period": "Mai 2026",
-     "quote": "Der bisherige Höchststand im Jahr 2026 wurde im Mai mit 768 Euro verzeichnet."
-    }
-   ],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "energie",
-    "preise"
-   ],
-   "regions": [
-    "Deutschland"
-   ],
-   "sectors": [
-    "Energie",
-    "Rohstoffe",
-    "Industrie",
-    "Transport"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-10-20",
-   "words": 167,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "nur_fakten",
-   "check_log": [
-    {
-     "part": "Fakt",
-     "text": "Von Januar bis August 2026 importierte Deutschland 49,1 Millionen Tonnen Rohöl im Wert von 30,0 Milliarden Euro. Im Vorjahreszeitraum waren es 49,4 Millionen Tonnen für 24,6 Milliarden Euro.",
-     "why": "Zahl nicht im Zitat: 49.4, 24.6"
-    },
-    {
-     "part": "Fakt",
-     "text": "Der Durchschnittswert je Tonne lag im August bei 607 Euro. Der Höchststand 2026 war im Mai mit 768 Euro, in den Monaten Juni und Juli gingen die Werte zurück.",
-     "why": "Zahl nicht im Zitat: 768"
-    },
-    {
-     "part": "Einordnung",
-     "why": "naechstes: Zahl ohne Beleg (600)"
-    }
-   ],
-   "check_note": "Fakten geprüft; die Einordnung hat die Prüfung nicht bestanden und wird nicht gezeigt."
-  },
-  {
-   "id": "n-3699aa9897da",
-   "event_id": "e3699aa9897da",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Gastgewerbeumsatz im August 2026 real 1,3 % niedriger als im Vormonat",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_374_45213.html",
-   "also": [],
-   "published_at": "2026-10-20T06:00:00.000Z",
-   "retrieved_at": "2026-10-20T11:47:13.304Z",
-   "created_at": "2026-10-20T11:47:13.304Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 4536,
-    "truncated": false,
-    "hash": "e9d69cd5b6cbcb48"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 3,
-    "why": {
-     "source": 1,
-     "categories": [
-      "lebensmittel",
-      "energie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Gastgewerbe: Umsatz im August real um 1,3 % unter Vormonat",
-   "kurzfassung": "Das deutsche Gastgewerbe hat im August 2026 real weniger umgesetzt als im Juli; im Jahresvergleich liegt der reale Umsatz deutlich niedriger, der nominale leicht höher.",
-   "facts": [
-    {
-     "text": "Der reale Umsatz des Gastgewerbes sank im August 2026 gegenüber Juli um 1,3 %, der nominale um 1,2 %.",
-     "quote": "kalender- und saisonbereinigt real (preisbereinigt) 1,3 % und nominal (nicht preisbereinigt) 1,2 % weniger umgesetzt als im Juli 2026"
-    },
-    {
-     "text": "Gegenüber August 2025 sank der Umsatz real um 4,2 %, während er nominal um 2,7 % stieg.",
-     "quote": "Im Vergleich zum Vorjahresmonat August 2025 sank der Umsatz real um 4,2 %, wohingegen er nominal um 2,7 % stieg."
-    },
-    {
-     "text": "In der Gastronomie ging der Umsatz im Monatsvergleich real um 1,8 % zurück.",
-     "quote": "In der Gastronomie sank der Umsatz im August 2026 gegenüber Juli 2026 real um 1,8 % und nominal um 1,7 %."
-    },
-    {
-     "text": "Hotels und andere Beherbergungsbetriebe legten im Monatsvergleich real um 0,4 % zu.",
-     "quote": "Umsatzzuwachs von real 0,4 % und nominal 0,3 %"
-    }
-   ],
-   "numbers": [
-    {
-     "value": -1.3,
-     "unit": "% (real, zum Vormonat)",
-     "period": "August 2026 gegenüber Juli 2026",
-     "quote": "kalender- und saisonbereinigt real (preisbereinigt) 1,3 % und nominal (nicht preisbereinigt) 1,2 % weniger umgesetzt als im Juli 2026"
-    },
-    {
-     "value": -4.2,
-     "unit": "% (real, zum Vorjahresmonat)",
-     "period": "August 2026 gegenüber August 2025",
-     "quote": "Im Vergleich zum Vorjahresmonat August 2025 sank der Umsatz real um 4,2 %, wohingegen er nominal um 2,7 % stieg."
-    },
-    {
-     "value": -1.8,
-     "unit": "% (real, Gastronomie, zum Vormonat)",
-     "period": "August 2026 gegenüber Juli 2026",
-     "quote": "In der Gastronomie sank der Umsatz im August 2026 gegenüber Juli 2026 real um 1,8 % und nominal um 1,7 %."
-    }
-   ],
-   "alltag": "Das Gastgewerbe umfasst Restaurants, Cafés und Hotels. Steigt der nominale Umsatz, der reale aber sinkt, wird mit höheren Preisen nicht mehr verkauft. Das kann für Gäste höhere Preise bei gleichzeitig weniger Besuchen bedeuten.",
-   "finanzwirkung": "Ein sinkender realer Umsatz kann die Auslastung von Betrieben belasten. Ob daraus auch weniger Gewinn wird, hängt von Kosten, Preisen und Personalaufwand ab. Für Aktien und Dividenden einzelner Unternehmen sagt diese Branchenzahl allein wenig aus.",
-   "naechstes": {
-    "text": "Beobachten, ob die Umsätze im September wieder steigen oder der Rückgang anhält; die Zahlen werden zudem revidiert.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "preise",
-    "unternehmen"
-   ],
-   "regions": [
-    "Deutschland"
-   ],
-   "sectors": [
-    "Konsumgüter",
-    "Einzelhandel"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "real (preisbereinigt)",
-     "def": "Der Wert wird um Preisänderungen bereinigt und zeigt, wie sich die verkaufte Menge entwickelt."
-    },
-    {
-     "term": "nominal",
-     "def": "Der Wert wird ohne Bereinigung um Preisänderungen angegeben."
-    },
-    {
-     "term": "kalender- und saisonbereinigt",
-     "def": "Der Wert ist um Feiertage, Wochentage und jahreszeitliche Schwankungen bereinigt."
-    }
-   ],
-   "scenario_link": null,
-   "event_date": "2026-10-20",
-   "words": 146,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
    "id": "n-1ad25637c7c5",
    "event_id": "e1ad25637c7c5",
    "revision": 1,
@@ -486,6 +240,420 @@
     {
      "term": "Aflatoxin",
      "def": "Ein Schimmelpilzgift, das Lebensmittel wie Mais verunreinigen kann."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-21",
+   "words": 162,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-8897d6209989",
+   "event_id": "e8897d6209989",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "ECB Consumer Expectations Survey results – September 2026",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261023~a3d201c97c.en.html",
+   "also": [],
+   "published_at": "2026-10-23T08:00:00.000Z",
+   "retrieved_at": "2026-10-23T11:47:18.226Z",
+   "created_at": "2026-10-23T11:47:18.226Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5939,
+    "truncated": false,
+    "hash": "44fcf18a61e190e0"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "EZB-Umfrage: Verbraucher erwarten leicht höhere Inflation und schwächeres Wachstum",
+   "kurzfassung": "Im Euroraum erwarten Verbraucher im September etwas höhere Inflation, ein schwächeres Wirtschaftswachstum und eine höhere Arbeitslosenquote als im August.",
+   "facts": [
+    {
+     "text": "Die Erwartungen für die Inflation in drei und in fünf Jahren blieben unverändert bei 2,9 % und 2,5 %.",
+     "quote": "Median expectations for inflation three years ahead and median expectations for inflation five years ahead were unchanged at 2.9% and 2.5% respectively."
+    },
+    {
+     "text": "Die erwarteten Hypothekenzinsen in zwölf Monaten blieben bei 4,9 %. Mehr Haushalte als zuvor berichten von strengerem Zugang zu Krediten.",
+     "quote": "Expectations for mortgage interest rates in 12 months’ time remained unchanged from July, at 4.9%."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 3.1,
+     "unit": "%",
+     "period": "erwartete Inflation, nächste 12 Monate (September 2026)",
+     "quote": "Median expectations for inflation over the next 12 months also increased, to 3.1% from 3.0%."
+    },
+    {
+     "value": -1.5,
+     "unit": "%",
+     "period": "erwartetes Wirtschaftswachstum, nächste 12 Monate (September 2026)",
+     "quote": "Expectations for economic growth over the next 12 months decreased in September to -1.5%, from -1.2% in August."
+    },
+    {
+     "value": 11.3,
+     "unit": "%",
+     "period": "erwartete Arbeitslosenquote in 12 Monaten (September 2026)",
+     "quote": "Expectations for the unemployment rate 12 months ahead increased to 11.3%, from 11.0%."
+    },
+    {
+     "value": 4.9,
+     "unit": "%",
+     "period": "erwartete Hypothekenzinsen in 12 Monaten",
+     "quote": "Expectations for mortgage interest rates in 12 months’ time remained unchanged from July, at 4.9%."
+    }
+   ],
+   "alltag": "Die Umfrage zeigt, wie Haushalte die Lage einschätzen, nicht, wie die Preise tatsächlich steigen. Wer höhere Preise erwartet, plant oft vorsichtiger. Haushalte mit niedrigem Einkommen nehmen und erwarten laut Umfrage höhere Inflation als Haushalte mit hohem Einkommen.",
+   "finanzwirkung": "Wenn Verbraucher vorsichtiger planen, kann das den Umsatz von Unternehmen im Konsumbereich dämpfen. Ob der Gewinn leidet, hängt davon ab, ob Firmen Preise weitergeben können und wie sich ihre Kosten entwickeln. Höhere Preiserwartungen können für die Zentralbank ein Argument sein, Zinsen länger hoch zu halten. Das wirkt auf Finanzierungskosten und Bewertungen, und Dividendenspielräume hängen vom Gewinn und vom verfügbaren Geld der Firmen ab.",
+   "naechstes": {
+    "text": "Die nächste Umfrage mit den Ergebnissen für Oktober zeigt, ob sich die Erwartungen weiter verschieben.",
+    "date": "2026-11-27",
+    "quote": "The release of the CES results for October is scheduled for 27 November 2026."
+   },
+   "categories": [
+    "preise",
+    "zinsen"
+   ],
+   "regions": [
+    "Euroraum"
+   ],
+   "sectors": [
+    "Konsumgüter",
+    "Einzelhandel",
+    "Banken",
+    "Immobilien",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Inflationserwartung",
+     "def": "Die Einschätzung, wie stark die Preise in der Zukunft steigen werden."
+    },
+    {
+     "term": "Median",
+     "def": "Der mittlere Wert einer Reihe: Die Hälfte der Antworten liegt darüber, die andere Hälfte darunter."
+    },
+    {
+     "term": "Hypothekenzins",
+     "def": "Der Zinssatz, den man für einen Kredit zum Kauf oder Bau einer Immobilie zahlt."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "C",
+    "why": "Höhere Preiserwartungen, schwächere Wachstums- und Arbeitsmarkterwartungen sowie strengerer Kreditzugang passen qualitativ zu einem längeren Wirtschafts- und Finanzmarktstress."
+   },
+   "event_date": "2026-10-23",
+   "words": 154,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Die erwartete Inflation für die nächsten zwölf Monate stieg im September auf 3,1 % nach 3,0 % im August. Die wahrgenommene Inflation der vergangenen zwölf Monate lag bei 3,6 %.",
+     "why": "Zahl nicht im Zitat: 3.6"
+    },
+    {
+     "part": "Fakt",
+     "text": "Für die kommenden zwölf Monate erwarten Verbraucher ein schrumpfendes Wirtschaftswachstum von minus 1,5 % und eine Arbeitslosenquote von 11,3 %.",
+     "why": "Zahl nicht im Zitat: 11.3"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-a3665a668c29",
+   "event_id": "ea3665a668c29",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Auftragseingang im Bauhauptgewerbe im August 2026: +23,0 % zum Vormonat",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_375_441.html",
+   "also": [],
+   "published_at": "2026-10-23T06:00:00.000Z",
+   "retrieved_at": "2026-10-23T11:47:18.226Z",
+   "created_at": "2026-10-23T11:47:18.226Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 3725,
+    "truncated": false,
+    "hash": "dcc258d093811d87"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Bauhauptgewerbe: Auftragseingang steigt im August um 23,0 % zum Vormonat",
+   "kurzfassung": "Der reale Auftragseingang im Bauhauptgewerbe stieg im August 2026 um 23,0 % zum Vormonat. Grund waren mehrere Großaufträge, vor allem im Tiefbau.",
+   "facts": [
+    {
+     "text": "Im Hochbau nahmen die Aufträge zum Vormonat um 12,4 % zu, im Tiefbau um 31,6 %.",
+     "quote": "nahm der Auftragseingang im Hochbau um 12,4 % und im Tiefbau um 31,6 % zu"
+    },
+    {
+     "text": "Zum Vorjahresmonat fiel der Auftragseingang im Hochbau um 1,7 %, im Tiefbau stieg er um 36,4 %.",
+     "quote": "Im Hochbau fiel der Auftragseingang um 1,7 % und im Tiefbau stieg er um 36,4 %."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 23,
+     "unit": "%",
+     "period": "August 2026 zu Juli 2026, real, saison- und kalenderbereinigt",
+     "quote": "gegenüber Juli 2026 kalender- und saisonbereinigt um 23,0 % gestiegen"
+    },
+    {
+     "value": 7.6,
+     "unit": "%",
+     "period": "Juni bis August 2026 zu den drei Monaten davor, real, bereinigt",
+     "quote": "von Juni 2026 bis August 2026 um 7,6 % höher als in den drei Monaten zuvor"
+    },
+    {
+     "value": 17.3,
+     "unit": "%",
+     "period": "August 2026 zu August 2025, real, kalenderbereinigt",
+     "quote": "stieg der reale, kalenderbereinigte Auftragseingang im Bauhauptgewerbe im August 2026 um 17,3 %"
+    },
+    {
+     "value": 10.9,
+     "unit": "Mrd. Euro",
+     "period": "August 2026, nominaler Umsatz",
+     "quote": "Der nominale Umsatz stieg im gleichen Zeitraum um 10,1 % auf 10,9 Milliarden Euro."
+    }
+   ],
+   "alltag": "Aufträge im Bau sind ein Frühindikator: Sie zeigen, was in den kommenden Monaten gebaut wird. Mehr Aufträge können Beschäftigung in der Branche stützen. Der Sprung geht auf mehrere Großaufträge zurück und ist deshalb mit Vorsicht zu lesen.",
+   "finanzwirkung": "Mehr Aufträge können den Umsatz von Bauunternehmen später erhöhen. Ob auch der Gewinn steigt, hängt von Kosten, Preisen und der Auslastung der Betriebe ab. Ein einzelner Monat mit Großaufträgen sagt wenig über die Dauer der Entwicklung aus; für Dividenden ist das nur ein indirekter Hinweis.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob der Auftragseingang auch in den Folgemonaten hoch bleibt oder nach dem Großauftrags-Effekt wieder sinkt.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "industrie"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Bau"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Bauhauptgewerbe",
+     "def": "Der Teil der Bauwirtschaft, der Rohbauten, Tiefbau und Spezialbauarbeiten ausführt."
+    },
+    {
+     "term": "Auftragseingang",
+     "def": "Der Wert der neu hereingekommenen Bestellungen in einem Zeitraum, noch vor der Ausführung."
+    },
+    {
+     "term": "real (preisbereinigt)",
+     "def": "Werte ohne den Einfluss steigender oder sinkender Preise."
+    },
+    {
+     "term": "saisonbereinigt",
+     "def": "Werte, aus denen übliche jahreszeitliche Schwankungen herausgerechnet wurden."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "B",
+    "why": "Starke Bauaufträge deuten qualitativ auf mehr Investitionen hin, was zu einem breiteren Aufschwung passen würde. Der Einzelwert beruht aber auf Großaufträgen."
+   },
+   "event_date": "2026-10-23",
+   "words": 133,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Der reale Auftragseingang im Bauhauptgewerbe stieg im August 2026 gegenüber Juli 2026 um 23,0 %. Das war der höchste saisonbereinigte Anstieg zum Vormonat seit 1991.",
+     "why": "Zahl nicht im Zitat: 23"
+    },
+    {
+     "part": "Fakt",
+     "text": "Der nominale Umsatz im Bauhauptgewerbe lag im August 2026 bei 10,9 Milliarden Euro, real 4,9 % über dem Vorjahresmonat.",
+     "why": "Zahl nicht im Zitat: 4.9"
+    },
+    {
+     "part": "Zahl",
+     "text": "548000 Personen",
+     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-74fdcf8e2f2f",
+   "event_id": "e74fdcf8e2f2f",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Deutschland importierte im 1. Halbjahr 2026 gut 96 % weniger Waren aus Russland als im 1. Halbjahr 2021",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N072_51_46.html",
+   "also": [],
+   "published_at": "2026-10-21T06:00:00.000Z",
+   "retrieved_at": "2026-10-23T11:47:18.226Z",
+   "created_at": "2026-10-23T11:47:18.226Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 11847,
+    "truncated": false,
+    "hash": "5a00fc5007ca514c"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Deutsche Importe aus Russland brechen seit 2021 um gut 96 % ein",
+   "kurzfassung": "Deutschland importiert deutlich weniger Waren aus Russland als vor dem Krieg; auch Exporte und die Geschäfte deutscher und russischer Unternehmen sind stark gesunken.",
+   "facts": [
+    {
+     "text": "Im 1. Halbjahr 2026 importierte Deutschland 96,4 % weniger Waren aus Russland als im 1. Halbjahr 2021.",
+     "quote": "Im 1. Halbjahr 2026 hat Deutschland 96,4 % weniger Waren aus der Russischen Föderation importiert als im 1. Halbjahr 2021, dem Vergleichszeitraum vor Kriegsausbruch."
+    },
+    {
+     "text": "Die Exporte nach Russland sind ebenfalls gesunken, aber weniger stark als die Importe.",
+     "quote": "Mit -73,1 % fiel der Rückgang im selben Zeitraum jedoch weniger stark aus als bei den Importen."
+    },
+    {
+     "text": "Bei den Importen sind heute Nahrungs- und Futtermittel, Metalle und Chemie wichtig. 2021 waren es Erdöl und Erdgas.",
+     "quote": "Im 1. Halbjahr 2021 waren Erdöl und Erdgas mit Abstand die meistimportierten Güter aus Russland gewesen – mit einem Wert von 9,2 Milliarden Euro und einem Anteil von 61,5 %."
+    },
+    {
+     "text": "Der Umsatz russisch kontrollierter Unternehmen in Deutschland sank von 2021 bis 2024 deutlich.",
+     "quote": "Im Jahr 2021 hatten die 229 russisch kontrollierten Unternehmen noch einen Anteil von 0,7 % an allen auslandskontrollierten Unternehmen hierzulande."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 0.5,
+     "unit": "Mrd. Euro",
+     "period": "1. Halbjahr 2026",
+     "quote": "Im 1. Halbjahr 2026 wurden Waren im Wert von gut 0,5 Milliarden Euro aus Russland importiert"
+    },
+    {
+     "value": 15,
+     "unit": "Mrd. Euro",
+     "period": "1. Halbjahr 2021",
+     "quote": "Im 1. Halbjahr 2021 beliefen sich die Importe von dort noch auf 15,0 Milliarden Euro."
+    },
+    {
+     "value": 3.4,
+     "unit": "Mrd. Euro",
+     "period": "1. Halbjahr 2026",
+     "quote": "Deutschland exportierte im zurückliegenden Halbjahr Waren im Wert von 3,4 Milliarden Euro nach Russland."
+    },
+    {
+     "value": 8.4,
+     "unit": "Mrd. Euro",
+     "period": "2024",
+     "quote": "Die von Russland aus kontrollierten Unternehmen erwirtschafteten einen Umsatz von 8,4 Milliarden Euro"
+    }
+   ],
+   "alltag": "Deutschland bezieht heute kaum noch Waren aus Russland. Das zeigt, wie stark sich die Handelsbeziehungen seit 2021 verändert haben. Welche Folgen das für Preise oder Jobs hat, nennt die Quelle nicht.",
+   "finanzwirkung": "Unternehmen, die früher stark mit Russland Geschäfte machten, können Umsatz verloren haben; ob sie ihn anderswo ersetzen konnten, hängt vom Einzelfall ab. Für Aktien und Dividenden ist die Wirkung deshalb nicht pauschal bestimmbar. Sie hängt davon ab, wie groß der Russlandanteil eines Unternehmens war und ob Gewinne und verfügbares Geld dadurch beeinflusst wurden.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die EU weitere Sanktionspakete beschließt und wie sich Handel und Unternehmensverflechtungen weiter entwickeln.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "industrie",
+    "unternehmen",
+    "energie"
+   ],
+   "regions": [
+    "Deutschland",
+    "EU",
+    "Andere"
+   ],
+   "sectors": [
+    "Energie",
+    "Industrie",
+    "Rohstoffe",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Sanktionen",
+     "def": "Beschränkungen im Handel und Finanzverkehr, mit denen ein Staat oder die EU Druck auf ein anderes Land ausübt."
+    },
+    {
+     "term": "auslandskontrolliertes Unternehmen",
+     "def": "Ein Unternehmen im Inland, dessen Muttergesellschaft ihren Sitz in einem anderen Land hat."
+    },
+    {
+     "term": "Importe",
+     "def": "Waren, die aus dem Ausland ins Inland eingeführt werden."
     }
    ],
    "scenario_link": null,
