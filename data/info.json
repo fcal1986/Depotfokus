@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "prgde_000008042426000250": {
+   "org": "Procter & Gamble",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q1 GJ 2027",
+   "date": "22.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000250/fy2627q1jas8-kexhibit991.htm"
   }
  },
  "positions": {
@@ -641,19 +648,36 @@
   },
   "PRG.DE": {
    "cik": 80424,
-   "checked": "2026-10-04",
-   "method": "manual",
-   "mood": "neg",
-   "interp": "Die Absatzmengen stagnieren; für das neue Geschäftsjahr erwartet das Unternehmen kaum Gewinnwachstum.",
+   "checked": "2026-10-23",
+   "method": "claude",
+   "mood": "pos",
+   "interp": "Das Mengenwachstum ist zurück: Das Volumen steigt im Quartal um 2 % bei 4 % organischem Wachstum. Beim Gewinn zeigt sich jedoch kaum Fortschritt. Das Kern-EPS wächst um 1 %, währungsbereinigt bleibt es unverändert, weil höhere Rohstoffkosten die Bruttomarge belasten. Die Jahresprognose bleibt unverändert.",
    "changes": {
-    "cmp": "Q4 GJ 2026, neue Prognose GJ 2027",
+    "cmp": "Q1 GJ 2027 gegenüber Q4 GJ 2026",
     "items": [
      {
-      "kind": "company",
-      "t": "Prognose GJ 2027: Kern-EPS unverändert bis plus 3 %.",
+      "kind": "metric",
+      "t": "Absatzmenge von 0 % auf +2 % (Q4 GJ 2026: unverändert); das Volumen wächst damit wieder.",
       "src": [
-       "pg"
-      ]
+       "prgde_000008042426000250"
+      ],
+      "quote": "Organic sales, which exclude the impacts of foreign exchange and acquisitions and divestitures, also increased four percent driven by a two percent increase from volume and a one percent increase from favorable mix."
+     },
+     {
+      "kind": "metric",
+      "t": "Organisches Wachstum von 0 % auf +4 %.",
+      "src": [
+       "prgde_000008042426000250"
+      ],
+      "quote": "Net Sales +4.0%; Organic Sales +4.0%"
+     },
+     {
+      "kind": "company",
+      "t": "Prognose für das Gesamtumsatzwachstum 2027 wegen der Thorne-Übernahme auf 2 bis 4 % angehoben; Prognose für organisches Wachstum (1 bis 3 %) und Kern-EPS unverändert.",
+      "src": [
+       "prgde_000008042426000250"
+      ],
+      "quote": "P&G updated its guidance range for fiscal 2027 all-in sales growth to be in the range of two to four percent versus the prior year, reflecting the acquisition of Thorne as of October 1, 2026. The Company maintained its outlook for organic sales growth in the range of one to three percent versus the prior year."
      }
     ]
    },
@@ -680,13 +704,14 @@
      "q": "Wächst die Absatzmenge wieder?",
      "metric": "Absatzmenge (Volumen)",
      "cond": "über 0 %",
-     "per": "Q4 GJ 2026",
-     "obs": "0 %",
-     "prev": null,
-     "status": "not_met",
-     "src": "pg",
-     "next": "Bericht Q1 GJ 2027, Termin geschätzt Mitte Oktober",
-     "why": "Ohne Mengenwachstum hängt das Wachstum allein an Preiserhöhungen."
+     "per": "Q1 GJ 2027",
+     "obs": "+2,4 % Volumen (organisch +2,4 %)",
+     "prev": "Q4 GJ 2026: 0 %",
+     "status": "met",
+     "src": "prgde_000008042426000250",
+     "next": "Bericht Q2 GJ 2027, Termin geschätzt Ende Januar",
+     "why": "Ohne Mengenwachstum hängt das Wachstum allein an Preiserhöhungen.",
+     "quote": "Total P&G | 2.4% | -% | 0.4% | 1.1% | -% | 4.0% | 2.4% | 4.0% |"
     }
    ],
    "themes": [
@@ -694,7 +719,14 @@
      "t": "Rohstoff- und Energiekosten",
      "why": "Wirken direkt auf die Marge. Nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0000080424-26-000250",
+    "form": "8-K",
+    "date": "2026-10-22",
+    "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000250/fy2627q1jas8-kexhibit991.htm"
+   }
   },
   "NOV.DE": {
    "cik": 353278,

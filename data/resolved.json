@@ -1,1 +1,9 @@
-{}
+{
+ "o|PRG.DE|Bericht Q1 GJ 2027, Termin geschätzt Mitte Oktober|Wächst die Absatzmenge wieder?": {
+  "outcome": 1,
+  "per": "Q1 GJ 2027",
+  "obs": "+2,4 % Volumen (organisch +2,4 %)",
+  "src": "prgde_000008042426000250",
+  "at": "2026-10-23"
+ }
+}
