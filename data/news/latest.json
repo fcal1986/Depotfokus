@@ -1,143 +1,9 @@
 {
- "date": "2026-10-23",
- "generated_at": "2026-10-23T11:47:18.226Z",
+ "date": "2026-10-24",
+ "generated_at": "2026-10-24T11:12:25.759Z",
  "result": "items",
  "note": null,
  "items": [
-  {
-   "id": "n-e6f7e22ad039",
-   "event_id": "ee6f7e22ad039",
-   "revision": 1,
-   "source": {
-    "id": "eurostat",
-    "name": "Eurostat",
-    "short": "Eurostat",
-    "region": "EU/Euroraum",
-    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
-    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
-   },
-   "original_title": "Euro area government deficit at 3.0% and EU at 3.1% of GDP",
-   "url": "https://ec.europa.eu/eurostat/product?code=2-21102026-ap",
-   "also": [],
-   "published_at": "2026-10-21T09:00:00.000Z",
-   "retrieved_at": "2026-10-21T11:59:05.728Z",
-   "created_at": "2026-10-21T11:59:05.728Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 14000,
-    "truncated": true,
-    "hash": "b339a32efc38aa1d"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 3,
-    "why": {
-     "source": 1,
-     "categories": [
-      "industrie"
-     ],
-     "core": true,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Euroraum-Staatsdefizit bleibt 2025 bei 3,0 % des BIP, Schuldenquote steigt",
-   "kurzfassung": "Das Staatsdefizit im Euroraum liegt 2025 unverändert bei 3,0 % der Wirtschaftsleistung, die Staatsschulden steigen aber auf 87,7 %.",
-   "facts": [
-    {
-     "text": "Das Defizit der Euro-Staaten lag 2025 wie 2024 bei 3,0 % des Bruttoinlandsprodukts (BIP), in der EU bei 3,1 %.",
-     "quote": "In the euro area (EA20) the government deficit to GDP ratio remained unchanged at 3.0% in 2024 and 2025. In the EU , it also remained unchanged at 3.1%"
-    },
-    {
-     "text": "Die Schuldenquote des Euroraums stieg von 86,6 % auf 87,7 %, die der EU von 80,3 % auf 81,5 %.",
-     "quote": "In the euro area the government debt to GDP ratio increased from 86.6% at the end of 2024 to 87.7% at the end of 2025, and in the EU from 80.3% to 81.5%."
-    },
-    {
-     "text": "Die höchsten Defizite meldeten Rumänien, Polen, Belgien und Frankreich; elf Staaten lagen bei 3 % oder darüber.",
-     "quote": "The highest deficits were recorded in Romania (‑7.8%), Poland (-7.2%), Belgium (-5.2%) and France (‑5.1%). Eleven Member States had deficits equal to or higher than 3% of GDP."
-    },
-    {
-     "text": "Im Euroraum stiegen 2025 sowohl Staatsausgaben als auch Staatseinnahmen im Verhältnis zum BIP gegenüber 2024.",
-     "quote": "Government revenue and expenditure ratios increased both in the euro area and the EU compared to 2024."
-    }
-   ],
-   "numbers": [
-    {
-     "value": 3,
-     "unit": "% des BIP",
-     "period": "2025",
-     "quote": "the government deficit to GDP ratio remained unchanged at 3.0% in 2024 and 2025"
-    },
-    {
-     "value": 87.7,
-     "unit": "% des BIP",
-     "period": "Ende 2025",
-     "quote": "increased from 86.6% at the end of 2024 to 87.7% at the end of 2025"
-    },
-    {
-     "value": 49.8,
-     "unit": "% des BIP",
-     "period": "2025",
-     "quote": "the government total expenditure to GDP ratio in the euro area stood at 49.8% of GDP"
-    },
-    {
-     "value": 46.8,
-     "unit": "% des BIP",
-     "period": "2025",
-     "quote": "the government total revenue to GDP ratio stood at 46.8%"
-    }
-   ],
-   "alltag": "Die Staaten geben weiter mehr aus, als sie einnehmen, und finanzieren die Lücke mit Schulden. Das betrifft indirekt auch uns: Spätere Steuern, staatliche Leistungen und die Kosten für Staatskredite hängen davon ab, wie stark die Schulden wachsen. Ein Defizit bedeutet nicht, dass die Schulden sinken oder steigen müssen, die Quote kann auch durch Wirtschaftswachstum schwanken.",
-   "finanzwirkung": "Höhere Staatsschulden können die Nachfrage der Anleger nach Staatsanleihen und damit die Zinskosten der Staaten beeinflussen. Das kann sich auf Banken, Versicherungen und die Finanzierungskosten von Unternehmen auswirken, hängt aber von Wachstum, Inflation und der Geldpolitik ab. Staatliche Ausgaben können Umsätze einzelner Branchen stützen, während höhere Steuern oder Zinsen Gewinne und verfügbares Geld belasten können.",
-   "naechstes": {
-    "text": "Zu beobachten ist, ob die Staaten mit Defiziten über 3 % ihre Haushalte anpassen und wie sich die Schuldenquoten weiter entwickeln.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "zinsen",
-    "preise"
-   ],
-   "regions": [
-    "Euroraum",
-    "EU"
-   ],
-   "sectors": [
-    "Staat",
-    "Banken",
-    "Breiter Markt"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Defizit",
-     "def": "Der Staat gibt in einem Jahr mehr aus, als er einnimmt."
-    },
-    {
-     "term": "Schuldenquote",
-     "def": "Die gesamten Staatsschulden im Verhältnis zur jährlichen Wirtschaftsleistung eines Landes."
-    },
-    {
-     "term": "Bruttoinlandsprodukt (BIP)",
-     "def": "Der Wert aller Waren und Dienstleistungen, die ein Land in einem Jahr erzeugt."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "A",
-    "why": "Anhaltende Defizite und leicht steigende Schuldenquoten passen zu einer zähen Erholung, in der der finanzielle Spielraum der Staaten begrenzt bleibt."
-   },
-   "event_date": "2026-10-21",
-   "words": 203,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
   {
    "id": "n-1ad25637c7c5",
    "event_id": "e1ad25637c7c5",
@@ -278,14 +144,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "lebensmittel"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -416,14 +282,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "industrie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -529,140 +395,6 @@
      "why": "Zahl, Einheit oder Zeitraum nicht belegt"
     }
    ],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-74fdcf8e2f2f",
-   "event_id": "e74fdcf8e2f2f",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Deutschland importierte im 1. Halbjahr 2026 gut 96 % weniger Waren aus Russland als im 1. Halbjahr 2021",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N072_51_46.html",
-   "also": [],
-   "published_at": "2026-10-21T06:00:00.000Z",
-   "retrieved_at": "2026-10-23T11:47:18.226Z",
-   "created_at": "2026-10-23T11:47:18.226Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 11847,
-    "truncated": false,
-    "hash": "5a00fc5007ca514c"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Deutsche Importe aus Russland brechen seit 2021 um gut 96 % ein",
-   "kurzfassung": "Deutschland importiert deutlich weniger Waren aus Russland als vor dem Krieg; auch Exporte und die Geschäfte deutscher und russischer Unternehmen sind stark gesunken.",
-   "facts": [
-    {
-     "text": "Im 1. Halbjahr 2026 importierte Deutschland 96,4 % weniger Waren aus Russland als im 1. Halbjahr 2021.",
-     "quote": "Im 1. Halbjahr 2026 hat Deutschland 96,4 % weniger Waren aus der Russischen Föderation importiert als im 1. Halbjahr 2021, dem Vergleichszeitraum vor Kriegsausbruch."
-    },
-    {
-     "text": "Die Exporte nach Russland sind ebenfalls gesunken, aber weniger stark als die Importe.",
-     "quote": "Mit -73,1 % fiel der Rückgang im selben Zeitraum jedoch weniger stark aus als bei den Importen."
-    },
-    {
-     "text": "Bei den Importen sind heute Nahrungs- und Futtermittel, Metalle und Chemie wichtig. 2021 waren es Erdöl und Erdgas.",
-     "quote": "Im 1. Halbjahr 2021 waren Erdöl und Erdgas mit Abstand die meistimportierten Güter aus Russland gewesen – mit einem Wert von 9,2 Milliarden Euro und einem Anteil von 61,5 %."
-    },
-    {
-     "text": "Der Umsatz russisch kontrollierter Unternehmen in Deutschland sank von 2021 bis 2024 deutlich.",
-     "quote": "Im Jahr 2021 hatten die 229 russisch kontrollierten Unternehmen noch einen Anteil von 0,7 % an allen auslandskontrollierten Unternehmen hierzulande."
-    }
-   ],
-   "numbers": [
-    {
-     "value": 0.5,
-     "unit": "Mrd. Euro",
-     "period": "1. Halbjahr 2026",
-     "quote": "Im 1. Halbjahr 2026 wurden Waren im Wert von gut 0,5 Milliarden Euro aus Russland importiert"
-    },
-    {
-     "value": 15,
-     "unit": "Mrd. Euro",
-     "period": "1. Halbjahr 2021",
-     "quote": "Im 1. Halbjahr 2021 beliefen sich die Importe von dort noch auf 15,0 Milliarden Euro."
-    },
-    {
-     "value": 3.4,
-     "unit": "Mrd. Euro",
-     "period": "1. Halbjahr 2026",
-     "quote": "Deutschland exportierte im zurückliegenden Halbjahr Waren im Wert von 3,4 Milliarden Euro nach Russland."
-    },
-    {
-     "value": 8.4,
-     "unit": "Mrd. Euro",
-     "period": "2024",
-     "quote": "Die von Russland aus kontrollierten Unternehmen erwirtschafteten einen Umsatz von 8,4 Milliarden Euro"
-    }
-   ],
-   "alltag": "Deutschland bezieht heute kaum noch Waren aus Russland. Das zeigt, wie stark sich die Handelsbeziehungen seit 2021 verändert haben. Welche Folgen das für Preise oder Jobs hat, nennt die Quelle nicht.",
-   "finanzwirkung": "Unternehmen, die früher stark mit Russland Geschäfte machten, können Umsatz verloren haben; ob sie ihn anderswo ersetzen konnten, hängt vom Einzelfall ab. Für Aktien und Dividenden ist die Wirkung deshalb nicht pauschal bestimmbar. Sie hängt davon ab, wie groß der Russlandanteil eines Unternehmens war und ob Gewinne und verfügbares Geld dadurch beeinflusst wurden.",
-   "naechstes": {
-    "text": "Zu beobachten ist, ob die EU weitere Sanktionspakete beschließt und wie sich Handel und Unternehmensverflechtungen weiter entwickeln.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "industrie",
-    "unternehmen",
-    "energie"
-   ],
-   "regions": [
-    "Deutschland",
-    "EU",
-    "Andere"
-   ],
-   "sectors": [
-    "Energie",
-    "Industrie",
-    "Rohstoffe",
-    "Breiter Markt"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Sanktionen",
-     "def": "Beschränkungen im Handel und Finanzverkehr, mit denen ein Staat oder die EU Druck auf ein anderes Land ausübt."
-    },
-    {
-     "term": "auslandskontrolliertes Unternehmen",
-     "def": "Ein Unternehmen im Inland, dessen Muttergesellschaft ihren Sitz in einem anderen Land hat."
-    },
-    {
-     "term": "Importe",
-     "def": "Waren, die aus dem Ausland ins Inland eingeführt werden."
-    }
-   ],
-   "scenario_link": null,
-   "event_date": "2026-10-21",
-   "words": 162,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   }
  ],

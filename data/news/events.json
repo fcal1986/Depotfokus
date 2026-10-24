@@ -29,7 +29,8 @@
   "fao.org/newsroom/detail/world-food-prize-2026-highlights-importance-of-the-right-to-food-safety/en": "e1ad25637c7c5",
   "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261023~a3d201c97c.en.html": "e8897d6209989",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_375_441.html": "ea3665a668c29",
-  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N072_51_46.html": "e74fdcf8e2f2f"
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N072_51_46.html": "e74fdcf8e2f2f",
+  "bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-september-2026-1012924": "eb225416e0ad7"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -3667,6 +3668,78 @@
     "status": "geprüft",
     "check_log": [],
     "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "eb225416e0ad7": {
+   "revision": 1,
+   "evidence_hash": null,
+   "first_seen_at": "2026-10-24T11:12:25.759Z",
+   "last_seen_at": "2026-10-24T11:12:25.759Z",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-september-2026-1012924",
+   "article": {
+    "id": "n-b225416e0ad7",
+    "event_id": "eb225416e0ad7",
+    "revision": 1,
+    "source": {
+     "id": "bundesbank",
+     "name": "Deutsche Bundesbank",
+     "short": "Bundesbank",
+     "region": "Deutschland",
+     "license": "Nachdruck mit Quellenangabe gestattet",
+     "license_url": "https://www.bundesbank.de/de/service/impressum"
+    },
+    "original_title": "Ergebnisse der EZB-Umfrage zu den Verbrauchererwartungen: September 2026",
+    "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-september-2026-1012924",
+    "also": [],
+    "published_at": "2026-10-23T08:05:00.000Z",
+    "retrieved_at": "2026-10-24T11:12:25.759Z",
+    "created_at": "2026-10-24T11:12:25.759Z",
+    "evidence": {
+     "kind": "feed",
+     "chars": 325,
+     "truncated": false,
+     "hash": null
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.9,
+     "why": {
+      "source": 0.9,
+      "categories": [
+       "energie",
+       "preise"
+      ],
+      "core": false,
+      "fresh": false,
+      "sensational": false
+     }
+    },
+    "title": "Ergebnisse der EZB-Umfrage zu den Verbrauchererwartungen: September 2026",
+    "kurzfassung": null,
+    "facts": [],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "energie",
+     "preise"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-10-23",
+    "words": 0,
+    "length_ok": false,
+    "status": "zurückgehalten",
+    "held_reason": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
    },
    "history": []
   }
