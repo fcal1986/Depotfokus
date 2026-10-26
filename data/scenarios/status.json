@@ -1,11 +1,11 @@
 {
  "scenario_set_id": "macro-2026-10-09_2029-10-09",
- "last_attempt_at": "2026-10-19T10:47:04.954Z",
+ "last_attempt_at": "2026-10-26T11:07:52.271Z",
  "last_attempt_result": "new_snapshot",
- "last_attempt_note": "A (Zähe Erholung) steigt um 1 Prozentpunkt auf 51 %; B (Breiter Aufschwung) sinkt um 1 Prozentpunkt auf 26 % seit der Vorwoche. Wichtigster Treiber: Risikoaufschlag Hochzinsanleihen Euro.",
- "last_attempt_snapshot_id": "2026-W43",
- "last_successful_evaluation_at": "2026-10-19T10:47:04.954Z",
- "next_scheduled_run": "2026-10-26T06:20:00.000Z",
+ "last_attempt_note": "B (Breiter Aufschwung) sinkt um 1 Prozentpunkt auf 25 %; C (Längerer Wirtschafts- und Finanzmarktstress) steigt um 1 Prozentpunkt auf 24 % seit der Vorwoche. Wichtigster Treiber: Ölpreis Brent, Veränderung zum Vorjahr.",
+ "last_attempt_snapshot_id": "2026-W44",
+ "last_successful_evaluation_at": "2026-10-26T11:07:52.271Z",
+ "next_scheduled_run": "2026-11-02T06:20:00.000Z",
  "schedule": "Montag 07:20 Uhr (Europe/Berlin); manuell über Actions › Szenario-Monitor › Run workflow",
  "sources": {
   "EA_ESI": {
@@ -17,7 +17,7 @@
   "EA_GDP_QQ": {
    "status": "ok",
    "new": 0,
-   "revised": 0,
+   "revised": 4,
    "latest": "2026-Q2"
   },
   "EA_HICP": {
@@ -42,43 +42,43 @@
    "status": "ok",
    "new": 7,
    "revised": 0,
-   "latest": "2026-10-19"
+   "latest": "2026-10-26"
   },
   "BRENT_YOY": {
    "status": "ok",
-   "new": 0,
+   "new": 2,
    "revised": 0,
-   "latest": "2026-07"
+   "latest": "2026-09"
   },
   "EU_GAS": {
    "status": "ok",
-   "new": 0,
+   "new": 2,
    "revised": 0,
-   "latest": "2026-07"
+   "latest": "2026-09"
   },
   "EA_CISS": {
    "status": "ok",
    "new": 5,
-   "revised": 14,
-   "latest": "2026-10-15"
+   "revised": 15,
+   "latest": "2026-10-22"
   },
   "EA_HY_OAS": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-15"
+   "latest": "2026-10-22"
   },
   "US_HY_OAS": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-15"
+   "latest": "2026-10-22"
   },
   "VIX": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-15"
+   "latest": "2026-10-22"
   },
   "US_PROFITS_YOY": {
    "status": "ok",
