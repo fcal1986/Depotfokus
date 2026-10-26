@@ -30,7 +30,9 @@
   "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261023~a3d201c97c.en.html": "e8897d6209989",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_375_441.html": "ea3665a668c29",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N072_51_46.html": "e74fdcf8e2f2f",
-  "bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-september-2026-1012924": "eb225416e0ad7"
+  "bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-september-2026-1012924": "eb225416e0ad7",
+  "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261026~bde7b6d11a.en.html": "e1740e1473ebf",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N073_21_12.html": "ee8ebd273aa88"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -3740,6 +3742,279 @@
     "length_ok": false,
     "status": "zurückgehalten",
     "held_reason": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
+   },
+   "history": []
+  },
+  "e1740e1473ebf": {
+   "revision": 1,
+   "evidence_hash": "cc448817f8339750",
+   "first_seen_at": "2026-10-26T13:14:04.903Z",
+   "last_seen_at": "2026-10-26T13:14:04.903Z",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261026~bde7b6d11a.en.html",
+   "article": {
+    "id": "n-1740e1473ebf",
+    "event_id": "e1740e1473ebf",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Survey on the Access to Finance of Enterprises: lending conditions tightened",
+    "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261026~bde7b6d11a.en.html",
+    "also": [],
+    "published_at": "2026-10-26T09:00:00.000Z",
+    "retrieved_at": "2026-10-26T13:14:04.903Z",
+    "created_at": "2026-10-26T13:14:04.903Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 8180,
+     "truncated": false,
+     "hash": "cc448817f8339750"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "EZB-Umfrage: Firmen im Euroraum melden strengere Kreditbedingungen",
+    "kurzfassung": "Unternehmen im Euroraum berichten über weiter steigende Kreditzinsen und eine geringere Verfügbarkeit von Bankkrediten; die Finanzierungslücke hat sich leicht vergrößert.",
+    "facts": [
+     {
+      "text": "Netto 46 % der Firmen meldeten für das dritte Quartal 2026 steigende Zinsen auf Bankkredite, nach 42 % im Vorquartal.",
+      "quote": "euro area firms widely reported a further net increase in interest rates on bank loans (net 46%, compared with 42% in the previous quarter)"
+     },
+     {
+      "text": "Die Verfügbarkeit von Bankkrediten sank, und zwar stärker als der Finanzierungsbedarf der Firmen.",
+      "quote": "firms reported that the availability of bank loans had declined by more than their needs"
+     },
+     {
+      "text": "Die Allgemeine Wirtschaftslage gilt weiter als wichtigster Faktor, der den Zugang zu externer Finanzierung einschränkt.",
+      "quote": "Firms continued to perceive the general economic outlook as the main factor constraining the availability of external financing (net 31%, compared with 29% in the previous survey round)"
+     },
+     {
+      "text": "Weil die meisten Befragten neu dabei waren, lassen sich die Zahlenangaben zu Preis- und Inflationserwartungen derzeit schwer deuten.",
+      "quote": "first-time respondents accounting for the majority of the sample, makes it challenging to interpret the responses to the numerical questions at this stage"
+     }
+    ],
+    "numbers": [
+     {
+      "value": 46,
+      "unit": "% netto",
+      "period": "Q3 2026",
+      "quote": "a further net increase in interest rates on bank loans (net 46%, compared with 42% in the previous quarter)"
+     },
+     {
+      "value": -5,
+      "unit": "% netto",
+      "period": "Q3 2026",
+      "quote": "a decrease in the availability of bank loans in the third quarter of 2026 (-5%, compared with a net -1% in the second quarter of 2026)"
+     },
+     {
+      "value": 14,
+      "unit": "% netto",
+      "period": "Q3 2026",
+      "quote": "collateral requirements (net 14%, up from 10%)"
+     },
+     {
+      "value": 12822,
+      "unit": "Unternehmen",
+      "period": "Umfrage 26.08.–02.10.2026",
+      "quote": "The sample comprised 12,822 enterprises in the euro area"
+     }
+    ],
+    "alltag": "Wenn Kredite teurer und schwerer zu bekommen sind, überlegen Firmen genauer, ob sie investieren oder einstellen. Das kann sich mit Verzögerung auf Löhne, Arbeitsplätze und Preise auswirken. Die Umfrage zeigt Einschätzungen von Firmen, keine gemessenen Kreditdaten.",
+    "finanzwirkung": "Höhere Finanzierungskosten und strengere Bedingungen können die Gewinne von Unternehmen belasten, besonders bei hoher Verschuldung. Ob das Dividenden schmälert, hängt davon ab, wie stark Firmen betroffen sind und ob Umsatz und Preise den Kostenanstieg ausgleichen. Banken könnten bei höheren Zinsen mehr verdienen, tragen aber ein höheres Kreditrisiko, falls die Konjunktur schwächer wird.",
+    "naechstes": {
+     "text": "Beobachten, ob die Firmen in den nächsten drei Monaten tatsächlich weniger externe Finanzierung erwarten und wie sich die Erwartungen bei einer stabileren Stichprobe entwickeln.",
+     "date": null,
+     "quote": "Looking ahead, more firms expect the availability of external financing to decrease over the next three months."
+    },
+    "categories": [
+     "zinsen",
+     "unternehmen"
+    ],
+    "regions": [
+     "Euroraum"
+    ],
+    "sectors": [
+     "Banken",
+     "Breiter Markt"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Finanzierungslücke",
+      "def": "Unterschied zwischen dem Kreditbedarf der Firmen und dem, was Banken tatsächlich verfügbar machen."
+     },
+     {
+      "term": "Netto-Prozentsatz",
+      "def": "Anteil der Firmen mit Anstieg minus Anteil der Firmen mit Rückgang."
+     },
+     {
+      "term": "Sicherheiten",
+      "def": "Vermögenswerte, die eine Firma der Bank als Absicherung für einen Kredit anbietet."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "C",
+     "why": "Strengere Kreditbedingungen und eine eingetrübte Wirtschaftseinschätzung passen qualitativ zu einem Szenario mit länger anhaltendem Finanzierungsstress, sind aber allein noch kein Beleg dafür."
+    },
+    "event_date": "2026-10-26",
+    "words": 178,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "ee8ebd273aa88": {
+   "revision": 1,
+   "evidence_hash": "448eb32f545232f1",
+   "first_seen_at": "2026-10-26T13:14:04.903Z",
+   "last_seen_at": "2026-10-26T13:14:04.903Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N073_21_12.html",
+   "article": {
+    "id": "n-e8ebd273aa88",
+    "event_id": "ee8ebd273aa88",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Zahl der Auszubildenden zur Bestattungsfachkraft auf neuem Höchststand",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N073_21_12.html",
+    "also": [],
+    "published_at": "2026-10-26T07:00:00.000Z",
+    "retrieved_at": "2026-10-26T13:14:04.903Z",
+    "created_at": "2026-10-26T13:14:04.903Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 6361,
+     "truncated": false,
+     "hash": "448eb32f545232f1"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "energie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Bestattungen: mehr Sterbefälle, mehr Auszubildende, Preise über der Inflation",
+    "kurzfassung": "Die Zahl der Sterbefälle und der Auszubildenden zur Bestattungsfachkraft steigt, und Bestattungsleistungen verteuerten sich 2025 mit 3,2 Prozent stärker als die Verbraucherpreise insgesamt.",
+    "facts": [
+     {
+      "text": "2025 starben rund 1,0 Millionen Menschen, 9 Prozent mehr als zehn Jahre zuvor.",
+      "quote": "Im Jahr 2025 starben hierzulande rund 1,0 Millionen Menschen – das waren 9 % mehr als zehn Jahre zuvor."
+     },
+     {
+      "text": "Bestattungsleistungen und Friedhofsgebühren verteuerten sich 2025 um 3,2 Prozent, die Verbraucherpreise insgesamt um 2,2 Prozent.",
+      "quote": "die Preise für Bestattungsleistungen und Friedhofsgebühren um 3,2 %. Zum Vergleich: Die Verbraucherpreise insgesamt stiegen im selben Zeitraum um 2,2 %."
+     },
+     {
+      "text": "Die Umsätze im Bestattungshandwerk lagen 2024 bei 2,37 Milliarden Euro.",
+      "quote": "Die Umsätze lagen im Jahr 2024 bei 2,37 Milliarden Euro."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 900,
+      "unit": "Auszubildende",
+      "period": "Jahresende 2025",
+      "quote": "insgesamt 900 Personen in einer dualen Ausbildung zur Bestattungsfachkraft"
+     },
+     {
+      "value": 3.2,
+      "unit": "Prozent",
+      "period": "2025 gegenüber 2024 (Bestattungsleistungen und Friedhofsgebühren)",
+      "quote": "die Preise für Bestattungsleistungen und Friedhofsgebühren um 3,2 %"
+     },
+     {
+      "value": 2.37,
+      "unit": "Milliarden Euro",
+      "period": "2024 (Umsatz Bestattungshandwerk)",
+      "quote": "Die Umsätze lagen im Jahr 2024 bei 2,37 Milliarden Euro."
+     },
+     {
+      "value": 951.9,
+      "unit": "Millionen Euro",
+      "period": "2024 (kommunale Einnahmen Friedhofs- und Bestattungswesen)",
+      "quote": "erzielten im Jahr 2024 Einnahmen von 951,9 Millionen Euro"
+     }
+    ],
+    "alltag": "Die alternde Bevölkerung bedeutet mehr Sterbefälle und damit mehr Nachfrage nach Bestattungsleistungen. Für Hinterbliebene wird eine Bestattung etwas schneller teurer als der durchschnittliche Warenkorb. Das betrifft Haushalte, die Kosten im Todesfall oft kurzfristig tragen müssen.",
+    "finanzwirkung": "Eine steigende Nachfrage kann den Umsatz im Bestattungshandwerk stützen. Ob daraus mehr Gewinn wird, hängt davon ab, wie sich Personal- und Ausbildungskosten entwickeln und ob sich höhere Preise durchsetzen lassen. Für Aktien und Dividenden ist die Nachricht kaum direkt relevant, da es sich überwiegend um Handwerksbetriebe und kommunale Einnahmen handelt.",
+    "naechstes": {
+     "text": "Zu beobachten ist, ob sich der Trend bei Sterbefällen, Ausbildungszahlen und Bestattungspreisen in den kommenden Jahren fortsetzt.",
+     "date": null,
+     "quote": null
+    },
+    "categories": [
+     "preise"
+    ],
+    "regions": [
+     "Deutschland"
+    ],
+    "sectors": [
+     "Staat"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Verbraucherpreisindex",
+      "def": "Misst, wie sich die Preise der Waren und Dienstleistungen verändern, die private Haushalte typischerweise kaufen."
+     },
+     {
+      "term": "Sozialbestattung",
+      "def": "Eine Bestattung, deren Kosten vom Sozialhilfeträger übernommen werden, wenn Angehörige sie nicht bezahlen können."
+     }
+    ],
+    "scenario_link": null,
+    "event_date": "2026-10-26",
+    "words": 140,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Zum Jahresende 2025 waren 900 Personen in dualer Ausbildung zur Bestattungsfachkraft, ein Höchststand; 2015 waren es 430.",
+      "why": "Zahl nicht im Zitat: 430"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
    },
    "history": []
   }
