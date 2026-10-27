@@ -171,32 +171,40 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "9a2f_000162828026067382": {
+   "org": "Ares Capital",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q3 2026",
+   "date": "27.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026067382/arccq3-2026exhibit991.htm"
   }
  },
  "positions": {
   "9A2.F": {
    "cik": 1287750,
-   "checked": "2026-10-04",
-   "method": "manual",
+   "checked": "2026-10-27",
+   "method": "claude",
    "mood": "warn",
    "interp": "Die Kreditqualität ist laut Bericht stabil. Die laufenden Kernerträge lagen im zweiten Quartal aber knapp unter der Dividende.",
    "changes": {
-    "cmp": "Q2 2026 gegenüber Q1 2026",
+    "cmp": "Q3 2026 gegenüber Q2 2026",
     "items": [
      {
       "kind": "metric",
-      "t": "Core EPS unverändert bei 0,47 $ je Aktie.",
+      "t": "Anteil der Kredite ohne Zinszahlung (non-accrual) unverändert bei 2,4 % zu Anschaffungskosten (Q2 2026 laut bisheriger Einordnung ebenfalls 2,4 %).",
       "src": [
-       "arcc",
-       "arccQ1"
-      ]
+       "9a2f_000162828026067382"
+      ],
+      "quote": "loans on non-accrual status represented 2.4% of the total investments at amortized cost (or 1.4% at fair value)"
      },
      {
       "kind": "company",
-      "t": "Dividende für Q3 2026 unverändert bei 0,48 $ je Aktie erklärt.",
+      "t": "Dividende für Q4 2026 unverändert bei 0,48 $ je Aktie erklärt.",
       "src": [
-       "arcc"
-      ]
+       "9a2f_000162828026067382"
+      ],
+      "quote": "declared a fourth quarter 2026 dividend of $0.48 per share"
      }
     ]
    },
@@ -236,13 +244,14 @@
      "q": "Liegt der Anteil notleidender Kredite über 3 %?",
      "metric": "Notleidende Kredite zu Anschaffungskosten",
      "cond": "über 3,0 %",
-     "per": "Q2 2026",
+     "per": "Q3 2026",
      "obs": "2,4 %",
-     "prev": null,
+     "prev": "Q2 2026: 2,4 %",
      "status": "not_occurred",
-     "src": "arccCall",
-     "next": "Bericht Q3 2026",
-     "why": "Das Management nennt rund 3 % als eigenen langjährigen Durchschnitt; die Schwelle ist eine Festlegung von Depotfokus."
+     "src": "9a2f_000162828026067382",
+     "next": "Bericht Q4 2026, Termin geschätzt Ende Januar / Anfang Februar 2027",
+     "why": "Das Management nennt rund 3 % als eigenen langjährigen Durchschnitt; die Schwelle ist eine Festlegung von Depotfokus.",
+     "quote": "loans on non-accrual status represented 2.4% of the total investments at amortized cost"
     }
    ],
    "themes": [
@@ -250,7 +259,14 @@
      "t": "Zinsniveau",
      "why": "Ein großer Teil der Kredite ist variabel verzinst. Sinkende Zinsen verringern die Zinserträge. Nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0001628280-26-067382",
+    "form": "8-K",
+    "date": "2026-10-27",
+    "url": "https://www.sec.gov/Archives/edgar/data/1287750/000162828026067382/arccq3-2026exhibit991.htm"
+   }
   },
   "13M.F": {
    "cik": 1396440,
