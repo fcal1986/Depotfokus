@@ -1,9 +1,395 @@
 {
- "date": "2026-10-26",
- "generated_at": "2026-10-26T13:14:04.903Z",
+ "date": "2026-10-27",
+ "generated_at": "2026-10-27T12:21:50.204Z",
  "result": "items",
  "note": null,
  "items": [
+  {
+   "id": "n-50c08a979b97",
+   "event_id": "e50c08a979b97",
+   "revision": 1,
+   "source": {
+    "id": "bundesbank",
+    "name": "Deutsche Bundesbank",
+    "short": "Bundesbank",
+    "region": "Deutschland",
+    "license": "Nachdruck mit Quellenangabe gestattet",
+    "license_url": "https://www.bundesbank.de/de/service/impressum"
+   },
+   "original_title": "Oktober-Ergebnisse der Umfrage zum Kreditgeschäft (Bank Lending Survey) | Kreditrichtlinien für Unternehmenskredite weiter gestrafft",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/oktober-ergebnisse-der-umfrage-zum-kreditgeschaeft-bank-lending-survey-in-deutschland-1012864",
+   "also": [],
+   "published_at": "2026-10-27T09:00:00.000Z",
+   "retrieved_at": "2026-10-27T12:21:50.204Z",
+   "created_at": "2026-10-27T12:21:50.204Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8962,
+    "truncated": false,
+    "hash": "9cf669454a30c3a3"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3.4,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "lebensmittel",
+      "zinsen",
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Banken straffen Kreditrichtlinien für Unternehmen, Kreditnachfrage sinkt",
+   "kurzfassung": "Deutsche Banken haben im dritten Quartal 2026 ihre Vergaberichtlinien für Unternehmenskredite gestrafft, wegen höherer Kreditrisiken. Die Nachfrage nach Krediten sank in allen Segmenten.",
+   "facts": [
+    {
+     "text": "Die Banken straffen ihre Richtlinien für Unternehmenskredite, weil sie höhere Kreditrisiken sehen.",
+     "quote": "Als Grund für die Straffung gaben die Banken höhere Kreditrisiken an."
+    },
+    {
+     "text": "Die Richtlinien für private Wohnungsbaukredite lockerten die Banken dagegen.",
+     "quote": "Die Richtlinien für private Wohnungsbaukredite lockerten die Banken dagegen."
+    },
+    {
+     "text": "Die Kreditnachfrage ging in allen Kreditsegmenten zurück.",
+     "quote": "Die Kreditnachfrage sank im dritten Quartal 2026 in allen Kreditsegmenten."
+    },
+    {
+     "text": "Hauptgrund für den Nachfragerückgang bei Unternehmen ist laut Banken das gestiegene allgemeine Zinsniveau.",
+     "quote": "Die Banken begründeten den Nachfragerückgang in erster Linie mit dem gestiegenen allgemeinen Zinsniveau."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 33,
+     "unit": "Banken",
+     "period": "Umfrage 21. September bis 6. Oktober 2026",
+     "quote": "An der Umfrage nahmen in Deutschland 33 Banken teil."
+    }
+   ],
+   "alltag": "Wenn Banken strenger prüfen und höhere Zinsen verlangen, wird es für Firmen schwieriger, Investitionen oder laufende Ausgaben zu finanzieren. Das kann sich auf Neueinstellungen und Preise auswirken. Auch Haushalte fragen weniger Kredite nach, etwa für den Hausbau.",
+   "finanzwirkung": "Strengere Kreditvergabe kann Investitionen und damit den Umsatz kreditabhängiger Unternehmen dämpfen. Ob der Gewinn sinkt, hängt davon ab, wie stark Firmen die höheren Finanzierungskosten weitergeben können. Für Banken können höhere Zinsen die Erträge stützen, während eine schwächere Kreditqualität Risiken erhöhen kann. Für Dividenden lässt sich daraus allein nichts ableiten.",
+   "naechstes": {
+    "text": "Beobachten, ob die Banken im vierten Quartal die Richtlinien weiter leicht straffen und die Unternehmensnachfrage wie erwartet wieder steigt.",
+    "date": null,
+    "quote": "Für das vierte Quartal 2026 planen die Banken geringfügige restriktive Anpassungen bei den Richtlinien für Unternehmens- sowie für Konsumenten- und sonstige Kredite."
+   },
+   "categories": [
+    "zinsen",
+    "unternehmen"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Banken",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Kreditrichtlinien",
+     "def": "Interne Regeln der Bank, unter welchen Voraussetzungen sie Kredite vergibt."
+    },
+    {
+     "term": "Notleidende Kredite",
+     "def": "Kredite, bei denen die Rückzahlung gefährdet ist oder ausbleibt."
+    },
+    {
+     "term": "Nettoanteil",
+     "def": "Der Anteil der Banken, die straffen, abzüglich des Anteils der Banken, die lockern."
+    },
+    {
+     "term": "Marge",
+     "def": "Aufschlag, den eine Bank auf ihre eigenen Kosten für einen Kredit erhebt."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Strengere Kreditvergabe, höhere Zinsen und sinkende Kreditnachfrage passen qualitativ zu einer zähen Erholung."
+   },
+   "event_date": "2026-10-27",
+   "words": 146,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Zahl",
+     "text": "6 % Nettoanteil",
+     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-25c854533277",
+   "event_id": "e25c854533277",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Bruttosparquote in Deutschland mit 18,9 % im internationalen Vergleich überdurchschnittlich hoch",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_44_p002.html",
+   "also": [],
+   "published_at": "2026-10-27T07:00:00.000Z",
+   "retrieved_at": "2026-10-27T12:21:50.204Z",
+   "created_at": "2026-10-27T12:21:50.204Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 3737,
+    "truncated": false,
+    "hash": "82fa846bcd326ca0"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Deutsche Haushalte sparen mehr als im EU-Durchschnitt: Bruttosparquote 18,9 %",
+   "kurzfassung": "Die privaten Haushalte in Deutschland legten 2025 anteilig mehr zurück als im EU-Schnitt. Die Sparquote ging zuletzt aber leicht zurück.",
+   "facts": [
+    {
+     "text": "Die Bruttosparquote lag 2025 in Deutschland bei 18,9 % und damit über dem EU-Durchschnitt von 14,3 %.",
+     "quote": "Mit 18,9 % lag die Bruttosparquote im Jahr 2025 deutlich über dem Durchschnitt in der Europäischen Union von 14,3 %"
+    },
+    {
+     "text": "Gegenüber 2024 ist die Sparquote in Deutschland leicht gesunken, der Höchststand lag 2020.",
+     "quote": "Im Jahr 2024 hatte sie bei 19,6 % gelegen. Einen Höchststand hatte sie im Jahr 2020 mit 22,9 % erreicht."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 18.9,
+     "unit": "%",
+     "period": "2025",
+     "quote": "Mit 18,9 % lag die Bruttosparquote im Jahr 2025 deutlich über dem Durchschnitt"
+    },
+    {
+     "value": 14.3,
+     "unit": "%",
+     "period": "2025, EU-Durchschnitt",
+     "quote": "deutlich über dem Durchschnitt in der Europäischen Union von 14,3 %"
+    },
+    {
+     "value": 19.1,
+     "unit": "%",
+     "period": "Durchschnitt der letzten zehn Jahre",
+     "quote": "In den letzten zehn Jahren sparten die Haushalte im Durchschnitt 19,1 % ihres Einkommens."
+    }
+   ],
+   "alltag": "Haushalte in Deutschland legen vergleichsweise viel von ihrem Einkommen zurück. Das Geld steht für späteren Konsum, Vorsorge oder Geldanlagen zur Verfügung. Wie viel gespart wird, beeinflusst, wie viel Geld in den Konsum fließt.",
+   "finanzwirkung": "Eine hohe Sparquote kann Banken und Anlageprodukten Geld zuführen und Investitionen finanzieren helfen. Für Unternehmen im Konsumbereich kann sie bedeuten, dass ein Teil des Einkommens nicht in Umsatz fließt. Ob daraus Gewinne oder Dividenden werden, hängt von Kosten, Nachfrage und Zinsumfeld ab.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die Sparquote weiter leicht sinkt; die Werte für 2025 und das erste Halbjahr 2026 sind noch vorläufig.",
+    "date": null,
+    "quote": "Insbesondere für das Jahr 2025 und das 1. Halbjahr 2026 sind sie noch vorläufig."
+   },
+   "categories": [
+    "preise"
+   ],
+   "regions": [
+    "Deutschland",
+    "EU",
+    "USA"
+   ],
+   "sectors": [
+    "Banken",
+    "Konsumgüter",
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Bruttosparquote",
+     "def": "Anteil des Einkommens privater Haushalte, der gespart wird, bevor Abschreibungen abgezogen werden."
+    },
+    {
+     "term": "Verfügbares Einkommen",
+     "def": "Das Einkommen, das Haushalten nach Steuern und Abgaben zum Ausgeben oder Sparen bleibt."
+    },
+    {
+     "term": "Abschreibung",
+     "def": "Rechnerischer Wertverlust, zum Beispiel bei Wohnungen."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "A",
+    "why": "Eine anhaltend hohe Sparneigung passt qualitativ zu einer zähen Erholung, in der Haushalte beim Konsum zurückhaltend bleiben."
+   },
+   "event_date": "2026-10-27",
+   "words": 126,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "In den USA sparten die Haushalte mit 10,7 % deutlich weniger, in der Schweiz mit 27,4 % deutlich mehr.",
+     "why": "Zahl nicht im Zitat: 10.7"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-f9493c6932f5",
+   "event_id": "ef9493c6932f5",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "October 2026 euro area bank lending survey",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261027~506ef03145.en.html",
+   "also": [],
+   "published_at": "2026-10-27T00:00:00.000Z",
+   "retrieved_at": "2026-10-27T12:21:50.204Z",
+   "created_at": "2026-10-27T12:21:50.204Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 10586,
+    "truncated": false,
+    "hash": "5ab98147dcf7ffa1"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "EZB-Umfrage: Banken vergeben Kredite im Euroraum strenger, Nachfrage sinkt",
+   "kurzfassung": "Banken im Euroraum haben im dritten Quartal 2026 Kredite an Firmen und Verbraucher strenger geprüft. Die Kreditnachfrage ging in allen Bereichen zurück, vor allem wegen höherer Zinsen.",
+   "facts": [
+    {
+     "text": "Die Banken verschärften ihre Kreditvergabe-Regeln für Firmenkredite im dritten Quartal 2026 weiter. Hauptgrund sind höhere Risiken.",
+     "quote": "euro area banks reported a further net tightening of credit standards – banks’ internal guidelines or loan approval criteria – for loans or credit lines to enterprises in the third quarter of 2026"
+    },
+    {
+     "text": "Auch die Nachfrage nach Firmenkrediten sank. Vor allem das allgemeine Zinsniveau dämpfte sie.",
+     "quote": "euro area banks reported a net decrease in demand for loans or credit lines to firms (net percentage of -6%; Chart 2)"
+    },
+    {
+     "text": "Bei Wohnungsbaukrediten fiel die Nachfrage deutlich. Höhere Zinsen waren der Haupttreiber.",
+     "quote": "Banks reported a strong net decrease in demand for housing loans (net percentage of -27%)"
+    },
+    {
+     "text": "Mehrere Banken erwarten dagegen langsam, aber stetig mehr Kredite für digitale Infrastruktur wie Rechenzentren.",
+     "quote": "several banks indicated that they expect a gradual but sustained increase in loan demand to finance digital infrastructure, particularly data centres"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 9,
+     "unit": "% (Nettoanteil der Banken)",
+     "period": "3. Quartal 2026",
+     "quote": "net percentage of 9% of banks; Chart 1"
+    },
+    {
+     "value": 14,
+     "unit": "% (Nettoanteil der Banken)",
+     "period": "3. Quartal 2026",
+     "quote": "a further net tightening for consumer credit and other lending to households (net percentage of 14%)"
+    },
+    {
+     "value": -27,
+     "unit": "% (Nettoanteil der Banken)",
+     "period": "3. Quartal 2026",
+     "quote": "Banks reported a strong net decrease in demand for housing loans (net percentage of -27%)"
+    },
+    {
+     "value": -36,
+     "unit": "% (Nettoanteil der Banken)",
+     "period": "Erwartung 4. Quartal 2026",
+     "quote": "banks expect to see more significant declines in demand for housing loans (-36%)"
+    }
+   ],
+   "alltag": "Wenn Banken strenger prüfen und Kredite teurer werden, kann es für Haushalte schwieriger werden, ein Haus oder größere Anschaffungen zu finanzieren. Auch Firmen könnten Investitionen verschieben, was Arbeit und Angebot beeinflussen kann.",
+   "finanzwirkung": "Strengere Kreditvergabe und schwächere Kreditnachfrage können Umsatz und Investitionen von Unternehmen bremsen, besonders in Bau und Immobilien. Für Banken können höhere Zinsen die Erträge stützen, während Kreditrisiken und weniger Neugeschäft dagegenwirken. Ob sich das auf Gewinne und Dividenden auswirkt, hängt von Branche und Finanzierungsbedarf ab.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die erwartete weitere Verschärfung und der Rückgang der Kreditnachfrage im vierten Quartal 2026 eintreten.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "zinsen",
+    "unternehmen"
+   ],
+   "regions": [
+    "Euroraum"
+   ],
+   "sectors": [
+    "Banken",
+    "Immobilien",
+    "Bau",
+    "Technologie"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Kreditstandards",
+     "def": "Interne Regeln einer Bank, nach denen sie entscheidet, ob und zu welchen Bedingungen sie einen Kredit vergibt."
+    },
+    {
+     "term": "Nettoanteil",
+     "def": "Anteil der Banken, die eine Verschärfung melden, abzüglich des Anteils, der eine Lockerung meldet."
+    },
+    {
+     "term": "Kreditnachfrage",
+     "def": "Wie stark Firmen und Haushalte bei Banken Kredite anfragen."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "C",
+    "why": "Strengere Kreditvergabe, sinkende Nachfrage und schlechterer Zugang der Banken zu Finanzierung deuten qualitativ auf Belastungen für Wachstum und Finanzierung hin."
+   },
+   "event_date": "2026-10-27",
+   "words": 149,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
   {
    "id": "n-1740e1473ebf",
    "event_id": "e1740e1473ebf",
@@ -31,14 +417,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "zinsen"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -163,14 +549,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "energie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
