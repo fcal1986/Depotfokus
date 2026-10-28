@@ -120,6 +120,14 @@
    "status": "skipped",
    "reason": "keine Ergebnismitteilung",
    "at": "2026-10-27"
+  },
+  "0001403161-26-000126": {
+   "sym": "3V64.DE",
+   "date": "2026-10-27",
+   "form": "8-K",
+   "status": "branch",
+   "branch": "bericht/3V64_DE--0001403161-26-000126",
+   "at": "2026-10-28"
   }
  }
 }
