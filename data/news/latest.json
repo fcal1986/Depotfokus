@@ -1,6 +1,6 @@
 {
- "date": "2026-10-27",
- "generated_at": "2026-10-27T12:21:50.204Z",
+ "date": "2026-10-28",
+ "generated_at": "2026-10-28T13:07:09.198Z",
  "result": "items",
  "note": null,
  "items": [
@@ -31,7 +31,7 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 3.4,
+    "score": 2.9,
     "why": {
      "source": 0.9,
      "categories": [
@@ -40,7 +40,7 @@
       "unternehmen"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -157,14 +157,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "industrie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -283,14 +283,14 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "zinsen"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
