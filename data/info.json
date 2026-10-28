@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "3v64de_000140316126000126": {
+   "org": "Visa",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q4 GJ 2026",
+   "date": "27.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000126/v-20261027.htm"
   }
  },
  "positions": {
@@ -808,21 +815,13 @@
   },
   "3V64.DE": {
    "cik": 1403161,
-   "checked": "2026-10-04",
-   "method": "manual",
-   "mood": "pos",
-   "interp": "Umsatz und Zahlungsvolumen wachsen zweistellig, die Prognose wurde angehoben.",
+   "checked": "2026-10-28",
+   "method": "claude",
+   "mood": "neutral",
+   "interp": "Der 8-K kündigt nur die Veröffentlichung der Ergebnisse für das vierte Quartal und das Gesamtjahr des Geschäftsjahres 2026 an (Quartalsende 30. September 2026). Konkrete Kennzahlen enthält der Haupttext nicht, sie stehen in der Anlage 99.1, die hier nicht vorliegt. Neu ist die Dividendenerklärung von 0,780 $ je Aktie. Die Regel zum Nettoumsatzwachstum lässt sich deshalb nicht prüfen.",
    "changes": {
-    "cmp": "Q3 GJ 2026 gegenüber der vorherigen Prognose",
-    "items": [
-     {
-      "kind": "company",
-      "t": "Jahresprognose angehoben: Umsatzwachstum im niedrigen zweistelligen Bereich.",
-      "src": [
-       "v"
-      ]
-     }
-    ]
+    "cmp": "Q4 GJ 2026 gegenüber Q3 GJ 2026",
+    "items": []
    },
    "facts": [
     {
@@ -847,7 +846,7 @@
      "prev": null,
      "status": "met",
      "src": "v",
-     "next": "Bericht Q4 GJ 2026, Termin geschätzt Ende Oktober",
+     "next": "Bericht Q1 GJ 2027, Termin geschätzt Ende Januar 2027",
      "why": "Zeigt, ob das Kerngeschäft wie vom Unternehmen erwartet wächst."
     }
    ],
@@ -856,7 +855,14 @@
      "t": "Regulierung von Kartengebühren",
      "why": "Gesetzgebung in den USA ist nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0001403161-26-000126",
+    "form": "8-K",
+    "date": "2026-10-27",
+    "url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000126/v-20261027.htm"
+   }
   },
   "IQQW.DE": {
    "etf": {
