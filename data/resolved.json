@@ -1,1 +1,9 @@
-{}
+{
+ "o|MSF.DE|Bericht Q1 GJ 2027, Termin geschätzt Ende Oktober|Wächst Azure mindestens 30 %?": {
+  "outcome": 1,
+  "per": "Q1 GJ 2027",
+  "obs": "48 %",
+  "src": "msfde_000119312526436122",
+  "at": "2026-10-29"
+ }
+}

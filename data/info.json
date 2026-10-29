@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "msfde_000119312526436122": {
+   "org": "Microsoft",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q1 GJ 2027",
+   "date": "28.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436122/msft-ex99_1.htm"
   }
  },
  "positions": {
@@ -764,24 +771,32 @@
   },
   "MSF.DE": {
    "cik": 789019,
-   "checked": "2026-10-04",
-   "method": "manual",
+   "checked": "2026-10-29",
+   "method": "claude",
    "mood": "pos",
    "interp": "Das Cloudgeschäft wächst stark; die Investitionen in Rechenzentren steigen ebenfalls deutlich.",
    "changes": {
-    "cmp": "kein Vergleich mit einer vorherigen Prüfung hinterlegt",
+    "cmp": "Q1 GJ 2027 gegenüber Q4 GJ 2026",
     "items": []
    },
    "facts": [
     {
      "kind": "metric",
-     "t": "Umsatz 90 Mrd. $, plus 18 %; Azure plus 43 %.",
-     "src": "msft"
+     "t": "Betriebsergebnis 45,9 Mrd. $, plus 21 %.",
+     "src": "msfde_000119312526436122",
+     "quote": "Operating income was $45.9 billion and increased 21% (up 22% in constant currency)"
     },
     {
-     "kind": "company",
-     "t": "Investitionen von über 50 Mrd. $ im folgenden Quartal erwartet.",
-     "src": "msft"
+     "kind": "metric",
+     "t": "Microsoft Cloud: Umsatz 63,9 Mrd. $, plus 30 %, Wachstum beschleunigt.",
+     "src": "msfde_000119312526436122",
+     "quote": "Microsoft Cloud revenue of $63.9 billion, with growth accelerating to 30% (up 31% in constant currency) year-over-year"
+    },
+    {
+     "kind": "metric",
+     "t": "Kommerzieller Auftragsbestand (RPO) plus 73 % auf 677 Mrd. $.",
+     "src": "msfde_000119312526436122",
+     "quote": "Commercial remaining performance obligation increased 73% to $677 billion"
     }
    ],
    "rules": [
@@ -790,13 +805,14 @@
      "q": "Wächst Azure mindestens 30 %?",
      "metric": "Azure-Umsatzwachstum",
      "cond": "mindestens 30 %",
-     "per": "Q4 GJ 2026",
-     "obs": "43 %",
-     "prev": null,
+     "per": "Q1 GJ 2027",
+     "obs": "48 %",
+     "prev": "Q4 GJ 2026: 43 %",
      "status": "met",
-     "src": "msft",
-     "next": "Bericht Q1 GJ 2027, Termin geschätzt Ende Oktober",
-     "why": "Das Cloudwachstum soll die hohen Investitionen tragen. Schwelle: Festlegung von Depotfokus."
+     "src": "msfde_000119312526436122",
+     "next": "Bericht Q2 GJ 2027, Termin geschätzt Ende Januar 2027",
+     "why": "Das Cloudwachstum soll die hohen Investitionen tragen. Schwelle: Festlegung von Depotfokus.",
+     "quote": "Azure revenue increased 48%"
     }
    ],
    "themes": [
@@ -804,7 +820,14 @@
      "t": "Rendite der KI-Investitionen",
      "why": "Ob die Investitionen sich auszahlen, ist nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0001193125-26-436122",
+    "form": "8-K",
+    "date": "2026-10-28",
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526436122/msft-ex99_1.htm"
+   }
   },
   "3V64.DE": {
    "cik": 1403161,
