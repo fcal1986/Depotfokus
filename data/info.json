@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "ccc3de_000162828026067844": {
+   "org": "Coca Cola",
+   "doc": "Quartalsbericht (SEC 10-Q)",
+   "per": "Q3 2026",
+   "date": "28.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026067844/ko-20261002.htm"
   }
  },
  "positions": {
@@ -589,31 +596,30 @@
   },
   "CCC3.DE": {
    "cik": 21344,
-   "checked": "2026-10-04",
-   "method": "manual",
+   "checked": "2026-10-29",
+   "method": "claude",
    "mood": "pos",
    "interp": "Mengen und Umsatz sind gewachsen, das Unternehmen hat die Prognose angehoben.",
    "changes": {
-    "cmp": "Q2 2026 gegenüber der vorherigen Prognose",
-    "items": [
-     {
-      "kind": "company",
-      "t": "Prognose für das vergleichbare EPS-Wachstum von 8–9 % auf 9–10 % angehoben.",
-      "src": [
-       "ko"
-      ]
-     }
-    ]
+    "cmp": "Q3 2026 gegenüber Q3 2025",
+    "items": []
    },
    "facts": [
     {
      "kind": "metric",
-     "t": "Umsatz 13,4 Mrd. $, organisch plus 6 %.",
-     "src": "ko"
+     "t": "Operativer Cashflow in den ersten neun Monaten 12,47 Mrd. $ nach 3,65 Mrd. $ im Vorjahreszeitraum. Der Vorjahreswert war durch eine Veränderung des Betriebsvermögens von minus 8,0 Mrd. $ belastet.",
+     "src": "ccc3de_000162828026067844",
+     "quote": "Net Cash Provided by (Used in) Operating Activities | 12,471 | 3,652 |"
+    },
+    {
+     "kind": "company",
+     "t": "Der Teilverkauf der Abfüllbetriebe in Afrika an Coca-Cola HBC soll bis Ende 2026 abgeschlossen werden und steht unter Genehmigungsvorbehalt.",
+     "src": "ccc3de_000162828026067844",
+     "quote": "Closing is subject to various regulatory approvals and is expected by the end of 2026, upon which we will deconsolidate these bottling operations."
     },
     {
      "kind": "metric",
-     "t": "Absatzmenge plus 5 %.",
+     "t": "Umsatz 13,4 Mrd. $, organisch plus 6 %.",
      "src": "ko"
     }
    ],
@@ -628,7 +634,7 @@
      "prev": null,
      "status": "met",
      "src": "ko",
-     "next": "Bericht Q3 2026, Termin geschätzt Ende Oktober",
+     "next": "Bericht Q4 2026 bzw. Jahresbericht 10-K, Termin geschätzt Mitte Februar 2027",
      "why": "Wachstum über Mengen ist weniger anfällig als reines Preiswachstum."
     }
    ],
@@ -637,7 +643,14 @@
      "t": "Wechselkurse",
      "why": "Ein großer Teil des Geschäfts liegt außerhalb der USA. Nicht automatisch prüfbar."
     }
-   ]
+   ],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0001628280-26-067844",
+    "form": "10-Q",
+    "date": "2026-10-28",
+    "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026067844/ko-20261002.htm"
+   }
   },
   "PRG.DE": {
    "cik": 80424,
