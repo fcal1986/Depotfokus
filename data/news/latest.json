@@ -1,9 +1,282 @@
 {
- "date": "2026-10-28",
- "generated_at": "2026-10-28T13:07:09.198Z",
+ "date": "2026-10-29",
+ "generated_at": "2026-10-29T13:12:58.285Z",
  "result": "items",
  "note": null,
  "items": [
+  {
+   "id": "n-678045aa0e89",
+   "event_id": "e678045aa0e89",
+   "revision": 1,
+   "source": {
+    "id": "bea",
+    "name": "U.S. Bureau of Economic Analysis",
+    "short": "BEA",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
+   },
+   "original_title": "GDP (Advance Estimate), 3rd Quarter 2026",
+   "url": "https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026",
+   "also": [],
+   "published_at": "2026-10-29T12:30:00.000Z",
+   "retrieved_at": "2026-10-29T13:12:58.285Z",
+   "created_at": "2026-10-29T13:12:58.285Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6438,
+    "truncated": false,
+    "hash": "e63f5810b06e5c59"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 4.4,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "USA: Wirtschaft wächst im dritten Quartal 2026 mit 3,4 % aufs Jahr gerechnet",
+   "kurzfassung": "Die US-Wirtschaft ist laut erster Schätzung im dritten Quartal schneller gewachsen als im zweiten, getragen von Investitionen und Konsum, während der Preisanstieg sich deutlich abgeschwächt hat.",
+   "facts": [
+    {
+     "text": "Treiber waren höhere Investitionen, Konsumausgaben und Staatsausgaben; die Exporte gingen zurück.",
+     "quote": "increases in investment, consumer spending, and government spending that were partly offset by a decrease in exports"
+    },
+    {
+     "text": "Der Preisindex der privaten Konsumausgaben (PCE) stieg mit 2,1 % deutlich langsamer als im zweiten Quartal (5,0 %).",
+     "quote": "The personal consumption expenditures (PCE) price index increased 2.1 percent, compared with an increase of 5.0 percent"
+    }
+   ],
+   "numbers": [
+    {
+     "value": 3.4,
+     "unit": "% (aufs Jahr gerechnet)",
+     "period": "3. Quartal 2026",
+     "quote": "Real gross domestic product (GDP) increased at an annual rate of 3.4 percent in the third quarter of 2026"
+    },
+    {
+     "value": 2.2,
+     "unit": "% (aufs Jahr gerechnet)",
+     "period": "2. Quartal 2026",
+     "quote": "In the second quarter, real GDP increased 2.2 percent."
+    },
+    {
+     "value": 4.9,
+     "unit": "% (aufs Jahr gerechnet)",
+     "period": "3. Quartal 2026",
+     "quote": "increased 4.9 percent in the third quarter, compared with an increase of 4.6 percent in the second quarter"
+    },
+    {
+     "value": 2.5,
+     "unit": "% (aufs Jahr gerechnet)",
+     "period": "3. Quartal 2026",
+     "quote": "the PCE price index, excluding food and energy increased 2.5 percent, compared with an increase of 3.3 percent"
+    }
+   ],
+   "alltag": "Die USA sind eine der größten Volkswirtschaften der Welt. Wächst dort die Nachfrage nach Gütern und Dienstleistungen, kann das Auswirkungen auf Aufträge und Arbeit auch außerhalb der USA haben. Dass die Preise zuletzt langsamer stiegen, heißt nicht, dass sie sinken: Sie steigen weiter, nur weniger schnell.",
+   "finanzwirkung": "Stärkere Investitionen und Konsum können die Umsätze vieler Unternehmen stützen. Ob daraus mehr Gewinn und Dividenden werden, hängt davon ab, wie sich Kosten und Preise entwickeln. Zudem kann eine kräftige Konjunktur die Erwartungen an künftige Zinsen verändern, was Finanzierungskosten und Börsenbewertungen in beide Richtungen beeinflussen kann.",
+   "naechstes": {
+    "text": "Die zweite Schätzung des BIP und die Unternehmensgewinne für das dritte Quartal 2026 stehen als Nächstes an; die Zahlen können noch angepasst werden.",
+    "date": "2026-11-25",
+    "quote": "Next release: November 25, 2026, at 8:30 a.m. EST"
+   },
+   "categories": [
+    "preise",
+    "industrie"
+   ],
+   "regions": [
+    "USA"
+   ],
+   "sectors": [
+    "Breiter Markt"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Bruttoinlandsprodukt (BIP)",
+     "def": "Der Wert aller Waren und Dienstleistungen, die eine Volkswirtschaft in einem Zeitraum herstellt."
+    },
+    {
+     "term": "Real",
+     "def": "Um Preisänderungen bereinigt, sodass nur die tatsächliche Mengenentwicklung zählt."
+    },
+    {
+     "term": "Aufs Jahr gerechnet",
+     "def": "Die Veränderung eines Quartals wird so umgerechnet, als würde sie ein ganzes Jahr anhalten."
+    },
+    {
+     "term": "PCE-Preisindex",
+     "def": "Ein Maß dafür, wie schnell die Preise für den privaten Konsum steigen."
+    }
+   ],
+   "scenario_link": {
+    "scenario": "B",
+    "why": "Kräftiges Wachstum bei Investitionen und Konsum sowie ein langsamerer Preisanstieg passen qualitativ zu einem breiteren Aufschwung."
+   },
+   "event_date": "2026-10-29",
+   "words": 144,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Das reale Bruttoinlandsprodukt der USA stieg im dritten Quartal 2026 auf das Jahr gerechnet um 3,4 %, nach 2,2 % im zweiten Quartal.",
+     "why": "Zahl nicht im Zitat: 2.2"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-de459216db7a",
+   "event_id": "ede459216db7a",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "LNG imports make up increasing share of Colombia's natural gas supply",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68364",
+   "also": [],
+   "published_at": "2026-10-29T14:00:00.000Z",
+   "retrieved_at": "2026-10-29T13:12:58.285Z",
+   "created_at": "2026-10-29T13:12:58.285Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7966,
+    "truncated": false,
+    "hash": "5aa3cc6ff0212cd8"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 3.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Kolumbien: Flüssigerdgas ersetzt zunehmend sinkende heimische Gasförderung",
+   "kurzfassung": "Kolumbiens eigene Gasförderung sinkt weiter, deshalb stammt ein wachsender Teil des Gases aus LNG-Importen. Eine mögliche Dürre durch El Niño könnte die Nachfrage nach Gasstrom zusätzlich erhöhen.",
+   "facts": [
+    {
+     "text": "Im Juli 2026 machte importiertes Flüssigerdgas (LNG) mit 31 % einen Rekordanteil an der monatlichen Gasversorgung aus.",
+     "quote": "LNG imports accounted for a record 31% of Colombia’s monthly natural gas supply in July 2026"
+    },
+    {
+     "text": "Das Land hat nur ein betriebenes LNG-Importterminal; weitere Terminals sind in Planung.",
+     "quote": "Despite the increased reliance on imports, Colombia only has one operating LNG import terminal, SPEC LNG"
+    },
+    {
+     "text": "Der Wasserkraftanteil an der Stromerzeugung fiel im Juli 2026 auf 66 %; Kohle und Erdgas lagen bei je 12 %.",
+     "quote": "The share of hydropower electricity generation fell to 66% in July 2026 while coal and natural gas each accounted for 12% of electricity generation."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 772,
+     "unit": "Mio. Kubikfuß pro Tag",
+     "period": "2025",
+     "quote": "decreased from 1,070 million cubic feet per day (MMcf/d) in 2022 to 772 MMcf/d in 2025"
+    },
+    {
+     "value": 673,
+     "unit": "Mio. Kubikfuß pro Tag",
+     "period": "Januar bis August 2026",
+     "quote": "Between January and August 2026, production declined further, averaging 673 MMcf/d."
+    },
+    {
+     "value": 31,
+     "unit": "Prozent",
+     "period": "Juli 2026",
+     "quote": "LNG imports accounted for a record 31% of Colombia’s monthly natural gas supply in July 2026"
+    },
+    {
+     "value": 39,
+     "unit": "Prozent",
+     "period": "2022 bis 2025",
+     "quote": "Proved reserves fell 39% to 1.7 trillion cubic feet between 2022 and 2025"
+    },
+    {
+     "value": 66,
+     "unit": "Prozent",
+     "period": "Juli 2026",
+     "quote": "The share of hydropower electricity generation fell to 66% in July 2026"
+    }
+   ],
+   "alltag": "Kolumbien braucht mehr importiertes Gas, weil die eigenen Felder weniger liefern. Wenn eine Dürre die Wasserkraft schwächt, wird mehr Gas für Strom gebraucht. Das kann Energieversorgung und Kosten für Haushalte und Betriebe vor Ort beeinflussen.",
+   "finanzwirkung": "Wenn der Gasbedarf steigt, kann das Betreiber von Importterminals und Gaskraftwerken begünstigen; ob das im Gewinn ankommt, hängt von Preisen, Verträgen und Kosten ab. Teurer Importstrom kann dagegen Stromversorger und energieintensive Firmen belasten, wenn sie Kosten nicht weitergeben können. Für Dividenden ergibt sich daraus keine direkte Aussage.",
+   "naechstes": {
+    "text": "Zu beobachten sind der Start der Terminal-Erweiterung und des Buenaventura-Terminals sowie die Entwicklung der Dürre durch El Niño.",
+    "date": "2026-11",
+    "quote": "A new project, the Buenaventura LNG terminal, is targeting to startup by November 2026 ."
+   },
+   "categories": [
+    "energie",
+    "preise"
+   ],
+   "regions": [
+    "Andere"
+   ],
+   "sectors": [
+    "Energie",
+    "Rohstoffe",
+    "Transport"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "LNG",
+     "def": "Verflüssigtes Erdgas, das stark gekühlt per Schiff transportiert werden kann."
+    },
+    {
+     "term": "El Niño",
+     "def": "Ein Wetterphänomen im Pazifik, das in manchen Regionen Trockenheit und in anderen Regen bringt."
+    },
+    {
+     "term": "Wasserkraft",
+     "def": "Stromerzeugung mit Hilfe von fließendem oder gestautem Wasser."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-29",
+   "words": 149,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Fakt",
+     "text": "Die Gasförderung Kolumbiens ist von 1.070 Mio. Kubikfuß pro Tag im Jahr 2022 auf 772 Mio. im Jahr 2025 gefallen und lag von Januar bis August 2026 bei durchschnittlich 673 Mio.",
+     "why": "Zahl nicht im Zitat: 673"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
   {
    "id": "n-50c08a979b97",
    "event_id": "e50c08a979b97",
@@ -131,8 +404,8 @@
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   },
   {
-   "id": "n-25c854533277",
-   "event_id": "e25c854533277",
+   "id": "n-770f7fe7cfe8",
+   "event_id": "e770f7fe7cfe8",
    "revision": 1,
    "source": {
     "id": "destatis",
@@ -142,481 +415,83 @@
     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
    },
-   "original_title": "Bruttosparquote in Deutschland mit 18,9 % im internationalen Vergleich überdurchschnittlich hoch",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_44_p002.html",
+   "original_title": "65 Jahre Anwerbeabkommen mit der Türkei: 2,6 Millionen Menschen in Deutschland mit türkischer Einwanderungsgeschichte",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_377_122.html",
    "also": [],
-   "published_at": "2026-10-27T07:00:00.000Z",
-   "retrieved_at": "2026-10-27T12:21:50.204Z",
-   "created_at": "2026-10-27T12:21:50.204Z",
+   "published_at": "2026-10-29T07:00:00.000Z",
+   "retrieved_at": "2026-10-29T13:12:58.285Z",
+   "created_at": "2026-10-29T13:12:58.285Z",
    "evidence": {
     "kind": "page",
-    "chars": 3737,
+    "chars": 8986,
     "truncated": false,
-    "hash": "82fa846bcd326ca0"
+    "hash": "41cb9459754d212f"
    },
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Deutsche Haushalte sparen mehr als im EU-Durchschnitt: Bruttosparquote 18,9 %",
-   "kurzfassung": "Die privaten Haushalte in Deutschland legten 2025 anteilig mehr zurück als im EU-Schnitt. Die Sparquote ging zuletzt aber leicht zurück.",
-   "facts": [
-    {
-     "text": "Die Bruttosparquote lag 2025 in Deutschland bei 18,9 % und damit über dem EU-Durchschnitt von 14,3 %.",
-     "quote": "Mit 18,9 % lag die Bruttosparquote im Jahr 2025 deutlich über dem Durchschnitt in der Europäischen Union von 14,3 %"
-    },
-    {
-     "text": "Gegenüber 2024 ist die Sparquote in Deutschland leicht gesunken, der Höchststand lag 2020.",
-     "quote": "Im Jahr 2024 hatte sie bei 19,6 % gelegen. Einen Höchststand hatte sie im Jahr 2020 mit 22,9 % erreicht."
-    }
-   ],
-   "numbers": [
-    {
-     "value": 18.9,
-     "unit": "%",
-     "period": "2025",
-     "quote": "Mit 18,9 % lag die Bruttosparquote im Jahr 2025 deutlich über dem Durchschnitt"
-    },
-    {
-     "value": 14.3,
-     "unit": "%",
-     "period": "2025, EU-Durchschnitt",
-     "quote": "deutlich über dem Durchschnitt in der Europäischen Union von 14,3 %"
-    },
-    {
-     "value": 19.1,
-     "unit": "%",
-     "period": "Durchschnitt der letzten zehn Jahre",
-     "quote": "In den letzten zehn Jahren sparten die Haushalte im Durchschnitt 19,1 % ihres Einkommens."
-    }
-   ],
-   "alltag": "Haushalte in Deutschland legen vergleichsweise viel von ihrem Einkommen zurück. Das Geld steht für späteren Konsum, Vorsorge oder Geldanlagen zur Verfügung. Wie viel gespart wird, beeinflusst, wie viel Geld in den Konsum fließt.",
-   "finanzwirkung": "Eine hohe Sparquote kann Banken und Anlageprodukten Geld zuführen und Investitionen finanzieren helfen. Für Unternehmen im Konsumbereich kann sie bedeuten, dass ein Teil des Einkommens nicht in Umsatz fließt. Ob daraus Gewinne oder Dividenden werden, hängt von Kosten, Nachfrage und Zinsumfeld ab.",
-   "naechstes": {
-    "text": "Zu beobachten ist, ob die Sparquote weiter leicht sinkt; die Werte für 2025 und das erste Halbjahr 2026 sind noch vorläufig.",
-    "date": null,
-    "quote": "Insbesondere für das Jahr 2025 und das 1. Halbjahr 2026 sind sie noch vorläufig."
-   },
-   "categories": [
-    "preise"
-   ],
-   "regions": [
-    "Deutschland",
-    "EU",
-    "USA"
-   ],
-   "sectors": [
-    "Banken",
-    "Konsumgüter",
-    "Breiter Markt"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Bruttosparquote",
-     "def": "Anteil des Einkommens privater Haushalte, der gespart wird, bevor Abschreibungen abgezogen werden."
-    },
-    {
-     "term": "Verfügbares Einkommen",
-     "def": "Das Einkommen, das Haushalten nach Steuern und Abgaben zum Ausgeben oder Sparen bleibt."
-    },
-    {
-     "term": "Abschreibung",
-     "def": "Rechnerischer Wertverlust, zum Beispiel bei Wohnungen."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "A",
-    "why": "Eine anhaltend hohe Sparneigung passt qualitativ zu einer zähen Erholung, in der Haushalte beim Konsum zurückhaltend bleiben."
-   },
-   "event_date": "2026-10-27",
-   "words": 126,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [
-    {
-     "part": "Fakt",
-     "text": "In den USA sparten die Haushalte mit 10,7 % deutlich weniger, in der Schweiz mit 27,4 % deutlich mehr.",
-     "why": "Zahl nicht im Zitat: 10.7"
-    }
-   ],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-f9493c6932f5",
-   "event_id": "ef9493c6932f5",
-   "revision": 1,
-   "source": {
-    "id": "ecb",
-    "name": "Europäische Zentralbank",
-    "short": "EZB",
-    "region": "Euroraum",
-    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
-    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
-   },
-   "original_title": "October 2026 euro area bank lending survey",
-   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261027~506ef03145.en.html",
-   "also": [],
-   "published_at": "2026-10-27T00:00:00.000Z",
-   "retrieved_at": "2026-10-27T12:21:50.204Z",
-   "created_at": "2026-10-27T12:21:50.204Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 10586,
-    "truncated": false,
-    "hash": "5ab98147dcf7ffa1"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "zinsen"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "EZB-Umfrage: Banken vergeben Kredite im Euroraum strenger, Nachfrage sinkt",
-   "kurzfassung": "Banken im Euroraum haben im dritten Quartal 2026 Kredite an Firmen und Verbraucher strenger geprüft. Die Kreditnachfrage ging in allen Bereichen zurück, vor allem wegen höherer Zinsen.",
-   "facts": [
-    {
-     "text": "Die Banken verschärften ihre Kreditvergabe-Regeln für Firmenkredite im dritten Quartal 2026 weiter. Hauptgrund sind höhere Risiken.",
-     "quote": "euro area banks reported a further net tightening of credit standards – banks’ internal guidelines or loan approval criteria – for loans or credit lines to enterprises in the third quarter of 2026"
-    },
-    {
-     "text": "Auch die Nachfrage nach Firmenkrediten sank. Vor allem das allgemeine Zinsniveau dämpfte sie.",
-     "quote": "euro area banks reported a net decrease in demand for loans or credit lines to firms (net percentage of -6%; Chart 2)"
-    },
-    {
-     "text": "Bei Wohnungsbaukrediten fiel die Nachfrage deutlich. Höhere Zinsen waren der Haupttreiber.",
-     "quote": "Banks reported a strong net decrease in demand for housing loans (net percentage of -27%)"
-    },
-    {
-     "text": "Mehrere Banken erwarten dagegen langsam, aber stetig mehr Kredite für digitale Infrastruktur wie Rechenzentren.",
-     "quote": "several banks indicated that they expect a gradual but sustained increase in loan demand to finance digital infrastructure, particularly data centres"
-    }
-   ],
-   "numbers": [
-    {
-     "value": 9,
-     "unit": "% (Nettoanteil der Banken)",
-     "period": "3. Quartal 2026",
-     "quote": "net percentage of 9% of banks; Chart 1"
-    },
-    {
-     "value": 14,
-     "unit": "% (Nettoanteil der Banken)",
-     "period": "3. Quartal 2026",
-     "quote": "a further net tightening for consumer credit and other lending to households (net percentage of 14%)"
-    },
-    {
-     "value": -27,
-     "unit": "% (Nettoanteil der Banken)",
-     "period": "3. Quartal 2026",
-     "quote": "Banks reported a strong net decrease in demand for housing loans (net percentage of -27%)"
-    },
-    {
-     "value": -36,
-     "unit": "% (Nettoanteil der Banken)",
-     "period": "Erwartung 4. Quartal 2026",
-     "quote": "banks expect to see more significant declines in demand for housing loans (-36%)"
-    }
-   ],
-   "alltag": "Wenn Banken strenger prüfen und Kredite teurer werden, kann es für Haushalte schwieriger werden, ein Haus oder größere Anschaffungen zu finanzieren. Auch Firmen könnten Investitionen verschieben, was Arbeit und Angebot beeinflussen kann.",
-   "finanzwirkung": "Strengere Kreditvergabe und schwächere Kreditnachfrage können Umsatz und Investitionen von Unternehmen bremsen, besonders in Bau und Immobilien. Für Banken können höhere Zinsen die Erträge stützen, während Kreditrisiken und weniger Neugeschäft dagegenwirken. Ob sich das auf Gewinne und Dividenden auswirkt, hängt von Branche und Finanzierungsbedarf ab.",
-   "naechstes": {
-    "text": "Zu beobachten ist, ob die erwartete weitere Verschärfung und der Rückgang der Kreditnachfrage im vierten Quartal 2026 eintreten.",
-    "date": null,
-    "quote": null
-   },
-   "categories": [
-    "zinsen",
-    "unternehmen"
-   ],
-   "regions": [
-    "Euroraum"
-   ],
-   "sectors": [
-    "Banken",
-    "Immobilien",
-    "Bau",
-    "Technologie"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Kreditstandards",
-     "def": "Interne Regeln einer Bank, nach denen sie entscheidet, ob und zu welchen Bedingungen sie einen Kredit vergibt."
-    },
-    {
-     "term": "Nettoanteil",
-     "def": "Anteil der Banken, die eine Verschärfung melden, abzüglich des Anteils, der eine Lockerung meldet."
-    },
-    {
-     "term": "Kreditnachfrage",
-     "def": "Wie stark Firmen und Haushalte bei Banken Kredite anfragen."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "C",
-    "why": "Strengere Kreditvergabe, sinkende Nachfrage und schlechterer Zugang der Banken zu Finanzierung deuten qualitativ auf Belastungen für Wachstum und Finanzierung hin."
-   },
-   "event_date": "2026-10-27",
-   "words": 149,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-1740e1473ebf",
-   "event_id": "e1740e1473ebf",
-   "revision": 1,
-   "source": {
-    "id": "ecb",
-    "name": "Europäische Zentralbank",
-    "short": "EZB",
-    "region": "Euroraum",
-    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
-    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
-   },
-   "original_title": "Survey on the Access to Finance of Enterprises: lending conditions tightened",
-   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261026~bde7b6d11a.en.html",
-   "also": [],
-   "published_at": "2026-10-26T09:00:00.000Z",
-   "retrieved_at": "2026-10-26T13:14:04.903Z",
-   "created_at": "2026-10-26T13:14:04.903Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 8180,
-    "truncated": false,
-    "hash": "cc448817f8339750"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "zinsen"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "EZB-Umfrage: Firmen im Euroraum melden strengere Kreditbedingungen",
-   "kurzfassung": "Unternehmen im Euroraum berichten über weiter steigende Kreditzinsen und eine geringere Verfügbarkeit von Bankkrediten; die Finanzierungslücke hat sich leicht vergrößert.",
-   "facts": [
-    {
-     "text": "Netto 46 % der Firmen meldeten für das dritte Quartal 2026 steigende Zinsen auf Bankkredite, nach 42 % im Vorquartal.",
-     "quote": "euro area firms widely reported a further net increase in interest rates on bank loans (net 46%, compared with 42% in the previous quarter)"
-    },
-    {
-     "text": "Die Verfügbarkeit von Bankkrediten sank, und zwar stärker als der Finanzierungsbedarf der Firmen.",
-     "quote": "firms reported that the availability of bank loans had declined by more than their needs"
-    },
-    {
-     "text": "Die Allgemeine Wirtschaftslage gilt weiter als wichtigster Faktor, der den Zugang zu externer Finanzierung einschränkt.",
-     "quote": "Firms continued to perceive the general economic outlook as the main factor constraining the availability of external financing (net 31%, compared with 29% in the previous survey round)"
-    },
-    {
-     "text": "Weil die meisten Befragten neu dabei waren, lassen sich die Zahlenangaben zu Preis- und Inflationserwartungen derzeit schwer deuten.",
-     "quote": "first-time respondents accounting for the majority of the sample, makes it challenging to interpret the responses to the numerical questions at this stage"
-    }
-   ],
-   "numbers": [
-    {
-     "value": 46,
-     "unit": "% netto",
-     "period": "Q3 2026",
-     "quote": "a further net increase in interest rates on bank loans (net 46%, compared with 42% in the previous quarter)"
-    },
-    {
-     "value": -5,
-     "unit": "% netto",
-     "period": "Q3 2026",
-     "quote": "a decrease in the availability of bank loans in the third quarter of 2026 (-5%, compared with a net -1% in the second quarter of 2026)"
-    },
-    {
-     "value": 14,
-     "unit": "% netto",
-     "period": "Q3 2026",
-     "quote": "collateral requirements (net 14%, up from 10%)"
-    },
-    {
-     "value": 12822,
-     "unit": "Unternehmen",
-     "period": "Umfrage 26.08.–02.10.2026",
-     "quote": "The sample comprised 12,822 enterprises in the euro area"
-    }
-   ],
-   "alltag": "Wenn Kredite teurer und schwerer zu bekommen sind, überlegen Firmen genauer, ob sie investieren oder einstellen. Das kann sich mit Verzögerung auf Löhne, Arbeitsplätze und Preise auswirken. Die Umfrage zeigt Einschätzungen von Firmen, keine gemessenen Kreditdaten.",
-   "finanzwirkung": "Höhere Finanzierungskosten und strengere Bedingungen können die Gewinne von Unternehmen belasten, besonders bei hoher Verschuldung. Ob das Dividenden schmälert, hängt davon ab, wie stark Firmen betroffen sind und ob Umsatz und Preise den Kostenanstieg ausgleichen. Banken könnten bei höheren Zinsen mehr verdienen, tragen aber ein höheres Kreditrisiko, falls die Konjunktur schwächer wird.",
-   "naechstes": {
-    "text": "Beobachten, ob die Firmen in den nächsten drei Monaten tatsächlich weniger externe Finanzierung erwarten und wie sich die Erwartungen bei einer stabileren Stichprobe entwickeln.",
-    "date": null,
-    "quote": "Looking ahead, more firms expect the availability of external financing to decrease over the next three months."
-   },
-   "categories": [
-    "zinsen",
-    "unternehmen"
-   ],
-   "regions": [
-    "Euroraum"
-   ],
-   "sectors": [
-    "Banken",
-    "Breiter Markt"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Finanzierungslücke",
-     "def": "Unterschied zwischen dem Kreditbedarf der Firmen und dem, was Banken tatsächlich verfügbar machen."
-    },
-    {
-     "term": "Netto-Prozentsatz",
-     "def": "Anteil der Firmen mit Anstieg minus Anteil der Firmen mit Rückgang."
-    },
-    {
-     "term": "Sicherheiten",
-     "def": "Vermögenswerte, die eine Firma der Bank als Absicherung für einen Kredit anbietet."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "C",
-    "why": "Strengere Kreditbedingungen und eine eingetrübte Wirtschaftseinschätzung passen qualitativ zu einem Szenario mit länger anhaltendem Finanzierungsstress, sind aber allein noch kein Beleg dafür."
-   },
-   "event_date": "2026-10-26",
-   "words": 178,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
-   "id": "n-e8ebd273aa88",
-   "event_id": "ee8ebd273aa88",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Zahl der Auszubildenden zur Bestattungsfachkraft auf neuem Höchststand",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_N073_21_12.html",
-   "also": [],
-   "published_at": "2026-10-26T07:00:00.000Z",
-   "retrieved_at": "2026-10-26T13:14:04.903Z",
-   "created_at": "2026-10-26T13:14:04.903Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 6361,
-    "truncated": false,
-    "hash": "448eb32f545232f1"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 2,
+    "score": 2.5,
     "why": {
      "source": 1,
      "categories": [
       "energie"
      ],
      "core": false,
-     "fresh": false,
+     "fresh": true,
      "sensational": false
     }
    },
-   "title": "Bestattungen: mehr Sterbefälle, mehr Auszubildende, Preise über der Inflation",
-   "kurzfassung": "Die Zahl der Sterbefälle und der Auszubildenden zur Bestattungsfachkraft steigt, und Bestattungsleistungen verteuerten sich 2025 mit 3,2 Prozent stärker als die Verbraucherpreise insgesamt.",
+   "title": "2,6 Millionen Menschen mit türkischer Einwanderungsgeschichte, 61 % der Eingewanderten erwerbstätig",
+   "kurzfassung": "Rund 2,6 Millionen Menschen in Deutschland haben türkische Einwanderungsgeschichte. Von den 15- bis 64-jährigen Eingewanderten aus der Türkei sind 61 % erwerbstätig.",
    "facts": [
     {
-     "text": "2025 starben rund 1,0 Millionen Menschen, 9 Prozent mehr als zehn Jahre zuvor.",
-     "quote": "Im Jahr 2025 starben hierzulande rund 1,0 Millionen Menschen – das waren 9 % mehr als zehn Jahre zuvor."
+     "text": "2025 lebten rund 2,6 Millionen Menschen mit türkischer Einwanderungsgeschichte in Deutschland, davon 1,5 Millionen selbst eingewandert.",
+     "quote": "Rund 2,6 Millionen Menschen mit türkischer Einwanderungsgeschichte lebten im Jahr 2025 in Deutschland. Davon waren rund 1,5 Millionen (56 %) selbst eingewandert"
     },
     {
-     "text": "Bestattungsleistungen und Friedhofsgebühren verteuerten sich 2025 um 3,2 Prozent, die Verbraucherpreise insgesamt um 2,2 Prozent.",
-     "quote": "die Preise für Bestattungsleistungen und Friedhofsgebühren um 3,2 %. Zum Vergleich: Die Verbraucherpreise insgesamt stiegen im selben Zeitraum um 2,2 %."
-    },
-    {
-     "text": "Die Umsätze im Bestattungshandwerk lagen 2024 bei 2,37 Milliarden Euro.",
-     "quote": "Die Umsätze lagen im Jahr 2024 bei 2,37 Milliarden Euro."
+     "text": "61 % der 15- bis 64-jährigen Eingewanderten aus der Türkei waren 2025 erwerbstätig. Die Quote der gesamten Bevölkerung in diesem Alter lag bei 77 %.",
+     "quote": "waren 61 % der 15- bis 64-jährigen Eingewanderten aus der Türkei im Jahr 2025 erwerbstätig. Die Erwerbstätigenquote der 15- bis 64-jährigen Bevölkerung insgesamt lag im Jahr 2025 in Deutschland bei 77 %."
     }
    ],
    "numbers": [
     {
-     "value": 900,
-     "unit": "Auszubildende",
-     "period": "Jahresende 2025",
-     "quote": "insgesamt 900 Personen in einer dualen Ausbildung zur Bestattungsfachkraft"
+     "value": 2.6,
+     "unit": "Millionen Menschen",
+     "period": "2025",
+     "quote": "Rund 2,6 Millionen Menschen mit türkischer Einwanderungsgeschichte lebten im Jahr 2025 in Deutschland."
     },
     {
-     "value": 3.2,
-     "unit": "Prozent",
-     "period": "2025 gegenüber 2024 (Bestattungsleistungen und Friedhofsgebühren)",
-     "quote": "die Preise für Bestattungsleistungen und Friedhofsgebühren um 3,2 %"
+     "value": 61,
+     "unit": "% Erwerbstätige (15–64 Jahre, Eingewanderte aus der Türkei)",
+     "period": "2025",
+     "quote": "waren 61 % der 15- bis 64-jährigen Eingewanderten aus der Türkei im Jahr 2025 erwerbstätig"
     },
     {
-     "value": 2.37,
-     "unit": "Milliarden Euro",
-     "period": "2024 (Umsatz Bestattungshandwerk)",
-     "quote": "Die Umsätze lagen im Jahr 2024 bei 2,37 Milliarden Euro."
+     "value": 77,
+     "unit": "% Erwerbstätigenquote (15–64 Jahre, Gesamtbevölkerung)",
+     "period": "2025",
+     "quote": "Die Erwerbstätigenquote der 15- bis 64-jährigen Bevölkerung insgesamt lag im Jahr 2025 in Deutschland bei 77 %."
     },
     {
-     "value": 951.9,
-     "unit": "Millionen Euro",
-     "period": "2024 (kommunale Einnahmen Friedhofs- und Bestattungswesen)",
-     "quote": "erzielten im Jahr 2024 Einnahmen von 951,9 Millionen Euro"
+     "value": 3.5,
+     "unit": "% der Erwerbstätigen (15–64 Jahre)",
+     "period": "2025",
+     "quote": "einen Anteil von 3,5 % (1,4 Millionen)"
     }
    ],
-   "alltag": "Die alternde Bevölkerung bedeutet mehr Sterbefälle und damit mehr Nachfrage nach Bestattungsleistungen. Für Hinterbliebene wird eine Bestattung etwas schneller teurer als der durchschnittliche Warenkorb. Das betrifft Haushalte, die Kosten im Todesfall oft kurzfristig tragen müssen.",
-   "finanzwirkung": "Eine steigende Nachfrage kann den Umsatz im Bestattungshandwerk stützen. Ob daraus mehr Gewinn wird, hängt davon ab, wie sich Personal- und Ausbildungskosten entwickeln und ob sich höhere Preise durchsetzen lassen. Für Aktien und Dividenden ist die Nachricht kaum direkt relevant, da es sich überwiegend um Handwerksbetriebe und kommunale Einnahmen handelt.",
+   "alltag": "Menschen mit türkischer Einwanderungsgeschichte arbeiten in vielen Berufen und sind Teil des Arbeitsmarkts. Die Zahlen zeigen, wie stark der Arbeitsmarkt von Zuwanderung geprägt ist. Die Erwerbstätigenquote liegt bei den Eingewanderten aus der Türkei niedriger als in der Gesamtbevölkerung.",
+   "finanzwirkung": "Die Meldung ist eine Bevölkerungsstatistik und enthält keine direkten Angaben zu Unternehmen oder Märkten. Wie viele Menschen arbeiten, kann die Verfügbarkeit von Arbeitskräften und damit Branchen wie Reinigung, Textil oder Metallbau beeinflussen. Ob sich das auf Umsatz, Gewinn oder Dividenden einzelner Unternehmen auswirkt, hängt von vielen weiteren Faktoren ab.",
    "naechstes": {
-    "text": "Zu beobachten ist, ob sich der Trend bei Sterbefällen, Ausbildungszahlen und Bestattungspreisen in den kommenden Jahren fortsetzt.",
-    "date": null,
-    "quote": null
+    "text": "Das Anwerbeabkommen mit der Türkei jährt sich am 30. Oktober 2026 zum 65. Mal. Weitere Ergebnisse stehen im Statistischen Bericht und im Dashboard Integration.",
+    "date": "2026-10-30",
+    "quote": "anlässlich des 65-jährigen Jubiläums des Anwerbeabkommens mit der Türkei am 30. Oktober 2026"
    },
-   "categories": [
-    "preise"
-   ],
+   "categories": [],
    "regions": [
     "Deutschland"
    ],
    "sectors": [
-    "Staat"
+    "Breiter Markt"
    ],
    "companies": [],
    "dividend": {
@@ -624,25 +499,157 @@
    },
    "glossary": [
     {
-     "term": "Verbraucherpreisindex",
-     "def": "Misst, wie sich die Preise der Waren und Dienstleistungen verändern, die private Haushalte typischerweise kaufen."
+     "term": "Erwerbstätigenquote",
+     "def": "Anteil der Menschen einer Altersgruppe, die einer bezahlten Arbeit nachgehen."
     },
     {
-     "term": "Sozialbestattung",
-     "def": "Eine Bestattung, deren Kosten vom Sozialhilfeträger übernommen werden, wenn Angehörige sie nicht bezahlen können."
+     "term": "Mikrozensus",
+     "def": "Jährliche Stichprobenbefragung eines kleinen Teils der Bevölkerung, aus der auf alle hochgerechnet wird."
     }
    ],
    "scenario_link": null,
-   "event_date": "2026-10-26",
-   "words": 140,
+   "event_date": "2026-10-29",
+   "words": 152,
    "length_ok": true,
    "title_is_original": false,
    "status": "geprüft",
    "check_log": [
     {
      "part": "Fakt",
-     "text": "Zum Jahresende 2025 waren 900 Personen in dualer Ausbildung zur Bestattungsfachkraft, ein Höchststand; 2015 waren es 430.",
-     "why": "Zahl nicht im Zitat: 430"
+     "text": "Menschen mit türkischer Einwanderungsgeschichte stellen 3,5 % der Erwerbstätigen im Alter von 15 bis 64 Jahren, besonders oft in Reinigungsberufen.",
+     "why": "Zahl nicht im Zitat: 64"
+    }
+   ],
+   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+  },
+  {
+   "id": "n-cd22d14f33b5",
+   "event_id": "ecd22d14f33b5",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Integrierte kommunale Schulden steigen im Jahr 2025 um 9,9 %",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_378_713.html",
+   "also": [],
+   "published_at": "2026-10-29T07:00:00.000Z",
+   "retrieved_at": "2026-10-29T13:12:58.285Z",
+   "created_at": "2026-10-29T13:12:58.285Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6595,
+    "truncated": false,
+    "hash": "61ff2b017d430b82"
+   },
+   "pipeline_version": "1.0.0",
+   "model": "claude-sonnet-5-5",
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Kommunale Schulden in Deutschland steigen 2025 um 9,9 %",
+   "kurzfassung": "Die Schulden der Kommunen stiegen 2025 um 9,9 % auf 378,9 Milliarden Euro, vor allem wegen Rekorddefiziten der Kern- und Extrahaushalte.",
+   "facts": [
+    {
+     "text": "Die integrierten kommunalen Schulden stiegen zum Jahresende 2025 um 9,9 %; im Vorjahr waren es 6,3 %.",
+     "quote": "stiegen nach einer Modellrechnung der Statistischen Ämter des Bundes und der Länder zum Jahresende 2025 gegenüber dem Jahresanfang um 9,9 %. Im Vorjahr hatte der Anstieg 6,3 % betragen."
+    },
+    {
+     "text": "Das kommunale Schuldenvolumen lag Ende 2025 bei 378,9 Milliarden Euro oder 4 907 Euro pro Kopf.",
+     "quote": "zum Jahresende 2025 insgesamt ein kommunales Schuldenvolumen von 378,9 Milliarden Euro oder 4 907 Euro pro Kopf."
+    },
+    {
+     "text": "Treiber waren die Kern- und Extrahaushalte der Kommunen, die das zweite Jahr in Folge ein Rekorddefizit auswiesen.",
+     "quote": "vor allem auf den deutlichen Schuldenaufbau der kommunalen Kern- und Extrahaushalte (+15,5 % bzw. +14,7 %) zurückzuführen. Diese wiesen 2025 im zweiten Jahr in Folge ein Rekorddefizit auf"
+    },
+    {
+     "text": "In Hessen ist die Pro-Kopf-Verschuldung am höchsten, in Brandenburg am niedrigsten.",
+     "quote": "Hessen waren nach der Modellrechnung der integrierten Schulden Ende 2025 mit 6 763 Euro pro Kopf am stärksten verschuldet."
+    }
+   ],
+   "numbers": [
+    {
+     "value": 9.9,
+     "unit": "%",
+     "period": "2025 gegenüber Jahresanfang",
+     "quote": "zum Jahresende 2025 gegenüber dem Jahresanfang um 9,9 %"
+    },
+    {
+     "value": 378.9,
+     "unit": "Mrd. Euro",
+     "period": "Ende 2025",
+     "quote": "kommunales Schuldenvolumen von 378,9 Milliarden Euro"
+    }
+   ],
+   "alltag": "Städte und Gemeinden zahlen etwa Schulen, Straßen und viele soziale Leistungen vor Ort. Wachsende Schulden können den Spielraum für solche Ausgaben einengen. Wie stark Bürger das spüren, hängt von der Region ab.",
+   "finanzwirkung": "Höhere kommunale Kreditaufnahme kann die Nachfrage nach Krediten bei Banken erhöhen. Für Bauunternehmen und andere Auftragnehmer der Kommunen kann das Aufträge bedeuten, wenn das Geld tatsächlich in Investitionen fließt. Gleichzeitig kann steigende Verschuldung künftig Zinslasten erhöhen und Ausgaben begrenzen; wie sich das auf Gewinne und Dividenden auswirkt, hängt vom einzelnen Unternehmen ab.",
+   "naechstes": {
+    "text": "Zu beobachten ist, ob die Kommunen ihre Defizite 2026 weiter ausweiten oder ob Landesprogramme zur Entschuldung greifen.",
+    "date": null,
+    "quote": null
+   },
+   "categories": [
+    "unternehmen"
+   ],
+   "regions": [
+    "Deutschland"
+   ],
+   "sectors": [
+    "Staat",
+    "Bau",
+    "Banken"
+   ],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [
+    {
+     "term": "Kommunale Schulden",
+     "def": "Kredite, die Städte, Gemeinden und ihre Einrichtungen bei Banken oder privaten Geldgebern aufgenommen haben."
+    },
+    {
+     "term": "Kernhaushalt",
+     "def": "Der normale Haushalt einer Gemeinde mit ihren laufenden Einnahmen und Ausgaben."
+    },
+    {
+     "term": "Extrahaushalt",
+     "def": "Ausgelagerte öffentliche Einrichtungen einer Kommune, die eigene Kredite aufnehmen können."
+    },
+    {
+     "term": "Pro-Kopf-Verschuldung",
+     "def": "Die Gesamtschulden geteilt durch die Zahl der Einwohner."
+    }
+   ],
+   "scenario_link": null,
+   "event_date": "2026-10-29",
+   "words": 162,
+   "length_ok": true,
+   "title_is_original": false,
+   "status": "geprüft",
+   "check_log": [
+    {
+     "part": "Zahl",
+     "text": "4907 Euro pro Kopf",
+     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
+    },
+    {
+     "part": "Zahl",
+     "text": "6763 Euro pro Kopf",
+     "why": "Zahl, Einheit oder Zeitraum nicht belegt"
     }
    ],
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
