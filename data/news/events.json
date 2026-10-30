@@ -39,7 +39,12 @@
   "bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026": "e678045aa0e89",
   "eia.gov/todayinenergy/detail.php?id=68364": "ede459216db7a",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_377_122.html": "e770f7fe7cfe8",
-  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_378_713.html": "ecd22d14f33b5"
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_378_713.html": "ecd22d14f33b5",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_382_611.html": "ecd89a77dbb56",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_381_811.html": "ea29a9664234b",
+  "ec.europa.eu/eurostat/product?code=2-30102026-ap": "e67eae7d355fe",
+  "ec.europa.eu/eurostat/product?code=3-30102026-bp": "e67eae7d355fe",
+  "ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html": "e46ab70eb6820"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -4987,6 +4992,582 @@
       "why": "Zahl, Einheit oder Zeitraum nicht belegt"
      }
     ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "ecd89a77dbb56": {
+   "revision": 1,
+   "evidence_hash": "e1d765318850b7ce",
+   "first_seen_at": "2026-10-30T13:05:30.642Z",
+   "last_seen_at": "2026-10-30T13:05:30.642Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_382_611.html",
+   "article": {
+    "id": "n-cd89a77dbb56",
+    "event_id": "ecd89a77dbb56",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Inflationsrate im Oktober 2026 voraussichtlich +2,8 %",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_382_611.html",
+    "also": [],
+    "published_at": "2026-10-30T13:00:00.000Z",
+    "retrieved_at": "2026-10-30T13:05:30.642Z",
+    "created_at": "2026-10-30T13:05:30.642Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 3488,
+     "truncated": false,
+     "hash": "e1d765318850b7ce"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 4.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel",
+       "energie",
+       "preise"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Inflation im Oktober 2026 voraussichtlich bei 2,8 % – Energiepreise bleiben hoch",
+    "kurzfassung": "Die Verbraucherpreise steigen im Oktober 2026 voraussichtlich um 2,8 % zum Vorjahresmonat. Das ist weniger als im September, Energie bleibt aber deutlich teurer als vor einem Jahr.",
+    "facts": [
+     {
+      "text": "Die Inflationsrate liegt im Oktober 2026 voraussichtlich bei 2,8 %, gemessen als Veränderung zum Vorjahresmonat.",
+      "quote": "Die Inflationsrate in Deutschland wird im Oktober 2026 voraussichtlich +2,8 % betragen."
+     },
+     {
+      "text": "Gegenüber September 2026 sinken die Verbraucherpreise um 0,2 %.",
+      "quote": "sinken die Verbraucherpreise gegenüber September 2026 um 0,2 %"
+     },
+     {
+      "text": "Die Kerninflation, also ohne Nahrungsmittel und Energie, beträgt voraussichtlich 2,1 %.",
+      "quote": "beträgt im Oktober 2026 voraussichtlich +2,1 %"
+     }
+    ],
+    "numbers": [
+     {
+      "value": 2.8,
+      "unit": "%",
+      "period": "Oktober 2026 gegenüber Oktober 2025",
+      "quote": "Die Inflationsrate in Deutschland wird im Oktober 2026 voraussichtlich +2,8 % betragen."
+     },
+     {
+      "value": 2.1,
+      "unit": "%",
+      "period": "Oktober 2026 gegenüber Oktober 2025 (ohne Nahrungsmittel und Energie)",
+      "quote": "beträgt im Oktober 2026 voraussichtlich +2,1 %"
+     },
+     {
+      "value": 12.2,
+      "unit": "%",
+      "period": "Energie, Oktober 2026 gegenüber Oktober 2025",
+      "quote": "Die Preise für Energie steigen gegenüber dem Vorjahresmonat voraussichtlich um 12,2 %."
+     }
+    ],
+    "alltag": "Preise steigen weiter, aber langsamer als im September. Im Vergleich zum Vormonat sind sie sogar leicht gesunken. Energie bleibt im Jahresvergleich deutlich teurer und belastet Haushalte weiter, etwa bei Heizen, Strom und Tanken.",
+    "finanzwirkung": "Hohe Energiepreise können die Kosten von Unternehmen erhöhen und den Gewinn schmälern, wenn sie diese nicht an Kunden weitergeben können. Ob Haushalte weniger Geld für anderen Konsum übrig haben, hängt auch von Löhnen und Preisen in anderen Bereichen ab. Eine etwas niedrigere Inflation kann die Erwartungen an Zinsen beeinflussen; die Wirkung auf Aktien und Dividenden bleibt davon abhängig, wie sich Kosten, Nachfrage und Finanzierungsbedingungen entwickeln.",
+    "naechstes": {
+     "text": "Die endgültigen Ergebnisse für Oktober 2026 werden am 11. November 2026 veröffentlicht. Dann zeigt sich, ob die vorläufigen Werte bestätigt werden.",
+     "date": "2026-11-11",
+     "quote": "Die endgültigen Ergebnisse für Oktober 2026 werden am 11. November 2026 veröffentlicht."
+    },
+    "categories": [
+     "preise",
+     "energie"
+    ],
+    "regions": [
+     "Deutschland"
+    ],
+    "sectors": [
+     "Energie",
+     "Konsumgüter",
+     "Breiter Markt"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Inflationsrate",
+      "def": "Sie zeigt, wie stark die Preise im Vergleich zum Vorjahresmonat gestiegen sind."
+     },
+     {
+      "term": "Kerninflation",
+      "def": "Die Preisentwicklung ohne Nahrungsmittel und Energie, die oft stark schwanken."
+     },
+     {
+      "term": "Verbraucherpreisindex",
+      "def": "Ein Maß dafür, wie sich die Preise eines typischen Warenkorbs privater Haushalte entwickeln."
+     },
+     {
+      "term": "Vorjahresmonat",
+      "def": "Der gleiche Monat im Jahr davor, hier der Oktober 2025."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "A",
+     "why": "Die Inflation bleibt über 2 %, schwächt sich aber leicht ab. Die Kerninflation ist niedriger, Energie bleibt teuer. Das passt qualitativ zu einer zähen Erholung."
+    },
+    "event_date": "2026-10-30",
+    "words": 154,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Energie ist 12,2 % teurer als vor einem Jahr; im September waren es 14,9 %.",
+      "why": "Zahl nicht im Zitat: 14.9"
+     },
+     {
+      "part": "Zahl",
+      "text": "-0.2",
+      "why": "Vorzeichen nicht belegt"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "ea29a9664234b": {
+   "revision": 1,
+   "evidence_hash": "0ef440325afef6c8",
+   "first_seen_at": "2026-10-30T13:05:30.642Z",
+   "last_seen_at": "2026-10-30T13:05:30.642Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_381_811.html",
+   "article": {
+    "id": "n-a29a9664234b",
+    "event_id": "ea29a9664234b",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Bruttoinlandsprodukt im 3. Quartal 2026 um 0,2 % höher als im Vorquartal",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_381_811.html",
+    "also": [],
+    "published_at": "2026-10-30T09:00:00.000Z",
+    "retrieved_at": "2026-10-30T13:05:30.642Z",
+    "created_at": "2026-10-30T13:05:30.642Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 3766,
+     "truncated": false,
+     "hash": "0ef440325afef6c8"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 4.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel",
+       "industrie"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Deutsche Wirtschaft wächst im 3. Quartal 2026 um 0,2 %",
+    "kurzfassung": "Die deutsche Wirtschaftsleistung ist im 3. Quartal 2026 leicht um 0,2 % gestiegen. Der Konsum legte zu, Investitionen gingen zurück, das Exportwachstum schwächte sich ab.",
+    "facts": [
+     {
+      "text": "Das BIP stieg im 3. Quartal 2026 gegenüber dem Vorquartal um 0,2 %, nach Wachstum in der ersten Jahreshälfte.",
+      "quote": "um 0,2 % gestiegen, nachdem es bereits in der ersten Jahreshälfte 2026 gewachsen war"
+     },
+     {
+      "text": "Die Konsumausgaben entwickelten sich leicht positiv, die Investitionen gingen laut vorläufigen Erkenntnissen zurück.",
+      "quote": "Konsumausgaben preis-, saison- und kalenderbereinigt gegenüber dem Vorquartal leicht positiv. Dagegen gingen die Investitionen laut den vorläufigen Erkenntnissen zurück."
+     },
+     {
+      "text": "Das Exportwachstum, das in der ersten Jahreshälfte noch sehr dynamisch war, schwächte sich merklich ab.",
+      "quote": "Die in der ersten Jahreshälfte noch sehr dynamische Entwicklung der Exporte schwächte sich im 3. Quartal 2026 merklich ab."
+     },
+     {
+      "text": "Im Vorjahresvergleich lag das BIP preisbereinigt um 1,3 % höher.",
+      "quote": "lag das BIP im 3. Quartal 2026 preisbereinigt um 1,3 % höher als im 3. Quartal 2025"
+     }
+    ],
+    "numbers": [
+     {
+      "value": 0.2,
+      "unit": "%",
+      "period": "3. Quartal 2026 zum Vorquartal (preis-, saison- und kalenderbereinigt)",
+      "quote": "+0,2 % zum Vorquartal (preis-, saison- und kalenderbereinigt)"
+     },
+     {
+      "value": 1.3,
+      "unit": "%",
+      "period": "3. Quartal 2026 zum Vorjahresquartal (preisbereinigt)",
+      "quote": "+1,3 % zum Vorjahresquartal (preisbereinigt)"
+     },
+     {
+      "value": 1.2,
+      "unit": "%",
+      "period": "3. Quartal 2026 zum Vorjahresquartal (preis- und kalenderbereinigt)",
+      "quote": "+1,2 % zum Vorjahresquartal (preis- und kalenderbereinigt)"
+     }
+    ],
+    "alltag": "Wächst die Wirtschaft, kann das Arbeitsplätze und Einkommen stützen. Der leichte Zuwachs beim Konsum zeigt, dass Haushalte weiter Geld ausgeben. Weniger Investitionen können dagegen bedeuten, dass Unternehmen mit neuen Projekten zurückhaltender sind.",
+    "finanzwirkung": "Ein moderates Wachstum kann Unternehmen stabile Umsätze ermöglichen. Ob daraus mehr Gewinn und Dividende entstehen, hängt von Kosten, Preisen und Margen ab. Schwächere Exporte und Investitionen können Industrieunternehmen belasten, während der Konsum eher binnenorientierte Branchen stützen kann.",
+    "naechstes": {
+     "text": "Das Statistische Bundesamt veröffentlicht ausführliche Ergebnisse zum 3. Quartal 2026, etwa zur Verwendung des BIP.",
+     "date": "2026-11-25",
+     "quote": "Ausführliche Ergebnisse für das 3. Quartal 2026 gibt das Statistische Bundesamt am 25. November 2026 bekannt."
+    },
+    "categories": [
+     "industrie",
+     "preise"
+    ],
+    "regions": [
+     "Deutschland"
+    ],
+    "sectors": [
+     "Breiter Markt",
+     "Industrie",
+     "Konsumgüter"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Bruttoinlandsprodukt (BIP)",
+      "def": "Der Wert aller Waren und Dienstleistungen, die in einem Land in einem bestimmten Zeitraum hergestellt werden."
+     },
+     {
+      "term": "preisbereinigt",
+      "def": "Preissteigerungen sind herausgerechnet, sodass nur die tatsächliche Mengenentwicklung sichtbar ist."
+     },
+     {
+      "term": "saison- und kalenderbereinigt",
+      "def": "Regelmäßige Jahreszeiteffekte und unterschiedliche Zahlen von Arbeitstagen sind herausgerechnet, damit Quartale vergleichbar sind."
+     },
+     {
+      "term": "Investitionen",
+      "def": "Ausgaben für etwa Maschinen, Gebäude oder Ausrüstung, mit denen künftig produziert wird."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "A",
+     "why": "Ein geringes Quartalswachstum bei leicht steigendem Konsum, rückläufigen Investitionen und schwächeren Exporten passt qualitativ zu einer zähen Erholung."
+    },
+    "event_date": "2026-10-30",
+    "words": 141,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e67eae7d355fe": {
+   "revision": 1,
+   "evidence_hash": "76a8fd208c016910",
+   "first_seen_at": "2026-10-30T13:05:30.642Z",
+   "last_seen_at": "2026-10-30T13:05:30.642Z",
+   "url": "https://ec.europa.eu/eurostat/product?code=2-30102026-ap",
+   "article": {
+    "id": "n-67eae7d355fe",
+    "event_id": "e67eae7d355fe",
+    "revision": 1,
+    "source": {
+     "id": "eurostat",
+     "name": "Eurostat",
+     "short": "Eurostat",
+     "region": "EU/Euroraum",
+     "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+     "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+    },
+    "original_title": "GDP up by 0.4% in the euro area and by 0.5% in the EU",
+    "url": "https://ec.europa.eu/eurostat/product?code=2-30102026-ap",
+    "also": [],
+    "published_at": "2026-10-30T10:00:00.000Z",
+    "retrieved_at": "2026-10-30T13:05:30.642Z",
+    "created_at": "2026-10-30T13:05:30.642Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 6640,
+     "truncated": false,
+     "hash": "76a8fd208c016910"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "industrie"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Euroraum-Wirtschaft wächst im dritten Quartal 2026 um 0,4 %",
+    "kurzfassung": "Die Wirtschaft im Euroraum wächst im dritten Quartal 2026 weiter, aber langsamer als im zweiten Quartal. Gegenüber dem Vorjahresquartal beträgt das Plus 1,3 %.",
+    "facts": [
+     {
+      "text": "Zum selben Quartal des Vorjahres lag das BIP im Euroraum um 1,3 % höher, in der EU um 1,5 %.",
+      "quote": "seasonally adjusted GDP increased by 1.3% in the euro area and by 1.5% in the EU in the third quarter of 2026"
+     },
+     {
+      "text": "Es handelt sich um eine vorläufige Schnellschätzung auf Basis unvollständiger Daten, die noch revidiert werden kann.",
+      "quote": "These preliminary GDP flash estimates are based on data sources that are incomplete and subject to further revisions."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 0.4,
+      "unit": "% zum Vorquartal",
+      "period": "3. Quartal 2026, Euroraum",
+      "quote": "seasonally adjusted GDP increased by 0.4% in the euro area"
+     },
+     {
+      "value": 1.3,
+      "unit": "% zum Vorjahresquartal",
+      "period": "3. Quartal 2026, Euroraum",
+      "quote": "seasonally adjusted GDP increased by 1.3% in the euro area"
+     },
+     {
+      "value": 5.5,
+      "unit": "% zum Vorquartal",
+      "period": "3. Quartal 2026, Irland",
+      "quote": "Ireland (+5.5%) recorded the highest increase compared to the previous quarter"
+     },
+     {
+      "value": -0.1,
+      "unit": "% zum Vorquartal",
+      "period": "3. Quartal 2026, Frankreich",
+      "quote": "Declines were recorded in Lithuania (-1.0%) and France (-0.1%)."
+     }
+    ],
+    "alltag": "Wenn die Wirtschaft wächst, werden insgesamt mehr Waren und Dienstleistungen hergestellt. Das hängt eng mit Arbeitsplätzen, Einkommen und Konsum zusammen. Die Zahl zeigt nur die Gesamtentwicklung und sagt nichts über einzelne Haushalte.",
+    "finanzwirkung": "Anhaltendes Wachstum kann die Nachfrage nach Produkten stützen und damit Umsätze von Unternehmen. Ob daraus mehr Gewinn und Dividende wird, hängt von Kosten, Preisen und der Lage der jeweiligen Branche ab. Das Wachstum ist im dritten Quartal langsamer als im zweiten, und die Schätzung kann noch angepasst werden.",
+    "naechstes": {
+     "text": "Eurostat veröffentlicht die nächste Schätzung zum dritten Quartal 2026, die Zahlen können sich dabei ändern.",
+     "date": "2026-11-13",
+     "quote": "The next estimates for the third quarter of 2026 will be released on 13 November 2026."
+    },
+    "categories": [
+     "preise"
+    ],
+    "regions": [
+     "Euroraum",
+     "EU"
+    ],
+    "sectors": [
+     "Breiter Markt"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Bruttoinlandsprodukt (BIP)",
+      "def": "Der Wert aller Waren und Dienstleistungen, die in einem Land oder Wirtschaftsraum in einer Zeit hergestellt werden."
+     },
+     {
+      "term": "Saisonbereinigt",
+      "def": "Regelmäßige jahreszeitliche Schwankungen sind herausgerechnet, damit Quartale besser vergleichbar sind."
+     },
+     {
+      "term": "Schnellschätzung",
+      "def": "Eine frühe, vorläufige Berechnung auf Basis unvollständiger Daten, die später korrigiert werden kann."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "A",
+     "why": "Das Wachstum bleibt positiv, schwächt sich im Quartalsvergleich aber ab. Das passt qualitativ eher zu einer zähen Erholung als zu einem breiten Aufschwung."
+    },
+    "event_date": "2026-10-30",
+    "words": 131,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [
+     {
+      "part": "Fakt",
+      "text": "Das Bruttoinlandsprodukt (BIP) stieg im Euroraum im dritten Quartal 2026 um 0,4 % zum Vorquartal, in der EU um 0,5 %. Im zweiten Quartal waren es 0,6 % im Euroraum.",
+      "why": "Zahl nicht im Zitat: 0.6"
+     },
+     {
+      "part": "Fakt",
+      "text": "Irland meldete den stärksten Anstieg zum Vorquartal (+5,5 %). Rückgänge gab es in Litauen (-1,0 %) und Frankreich (-0,1 %).",
+      "why": "Zahl nicht im Zitat: 5.5"
+     }
+    ],
+    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e46ab70eb6820": {
+   "revision": 1,
+   "evidence_hash": "9190054dff4c2aad",
+   "first_seen_at": "2026-10-30T13:05:30.642Z",
+   "last_seen_at": "2026-10-30T13:05:30.642Z",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
+   "article": {
+    "id": "n-46ab70eb6820",
+    "event_id": "e46ab70eb6820",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Monetary policy decisions",
+    "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
+    "also": [],
+    "published_at": "2026-10-29T13:15:00.000Z",
+    "retrieved_at": "2026-10-30T13:05:30.642Z",
+    "created_at": "2026-10-30T13:05:30.642Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 3085,
+     "truncated": false,
+     "hash": "9190054dff4c2aad"
+    },
+    "pipeline_version": "1.0.0",
+    "model": "claude-sonnet-5-5",
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "EZB lässt Leitzinsen trotz steigender Energiepreise unverändert",
+    "kurzfassung": "Die EZB belässt die Zinsen bei 2,50 % und warnt: Steigende Energiepreise können die Inflation erhöhen und das Wachstum dämpfen. Sie legt sich nicht auf einen Zinspfad fest.",
+    "facts": [
+     {
+      "text": "Der EZB-Rat hält alle drei Leitzinsen unverändert; der Einlagensatz bleibt bei 2,50 %.",
+      "quote": "The interest rates on the deposit facility, the main refinancing operations and the marginal lending facility will remain unchanged at 2.50%, 2.65% and 2.90% respectively."
+     },
+     {
+      "text": "Die Energiepreise sind weiter gestiegen. Das erhöht die Risiken für die Inflation und senkt die Aussichten für das Wachstum.",
+      "quote": "Energy prices have continued to rise, posing upside risks to the inflation outlook and downside risks to the growth outlook."
+     },
+     {
+      "text": "Die Finanzierungsbedingungen haben sich seit der letzten Sitzung verschärft. Das dürfte Inflation und Wachstum dämpfen.",
+      "quote": "Financing conditions have tightened since the Governing Council’s last meeting, which is likely to weigh on inflation and growth."
+     },
+     {
+      "text": "Die EZB legt sich nicht auf einen bestimmten Zinspfad fest und entscheidet von Sitzung zu Sitzung anhand der Daten.",
+      "quote": "The Governing Council is not pre-committing to a particular rate path."
+     }
+    ],
+    "numbers": [
+     {
+      "value": 2.5,
+      "unit": "%",
+      "period": "Einlagensatz ab 29.10.2026",
+      "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
+     },
+     {
+      "value": 2.65,
+      "unit": "%",
+      "period": "Hauptrefinanzierungssatz ab 29.10.2026",
+      "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
+     },
+     {
+      "value": 2.9,
+      "unit": "%",
+      "period": "Spitzenrefinanzierungssatz ab 29.10.2026",
+      "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
+     },
+     {
+      "value": 2,
+      "unit": "%",
+      "period": "mittelfristiges Inflationsziel",
+      "quote": "ensure that inflation stabilises at its 2% target in the medium term"
+     }
+    ],
+    "alltag": "Die EZB ändert die Zinsen vorerst nicht. Gleichzeitig steigen die Energiepreise weiter. Das kann Heizen, Mobilität und andere Preise verteuern und das Wirtschaftswachstum bremsen. Kredite werden dadurch nicht automatisch günstiger oder teurer.",
+    "finanzwirkung": "Stabile Zinsen schaffen Planungssicherheit, doch steigende Energiekosten können die Gewinne energieintensiver Unternehmen belasten, wenn sie die Preise nicht weitergeben können. Verschärfte Finanzierungsbedingungen können Investitionen und Konsum bremsen, was Umsätze dämpfen kann. Ob Dividenden betroffen sind, hängt vom einzelnen Unternehmen ab.",
+    "naechstes": {
+     "text": "Zu beobachten sind die Pressekonferenz der EZB-Präsidentin oder des EZB-Präsidenten, die Entwicklung der Energiepreise und die Daten zur Kerninflation und zu den Löhnen.",
+     "date": "2026-10-29",
+     "quote": "The President of the ECB will comment on the considerations underlying these decisions at a press conference starting at 14:45 CET today."
+    },
+    "categories": [
+     "zinsen",
+     "energie",
+     "preise"
+    ],
+    "regions": [
+     "Euroraum"
+    ],
+    "sectors": [
+     "Energie",
+     "Banken",
+     "Breiter Markt"
+    ],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [
+     {
+      "term": "Leitzins",
+      "def": "Zinssatz der Zentralbank, an dem sich die Zinsen für Kredite und Sparanlagen im Euroraum orientieren."
+     },
+     {
+      "term": "Kerninflation",
+      "def": "Preisentwicklung ohne stark schwankende Posten wie Energie und Lebensmittel."
+     },
+     {
+      "term": "Zweitrundeneffekte",
+      "def": "Folgen, wenn höhere Preise zu höheren Löhnen und damit wieder zu höheren Preisen führen."
+     },
+     {
+      "term": "Finanzierungsbedingungen",
+      "def": "Wie leicht und zu welchen Kosten sich Unternehmen und Haushalte Geld leihen können."
+     }
+    ],
+    "scenario_link": {
+     "scenario": "C",
+     "why": "Steigende Energiepreise, verschärfte Finanzierungsbedingungen und erhöhte Unsicherheit entsprechen qualitativ einem Umfeld, das länger anhaltenden Wirtschafts- und Finanzmarktstress begünstigen kann."
+    },
+    "event_date": "2026-10-29",
+    "words": 161,
+    "length_ok": true,
+    "title_is_original": false,
+    "status": "geprüft",
+    "check_log": [],
     "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
    },
    "history": []
