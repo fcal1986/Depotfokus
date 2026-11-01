@@ -1,6 +1,6 @@
 {
  "date": "2026-11-01",
- "generated_at": "2026-11-01T09:05:59.356Z",
+ "generated_at": "2026-11-01T20:53:31.672Z",
  "result": "items",
  "items": [
   {
@@ -276,140 +276,6 @@
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   },
   {
-   "id": "n-678045aa0e89",
-   "event_id": "e678045aa0e89",
-   "revision": 1,
-   "source": {
-    "id": "bea",
-    "name": "U.S. Bureau of Economic Analysis",
-    "short": "BEA",
-    "region": "USA",
-    "license": "US-Bundesbehörde, gemeinfrei",
-    "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
-   },
-   "original_title": "GDP (Advance Estimate), 3rd Quarter 2026",
-   "url": "https://www.bea.gov/news/2026/gdp-advance-estimate-3rd-quarter-2026",
-   "also": [],
-   "published_at": "2026-10-29T12:30:00.000Z",
-   "retrieved_at": "2026-10-29T13:12:58.285Z",
-   "created_at": "2026-10-29T13:12:58.285Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 6438,
-    "truncated": false,
-    "hash": "e63f5810b06e5c59"
-   },
-   "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
-   "selection": {
-    "score": 3.9,
-    "why": {
-     "source": 0.9,
-     "categories": [
-      "lebensmittel",
-      "industrie"
-     ],
-     "core": true,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "USA: Wirtschaft wächst im dritten Quartal 2026 mit 3,4 % aufs Jahr gerechnet",
-   "kurzfassung": "Die US-Wirtschaft ist laut erster Schätzung im dritten Quartal schneller gewachsen als im zweiten, getragen von Investitionen und Konsum, während der Preisanstieg sich deutlich abgeschwächt hat.",
-   "facts": [
-    {
-     "text": "Treiber waren höhere Investitionen, Konsumausgaben und Staatsausgaben; die Exporte gingen zurück.",
-     "quote": "increases in investment, consumer spending, and government spending that were partly offset by a decrease in exports"
-    },
-    {
-     "text": "Der Preisindex der privaten Konsumausgaben (PCE) stieg mit 2,1 % deutlich langsamer als im zweiten Quartal (5,0 %).",
-     "quote": "The personal consumption expenditures (PCE) price index increased 2.1 percent, compared with an increase of 5.0 percent"
-    }
-   ],
-   "numbers": [
-    {
-     "value": 3.4,
-     "unit": "% (aufs Jahr gerechnet)",
-     "period": "3. Quartal 2026",
-     "quote": "Real gross domestic product (GDP) increased at an annual rate of 3.4 percent in the third quarter of 2026"
-    },
-    {
-     "value": 2.2,
-     "unit": "% (aufs Jahr gerechnet)",
-     "period": "2. Quartal 2026",
-     "quote": "In the second quarter, real GDP increased 2.2 percent."
-    },
-    {
-     "value": 4.9,
-     "unit": "% (aufs Jahr gerechnet)",
-     "period": "3. Quartal 2026",
-     "quote": "increased 4.9 percent in the third quarter, compared with an increase of 4.6 percent in the second quarter"
-    },
-    {
-     "value": 2.5,
-     "unit": "% (aufs Jahr gerechnet)",
-     "period": "3. Quartal 2026",
-     "quote": "the PCE price index, excluding food and energy increased 2.5 percent, compared with an increase of 3.3 percent"
-    }
-   ],
-   "alltag": "Die USA sind eine der größten Volkswirtschaften der Welt. Wächst dort die Nachfrage nach Gütern und Dienstleistungen, kann das Auswirkungen auf Aufträge und Arbeit auch außerhalb der USA haben. Dass die Preise zuletzt langsamer stiegen, heißt nicht, dass sie sinken: Sie steigen weiter, nur weniger schnell.",
-   "finanzwirkung": "Stärkere Investitionen und Konsum können die Umsätze vieler Unternehmen stützen. Ob daraus mehr Gewinn und Dividenden werden, hängt davon ab, wie sich Kosten und Preise entwickeln. Zudem kann eine kräftige Konjunktur die Erwartungen an künftige Zinsen verändern, was Finanzierungskosten und Börsenbewertungen in beide Richtungen beeinflussen kann.",
-   "naechstes": {
-    "text": "Die zweite Schätzung des BIP und die Unternehmensgewinne für das dritte Quartal 2026 stehen als Nächstes an; die Zahlen können noch angepasst werden.",
-    "date": "2026-11-25",
-    "quote": "Next release: November 25, 2026, at 8:30 a.m. EST"
-   },
-   "categories": [
-    "preise",
-    "industrie"
-   ],
-   "regions": [
-    "USA"
-   ],
-   "sectors": [
-    "Breiter Markt"
-   ],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [
-    {
-     "term": "Bruttoinlandsprodukt (BIP)",
-     "def": "Der Wert aller Waren und Dienstleistungen, die eine Volkswirtschaft in einem Zeitraum herstellt."
-    },
-    {
-     "term": "Real",
-     "def": "Um Preisänderungen bereinigt, sodass nur die tatsächliche Mengenentwicklung zählt."
-    },
-    {
-     "term": "Aufs Jahr gerechnet",
-     "def": "Die Veränderung eines Quartals wird so umgerechnet, als würde sie ein ganzes Jahr anhalten."
-    },
-    {
-     "term": "PCE-Preisindex",
-     "def": "Ein Maß dafür, wie schnell die Preise für den privaten Konsum steigen."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "B",
-    "why": "Kräftiges Wachstum bei Investitionen und Konsum sowie ein langsamerer Preisanstieg passen qualitativ zu einem breiteren Aufschwung."
-   },
-   "event_date": "2026-10-29",
-   "words": 144,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [
-    {
-     "part": "Fakt",
-     "text": "Das reale Bruttoinlandsprodukt der USA stieg im dritten Quartal 2026 auf das Jahr gerechnet um 3,4 %, nach 2,2 % im zweiten Quartal.",
-     "why": "Zahl nicht im Zitat: 2.2"
-    }
-   ],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
-  },
-  {
    "id": "n-67eae7d355fe",
    "event_id": "e67eae7d355fe",
    "revision": 1,
@@ -544,8 +410,8 @@
    "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
   },
   {
-   "id": "n-46ab70eb6820",
-   "event_id": "e46ab70eb6820",
+   "id": "n-dcb5ad2cc8a3",
+   "event_id": "edcb5ad2cc8a3",
    "revision": 1,
    "source": {
     "id": "ecb",
@@ -555,132 +421,136 @@
     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
    },
-   "original_title": "Monetary policy decisions",
-   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
+   "original_title": "Philip R. Lane: AI adoption in Europe",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261030~08d9d540f0.en.html",
    "also": [],
-   "published_at": "2026-10-29T13:15:00.000Z",
-   "retrieved_at": "2026-10-30T13:05:30.642Z",
-   "created_at": "2026-10-30T13:05:30.642Z",
+   "published_at": "2026-10-30T16:10:00.000Z",
+   "retrieved_at": "2026-11-01T20:53:31.672Z",
+   "created_at": "2026-11-01T20:53:31.672Z",
    "evidence": {
     "kind": "page",
-    "chars": 3085,
-    "truncated": false,
-    "hash": "9190054dff4c2aad"
+    "chars": 14000,
+    "truncated": true,
+    "hash": "2d7a131aad9af07c"
    },
    "pipeline_version": "1.0.0",
-   "model": "claude-sonnet-5-5",
+   "model": null,
    "selection": {
-    "score": 3,
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Philip R. Lane: AI adoption in Europe",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "My aim today is to describe how AI is reshaping the euro area economy."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-10-30",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-3052cf644d70",
+   "event_id": "e3052cf644d70",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+   "url": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261030~e40f864093.en.html",
+   "also": [],
+   "published_at": "2026-10-30T14:00:00.000Z",
+   "retrieved_at": "2026-11-01T20:53:31.672Z",
+   "created_at": "2026-11-01T20:53:31.672Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 4558,
+    "truncated": false,
+    "hash": "7bee01a9f872b6f6"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "zinsen"
      ],
-     "core": true,
+     "core": false,
      "fresh": false,
      "sensational": false
     }
    },
-   "title": "EZB lässt Leitzinsen trotz steigender Energiepreise unverändert",
-   "kurzfassung": "Die EZB belässt die Zinsen bei 2,50 % und warnt: Steigende Energiepreise können die Inflation erhöhen und das Wachstum dämpfen. Sie legt sich nicht auf einen Zinspfad fest.",
+   "title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+   "kurzfassung": null,
    "facts": [
     {
-     "text": "Der EZB-Rat hält alle drei Leitzinsen unverändert; der Einlagensatz bleibt bei 2,50 %.",
-     "quote": "The interest rates on the deposit facility, the main refinancing operations and the marginal lending facility will remain unchanged at 2.50%, 2.65% and 2.90% respectively."
-    },
-    {
-     "text": "Die Energiepreise sind weiter gestiegen. Das erhöht die Risiken für die Inflation und senkt die Aussichten für das Wachstum.",
-     "quote": "Energy prices have continued to rise, posing upside risks to the inflation outlook and downside risks to the growth outlook."
-    },
-    {
-     "text": "Die Finanzierungsbedingungen haben sich seit der letzten Sitzung verschärft. Das dürfte Inflation und Wachstum dämpfen.",
-     "quote": "Financing conditions have tightened since the Governing Council’s last meeting, which is likely to weigh on inflation and growth."
-    },
-    {
-     "text": "Die EZB legt sich nicht auf einen bestimmten Zinspfad fest und entscheidet von Sitzung zu Sitzung anhand der Daten.",
-     "quote": "The Governing Council is not pre-committing to a particular rate path."
+     "text": null,
+     "quote": "On 29 October 2026 ECB President Christine Lagarde informed the Governing Council and the President of the European Council António Costa that she would step down from her position on 7 February 2027."
     }
    ],
-   "numbers": [
-    {
-     "value": 2.5,
-     "unit": "%",
-     "period": "Einlagensatz ab 29.10.2026",
-     "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
-    },
-    {
-     "value": 2.65,
-     "unit": "%",
-     "period": "Hauptrefinanzierungssatz ab 29.10.2026",
-     "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
-    },
-    {
-     "value": 2.9,
-     "unit": "%",
-     "period": "Spitzenrefinanzierungssatz ab 29.10.2026",
-     "quote": "will remain unchanged at 2.50%, 2.65% and 2.90% respectively"
-    },
-    {
-     "value": 2,
-     "unit": "%",
-     "period": "mittelfristiges Inflationsziel",
-     "quote": "ensure that inflation stabilises at its 2% target in the medium term"
-    }
-   ],
-   "alltag": "Die EZB ändert die Zinsen vorerst nicht. Gleichzeitig steigen die Energiepreise weiter. Das kann Heizen, Mobilität und andere Preise verteuern und das Wirtschaftswachstum bremsen. Kredite werden dadurch nicht automatisch günstiger oder teurer.",
-   "finanzwirkung": "Stabile Zinsen schaffen Planungssicherheit, doch steigende Energiekosten können die Gewinne energieintensiver Unternehmen belasten, wenn sie die Preise nicht weitergeben können. Verschärfte Finanzierungsbedingungen können Investitionen und Konsum bremsen, was Umsätze dämpfen kann. Ob Dividenden betroffen sind, hängt vom einzelnen Unternehmen ab.",
-   "naechstes": {
-    "text": "Zu beobachten sind die Pressekonferenz der EZB-Präsidentin oder des EZB-Präsidenten, die Entwicklung der Energiepreise und die Daten zur Kerninflation und zu den Löhnen.",
-    "date": "2026-10-29",
-    "quote": "The President of the ECB will comment on the considerations underlying these decisions at a press conference starting at 14:45 CET today."
-   },
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
    "categories": [
-    "zinsen",
-    "energie",
-    "preise"
+    "zinsen"
    ],
-   "regions": [
-    "Euroraum"
-   ],
-   "sectors": [
-    "Energie",
-    "Banken",
-    "Breiter Markt"
-   ],
+   "regions": [],
+   "sectors": [],
    "companies": [],
    "dividend": {
     "status": "nicht erwähnt"
    },
-   "glossary": [
-    {
-     "term": "Leitzins",
-     "def": "Zinssatz der Zentralbank, an dem sich die Zinsen für Kredite und Sparanlagen im Euroraum orientieren."
-    },
-    {
-     "term": "Kerninflation",
-     "def": "Preisentwicklung ohne stark schwankende Posten wie Energie und Lebensmittel."
-    },
-    {
-     "term": "Zweitrundeneffekte",
-     "def": "Folgen, wenn höhere Preise zu höheren Löhnen und damit wieder zu höheren Preisen führen."
-    },
-    {
-     "term": "Finanzierungsbedingungen",
-     "def": "Wie leicht und zu welchen Kosten sich Unternehmen und Haushalte Geld leihen können."
-    }
-   ],
-   "scenario_link": {
-    "scenario": "C",
-    "why": "Steigende Energiepreise, verschärfte Finanzierungsbedingungen und erhöhte Unsicherheit entsprechen qualitativ einem Umfeld, das länger anhaltenden Wirtschafts- und Finanzmarktstress begünstigen kann."
-   },
-   "event_date": "2026-10-29",
-   "words": 161,
-   "length_ok": true,
-   "title_is_original": false,
-   "status": "geprüft",
-   "check_log": [],
-   "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-10-30",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   }
  ],
- "held": []
+ "held": [
+  {
+   "event_id": "e2a81396602e2",
+   "title": "Ergebnisse des von der EZB durchgeführten Survey of Professional Forecasters für das vierte Quartal 2026",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-des-von-der-ezb-durchgefuehrten-survey-of-professional-forecasters-fuer-das-vierte-quartal-2026-959172",
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
+   "log": null
+  }
+ ]
 }

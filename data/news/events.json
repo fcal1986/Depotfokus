@@ -44,7 +44,10 @@
   "destatis.de/DE/Presse/Pressemitteilungen/2026/10/PD26_381_811.html": "ea29a9664234b",
   "ec.europa.eu/eurostat/product?code=2-30102026-ap": "e67eae7d355fe",
   "ec.europa.eu/eurostat/product?code=3-30102026-bp": "e67eae7d355fe",
-  "ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html": "e46ab70eb6820"
+  "ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html": "e46ab70eb6820",
+  "bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-des-von-der-ezb-durchgefuehrten-survey-of-professional-forecasters-fuer-das-vierte-quartal-2026-959172": "e2a81396602e2",
+  "ecb.europa.eu/press/key/date/2026/html/ecb.sp261030~08d9d540f0.en.html": "edcb5ad2cc8a3",
+  "ecb.europa.eu/press/govcdec/otherdec/2026/html/ecb.gc261030~e40f864093.en.html": "e3052cf644d70"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -5569,6 +5572,228 @@
     "status": "geprüft",
     "check_log": [],
     "check_note": "Daten geprüft: Jede Tatsache ist durch ein wörtliches Zitat aus der Quelle belegt, jede Zahl steht im Zitat. Die Einordnung ist als solche gekennzeichnet und keine Kursprognose."
+   },
+   "history": []
+  },
+  "e2a81396602e2": {
+   "revision": 1,
+   "evidence_hash": null,
+   "first_seen_at": "2026-11-01T20:53:31.672Z",
+   "last_seen_at": "2026-11-01T20:53:31.672Z",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-des-von-der-ezb-durchgefuehrten-survey-of-professional-forecasters-fuer-das-vierte-quartal-2026-959172",
+   "article": {
+    "id": "n-2a81396602e2",
+    "event_id": "e2a81396602e2",
+    "revision": 1,
+    "source": {
+     "id": "bundesbank",
+     "name": "Deutsche Bundesbank",
+     "short": "Bundesbank",
+     "region": "Deutschland",
+     "license": "Nachdruck mit Quellenangabe gestattet",
+     "license_url": "https://www.bundesbank.de/de/service/impressum"
+    },
+    "original_title": "Ergebnisse des von der EZB durchgeführten Survey of Professional Forecasters für das vierte Quartal 2026",
+    "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-des-von-der-ezb-durchgefuehrten-survey-of-professional-forecasters-fuer-das-vierte-quartal-2026-959172",
+    "also": [],
+    "published_at": "2026-10-30T12:00:00.000Z",
+    "retrieved_at": "2026-11-01T20:53:31.672Z",
+    "created_at": "2026-11-01T20:53:31.672Z",
+    "evidence": {
+     "kind": "feed",
+     "chars": 271,
+     "truncated": false,
+     "hash": null
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.9,
+     "why": {
+      "source": 0.9,
+      "categories": [
+       "energie",
+       "preise"
+      ],
+      "core": false,
+      "fresh": false,
+      "sensational": false
+     }
+    },
+    "title": "Ergebnisse des von der EZB durchgeführten Survey of Professional Forecasters für das vierte Quartal 2026",
+    "kurzfassung": null,
+    "facts": [],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "energie",
+     "preise"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-10-30",
+    "words": 0,
+    "length_ok": false,
+    "status": "zurückgehalten",
+    "held_reason": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
+   },
+   "history": []
+  },
+  "edcb5ad2cc8a3": {
+   "revision": 1,
+   "evidence_hash": "2d7a131aad9af07c",
+   "first_seen_at": "2026-11-01T20:53:31.672Z",
+   "last_seen_at": "2026-11-01T20:53:31.672Z",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261030~08d9d540f0.en.html",
+   "article": {
+    "id": "n-dcb5ad2cc8a3",
+    "event_id": "edcb5ad2cc8a3",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Philip R. Lane: AI adoption in Europe",
+    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261030~08d9d540f0.en.html",
+    "also": [],
+    "published_at": "2026-10-30T16:10:00.000Z",
+    "retrieved_at": "2026-11-01T20:53:31.672Z",
+    "created_at": "2026-11-01T20:53:31.672Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 14000,
+     "truncated": true,
+     "hash": "2d7a131aad9af07c"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2,
+     "why": {
+      "source": 1,
+      "categories": [
+       "industrie"
+      ],
+      "core": false,
+      "fresh": false,
+      "sensational": false
+     }
+    },
+    "title": "Philip R. Lane: AI adoption in Europe",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "My aim today is to describe how AI is reshaping the euro area economy."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-10-30",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e3052cf644d70": {
+   "revision": 1,
+   "evidence_hash": "7bee01a9f872b6f6",
+   "first_seen_at": "2026-11-01T20:53:31.672Z",
+   "last_seen_at": "2026-11-01T20:53:31.672Z",
+   "url": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261030~e40f864093.en.html",
+   "article": {
+    "id": "n-3052cf644d70",
+    "event_id": "e3052cf644d70",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+    "url": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261030~e40f864093.en.html",
+    "also": [],
+    "published_at": "2026-10-30T14:00:00.000Z",
+    "retrieved_at": "2026-11-01T20:53:31.672Z",
+    "created_at": "2026-11-01T20:53:31.672Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 4558,
+     "truncated": false,
+     "hash": "7bee01a9f872b6f6"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": false,
+      "sensational": false
+     }
+    },
+    "title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "On 29 October 2026 ECB President Christine Lagarde informed the Governing Council and the President of the European Council António Costa that she would step down from her position on 7 February 2027."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "zinsen"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-10-30",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
    },
    "history": []
   }
