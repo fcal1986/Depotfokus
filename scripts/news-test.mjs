@@ -199,7 +199,7 @@ test('Depotzuordnung läuft im Browser und überträgt keine Bestände', () => {
   assert.ok(!/localStorage|OWN_KEY|positions|depotfokus-v/.test(pipeline), 'die Pipeline kennt keine persönlichen Daten');
   // newsMatch ausführen (rein funktional)
   const body = src.slice(src.indexOf('const NEWS_SECTORS='), src.indexOf('function newsCard'));
-  const fn = new Function('STAMM', body.replace(/^const newsAll[\s\S]*?\n(?=function newsToday)/m, '').replace(/function newsToday[\s\S]*?\n(?=\/\*)/, '') + '\nreturn newsMatch;')({ 'PEP.DE': { isin: 'US7134481081' } });
+  const fn = new Function('STAMM', 'document', 'D', body.replace(/^const newsAll[\s\S]*?\n(?=function newsToday)/m, '').replace(/function newsToday[\s\S]*?\n(?=\/\*)/, '') + '\nreturn newsMatch;')({ 'PEP.DE': { isin: 'US7134481081' } }, { addEventListener() {} }, () => ({ sectors: {} }));
   const pos = [{ symbol: 'PEP.DE', name: 'PepsiCo' }, { symbol: 'MSF.DE', name: 'Microsoft' }, { symbol: 'XYZ', name: 'Eigene Aktie', isin: 'US0000000001' }];
   assert.deepEqual(fn({ sectors: ['Lebensmittel'], companies: [] }, pos).map(p => p.name), ['PepsiCo']);
   assert.deepEqual(fn({ sectors: [], companies: [{ name: 'X', isin: 'US0000000001' }] }, pos).map(p => p.name), ['Eigene Aktie']);

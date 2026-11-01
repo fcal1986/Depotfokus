@@ -11,6 +11,33 @@ const NEWS_STATUS={'geprüft':['pos','Daten geprüft'],'nur_fakten':['warn','Nur
 const NEWS_SECTORS={'PEP.DE':['Lebensmittel','Konsumgüter'],'CCC3.DE':['Lebensmittel','Konsumgüter'],'PRG.DE':['Konsumgüter'],'JNJ.DE':['Gesundheit'],'NOV.DE':['Gesundheit'],
   'MSF.DE':['Technologie'],'GOOG':['Technologie'],'AAPL':['Technologie','Halbleiter'],'3V64.DE':['Zahlungsverkehr'],'MA':['Zahlungsverkehr'],'9A2.F':['Kreditfonds','Banken'],'13M.F':['Kreditfonds','Banken'],
   'WX4.F':['Immobilien','Gesundheit'],'RY6.F':['Immobilien','Einzelhandel'],'IQQW.DE':['Breiter Markt'],'K0MR.DE':['Breiter Markt'],'EQQQ.DE':['Technologie','Breiter Markt']};
+/* Branchen je Position: 1. von dir gewählt (gespeichert im Depot auf diesem Gerät), 2. bekannte Werte (Tabelle oben),
+   3. Vorschlag aus Name und Baustein. Nur Branchen aus der Liste, die auch die Nachrichten verwenden. */
+const NEWS_SECTOR_LIST=['Lebensmittel','Konsumgüter','Einzelhandel','Landwirtschaft','Energie','Rohstoffe','Transport','Banken','Versicherungen','Immobilien','Bau','Industrie','Technologie','Halbleiter','Gesundheit','Zahlungsverkehr','Kreditfonds','Staat','Breiter Markt'];
+const sectorKey=p=>(STAMM[p.symbol]||{}).isin||p.isin||p.symbol||p.id;
+const SECTOR_HINTS=[[/bank|financial|finanz/i,'Banken'],[/versicher|insurance|allianz|munich re|hannover r/i,'Versicherungen'],[/reit|realty|immobil|property|properties|vonovia|healthcare investors/i,'Immobilien'],
+  [/pharma|health|medic|biotech|novo|pfizer|merck|roche|novartis|abbvie|eli lilly|siemens healthineers|fresenius/i,'Gesundheit'],[/semiconductor|halbleiter|nvidia|asml|infineon|tsmc|broadcom|\bamd\b|intel/i,'Halbleiter'],
+  [/software|microsoft|alphabet|google|apple|meta|amazon|sap\b|technolog|cloud|digital/i,'Technologie'],[/visa|mastercard|paypal|adyen|payment/i,'Zahlungsverkehr'],
+  [/oil|gas|energy|energie|shell|exxon|chevron|totalenergies|bp\b|rwe|e\.on|eon\b|iberdrola|enel|utilit|versorger/i,'Energie'],[/mining|minen|gold|silver|rohstoff|bhp|rio tinto|glencore|basf|chemi/i,'Rohstoffe'],
+  [/food|foods|nestl|unilever|danone|kraft|mondelez|pepsi|coca|beverage|getränk|brau|nahrung/i,'Lebensmittel'],[/procter|colgate|henkel|beiersdorf|l'or[eé]al|kimberly|consumer|konsum/i,'Konsumgüter'],
+  [/walmart|costco|target|ahold|retail|einzelhandel|zalando|home depot/i,'Einzelhandel'],[/capital corp|bdc|lending|credit|kredit/i,'Kreditfonds'],
+  [/airline|lufthansa|logistic|post|dhl|ups\b|fedex|rail|bahn|shipping|maersk|hapag|transport/i,'Transport'],[/siemens|airbus|rheinmetall|caterpillar|honeywell|industr|maschinen|mtu\b/i,'Industrie'],
+  [/msci|world|acwi|s&p|stoxx|dax|ftse|all[- ]country|index|etf|ucits/i,'Breiter Markt'],[/bund|treasury|government bond|staatsanleihe/i,'Staat']];
+function sectorSuggest(p){const n=String(p.name||'')+' '+(p.symbol||''),out=[];SECTOR_HINTS.forEach(([re,s])=>{if(re.test(n)&&!out.includes(s))out.push(s)});
+  if(!out.length){const b=p.bucket;if(b==='core'||b==='hdy')out.push('Breiter Markt');else if(b==='ndq')out.push('Technologie','Breiter Markt');else if(b==='bdc')out.push('Kreditfonds');else if(b==='bonds')out.push('Staat')}
+  return out.slice(0,3)}
+function sectorsFor(p,d=D()){const o=d.sectors&&d.sectors[sectorKey(p)];if(Array.isArray(o))return {list:o,src:'own'};  // auch leer: bewusst keine Branche
+const k=NEWS_SECTORS[p.symbol];if(k)return {list:k,src:'stamm'};const s=sectorSuggest(p);return {list:s,src:s.length?'suggest':'none'}}
+function setSectors(p,list){const d=D();d.sectors=Object.assign({},d.sectors,{[sectorKey(p)]:list.filter(x=>NEWS_SECTOR_LIST.includes(x)).slice(0,3)});persist()}
+const sectorOpen=d=>d.positions.filter(p=>isIncluded(p)&&['suggest','none'].includes(sectorsFor(p,d).src));
+function sectorCard(p){const S0=sectorsFor(p),sel=new Set(S0.list);
+  return `<section class="card col" style="gap:8px" id="sectorCard"><div class="row between"><h2 class="h2" style="margin:0">Branche für Nachrichten</h2><span class="tag ${S0.src==='own'||S0.src==='stamm'?'pos':'warn'}">${{own:'von dir gewählt',stamm:'bekannt',suggest:'Vorschlag',none:'fehlt'}[S0.src]}</span></div>
+   <p class="small muted2">Damit Depotfokus Nachrichten dieser Position zuordnen kann. ${S0.src==='suggest'?'Vorschlag aus Name und Baustein; bitte bestätigen oder ändern.':S0.src==='none'?'Wähle bis zu drei Branchen.':'Bis zu drei Branchen.'} Bleibt auf diesem Gerät.</p>
+   <div class="chips" role="group" aria-label="Branchen">${NEWS_SECTOR_LIST.map(s=>`<button type="button" class="mchip" data-sector="${esc(s)}" data-pid="${esc(p.id)}" aria-pressed="${sel.has(s)}">${esc(s)}</button>`).join('')}</div>
+   ${S0.src==='suggest'?`<div class="row" style="gap:8px"><button type="button" class="btn primary" data-sectorok="${esc(p.id)}">Vorschlag bestätigen</button></div>`:''}</section>`}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-sector]');if(b){const p=posById(b.dataset.pid);if(!p)return;const cur=new Set(sectorsFor(p).list),s=b.dataset.sector;
+    if(cur.has(s))cur.delete(s);else{if(cur.size>=3){toast('Höchstens drei Branchen');return}cur.add(s)}setSectors(p,[...cur]);rerender();return}
+  const ok=e.target.closest('[data-sectorok]');if(ok){const p=posById(ok.dataset.sectorok);if(p){setSectors(p,sectorsFor(p).list);rerender();toast('Branche gespeichert')}}});
 const newsAll=()=>{if(!NEWS||!NEWS.latest)return [];const L=NEWS.latest;return (L.items||[]).concat(L.previous&&L.previous.items||[])};
 const newsAge=a=>Math.floor((Date.now()-Date.parse(a.published_at))/864e5);
 const newsOld=a=>newsAge(a)>=2;
@@ -20,7 +47,7 @@ function newsToday(){if(!NEWS||!NEWS.latest)return {items:[],old:false,date:null
   return {items:L.previous?L.previous.items:[],old:true,date:L.previous?L.previous.date:null,none:true,noneDate:L.date}}
 /* Lokale Zuordnung: nur Branche/Ticker/ISIN, keine Beträge; verlässt das Gerät nicht */
 function newsMatch(a,positions){const sec=new Set(a.sectors||[]),co=a.companies||[];
-  return positions.filter(p=>{const s=NEWS_SECTORS[p.symbol]||[];const isin=(STAMM[p.symbol]||{}).isin||p.isin;
+  return positions.filter(p=>{const s=sectorsFor(p).list;const isin=(STAMM[p.symbol]||{}).isin||p.isin;
     return s.some(x=>sec.has(x))||co.some(c=>(c.isin&&c.isin===isin)||(c.ticker&&p.symbol&&p.symbol.split('.')[0].toUpperCase()===String(c.ticker).toUpperCase()))})}
 function newsCard(a,compact){const st=NEWS_STATUS[a.status]||['neutral',''],old=newsOld(a);
   return `<a class="card col news-card" href="#nachricht/${encodeURIComponent(a.id)}" style="gap:5px">
