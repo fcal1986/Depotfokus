@@ -58,7 +58,7 @@ function vNachrichten(day){
     else if(NEWS.status&&NEWS.status.last_result==='failed')head=`<div class="banner"><b>Letzter Abruf fehlgeschlagen</b><span>Gezeigt wird die letzte gültige Ausgabe vom ${deDate(NEWS.latest.date)}.</span></div>`;
     else if(T.old)head=`<div class="banner"><b>Ältere Ausgabe</b><span>Diese Auswahl stammt vom ${deDate(T.date)}.</span></div>`}
   const days=(NEWS.days||[]).filter(x=>x.date!==(NEWS.latest&&NEWS.latest.date)).slice(0,14);
-  return hubHead('welt','nachrichten',`<p class="small muted2">Höchstens fünf wichtige Entwicklungen am Tag, einfach erklärt, jede Tatsache mit Beleg aus der Originalquelle. An ruhigen Tagen weniger.</p>`)+head+
+  return hubHead('welt','nachrichten',`<p class="small muted2">Höchstens fünf wichtige Entwicklungen am Tag, einfach erklärt, jede Tatsache mit Beleg aus der Originalquelle. An ruhigen Tagen weniger.</p>`)+(day?'':newsRunBox())+head+
    (items.length?items.map(a=>newsCard(a,false)).join(''):'<div class="empty">Noch keine geprüften Nachrichten.</div>')+
    newsStatusLine()+
    (days.length?`<details class="card"><summary>Frühere Tage</summary><div class="chips" style="margin-top:6px">${days.map(x=>`<a class="mchip" style="display:inline-flex;align-items:center" href="#nachrichten/${x.date}">${deDate(x.date)} · ${x.count}</a>`).join('')}</div></details>`:'')+

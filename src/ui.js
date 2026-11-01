@@ -114,6 +114,7 @@ function vHeute(){
       <a href="#daten" class="icon-btn" aria-label="Einstellungen, Daten und Import">${ICON.gear}</a>
     </div>
   </div>
+  ${folderBanner()}
   ${d.kind==='demo'?`<a href="#daten" class="demo-bar"><span class="chip-demo">Musterdepot</span><span>Erfundene Bestände. Tippe hier, um dein eigenes Depot zu importieren.</span></a>`:''}
   <div class="stories" aria-label="Tagesmeldungen">${storyList().map(p=>{const seen=FUN.seen.includes(storyKey(p));return `<a href="#story/${encodeURIComponent(p.id)}" class="story-b" aria-label="${esc(p.name)}${seen?', gesehen':', neu'}"><span class="ring ${seen?'seen':''}${!seen&&storyFresh(p)?' fresh':''}"><span class="av${p.id===HEUTE_ID?' av-heute':''}">${p.id===HEUTE_ID?new Date().getDate():esc(initials(p.name))}</span></span><span class="n">${esc(p.id===HEUTE_ID?'Heute':short(p.name))}</span></a>`}).join('')}</div>
   <section class="dark col" style="gap:6px">
@@ -434,11 +435,14 @@ function vLiga(){
 function vDaten(){return `
   <div class="row" style="gap:6px"><a href="#heute" class="icon-btn" aria-label="Zurück">${ICON.back}</a><h1 class="h1" style="font-size:26px">Einstellungen</h1></div>
   <div class="card" id="sourceCard"></div>
+  ${folderBanner()}
   <div class="card" id="importCard" tabindex="-1"></div>
+  ${folderCard()}
   <div class="card" id="txCard"></div>
   <div class="card" id="pricesCard"></div>
   <div class="card" id="confirmCard" tabindex="-1"></div>
   <div class="card" id="extCard"></div>
+  ${ghCard()}
   <section class="card col" style="gap:8px"><h2 class="h2" style="margin:0">Darstellung</h2><div class="seg theme-seg" role="group" aria-label="Design">${[['system','System'],['light','Hell'],['dark','Dunkel']].map(([k,l])=>`<button type="button" data-themeset="${k}" aria-pressed="${(UI.theme||'system')===k}">${l}</button>`).join('')}</div><p class="hint">„System“ folgt der Einstellung deines Geräts. Gilt nur auf diesem Gerät.</p></section>
   <a class="card row between" href="#stand"><span class="col" style="gap:2px"><span class="strong">Datenstand und Ablauf</span><span class="small muted2">Was automatisch läuft, was manuell geprüft ist und wann</span></span><span aria-hidden="true">→</span></a>`}
 
@@ -553,7 +557,7 @@ document.addEventListener('click',e=>{
   if(t.closest('#stAccept')){acceptImport();return}
   if(t.closest('#delAsk')){pendingDelete=true;renderSourceCard();return}
   if(t.closest('#delCancel')){pendingDelete=false;renderSourceCard();return}
-  if(t.closest('#delConfirm')){store(OWN_KEY,null);OWN=null;pendingDelete=false;UI.source='demo';saveUI();rerender();toast('Eigene Daten auf diesem Gerät gelöscht');return}
+  if(t.closest('#delConfirm')){store(OWN_KEY,null);OWN=null;store(FOLDER_KEY,null);store(GH_KEY,null);GH.token=null;folderHandle=null;FOLDER.name=null;FOLDER.seen={};FOLDER.found=[];idbSet('folder',null).catch(()=>{});pendingDelete=false;UI.source='demo';saveUI();rerender();toast('Eigene Daten auf diesem Gerät gelöscht');return}
 });
 document.addEventListener('change',e=>{
   const el=e.target,d=D();
