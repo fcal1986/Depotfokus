@@ -48,7 +48,7 @@ function renderSourceCard(){
    <p>${D().kind==='demo'?'Du siehst das <b>Demodepot</b>.':'Du siehst dein <b>eigenes Depot</b>.'} ${OWN?'Ein eigenes Depot ist auf diesem Gerät gespeichert.':'Auf diesem Gerät ist kein eigenes Depot gespeichert.'}</p>
    <div class="row" style="margin-top:10px">${D().kind==='own'?'<button class="btn" data-src="demo">Demodepot ansehen</button>':OWN?'<button class="btn" data-src="own">Mein Depot anzeigen</button>':''}
     ${OWN?(pendingDelete?`<button class="btn danger" id="delConfirm">Endgültig löschen</button><button class="btn" id="delCancel">Abbrechen</button>`:'<button class="btn danger" id="delAsk">Daten auf diesem Gerät löschen</button>'):''}</div>
-   <p class="hint" style="margin-top:10px">Eigene Daten werden nur im Speicher dieses Browsers abgelegt. Das ist keine Sicherung: Sie fehlen auf anderen Geräten und gehen verloren, wenn Websitedaten gelöscht werden. Das Demodepot wird nie gespeichert und vermischt sich nicht mit deinen Daten.</p>`;
+   <p class="hint" style="margin-top:10px">Eigene Daten werden nur im Speicher dieses Browsers abgelegt. Das ist keine Sicherung: Sie fehlen auf anderen Geräten und gehen verloren, wenn Websitedaten gelöscht werden. Das Demodepot wird nie gespeichert und vermischt sich nicht mit deinen Daten. Löschen entfernt auch den Ordnerzugriff und das GitHub-Token.</p>`;
 }
 
 function acceptImport(){
@@ -64,7 +64,7 @@ function acceptImport(){
   }
   OWN=d;UI.source='own';saveUI();staged=null;
   addEvent(d,{t:`Bestand importiert: ${d.fileName}`,b:`${d.positions.length} Wertpapiere, ${d.accounts.length} Konten. ${unresolved(d).length?unresolved(d).length+' Zuordnungen offen.':'Keine offenen Zuordnungen.'}`,go:unresolved(d).length?['depot','confirmCard']:['home','wealthCard']});
-  evaluateChanges(d,!prev);persist();renderAll();toast('Bestand übernommen');if(stagedTx){location.hash='#daten';rerender()}else setTab('home');
+  evaluateChanges(d,!prev);persist();if(typeof folderAccepted==='function')folderAccepted('bestand');renderAll();toast('Bestand übernommen');if(stagedTx){location.hash='#daten';rerender()}else setTab('home');
 }
 
 let stagedTx=null;
@@ -87,7 +87,7 @@ function acceptTx(){
   OWN.tx=s.tx.map(({line,...t})=>t);OWN.txMeta={fileName:s.fileName,importedAt:nowStr(),from:s.from,to:s.to,count:s.tx.length};
   UI.source='own';saveUI();stagedTx=null;_txc.k=null;
   addEvent(OWN,{t:`Umsätze importiert: ${s.tx.length} Buchungen`,b:`Zeitraum ${isoToDe(s.from)} bis ${isoToDe(s.to)}.`,go:['depot','perf']});
-  persist();toast('Umsätze übernommen');location.hash='#depot';rerender();
+  persist();if(typeof folderAccepted==='function')folderAccepted('tx');toast('Umsätze übernommen');location.hash='#depot';rerender();
 }
 function renderTxCard(){
   const d=D(),m=txModel(d),el=$('#txCard');if(!el)return;
