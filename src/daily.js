@@ -36,7 +36,7 @@ const newsRecent=()=>{if(typeof NEWS==='undefined'||!NEWS)return [];return newsT
 const newsWhen=a=>newsAge(a)===0?'':` · vom ${deDate(a.published_at)}`;
 function slideNews(p){const a=newsRecent().find(x=>newsMatch(x,[p]).length);if(!a)return null;
   return {lbl:'Nachricht mit Bezug'+newsWhen(a),kind:'day',tag:'Nachricht',fresh:true,t:a.title,
-    sub:`${a.kurzfassung||''} Betrifft die Branche ${esc((a.sectors||[]).filter(s=>(NEWS_SECTORS[p.symbol]||[]).includes(s)).join(', ')||'dieser Position')}; ob und wie stark die Firma selbst betroffen ist, belegt die Meldung nicht.`.trim(),
+    sub:`${a.kurzfassung||''} Betrifft die Branche ${esc((a.sectors||[]).filter(s=>sectorsFor(p).list.includes(s)).join(', ')||'dieser Position')}; ob und wie stark die Firma selbst betroffen ist, belegt die Meldung nicht.`.trim(),
     srcTxt:`${a.source.name}, ${deDate(a.published_at)}`,link:{href:'#nachricht/'+encodeURIComponent(a.id),label:'Ganze Nachricht lesen'}}}
 /* 4. Wissenshappen: täglich wechselnd, jede Aussage aus Steckbrief oder geprüften Fakten */
 function knowledgePool(p){const W=typeof WORLD!=='undefined'&&WORLD.companies&&WORLD.companies[p.symbol],I=INFO[p.symbol],pool=[];

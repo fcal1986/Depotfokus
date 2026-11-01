@@ -244,7 +244,7 @@ function vDepot(){
   ${stadt?stadtHTML(d):`<section class="card"><h2 class="h2">Positionen</h2>${list}</section>`}
   ${perfCard(d)}
   <section class="card"><h2 class="h2">Abweichungen von deinen Vorgaben</h2>${c.dev.map(itemRow).join('')}</section>
-  <section class="card"><h2 class="h2">Offene Datenfragen</h2>${c.data.map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
+  <section class="card"><h2 class="h2">Offene Datenfragen</h2>${[...c.data,...sectorOpen(d).map(p=>({lvl:'info',t:`Branche ${sectorsFor(p,d).src==='suggest'?'bestätigen':'fehlt'}: ${p.name}`,d:'Für die Zuordnung von Nachrichten. Ein Tipp genügt.',go:['pos',p.id],act:'Zuordnen'}))].map(itemRow).join('')||'<p class="hint">Keine.</p>'}</section>
   <section class="card"><h2 class="h2">Gut zu wissen</h2>${c.info.map(itemRow).join('')}</section>
   ${stadt?`<section class="card"><h2 class="h2">Positionen</h2>${list}</section>`:''}`;
 }
@@ -277,6 +277,7 @@ function vPos(id){
   {const n=I&&!I.etf?newReports(p.symbol)[0]:null;if(n){const pr=proposalFor(p.symbol);h+=`<div class="banner info"><b>Neuer Bericht: ${esc(n.label)} vom ${deDate(n.date)}</b><span>Die Einordnung unten ist vom ${deDate(I.checked)} und berücksichtigt ihn noch nicht. ${esc(newsLine(p.symbol))}</span><span class="row" style="gap:14px;margin-top:4px"><a class="link" href="${esc(n.url)}" target="_blank" rel="noopener">Bericht öffnen ${ICON_EXT}</a>${pr?`<a class="link" href="${esc(pr.url)}" target="_blank" rel="noopener">Vorschlag prüfen ${ICON_EXT}</a>`:''}</span></div>`}}
   if(v==null&&p.conf!=='skip')h+=`<a href="#daten" class="banner"><b>Wert ungeklärt</b><span>Die Kurswährung ist nicht erkennbar. Bitte zuerst bestätigen.</span></a>`;
   h+=myPosCard(d,p);
+  if(isIncluded(p))h+=sectorCard(p);
   if(!I){h+=`<section class="card"><p>Für diese Position liegt noch keine geprüfte Einordnung vor.</p></section>`;return h+checkButtons(p)}
   if(I.etf){const e=I.etf;
     h+=`<section class="card col" style="gap:8px"><span class="lbl">ETF-Profil</span><dl class="kv"><dt>Fonds</dt><dd>${esc(e.name)} · ${esc(e.isin)}</dd><dt>Index</dt><dd>${esc(e.index)}</dd><dt>Kosten</dt><dd>${esc(e.ter)}</dd><dt>Konzentration</dt><dd>${esc(e.conc)}</dd><dt>Ausschüttung</dt><dd>${esc(e.dist)}</dd><dt>Überschneidungen</dt><dd>nicht verfügbar</dd><dt>Stand</dt><dd>${esc(e.stand)}</dd></dl>${srcLink(e.terSrc||e.src)}${e.terSrc?srcLink(e.src):''}</section>`;

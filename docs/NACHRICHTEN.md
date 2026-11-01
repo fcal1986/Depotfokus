@@ -77,7 +77,7 @@ Jede Meldung enthält: `id`, `event_id`, `revision`, Titel, Kurzfassung, Fakten 
 
 ## Bezug zu Depot und Szenarien
 
-- Die App markiert lokal im Browser, welche Positionen nach Branche, Ticker oder ISIN berührt sein könnten. Bestände verlassen das Gerät nicht; die Pipeline kennt keine persönlichen Daten (per Test geprüft).
+- Die App markiert lokal im Browser, welche Positionen nach Branche, Ticker oder ISIN berührt sein könnten. Die Branche kommt aus der eigenen Wahl (Position › „Branche für Nachrichten“, bis zu drei), sonst aus der Tabelle bekannter Werte, sonst aus einem Vorschlag nach Name und Baustein. Neue Positionen ohne bestätigte Branche erscheinen unter Depot › Offene Datenfragen. Die Wahl wird im Depot auf dem Gerät gespeichert und bei späteren Importen übernommen. Bestände verlassen das Gerät nicht; die Pipeline kennt keine persönlichen Daten (per Test geprüft).
 - Ein Szenariobezug (A/B/C) ist nur qualitativ. Nachrichten ändern keine Szenario-Wahrscheinlichkeiten; der Szenario-Rechner verarbeitet nur seine festen Datenreihen. Eine doppelte Gewichtung desselben Ereignisses ist damit ausgeschlossen.
 - Nachrichten (Welt › Nachrichten), Unternehmensberichte (Welt › Berichte, mit Freigabe per Pull Request) und Szenario-Modellwerte (Welt › Szenarien) bleiben getrennt.
 

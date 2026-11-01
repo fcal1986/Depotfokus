@@ -59,7 +59,7 @@ function acceptImport(){
   const dt=$('#stDate')&&$('#stDate').value;d.valuationDate=dt?dt.split('-').reverse().join('.'):null;
   d.positions=s.positions.map(p=>({...p}));d.accounts=s.accounts.filter(a=>a.accept).map(a=>({name:a.name,value:a.value}));
   if(prev){// Ziele, Bestätigungen, Einstellungen erhalten
-    d.goals=prev.goals;d.goalsSource=prev.goalsSource;d.maxSingle=prev.maxSingle;d.budget=prev.budget;d.cashMode=prev.cashMode;d.minRate=prev.minRate;d.external=prev.external;d.notify=prev.notify;d.events=prev.events;d.read=prev.read;d.baseline=prev.baseline;d.tx=prev.tx||null;d.txMeta=prev.txMeta||null;
+    d.goals=prev.goals;d.goalsSource=prev.goalsSource;d.maxSingle=prev.maxSingle;d.budget=prev.budget;d.cashMode=prev.cashMode;d.minRate=prev.minRate;d.external=prev.external;d.notify=prev.notify;d.events=prev.events;d.read=prev.read;d.sectors=prev.sectors||{};d.baseline=prev.baseline;d.tx=prev.tx||null;d.txMeta=prev.txMeta||null;
     d.positions.forEach(p=>{const o=prev.positions.find(x=>x.id===p.id);if(o){if(o.conf&&p.valueStatus==='unclear'&&o.exportValue===p.exportValue){p.conf=o.conf;p.manualValue=o.manualValue}if(!p.bucket&&o.bucket){p.bucket=o.bucket;p.bucketSrc=o.bucketSrc}}});
   }
   OWN=d;UI.source='own';saveUI();staged=null;
