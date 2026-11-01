@@ -1,6 +1,6 @@
 {
- "date": "2026-10-31",
- "generated_at": "2026-10-31T12:43:41.592Z",
+ "date": "2026-11-01",
+ "generated_at": "2026-11-01T08:46:45.623Z",
  "result": "items",
  "note": null,
  "items": [
@@ -31,7 +31,7 @@
    "pipeline_version": "1.0.0",
    "model": "claude-sonnet-5-5",
    "selection": {
-    "score": 4.5,
+    "score": 4,
     "why": {
      "source": 1,
      "categories": [
@@ -40,7 +40,7 @@
       "preise"
      ],
      "core": true,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
