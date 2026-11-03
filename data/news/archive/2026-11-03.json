@@ -1,0 +1,229 @@
+{
+ "date": "2026-11-03",
+ "generated_at": "2026-11-03T14:25:35.999Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-d147f24159e4",
+   "event_id": "ed147f24159e4",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "4,1 % weniger zuckerhaltige Erfrischungsgetränke im Jahr 2025 produziert als im Vorjahr",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N075_42.html",
+   "also": [],
+   "published_at": "2026-11-03T07:00:00.000Z",
+   "retrieved_at": "2026-11-03T14:25:35.999Z",
+   "created_at": "2026-11-03T14:25:35.999Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5771,
+    "truncated": false,
+    "hash": "7abf8020d28f13bf"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "4,1 % weniger zuckerhaltige Erfrischungsgetränke im Jahr 2025 produziert als im Vorjahr",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Zur Reduzierung des Zuckerkonsums erheben viele Staaten eine Zuckersteuer auf zuckerhaltige Getränke."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-03",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-85f2b75a4aab",
+   "event_id": "e85f2b75a4aab",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Produktion von Nahrungsergänzungsmitteln seit 2019 um 48,4 % gestiegen",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_45_p002.html",
+   "also": [],
+   "published_at": "2026-11-03T07:00:00.000Z",
+   "retrieved_at": "2026-11-03T14:25:35.999Z",
+   "created_at": "2026-11-03T14:25:35.999Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 2417,
+    "truncated": false,
+    "hash": "b861522955786420"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Produktion von Nahrungsergänzungsmitteln seit 2019 um 48,4 % gestiegen",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Nicht nur zur Erkältungszeit greifen viele Menschen gern zu Nahrungsergänzungsmitteln wie Vitamin C, Zink oder Eiweißgetränken."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-03",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-9c3245814699",
+   "event_id": "e9c3245814699",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "Global refinery inputs fell sharply in the second quarter of 2026 before modest recovery",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68404",
+   "also": [],
+   "published_at": "2026-11-03T14:00:00.000Z",
+   "retrieved_at": "2026-11-03T14:25:35.999Z",
+   "created_at": "2026-11-03T14:25:35.999Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7587,
+    "truncated": false,
+    "hash": "0c8ee2692ce75cec"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Global refinery inputs fell sharply in the second quarter of 2026 before modest recovery",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Global crude oil refinery inputs fell by 4.8 million barrels per day (b/d) in the second quarter of 2026 (2Q26), or 6%, following the start of conflict in late February in the Middle East, according to data from Kpler."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-03",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 400: Your credit balance is too low to access the Anthropic API. Plea). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": [
+  {
+   "event_id": "e9ca1fab69c79",
+   "title": "MFI-Zinsstatistik für den Euroraum: September 2026",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/mfi-zinsstatistik-fuer-den-euroraum-september-2026-959100",
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
+  },
+  {
+   "event_id": "e03e3cf4837f1",
+   "title": "Neue Geschäftsverteilung im Vorstand der Deutschen Bundesbank",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/neue-geschaeftsverteilung-im-vorstand-der-deutschen-bundesbank-1013792",
+   "why": "Kein belegbarer Satz in der Quelle gefunden.",
+   "log": null
+  }
+ ]
+}
