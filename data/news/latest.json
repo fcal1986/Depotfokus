@@ -1,6 +1,6 @@
 {
- "date": "2026-11-04",
- "generated_at": "2026-11-04T14:40:22.754Z",
+ "date": "2026-11-05",
+ "generated_at": "2026-11-05T14:45:30.039Z",
  "result": "items",
  "note": null,
  "items": [
@@ -20,8 +20,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N076_13.html",
    "also": [],
    "published_at": "2026-11-04T07:00:00.000Z",
-   "retrieved_at": "2026-11-04T14:40:22.754Z",
-   "created_at": "2026-11-04T14:40:22.754Z",
+   "retrieved_at": "2026-11-05T14:45:30.039Z",
+   "created_at": "2026-11-05T14:45:30.039Z",
    "evidence": {
     "kind": "page",
     "chars": 4779,
@@ -31,7 +31,7 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 4.5,
+    "score": 4,
     "why": {
      "source": 1,
      "categories": [
@@ -39,7 +39,7 @@
       "unternehmen"
      ],
      "core": true,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -89,8 +89,8 @@
    "url": "https://ec.europa.eu/eurostat/product?code=2-04112026-ap",
    "also": [],
    "published_at": "2026-11-04T10:00:00.000Z",
-   "retrieved_at": "2026-11-04T14:40:22.754Z",
-   "created_at": "2026-11-04T14:40:22.754Z",
+   "retrieved_at": "2026-11-05T14:45:30.039Z",
+   "created_at": "2026-11-05T14:45:30.039Z",
    "evidence": {
     "kind": "page",
     "chars": 4809,
@@ -100,14 +100,14 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 3.5,
+    "score": 3,
     "why": {
      "source": 1,
      "categories": [
       "preise"
      ],
      "core": true,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -156,8 +156,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N075_42.html",
    "also": [],
    "published_at": "2026-11-03T07:00:00.000Z",
-   "retrieved_at": "2026-11-04T14:40:22.754Z",
-   "created_at": "2026-11-04T14:40:22.754Z",
+   "retrieved_at": "2026-11-05T14:45:30.039Z",
+   "created_at": "2026-11-05T14:45:30.039Z",
    "evidence": {
     "kind": "page",
     "chars": 5771,
@@ -225,8 +225,8 @@
    "url": "https://www.eia.gov/todayinenergy/detail.php?id=68404",
    "also": [],
    "published_at": "2026-11-03T14:00:00.000Z",
-   "retrieved_at": "2026-11-04T14:40:22.754Z",
-   "created_at": "2026-11-04T14:40:22.754Z",
+   "retrieved_at": "2026-11-05T14:45:30.039Z",
+   "created_at": "2026-11-05T14:45:30.039Z",
    "evidence": {
     "kind": "page",
     "chars": 7587,
@@ -279,28 +279,28 @@
    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   },
   {
-   "id": "n-461cf69b3116",
-   "event_id": "e461cf69b3116",
+   "id": "n-9daa238746f0",
+   "event_id": "e9daa238746f0",
    "revision": 1,
    "source": {
-    "id": "ecb",
-    "name": "Europäische Zentralbank",
-    "short": "EZB",
-    "region": "Euroraum",
-    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
-    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
    },
-   "original_title": "ECB wage tracker suggests slightly higher wage growth in first three quarters of 2027 compared with the full year of 2026",
-   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261104~caf181d7ac.en.html",
+   "original_title": "Industrial producer prices up by 2.5% in the euro area and by 2.6% in the EU",
+   "url": "https://ec.europa.eu/eurostat/product?code=4-05112026-ap",
    "also": [],
-   "published_at": "2026-11-04T00:00:00.000Z",
-   "retrieved_at": "2026-11-04T14:40:22.754Z",
-   "created_at": "2026-11-04T14:40:22.754Z",
+   "published_at": "2026-11-05T10:00:00.000Z",
+   "retrieved_at": "2026-11-05T14:45:30.039Z",
+   "created_at": "2026-11-05T14:45:30.039Z",
    "evidence": {
     "kind": "page",
-    "chars": 12236,
+    "chars": 12084,
     "truncated": false,
-    "hash": "7f22c5725243efa8"
+    "hash": "700bda25e0f7266c"
    },
    "pipeline_version": "1.0.0",
    "model": null,
@@ -316,12 +316,12 @@
      "sensational": false
     }
    },
-   "title": "ECB wage tracker suggests slightly higher wage growth in first three quarters of 2027 compared with the full year of 2026",
+   "title": "Industrial producer prices up by 2.5% in the euro area and by 2.6% in the EU",
    "kurzfassung": null,
    "facts": [
     {
      "text": null,
-     "quote": "one-off payments smoothed over 12 months, indicates negotiated wage growth of 2.3% in 2026 (based on a coverage of 46.2% of employees in participating countries)."
+     "quote": "Printing can have negative environmental impacts due to paper waste."
     }
    ],
    "numbers": [],
@@ -339,7 +339,7 @@
    },
    "glossary": [],
    "scenario_link": null,
-   "event_date": "2026-11-04",
+   "event_date": "2026-11-05",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
