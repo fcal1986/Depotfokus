@@ -1,6 +1,6 @@
 {
- "date": "2026-11-05",
- "generated_at": "2026-11-05T14:45:30.039Z",
+ "date": "2026-11-06",
+ "generated_at": "2026-11-06T14:23:17.035Z",
  "result": "items",
  "note": null,
  "items": [
@@ -20,8 +20,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N076_13.html",
    "also": [],
    "published_at": "2026-11-04T07:00:00.000Z",
-   "retrieved_at": "2026-11-05T14:45:30.039Z",
-   "created_at": "2026-11-05T14:45:30.039Z",
+   "retrieved_at": "2026-11-06T14:23:17.035Z",
+   "created_at": "2026-11-06T14:23:17.035Z",
    "evidence": {
     "kind": "page",
     "chars": 4779,
@@ -74,6 +74,211 @@
    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   },
   {
+   "id": "n-46f8acd2a7c9",
+   "event_id": "e46f8acd2a7c9",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Volume of retail trade down by 0.7% in the euro area and by 0.6% in the EU",
+   "url": "https://ec.europa.eu/eurostat/product?code=4-06112026-ap",
+   "also": [],
+   "published_at": "2026-11-06T10:00:00.000Z",
+   "retrieved_at": "2026-11-06T14:23:17.035Z",
+   "created_at": "2026-11-06T14:23:17.035Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 11327,
+    "truncated": false,
+    "hash": "71005a59f79df470"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Volume of retail trade down by 0.7% in the euro area and by 0.6% in the EU",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Printing can have negative environmental impacts due to paper waste."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-1c94c4d0c3b3",
+   "event_id": "e1c94c4d0c3b3",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "U.S. crude oil imports from Venezuela in July were highest since 2017",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68425",
+   "also": [],
+   "published_at": "2026-11-06T14:00:00.000Z",
+   "retrieved_at": "2026-11-06T14:23:17.035Z",
+   "created_at": "2026-11-06T14:23:17.035Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6224,
+    "truncated": false,
+    "hash": "fbc07e6fac23de40"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "U.S. crude oil imports from Venezuela in July were highest since 2017",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "imports of crude oil from Venezuela averaged 701,000 barrels per day (b/d), the most since May 2017, before decreasing to 655,000 b/d in August, according to data published in our Petroleum Supply Monthly ."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-55d4bcdc14c9",
+   "event_id": "e55d4bcdc14c9",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "FAO Food Price Index edges down in October amid subdued demand",
+   "url": "https://www.fao.org/newsroom/detail/fao-food-price-index-edges-down-in-october-amid-subdued-demand/en",
+   "also": [],
+   "published_at": "2026-11-06T12:00:00.000Z",
+   "retrieved_at": "2026-11-06T14:23:17.035Z",
+   "created_at": "2026-11-06T14:23:17.035Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7758,
+    "truncated": false,
+    "hash": "b54084d68f4ba385"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "FAO Food Price Index edges down in October amid subdued demand",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "In October, the FAO Sugar Price Index reached its highest level since December 2024, after rising 6.6 percent from the previous month and 28.8 percent from a year ago."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
    "id": "n-5fa4877d105f",
    "event_id": "e5fa4877d105f",
    "revision": 1,
@@ -89,8 +294,8 @@
    "url": "https://ec.europa.eu/eurostat/product?code=2-04112026-ap",
    "also": [],
    "published_at": "2026-11-04T10:00:00.000Z",
-   "retrieved_at": "2026-11-05T14:45:30.039Z",
-   "created_at": "2026-11-05T14:45:30.039Z",
+   "retrieved_at": "2026-11-06T14:23:17.035Z",
+   "created_at": "2026-11-06T14:23:17.035Z",
    "evidence": {
     "kind": "page",
     "chars": 4809,
@@ -135,211 +340,6 @@
    "glossary": [],
    "scenario_link": null,
    "event_date": "2026-11-04",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
-   "id": "n-d147f24159e4",
-   "event_id": "ed147f24159e4",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "4,1 % weniger zuckerhaltige Erfrischungsgetränke im Jahr 2025 produziert als im Vorjahr",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N075_42.html",
-   "also": [],
-   "published_at": "2026-11-03T07:00:00.000Z",
-   "retrieved_at": "2026-11-05T14:45:30.039Z",
-   "created_at": "2026-11-05T14:45:30.039Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 5771,
-    "truncated": false,
-    "hash": "7abf8020d28f13bf"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 3,
-    "why": {
-     "source": 1,
-     "categories": [
-      "lebensmittel",
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "4,1 % weniger zuckerhaltige Erfrischungsgetränke im Jahr 2025 produziert als im Vorjahr",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "WIESBADEN – Zur Reduzierung des Zuckerkonsums erheben viele Staaten eine Zuckersteuer auf zuckerhaltige Getränke."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "lebensmittel",
-    "industrie"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-03",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
-   "id": "n-9c3245814699",
-   "event_id": "e9c3245814699",
-   "revision": 1,
-   "source": {
-    "id": "eia",
-    "name": "U.S. Energy Information Administration",
-    "short": "EIA",
-    "region": "USA/Welt",
-    "license": "US-Bundesbehörde, gemeinfrei",
-    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
-   },
-   "original_title": "Global refinery inputs fell sharply in the second quarter of 2026 before modest recovery",
-   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68404",
-   "also": [],
-   "published_at": "2026-11-03T14:00:00.000Z",
-   "retrieved_at": "2026-11-05T14:45:30.039Z",
-   "created_at": "2026-11-05T14:45:30.039Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 7587,
-    "truncated": false,
-    "hash": "0c8ee2692ce75cec"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 2.8,
-    "why": {
-     "source": 0.8,
-     "categories": [
-      "energie",
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Global refinery inputs fell sharply in the second quarter of 2026 before modest recovery",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "Global crude oil refinery inputs fell by 4.8 million barrels per day (b/d) in the second quarter of 2026 (2Q26), or 6%, following the start of conflict in late February in the Middle East, according to data from Kpler."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "energie",
-    "industrie"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-03",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
-   "id": "n-9daa238746f0",
-   "event_id": "e9daa238746f0",
-   "revision": 1,
-   "source": {
-    "id": "eurostat",
-    "name": "Eurostat",
-    "short": "Eurostat",
-    "region": "EU/Euroraum",
-    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
-    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
-   },
-   "original_title": "Industrial producer prices up by 2.5% in the euro area and by 2.6% in the EU",
-   "url": "https://ec.europa.eu/eurostat/product?code=4-05112026-ap",
-   "also": [],
-   "published_at": "2026-11-05T10:00:00.000Z",
-   "retrieved_at": "2026-11-05T14:45:30.039Z",
-   "created_at": "2026-11-05T14:45:30.039Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 12084,
-    "truncated": false,
-    "hash": "700bda25e0f7266c"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 2.5,
-    "why": {
-     "source": 1,
-     "categories": [
-      "preise"
-     ],
-     "core": false,
-     "fresh": true,
-     "sensational": false
-    }
-   },
-   "title": "Industrial producer prices up by 2.5% in the euro area and by 2.6% in the EU",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "Printing can have negative environmental impacts due to paper waste."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "preise"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-05",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
