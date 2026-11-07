@@ -1,0 +1,347 @@
+{
+ "date": "2026-11-07",
+ "generated_at": "2026-11-07T13:13:20.869Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-1c94c4d0c3b3",
+   "event_id": "e1c94c4d0c3b3",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "U.S. crude oil imports from Venezuela in July were highest since 2017",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68425",
+   "also": [],
+   "published_at": "2026-11-06T14:00:00.000Z",
+   "retrieved_at": "2026-11-07T13:13:20.869Z",
+   "created_at": "2026-11-07T13:13:20.869Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6224,
+    "truncated": false,
+    "hash": "fbc07e6fac23de40"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "U.S. crude oil imports from Venezuela in July were highest since 2017",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "imports of crude oil from Venezuela averaged 701,000 barrels per day (b/d), the most since May 2017, before decreasing to 655,000 b/d in August, according to data published in our Petroleum Supply Monthly ."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-46f8acd2a7c9",
+   "event_id": "e46f8acd2a7c9",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Volume of retail trade down by 0.7% in the euro area and by 0.6% in the EU",
+   "url": "https://ec.europa.eu/eurostat/product?code=4-06112026-ap",
+   "also": [],
+   "published_at": "2026-11-06T10:00:00.000Z",
+   "retrieved_at": "2026-11-07T13:13:20.869Z",
+   "created_at": "2026-11-07T13:13:20.869Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 11327,
+    "truncated": false,
+    "hash": "71005a59f79df470"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Volume of retail trade down by 0.7% in the euro area and by 0.6% in the EU",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Printing can have negative environmental impacts due to paper waste."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-55d4bcdc14c9",
+   "event_id": "e55d4bcdc14c9",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "FAO Food Price Index edges down in October amid subdued demand",
+   "url": "https://www.fao.org/newsroom/detail/fao-food-price-index-edges-down-in-october-amid-subdued-demand/en",
+   "also": [],
+   "published_at": "2026-11-06T12:00:00.000Z",
+   "retrieved_at": "2026-11-07T13:13:20.869Z",
+   "created_at": "2026-11-07T13:13:20.869Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7758,
+    "truncated": false,
+    "hash": "b54084d68f4ba385"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.8,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "FAO Food Price Index edges down in October amid subdued demand",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "In October, the FAO Sugar Price Index reached its highest level since December 2024, after rising 6.6 percent from the previous month and 28.8 percent from a year ago."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-0ee7b0df24c5",
+   "event_id": "e0ee7b0df24c5",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "ECB publishes consolidated banking data for end-June 2026",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html",
+   "also": [],
+   "published_at": "2026-11-06T09:00:00.000Z",
+   "retrieved_at": "2026-11-07T13:13:20.869Z",
+   "created_at": "2026-11-07T13:13:20.869Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 4050,
+    "truncated": false,
+    "hash": "4e29572a8d3e1323"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "ECB publishes consolidated banking data for end-June 2026",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Data on the aggregate Common Equity Tier 1 ratio of credit institutions headquartered in the EU The European Central Bank (ECB) has published consolidated banking data as at end-June 2026 , a dataset for the EU banking system compiled on a group consolidated basis."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-23e9617617d7",
+   "event_id": "e23e9617617d7",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Produktion im September 2026: +0,7 % zum Vormonat",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_389_421.html",
+   "also": [],
+   "published_at": "2026-11-06T07:00:00.000Z",
+   "retrieved_at": "2026-11-07T13:13:20.869Z",
+   "created_at": "2026-11-07T13:13:20.869Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7215,
+    "truncated": false,
+    "hash": "3582f4e6f00b2d41"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Produktion im September 2026: +0,7 % zum Vormonat",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Die reale (preisbereinigte) Produktion im Produzierenden Gewerbe ist nach vorläufigen Angaben des Statistischen Bundesamtes (Destatis) im September 2026 gegenüber August 2026 saison- und kalenderbereinigt um 0,7 % gestiegen."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-06",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": []
+}
