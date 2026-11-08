@@ -6569,7 +6569,7 @@
    "revision": 1,
    "evidence_hash": "71005a59f79df470",
    "first_seen_at": "2026-11-06T14:23:17.035Z",
-   "last_seen_at": "2026-11-07T13:13:20.869Z",
+   "last_seen_at": "2026-11-08T13:35:16.880Z",
    "url": "https://ec.europa.eu/eurostat/product?code=4-06112026-ap",
    "article": {
     "id": "n-46f8acd2a7c9",
@@ -6587,8 +6587,8 @@
     "url": "https://ec.europa.eu/eurostat/product?code=4-06112026-ap",
     "also": [],
     "published_at": "2026-11-06T10:00:00.000Z",
-    "retrieved_at": "2026-11-07T13:13:20.869Z",
-    "created_at": "2026-11-07T13:13:20.869Z",
+    "retrieved_at": "2026-11-08T13:35:16.880Z",
+    "created_at": "2026-11-08T13:35:16.880Z",
     "evidence": {
      "kind": "page",
      "chars": 11327,
@@ -6646,7 +6646,7 @@
    "revision": 1,
    "evidence_hash": "fbc07e6fac23de40",
    "first_seen_at": "2026-11-06T14:23:17.035Z",
-   "last_seen_at": "2026-11-07T13:13:20.869Z",
+   "last_seen_at": "2026-11-08T13:35:16.880Z",
    "url": "https://www.eia.gov/todayinenergy/detail.php?id=68425",
    "article": {
     "id": "n-1c94c4d0c3b3",
@@ -6664,8 +6664,8 @@
     "url": "https://www.eia.gov/todayinenergy/detail.php?id=68425",
     "also": [],
     "published_at": "2026-11-06T14:00:00.000Z",
-    "retrieved_at": "2026-11-07T13:13:20.869Z",
-    "created_at": "2026-11-07T13:13:20.869Z",
+    "retrieved_at": "2026-11-08T13:35:16.880Z",
+    "created_at": "2026-11-08T13:35:16.880Z",
     "evidence": {
      "kind": "page",
      "chars": 6224,
@@ -6675,7 +6675,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 3.3,
+     "score": 2.8,
      "why": {
       "source": 0.8,
       "categories": [
@@ -6683,7 +6683,7 @@
        "industrie"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -6723,7 +6723,7 @@
    "revision": 1,
    "evidence_hash": "b54084d68f4ba385",
    "first_seen_at": "2026-11-06T14:23:17.035Z",
-   "last_seen_at": "2026-11-07T13:13:20.869Z",
+   "last_seen_at": "2026-11-08T13:35:16.880Z",
    "url": "https://www.fao.org/newsroom/detail/fao-food-price-index-edges-down-in-october-amid-subdued-demand/en",
    "article": {
     "id": "n-55d4bcdc14c9",
@@ -6741,8 +6741,8 @@
     "url": "https://www.fao.org/newsroom/detail/fao-food-price-index-edges-down-in-october-amid-subdued-demand/en",
     "also": [],
     "published_at": "2026-11-06T12:00:00.000Z",
-    "retrieved_at": "2026-11-07T13:13:20.869Z",
-    "created_at": "2026-11-07T13:13:20.869Z",
+    "retrieved_at": "2026-11-08T13:35:16.880Z",
+    "created_at": "2026-11-08T13:35:16.880Z",
     "evidence": {
      "kind": "page",
      "chars": 7758,
@@ -6798,7 +6798,7 @@
    "revision": 1,
    "evidence_hash": "4e29572a8d3e1323",
    "first_seen_at": "2026-11-07T13:13:20.869Z",
-   "last_seen_at": "2026-11-07T13:13:20.869Z",
+   "last_seen_at": "2026-11-08T13:35:16.880Z",
    "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html",
    "article": {
     "id": "n-0ee7b0df24c5",
@@ -6816,8 +6816,8 @@
     "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html",
     "also": [],
     "published_at": "2026-11-06T09:00:00.000Z",
-    "retrieved_at": "2026-11-07T13:13:20.869Z",
-    "created_at": "2026-11-07T13:13:20.869Z",
+    "retrieved_at": "2026-11-08T13:35:16.880Z",
+    "created_at": "2026-11-08T13:35:16.880Z",
     "evidence": {
      "kind": "page",
      "chars": 4050,
@@ -6873,7 +6873,7 @@
    "revision": 1,
    "evidence_hash": "3582f4e6f00b2d41",
    "first_seen_at": "2026-11-07T13:13:20.869Z",
-   "last_seen_at": "2026-11-07T13:13:20.869Z",
+   "last_seen_at": "2026-11-08T13:35:16.880Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_389_421.html",
    "article": {
     "id": "n-23e9617617d7",
@@ -6891,8 +6891,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_389_421.html",
     "also": [],
     "published_at": "2026-11-06T07:00:00.000Z",
-    "retrieved_at": "2026-11-07T13:13:20.869Z",
-    "created_at": "2026-11-07T13:13:20.869Z",
+    "retrieved_at": "2026-11-08T13:35:16.880Z",
+    "created_at": "2026-11-08T13:35:16.880Z",
     "evidence": {
      "kind": "page",
      "chars": 7215,
