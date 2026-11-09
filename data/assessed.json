@@ -180,6 +180,14 @@
    "form": "10-Q",
    "status": "covered",
    "at": "2026-11-07"
+  },
+  "0001171843-26-007260": {
+   "sym": "NOV.DE",
+   "date": "2026-11-09",
+   "form": "6-K",
+   "status": "skipped",
+   "reason": "keine Ergebnismitteilung",
+   "at": "2026-11-09"
   }
  }
 }
