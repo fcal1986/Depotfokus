@@ -62,7 +62,9 @@
   "eia.gov/todayinenergy/detail.php?id=68425": "e1c94c4d0c3b3",
   "fao.org/newsroom/detail/fao-food-price-index-edges-down-in-october-amid-subdued-demand/en": "e55d4bcdc14c9",
   "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html": "e0ee7b0df24c5",
-  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_389_421.html": "e23e9617617d7"
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_389_421.html": "e23e9617617d7",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html": "e7ec3b8235783",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html": "ea803971e88a5"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -6937,6 +6939,156 @@
     "glossary": [],
     "scenario_link": null,
     "event_date": "2026-11-06",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e7ec3b8235783": {
+   "revision": 1,
+   "evidence_hash": "5b4d9d798ac7c146",
+   "first_seen_at": "2026-11-09T16:32:48.055Z",
+   "last_seen_at": "2026-11-09T16:32:48.055Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
+   "article": {
+    "id": "n-7ec3b8235783",
+    "event_id": "e7ec3b8235783",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
+    "also": [],
+    "published_at": "2026-11-09T07:00:00.000Z",
+    "retrieved_at": "2026-11-09T16:32:48.055Z",
+    "created_at": "2026-11-09T16:32:48.055Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 4062,
+     "truncated": false,
+     "hash": "5b4d9d798ac7c146"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "preise"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "KÖLN/WIESBADEN – Die Fahrleistung mautpflichtiger Lastkraftwagen mit mindestens vier Achsen auf Bundesautobahnen ist im Oktober 2026 gegenüber September 2026 kalender- und saisonbereinigt um 1,6 % gesunken."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "preise"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-09",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "ea803971e88a5": {
+   "revision": 1,
+   "evidence_hash": "5daef017c7c75943",
+   "first_seen_at": "2026-11-09T16:32:48.055Z",
+   "last_seen_at": "2026-11-09T16:32:48.055Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html",
+   "article": {
+    "id": "n-a803971e88a5",
+    "event_id": "ea803971e88a5",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Exporte im September 2026: +2,0 % zum August 2026",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html",
+    "also": [],
+    "published_at": "2026-11-09T07:00:00.000Z",
+    "retrieved_at": "2026-11-09T16:32:48.055Z",
+    "created_at": "2026-11-09T16:32:48.055Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 8394,
+     "truncated": false,
+     "hash": "5daef017c7c75943"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Exporte im September 2026: +2,0 % zum August 2026",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "WIESBADEN – Im September 2026 sind die deutschen Exporte gegenüber August 2026 kalender- und saisonbereinigt um 2,0 % und die Importe um 4,2 % gestiegen."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-09",
     "words": 0,
     "length_ok": false,
     "status": "kurzmeldung",
