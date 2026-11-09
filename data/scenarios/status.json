@@ -1,48 +1,48 @@
 {
  "scenario_set_id": "macro-2026-10-09_2029-10-09",
- "last_attempt_at": "2026-11-02T13:31:09.548Z",
+ "last_attempt_at": "2026-11-09T13:54:22.594Z",
  "last_attempt_result": "new_snapshot",
- "last_attempt_note": "C (Längerer Wirtschafts- und Finanzmarktstress) steigt um 3 Prozentpunkte auf 27 %; B (Breiter Aufschwung) sinkt um 2 Prozentpunkte auf 23 %; A (Zähe Erholung) sinkt um 1 Prozentpunkt auf 50 % seit der Vorwoche. Wichtigster Treiber: Reales BIP Euroraum, Veränderung zum Vorquartal.",
- "last_attempt_snapshot_id": "2026-W45",
- "last_successful_evaluation_at": "2026-11-02T13:31:09.548Z",
- "next_scheduled_run": "2026-11-09T06:20:00.000Z",
+ "last_attempt_note": "B (Breiter Aufschwung) sinkt um 1 Prozentpunkt auf 22 %; C (Längerer Wirtschafts- und Finanzmarktstress) steigt um 1 Prozentpunkt auf 28 % seit der Vorwoche. Wichtigster Treiber: Inflation Euroraum (HVPI).",
+ "last_attempt_snapshot_id": "2026-W46",
+ "last_successful_evaluation_at": "2026-11-09T13:54:22.594Z",
+ "next_scheduled_run": "2026-11-16T06:20:00.000Z",
  "schedule": "Montag 07:20 Uhr (Europe/Berlin); manuell über Actions › Szenario-Monitor › Run workflow",
  "sources": {
   "EA_ESI": {
    "status": "ok",
-   "new": 1,
-   "revised": 15,
+   "new": 0,
+   "revised": 0,
    "latest": "2026-10"
   },
   "EA_GDP_QQ": {
    "status": "ok",
-   "new": 1,
+   "new": 0,
    "revised": 0,
    "latest": "2026-Q3"
   },
   "EA_HICP": {
    "status": "ok",
-   "new": 0,
+   "new": 1,
    "revised": 0,
-   "latest": "2026-09"
+   "latest": "2026-10"
   },
   "EA_HICP_CORE": {
    "status": "ok",
-   "new": 0,
+   "new": 1,
    "revised": 0,
-   "latest": "2026-09"
+   "latest": "2026-10"
   },
   "US_CORE_PCE": {
    "status": "ok",
-   "new": 1,
-   "revised": 2,
+   "new": 0,
+   "revised": 0,
    "latest": "2026-09"
   },
   "ECB_DFR": {
    "status": "ok",
    "new": 7,
    "revised": 0,
-   "latest": "2026-11-02"
+   "latest": "2026-11-09"
   },
   "BRENT_YOY": {
    "status": "ok",
@@ -58,27 +58,27 @@
   },
   "EA_CISS": {
    "status": "ok",
-   "new": 5,
-   "revised": 4,
-   "latest": "2026-10-29"
+   "new": 6,
+   "revised": 47,
+   "latest": "2026-11-06"
   },
   "EA_HY_OAS": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-29"
+   "latest": "2026-11-05"
   },
   "US_HY_OAS": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-29"
+   "latest": "2026-11-05"
   },
   "VIX": {
    "status": "ok",
    "new": 5,
    "revised": 0,
-   "latest": "2026-10-29"
+   "latest": "2026-11-05"
   },
   "US_PROFITS_YOY": {
    "status": "ok",
@@ -88,7 +88,7 @@
   },
   "US_INFO_INV_YOY": {
    "status": "ok",
-   "new": 1,
+   "new": 0,
    "revised": 0,
    "latest": "2026-Q3"
   }
