@@ -6950,7 +6950,7 @@
    "revision": 1,
    "evidence_hash": "5b4d9d798ac7c146",
    "first_seen_at": "2026-11-09T16:32:48.055Z",
-   "last_seen_at": "2026-11-09T16:32:48.055Z",
+   "last_seen_at": "2026-11-10T14:59:18.446Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
    "article": {
     "id": "n-7ec3b8235783",
@@ -6968,8 +6968,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
     "also": [],
     "published_at": "2026-11-09T07:00:00.000Z",
-    "retrieved_at": "2026-11-09T16:32:48.055Z",
-    "created_at": "2026-11-09T16:32:48.055Z",
+    "retrieved_at": "2026-11-10T14:59:18.446Z",
+    "created_at": "2026-11-10T14:59:18.446Z",
     "evidence": {
      "kind": "page",
      "chars": 4062,
@@ -6979,14 +6979,14 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 2.5,
+     "score": 2,
      "why": {
       "source": 1,
       "categories": [
        "preise"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -7025,7 +7025,7 @@
    "revision": 1,
    "evidence_hash": "5daef017c7c75943",
    "first_seen_at": "2026-11-09T16:32:48.055Z",
-   "last_seen_at": "2026-11-09T16:32:48.055Z",
+   "last_seen_at": "2026-11-10T14:59:18.446Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html",
    "article": {
     "id": "n-a803971e88a5",
@@ -7043,8 +7043,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html",
     "also": [],
     "published_at": "2026-11-09T07:00:00.000Z",
-    "retrieved_at": "2026-11-09T16:32:48.055Z",
-    "created_at": "2026-11-09T16:32:48.055Z",
+    "retrieved_at": "2026-11-10T14:59:18.446Z",
+    "created_at": "2026-11-10T14:59:18.446Z",
     "evidence": {
      "kind": "page",
      "chars": 8394,
@@ -7054,14 +7054,14 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 2.5,
+     "score": 2,
      "why": {
       "source": 1,
       "categories": [
        "industrie"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },

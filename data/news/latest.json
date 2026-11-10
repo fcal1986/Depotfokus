@@ -1,76 +1,9 @@
 {
- "date": "2026-11-09",
- "generated_at": "2026-11-09T16:32:48.055Z",
+ "date": "2026-11-10",
+ "generated_at": "2026-11-10T14:59:18.446Z",
  "result": "items",
  "note": null,
  "items": [
-  {
-   "id": "n-7ec3b8235783",
-   "event_id": "e7ec3b8235783",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
-   "also": [],
-   "published_at": "2026-11-09T07:00:00.000Z",
-   "retrieved_at": "2026-11-09T16:32:48.055Z",
-   "created_at": "2026-11-09T16:32:48.055Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 4062,
-    "truncated": false,
-    "hash": "5b4d9d798ac7c146"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 2.5,
-    "why": {
-     "source": 1,
-     "categories": [
-      "preise"
-     ],
-     "core": false,
-     "fresh": true,
-     "sensational": false
-    }
-   },
-   "title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "KÖLN/WIESBADEN – Die Fahrleistung mautpflichtiger Lastkraftwagen mit mindestens vier Achsen auf Bundesautobahnen ist im Oktober 2026 gegenüber September 2026 kalender- und saisonbereinigt um 1,6 % gesunken."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "preise"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-09",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
   {
    "id": "n-a803971e88a5",
    "event_id": "ea803971e88a5",
@@ -87,8 +20,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_390_51.html",
    "also": [],
    "published_at": "2026-11-09T07:00:00.000Z",
-   "retrieved_at": "2026-11-09T16:32:48.055Z",
-   "created_at": "2026-11-09T16:32:48.055Z",
+   "retrieved_at": "2026-11-10T14:59:18.446Z",
+   "created_at": "2026-11-10T14:59:18.446Z",
    "evidence": {
     "kind": "page",
     "chars": 8394,
@@ -98,14 +31,14 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "industrie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -123,6 +56,73 @@
    "naechstes": null,
    "categories": [
     "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-09",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-7ec3b8235783",
+   "event_id": "e7ec3b8235783",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_391_421.html",
+   "also": [],
+   "published_at": "2026-11-09T07:00:00.000Z",
+   "retrieved_at": "2026-11-10T14:59:18.446Z",
+   "created_at": "2026-11-10T14:59:18.446Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 4062,
+    "truncated": false,
+    "hash": "5b4d9d798ac7c146"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Lkw-Maut-Fahrleistungsindex im Oktober 2026: -1,6 % zum Vormonat",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "KÖLN/WIESBADEN – Die Fahrleistung mautpflichtiger Lastkraftwagen mit mindestens vier Achsen auf Bundesautobahnen ist im Oktober 2026 gegenüber September 2026 kalender- und saisonbereinigt um 1,6 % gesunken."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise"
    ],
    "regions": [],
    "sectors": [],
