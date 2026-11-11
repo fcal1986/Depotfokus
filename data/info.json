@@ -171,6 +171,13 @@
    "per": "Stand Abruf",
    "date": "04.10.2026",
    "url": "https://www.finanzfluss.de/informer/etf/ie0032077012/"
+  },
+  "pepde_000007747626000050": {
+   "org": "Pepsico",
+   "doc": "Ergebnismeldung (SEC 8-K)",
+   "per": "Q3 2026",
+   "date": "08.10.2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000050/q320268-kxexhibit991.htm"
   }
  },
  "positions": {
@@ -477,31 +484,55 @@
   },
   "PEP.DE": {
    "cik": 77476,
-   "checked": "2026-10-04",
-   "method": "manual",
-   "mood": "neutral",
+   "checked": "2026-10-09",
+   "method": "claude",
+   "mood": "warn",
    "interp": "Wachstum im eigenen Prognosekorridor, die operative Kernmarge ist leicht gesunken.",
    "changes": {
-    "cmp": "Q2 2026 gegenüber der vorherigen Prognose",
+    "cmp": "Q3 2026 gegenüber der vorherigen Prognose (Q2 2026)",
     "items": [
      {
       "kind": "company",
-      "t": "Jahresprognose bestätigt: organisches Wachstum 2–4 %, Kern-EPS plus 4–6 %.",
+      "t": "Prognose für das organische Umsatzwachstum 2026 auf ca. 3 % präzisiert (zuvor 2–4 %); die Netto-Umsatzprognose steigt auf ca. 6 % (zuvor 4–6 %).",
       "src": [
-       "pep"
-      ]
+       "pepde_000007747626000050"
+      ],
+      "quote": "Organic Revenue | Approximately +3% | +2% to +4%"
+     },
+     {
+      "kind": "company",
+      "t": "Prognose für das Kern-EPS bei konstanten Wechselkursen deutlich gesenkt: +1 bis +2 % statt am unteren Ende von +4 bis +6 %.",
+      "src": [
+       "pepde_000007747626000050"
+      ],
+      "quote": "Core Constant Currency EPS | +1% to +2% | Low-end of +4% to +6%"
+     },
+     {
+      "kind": "company",
+      "t": "Prognose für das Kern-EPS gesenkt: +2,5 bis +3,5 % statt am unteren Ende von +5 bis +7 %. Währungseffekt und Akquisitionsbeitrag wurden höher angesetzt, die Steuerquote niedriger.",
+      "src": [
+       "pepde_000007747626000050"
+      ],
+      "quote": "Core EPS | +2.5% to +3.5% | Low-end of +5% to +7%"
      }
     ]
    },
    "facts": [
     {
      "kind": "metric",
-     "t": "Organisches Wachstum 2,4 % im Quartal.",
-     "src": "pep"
+     "t": "Operative Kernmarge 16,9 %, minus 35 Basispunkte gegenüber dem Vorjahr (17,3 %).",
+     "src": "pepde_000007747626000050",
+     "quote": "Core operating margin | 16.9% | 17.3% | (35) bps"
     },
     {
      "kind": "metric",
-     "t": "Operative Kernmarge 16,8 %, minus 0,4 Prozentpunkte.",
+     "t": "Das Kern-Betriebsergebnis profitierte mit 4 Prozentpunkten von Zollerstattungen, belastet durch höhere Betriebs- und Werbekosten.",
+     "src": "pepde_000007747626000050",
+     "quote": "a 4-percentage-point favorable impact of tariff refunds"
+    },
+    {
+     "kind": "metric",
+     "t": "Organisches Wachstum 2,4 % im Quartal.",
      "src": "pep"
     }
    ],
@@ -511,29 +542,38 @@
      "q": "Liegt das organische Wachstum im eigenen Prognosekorridor?",
      "metric": "Organisches Umsatzwachstum",
      "cond": "mindestens 2 %",
-     "per": "Q2 2026",
-     "obs": "2,4 %",
-     "prev": null,
+     "per": "Q3 2026",
+     "obs": "3,1 % organisches Wachstum im Quartal (seit Jahresbeginn 2,7 %)",
+     "prev": "Q2 2026: 2,4 %",
      "status": "met",
-     "src": "pep",
-     "next": "Bericht Q3 2026, Termin geschätzt Anfang Oktober",
-     "why": "Zeigt, ob das Unternehmen seine eigenen Erwartungen erfüllt."
+     "src": "pepde_000007747626000050",
+     "next": "Bericht Q4/Gesamtjahr 2026, Termin geschätzt Anfang Februar 2027",
+     "why": "Zeigt, ob das Unternehmen seine eigenen Erwartungen erfüllt.",
+     "quote": "Organic revenue 2 increased 3.1% and 2.7%, respectively"
     },
     {
      "type": "risk",
      "q": "Senkt PepsiCo die Jahresprognose?",
      "metric": "Prognose organisches Wachstum 2026",
      "cond": "Senkung gegenüber 2–4 %",
-     "per": "Q2 2026",
-     "obs": "bestätigt",
-     "prev": null,
+     "per": "Q3 2026",
+     "obs": "Prognose für organisches Wachstum auf ca. 3 % präzisiert (Mitte des bisherigen Korridors 2–4 %), also keine Senkung. Die EPS-Prognosen wurden jedoch gesenkt, was nicht Gegenstand dieser Regel ist.",
+     "prev": "Q2 2026: bestätigt",
      "status": "not_occurred",
-     "src": "pep",
-     "next": "Bericht Q3 2026",
-     "why": "Eine Senkung wäre ein Hinweis auf schwächere Nachfrage."
+     "src": "pepde_000007747626000050",
+     "next": "Bericht Q4/Gesamtjahr 2026, Termin geschätzt Anfang Februar 2027",
+     "why": "Eine Senkung wäre ein Hinweis auf schwächere Nachfrage.",
+     "quote": "Organic Revenue | Approximately +3% | +2% to +4%"
     }
    ],
-   "themes": []
+   "themes": [],
+   "model": "claude-sonnet-5-5",
+   "assessedFrom": {
+    "acc": "0000077476-26-000050",
+    "form": "8-K",
+    "date": "2026-10-08",
+    "url": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000050/q320268-kxexhibit991.htm"
+   }
   },
   "JNJ.DE": {
    "cik": 200406,

@@ -1,1 +1,16 @@
-{}
+{
+ "o|PEP.DE|Bericht Q3 2026, Termin geschätzt Anfang Oktober|Liegt das organische Wachstum im eigenen Prognosekorridor?": {
+  "outcome": 1,
+  "per": "Q3 2026",
+  "obs": "3,1 % organisches Wachstum im Quartal (seit Jahresbeginn 2,7 %)",
+  "src": "pepde_000007747626000050",
+  "at": "2026-10-09"
+ },
+ "o|PEP.DE|Bericht Q3 2026|Senkt PepsiCo die Jahresprognose?": {
+  "outcome": 0,
+  "per": "Q3 2026",
+  "obs": "Prognose für organisches Wachstum auf ca. 3 % präzisiert (Mitte des bisherigen Korridors 2–4 %), also keine Senkung. Die EPS-Prognosen wurden jedoch gesenkt, was nicht Gegenstand dieser Regel ist.",
+  "src": "pepde_000007747626000050",
+  "at": "2026-10-09"
+ }
+}
