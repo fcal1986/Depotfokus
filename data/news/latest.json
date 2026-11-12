@@ -1,6 +1,6 @@
 {
- "date": "2026-11-11",
- "generated_at": "2026-11-11T14:30:16.740Z",
+ "date": "2026-11-12",
+ "generated_at": "2026-11-12T15:23:22.995Z",
  "result": "items",
  "note": null,
  "items": [
@@ -20,8 +20,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_392_611.html",
    "also": [],
    "published_at": "2026-11-11T07:00:00.000Z",
-   "retrieved_at": "2026-11-11T14:30:16.740Z",
-   "created_at": "2026-11-11T14:30:16.740Z",
+   "retrieved_at": "2026-11-12T15:23:22.995Z",
+   "created_at": "2026-11-12T15:23:22.995Z",
    "evidence": {
     "kind": "page",
     "chars": 10415,
@@ -31,7 +31,7 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 4.5,
+    "score": 4,
     "why": {
      "source": 1,
      "categories": [
@@ -39,7 +39,7 @@
       "preise"
      ],
      "core": true,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -74,8 +74,8 @@
    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   },
   {
-   "id": "n-ea4fa6b2ccd0",
-   "event_id": "eea4fa6b2ccd0",
+   "id": "n-5eaa6e2edb23",
+   "event_id": "e5eaa6e2edb23",
    "revision": 1,
    "source": {
     "id": "destatis",
@@ -85,17 +85,17 @@
     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
    },
-   "original_title": "70 % der Eingewanderten sind erwerbstätig",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N078_13.html",
+   "original_title": "Pflege: 10 % der Erwerbstätigen von 25 bis 64 Jahren betreuen Angehörige",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N079_23.html",
    "also": [],
-   "published_at": "2026-11-11T12:00:00.000Z",
-   "retrieved_at": "2026-11-11T14:30:16.740Z",
-   "created_at": "2026-11-11T14:30:16.740Z",
+   "published_at": "2026-11-12T07:00:00.000Z",
+   "retrieved_at": "2026-11-12T15:23:22.995Z",
+   "created_at": "2026-11-12T15:23:22.995Z",
    "evidence": {
     "kind": "page",
-    "chars": 9627,
+    "chars": 5606,
     "truncated": false,
-    "hash": "bc94fcf2df906381"
+    "hash": "12c70b19e95cdf36"
    },
    "pipeline_version": "1.0.0",
    "model": null,
@@ -111,12 +111,12 @@
      "sensational": false
     }
    },
-   "title": "70 % der Eingewanderten sind erwerbstätig",
+   "title": "Pflege: 10 % der Erwerbstätigen von 25 bis 64 Jahren betreuen Angehörige",
    "kurzfassung": null,
    "facts": [
     {
      "text": null,
-     "quote": "WIESBADEN – Nach Deutschland Eingewanderte sind deutlich häufiger erwerbstätig als früher."
+     "quote": "WIESBADEN – Nicht nur die Kinderbetreuung, sondern auch die Pflege von Angehörigen stellt viele Menschen bei der Vereinbarkeit von Familie und Berufsleben vor Herausforderungen."
     }
    ],
    "numbers": [],
@@ -134,7 +134,145 @@
    },
    "glossary": [],
    "scenario_link": null,
-   "event_date": "2026-11-11",
+   "event_date": "2026-11-12",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-a2e9e48e8185",
+   "event_id": "ea2e9e48e8185",
+   "revision": 1,
+   "source": {
+    "id": "bundesbank",
+    "name": "Deutsche Bundesbank",
+    "short": "Bundesbank",
+    "region": "Deutschland",
+    "license": "Nachdruck mit Quellenangabe gestattet",
+    "license_url": "https://www.bundesbank.de/de/service/impressum"
+   },
+   "original_title": "Bundesbank: Risiken für die Finanzstabilität bleiben erhöht | Finanzstabilitätsbericht 2026 sieht Herausforderungen durch hohe Marktbewertungen, steigende Kreditrisiken und Staatsschulden sowie künstliche Intelligenz",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712",
+   "also": [],
+   "published_at": "2026-11-12T09:32:00.000Z",
+   "retrieved_at": "2026-11-12T15:23:22.995Z",
+   "created_at": "2026-11-12T15:23:22.995Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6810,
+    "truncated": false,
+    "hash": "a93c016c4f8257ba"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.4,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "zinsen",
+      "industrie",
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Bundesbank: Risiken für die Finanzstabilität bleiben erhöht | Finanzstabilitätsbericht 2026 sieht Herausforderungen durch hohe Marktbewertungen, steigende Kreditrisiken und Staatsschulden sowie künstliche Intelligenz",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Das deutsche Finanzsystem zeigt sich widerstandsfähig – agiert jedoch in einem von geopolitischen Spannungen geprägten Umfeld."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen",
+    "industrie",
+    "unternehmen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-12",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-b20dd319d990",
+   "event_id": "eb20dd319d990",
+   "revision": 1,
+   "source": {
+    "id": "eia",
+    "name": "U.S. Energy Information Administration",
+    "short": "EIA",
+    "region": "USA/Welt",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "original_title": "EIA forecasts Alaskan crude oil production to grow 13% in 2027",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68444",
+   "also": [],
+   "published_at": "2026-11-12T14:00:00.000Z",
+   "retrieved_at": "2026-11-12T15:23:22.995Z",
+   "created_at": "2026-11-12T15:23:22.995Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6161,
+    "truncated": false,
+    "hash": "0affe278473c845d"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.3,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "energie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "EIA forecasts Alaskan crude oil production to grow 13% in 2027",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "After decades of decline , crude oil production in Alaska is growing, driven by two projects on Alaska’s North Slope."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-12",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
@@ -156,8 +294,8 @@
    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html",
    "also": [],
    "published_at": "2026-11-10T16:45:00.000Z",
-   "retrieved_at": "2026-11-11T14:30:16.740Z",
-   "created_at": "2026-11-11T14:30:16.740Z",
+   "retrieved_at": "2026-11-12T15:23:22.995Z",
+   "created_at": "2026-11-12T15:23:22.995Z",
    "evidence": {
     "kind": "page",
     "chars": 14000,
@@ -167,14 +305,14 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 2.5,
+    "score": 2,
     "why": {
      "source": 1,
      "categories": [
       "zinsen"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
