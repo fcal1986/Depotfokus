@@ -1,0 +1,351 @@
+{
+ "date": "2026-11-13",
+ "generated_at": "2026-11-13T14:41:02.183Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-921d15516370",
+   "event_id": "e921d15516370",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "GDP up by 0.4% and employment stable in the euro area",
+   "url": "https://ec.europa.eu/eurostat/product?code=2-13112026-ap",
+   "also": [],
+   "published_at": "2026-11-13T10:00:00.000Z",
+   "retrieved_at": "2026-11-13T14:41:02.183Z",
+   "created_at": "2026-11-13T14:41:02.183Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8553,
+    "truncated": false,
+    "hash": "5805837fad5f6667"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 4.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise",
+      "industrie"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "GDP up by 0.4% and employment stable in the euro area",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Printing can have negative environmental impacts due to paper waste."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-13",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-74ff9b06d5e0",
+   "event_id": "e74ff9b06d5e0",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Inflationsrate im Oktober 2026 bei +2,8 %",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_392_611.html",
+   "also": [],
+   "published_at": "2026-11-11T07:00:00.000Z",
+   "retrieved_at": "2026-11-13T14:41:02.183Z",
+   "created_at": "2026-11-13T14:41:02.183Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 10415,
+    "truncated": false,
+    "hash": "d7451c2cb9862f14"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 4,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "preise"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Inflationsrate im Oktober 2026 bei +2,8 %",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Die Inflationsrate in Deutschland – gemessen als Veränderung des Verbraucherpreisindex (VPI) zum Vorjahresmonat – lag im Oktober 2026 bei +2,8 %."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "preise"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-11",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-5eaa6e2edb23",
+   "event_id": "e5eaa6e2edb23",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Pflege: 10 % der Erwerbstätigen von 25 bis 64 Jahren betreuen Angehörige",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N079_23.html",
+   "also": [],
+   "published_at": "2026-11-12T07:00:00.000Z",
+   "retrieved_at": "2026-11-13T14:41:02.183Z",
+   "created_at": "2026-11-13T14:41:02.183Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5606,
+    "truncated": false,
+    "hash": "12c70b19e95cdf36"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Pflege: 10 % der Erwerbstätigen von 25 bis 64 Jahren betreuen Angehörige",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Nicht nur die Kinderbetreuung, sondern auch die Pflege von Angehörigen stellt viele Menschen bei der Vereinbarkeit von Familie und Berufsleben vor Herausforderungen."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-12",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-a2e9e48e8185",
+   "event_id": "ea2e9e48e8185",
+   "revision": 1,
+   "source": {
+    "id": "bundesbank",
+    "name": "Deutsche Bundesbank",
+    "short": "Bundesbank",
+    "region": "Deutschland",
+    "license": "Nachdruck mit Quellenangabe gestattet",
+    "license_url": "https://www.bundesbank.de/de/service/impressum"
+   },
+   "original_title": "Bundesbank: Risiken für die Finanzstabilität bleiben erhöht | Finanzstabilitätsbericht 2026 sieht Herausforderungen durch hohe Marktbewertungen, steigende Kreditrisiken und Staatsschulden sowie künstliche Intelligenz",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712",
+   "also": [],
+   "published_at": "2026-11-12T09:32:00.000Z",
+   "retrieved_at": "2026-11-13T14:41:02.183Z",
+   "created_at": "2026-11-13T14:41:02.183Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6810,
+    "truncated": false,
+    "hash": "a93c016c4f8257ba"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.9,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "zinsen",
+      "industrie",
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Bundesbank: Risiken für die Finanzstabilität bleiben erhöht | Finanzstabilitätsbericht 2026 sieht Herausforderungen durch hohe Marktbewertungen, steigende Kreditrisiken und Staatsschulden sowie künstliche Intelligenz",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Das deutsche Finanzsystem zeigt sich widerstandsfähig – agiert jedoch in einem von geopolitischen Spannungen geprägten Umfeld."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen",
+    "industrie",
+    "unternehmen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-12",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-1e9253d39801",
+   "event_id": "e1e9253d39801",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Euro area international trade in goods deficit €10.3 bn",
+   "url": "https://ec.europa.eu/eurostat/product?code=6-13112026-bp",
+   "also": [],
+   "published_at": "2026-11-13T10:00:00.000Z",
+   "retrieved_at": "2026-11-13T14:41:02.183Z",
+   "created_at": "2026-11-13T14:41:02.183Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8871,
+    "truncated": false,
+    "hash": "c726e023e2ba18e4"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Euro area international trade in goods deficit €10.3 bn",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Printing can have negative environmental impacts due to paper waste."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-13",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": []
+}
