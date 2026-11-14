@@ -72,7 +72,8 @@
   "bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712": "ea2e9e48e8185",
   "eia.gov/todayinenergy/detail.php?id=68444": "eb20dd319d990",
   "ec.europa.eu/eurostat/product?code=2-13112026-ap": "e921d15516370",
-  "ec.europa.eu/eurostat/product?code=6-13112026-bp": "e1e9253d39801"
+  "ec.europa.eu/eurostat/product?code=6-13112026-bp": "e1e9253d39801",
+  "eia.gov/todayinenergy/detail.php?id=68445": "eeccb88af43ed"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -7335,7 +7336,7 @@
    "revision": 1,
    "evidence_hash": "12c70b19e95cdf36",
    "first_seen_at": "2026-11-12T15:23:22.995Z",
-   "last_seen_at": "2026-11-13T14:41:02.183Z",
+   "last_seen_at": "2026-11-14T13:38:28.804Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N079_23.html",
    "article": {
     "id": "n-5eaa6e2edb23",
@@ -7353,8 +7354,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N079_23.html",
     "also": [],
     "published_at": "2026-11-12T07:00:00.000Z",
-    "retrieved_at": "2026-11-13T14:41:02.183Z",
-    "created_at": "2026-11-13T14:41:02.183Z",
+    "retrieved_at": "2026-11-14T13:38:28.804Z",
+    "created_at": "2026-11-14T13:38:28.804Z",
     "evidence": {
      "kind": "page",
      "chars": 5606,
@@ -7410,7 +7411,7 @@
    "revision": 1,
    "evidence_hash": "a93c016c4f8257ba",
    "first_seen_at": "2026-11-12T15:23:22.995Z",
-   "last_seen_at": "2026-11-13T14:41:02.183Z",
+   "last_seen_at": "2026-11-14T13:38:28.804Z",
    "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712",
    "article": {
     "id": "n-a2e9e48e8185",
@@ -7428,8 +7429,8 @@
     "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/bundesbank-risiken-fuer-die-finanzstabilitaet-bleiben-erhoeht-1014712",
     "also": [],
     "published_at": "2026-11-12T09:32:00.000Z",
-    "retrieved_at": "2026-11-13T14:41:02.183Z",
-    "created_at": "2026-11-13T14:41:02.183Z",
+    "retrieved_at": "2026-11-14T13:38:28.804Z",
+    "created_at": "2026-11-14T13:38:28.804Z",
     "evidence": {
      "kind": "page",
      "chars": 6810,
@@ -7564,7 +7565,7 @@
    "revision": 1,
    "evidence_hash": "5805837fad5f6667",
    "first_seen_at": "2026-11-13T14:41:02.183Z",
-   "last_seen_at": "2026-11-13T14:41:02.183Z",
+   "last_seen_at": "2026-11-14T13:38:28.804Z",
    "url": "https://ec.europa.eu/eurostat/product?code=2-13112026-ap",
    "article": {
     "id": "n-921d15516370",
@@ -7582,8 +7583,8 @@
     "url": "https://ec.europa.eu/eurostat/product?code=2-13112026-ap",
     "also": [],
     "published_at": "2026-11-13T10:00:00.000Z",
-    "retrieved_at": "2026-11-13T14:41:02.183Z",
-    "created_at": "2026-11-13T14:41:02.183Z",
+    "retrieved_at": "2026-11-14T13:38:28.804Z",
+    "created_at": "2026-11-14T13:38:28.804Z",
     "evidence": {
      "kind": "page",
      "chars": 8553,
@@ -7593,7 +7594,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 4.5,
+     "score": 4,
      "why": {
       "source": 1,
       "categories": [
@@ -7601,7 +7602,7 @@
        "industrie"
       ],
       "core": true,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -7641,7 +7642,7 @@
    "revision": 1,
    "evidence_hash": "c726e023e2ba18e4",
    "first_seen_at": "2026-11-13T14:41:02.183Z",
-   "last_seen_at": "2026-11-13T14:41:02.183Z",
+   "last_seen_at": "2026-11-14T13:38:28.804Z",
    "url": "https://ec.europa.eu/eurostat/product?code=6-13112026-bp",
    "article": {
     "id": "n-1e9253d39801",
@@ -7659,8 +7660,8 @@
     "url": "https://ec.europa.eu/eurostat/product?code=6-13112026-bp",
     "also": [],
     "published_at": "2026-11-13T10:00:00.000Z",
-    "retrieved_at": "2026-11-13T14:41:02.183Z",
-    "created_at": "2026-11-13T14:41:02.183Z",
+    "retrieved_at": "2026-11-14T13:38:28.804Z",
+    "created_at": "2026-11-14T13:38:28.804Z",
     "evidence": {
      "kind": "page",
      "chars": 8871,
@@ -7670,14 +7671,14 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 2.5,
+     "score": 2,
      "why": {
       "source": 1,
       "categories": [
        "industrie"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -7695,6 +7696,81 @@
     "naechstes": null,
     "categories": [
      "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-13",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "eeccb88af43ed": {
+   "revision": 1,
+   "evidence_hash": "a470d6dc91980fdf",
+   "first_seen_at": "2026-11-14T13:38:28.804Z",
+   "last_seen_at": "2026-11-14T13:38:28.804Z",
+   "url": "https://www.eia.gov/todayinenergy/detail.php?id=68445",
+   "article": {
+    "id": "n-eccb88af43ed",
+    "event_id": "eeccb88af43ed",
+    "revision": 1,
+    "source": {
+     "id": "eia",
+     "name": "U.S. Energy Information Administration",
+     "short": "EIA",
+     "region": "USA/Welt",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.eia.gov/about/copyrights_reuse.php"
+    },
+    "original_title": "Hydropower generation in the Southwest fell to record lows this summer",
+    "url": "https://www.eia.gov/todayinenergy/detail.php?id=68445",
+    "also": [],
+    "published_at": "2026-11-13T14:00:00.000Z",
+    "retrieved_at": "2026-11-14T13:38:28.804Z",
+    "created_at": "2026-11-14T13:38:28.804Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 7426,
+     "truncated": false,
+     "hash": "a470d6dc91980fdf"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.3,
+     "why": {
+      "source": 0.8,
+      "categories": [
+       "energie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Hydropower generation in the Southwest fell to record lows this summer",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "Prolonged drought conditions affecting the Colorado River Basin led to record low hydropower generation this summer in the Southwestern electricity supply region, which includes Arizona, New Mexico, and small parts of Nevada and California."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "energie"
     ],
     "regions": [],
     "sectors": [],
