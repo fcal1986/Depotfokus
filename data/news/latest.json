@@ -1,12 +1,81 @@
 {
- "date": "2026-11-15",
- "generated_at": "2026-11-15T14:02:17.714Z",
+ "date": "2026-11-16",
+ "generated_at": "2026-11-16T15:59:03.042Z",
  "result": "items",
  "note": null,
  "items": [
   {
-   "id": "n-921d15516370",
-   "event_id": "e921d15516370",
+   "id": "n-4efe60ee1f0a",
+   "event_id": "e4efe60ee1f0a",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Energieverbrauch der Industrie 2025 um 2,9 % gesunken",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_400_435.html",
+   "also": [],
+   "published_at": "2026-11-16T07:00:00.000Z",
+   "retrieved_at": "2026-11-16T15:59:03.042Z",
+   "created_at": "2026-11-16T15:59:03.042Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5234,
+    "truncated": false,
+    "hash": "67dbe4808c4f8e52"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Energieverbrauch der Industrie 2025 um 2,9 % gesunken",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Die deutsche Industrie hat im Jahr 2025 insgesamt 3 248 Petajoule Energie verbraucht."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-16",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-80ee2bbde726",
+   "event_id": "e80ee2bbde726",
    "revision": 1,
    "source": {
     "id": "eurostat",
@@ -16,34 +85,33 @@
     "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
     "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
    },
-   "original_title": "GDP up by 0.4% and employment stable in the euro area",
-   "url": "https://ec.europa.eu/eurostat/product?code=2-13112026-ap",
+   "original_title": "Industrial production up by 0.2% in the euro area and by 0.5% in the EU",
+   "url": "https://ec.europa.eu/eurostat/product?code=4-16112026-ap",
    "also": [],
-   "published_at": "2026-11-13T10:00:00.000Z",
-   "retrieved_at": "2026-11-15T14:02:17.714Z",
-   "created_at": "2026-11-15T14:02:17.714Z",
+   "published_at": "2026-11-16T10:00:00.000Z",
+   "retrieved_at": "2026-11-16T15:59:03.042Z",
+   "created_at": "2026-11-16T15:59:03.042Z",
    "evidence": {
     "kind": "page",
-    "chars": 8553,
+    "chars": 11690,
     "truncated": false,
-    "hash": "5805837fad5f6667"
+    "hash": "79396751a70aac27"
    },
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 4,
+    "score": 2.5,
     "why": {
      "source": 1,
      "categories": [
-      "preise",
       "industrie"
      ],
-     "core": true,
-     "fresh": false,
+     "core": false,
+     "fresh": true,
      "sensational": false
     }
    },
-   "title": "GDP up by 0.4% and employment stable in the euro area",
+   "title": "Industrial production up by 0.2% in the euro area and by 0.5% in the EU",
    "kurzfassung": null,
    "facts": [
     {
@@ -56,7 +124,6 @@
    "finanzwirkung": null,
    "naechstes": null,
    "categories": [
-    "preise",
     "industrie"
    ],
    "regions": [],
@@ -67,82 +134,15 @@
    },
    "glossary": [],
    "scenario_link": null,
-   "event_date": "2026-11-13",
+   "event_date": "2026-11-16",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   },
   {
-   "id": "n-1e9253d39801",
-   "event_id": "e1e9253d39801",
-   "revision": 1,
-   "source": {
-    "id": "eurostat",
-    "name": "Eurostat",
-    "short": "Eurostat",
-    "region": "EU/Euroraum",
-    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
-    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
-   },
-   "original_title": "Euro area international trade in goods deficit €10.3 bn",
-   "url": "https://ec.europa.eu/eurostat/product?code=6-13112026-bp",
-   "also": [],
-   "published_at": "2026-11-13T10:00:00.000Z",
-   "retrieved_at": "2026-11-15T14:02:17.714Z",
-   "created_at": "2026-11-15T14:02:17.714Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 8871,
-    "truncated": false,
-    "hash": "c726e023e2ba18e4"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "industrie"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Euro area international trade in goods deficit €10.3 bn",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "Printing can have negative environmental impacts due to paper waste."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "industrie"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-13",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
-   "id": "n-75fe4e23edc1",
-   "event_id": "e75fe4e23edc1",
+   "id": "n-6e09fdeb56c6",
+   "event_id": "e6e09fdeb56c6",
    "revision": 1,
    "source": {
     "id": "destatis",
@@ -152,105 +152,38 @@
     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
    },
-   "original_title": "Erzeugerpreise landwirtschaftlicher Produkte im September 2026: -4,6 % gegenüber September 2025",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_397_61211.html",
+   "original_title": "1,4 % weniger wissenschaftliches Hochschulpersonal im Jahr 2025",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_401_213.html",
    "also": [],
-   "published_at": "2026-11-13T07:00:00.000Z",
-   "retrieved_at": "2026-11-15T14:02:17.714Z",
-   "created_at": "2026-11-15T14:02:17.714Z",
+   "published_at": "2026-11-16T07:00:00.000Z",
+   "retrieved_at": "2026-11-16T15:59:03.042Z",
+   "created_at": "2026-11-16T15:59:03.042Z",
    "evidence": {
     "kind": "page",
-    "chars": 4664,
+    "chars": 3686,
     "truncated": false,
-    "hash": "8ce15b2a0c235fc5"
+    "hash": "194907d30182a02b"
    },
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 2,
-    "why": {
-     "source": 1,
-     "categories": [
-      "lebensmittel"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Erzeugerpreise landwirtschaftlicher Produkte im September 2026: -4,6 % gegenüber September 2025",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "WIESBADEN – Die Erzeugerpreise landwirtschaftlicher Produkte waren im September 2026 um 4,6 % niedriger als im September 2025."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "lebensmittel"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-13",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
-   "id": "n-e618706ffcbe",
-   "event_id": "ee618706ffcbe",
-   "revision": 1,
-   "source": {
-    "id": "destatis",
-    "name": "Statistisches Bundesamt",
-    "short": "Destatis",
-    "region": "Deutschland",
-    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
-    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
-   },
-   "original_title": "4,5 % mehr Gründungen größerer Betriebe im 1. bis 3. Quartal 2026 als im Vorjahreszeitraum",
-   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_399_52311.html",
-   "also": [],
-   "published_at": "2026-11-13T07:00:00.000Z",
-   "retrieved_at": "2026-11-15T14:02:17.714Z",
-   "created_at": "2026-11-15T14:02:17.714Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 2505,
-    "truncated": false,
-    "hash": "2476449b7e11a3d5"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 2,
+    "score": 2.5,
     "why": {
      "source": 1,
      "categories": [
       "preise"
      ],
      "core": false,
-     "fresh": false,
+     "fresh": true,
      "sensational": false
     }
    },
-   "title": "4,5 % mehr Gründungen größerer Betriebe im 1. bis 3. Quartal 2026 als im Vorjahreszeitraum",
+   "title": "1,4 % weniger wissenschaftliches Hochschulpersonal im Jahr 2025",
    "kurzfassung": null,
    "facts": [
     {
      "text": null,
-     "quote": "WIESBADEN – In den ersten drei Quartalen des Jahres 2026 wurden in Deutschland rund 103 700 Betriebe gegründet, deren Rechtsform und Beschäftigtenzahl auf eine größere wirtschaftliche Bedeutung schließen lassen."
+     "quote": "WIESBADEN – An den deutschen Hochschulen und Hochschulkliniken waren zum Jahresende 2025 rund 809 400 Personen beschäftigt."
     }
    ],
    "numbers": [],
@@ -268,7 +201,7 @@
    },
    "glossary": [],
    "scenario_link": null,
-   "event_date": "2026-11-13",
+   "event_date": "2026-11-16",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
