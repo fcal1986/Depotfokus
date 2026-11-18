@@ -1,0 +1,355 @@
+{
+ "date": "2026-11-18",
+ "generated_at": "2026-11-18T15:46:11.733Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-97945620b882",
+   "event_id": "e97945620b882",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
+   "also": [],
+   "published_at": "2026-11-18T09:00:00.000Z",
+   "retrieved_at": "2026-11-18T15:46:11.733Z",
+   "created_at": "2026-11-18T15:46:11.733Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 3586,
+    "truncated": false,
+    "hash": "995e7cbd32a6e8f6"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "industrie",
+      "unternehmen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The outlook for euro area financial stability is being shaped by risks stemming from artificial intelligence (AI) valuations, fiscal imbalances and geoeconomic tensions, according to the November 2026 Financial Stability Review , which is published today by the European Central Bank (ECB)."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "industrie",
+    "unternehmen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-1232df35948f",
+   "event_id": "e1232df35948f",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Erwerbstätigkeit im 3. Quartal 2026 saisonbereinigt gegenüber dem Vorquartal gesunken",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_404_13321.html",
+   "also": [],
+   "published_at": "2026-11-18T07:00:00.000Z",
+   "retrieved_at": "2026-11-18T15:46:11.733Z",
+   "created_at": "2026-11-18T15:46:11.733Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 9416,
+    "truncated": false,
+    "hash": "7cce169e591d37ad"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Erwerbstätigkeit im 3. Quartal 2026 saisonbereinigt gegenüber dem Vorquartal gesunken",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Quartal 2026 waren rund 45,67 Millionen Personen mit Arbeitsort in Deutschland (Inlandskonzept) erwerbstätig."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-4efe60ee1f0a",
+   "event_id": "e4efe60ee1f0a",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Energieverbrauch der Industrie 2025 um 2,9 % gesunken",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_400_435.html",
+   "also": [],
+   "published_at": "2026-11-16T07:00:00.000Z",
+   "retrieved_at": "2026-11-18T15:46:11.733Z",
+   "created_at": "2026-11-18T15:46:11.733Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5234,
+    "truncated": false,
+    "hash": "67dbe4808c4f8e52"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Energieverbrauch der Industrie 2025 um 2,9 % gesunken",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Die deutsche Industrie hat im Jahr 2025 insgesamt 3 248 Petajoule Energie verbraucht."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-16",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-5e6451d4f1d0",
+   "event_id": "e5e6451d4f1d0",
+   "revision": 1,
+   "source": {
+    "id": "eurostat",
+    "name": "Eurostat",
+    "short": "Eurostat",
+    "region": "EU/Euroraum",
+    "license": "Weiterverwendung mit Quellenangabe (Eurostat Copyright Notice)",
+    "license_url": "https://ec.europa.eu/eurostat/about-us/policies/copyright"
+   },
+   "original_title": "Annual inflation up to 4.0% in the euro area",
+   "url": "https://ec.europa.eu/eurostat/product?code=2-18112026-ap",
+   "also": [],
+   "published_at": "2026-11-18T10:00:00.000Z",
+   "retrieved_at": "2026-11-18T15:46:11.733Z",
+   "created_at": "2026-11-18T15:46:11.733Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7193,
+    "truncated": false,
+    "hash": "8d262894f68fab3a"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Annual inflation up to 4.0% in the euro area",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Printing can have negative environmental impacts due to paper waste."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-0dc0b181c7e3",
+   "event_id": "e0dc0b181c7e3",
+   "revision": 1,
+   "source": {
+    "id": "bea",
+    "name": "U.S. Bureau of Economic Analysis",
+    "short": "BEA",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
+   },
+   "original_title": "Outdoor Recreation Economic Statistics, U.S. and States, 2025",
+   "url": "https://www.bea.gov/news/2026/outdoor-recreation-economic-statistics-us-and-states-2025",
+   "also": [],
+   "published_at": "2026-11-18T15:00:00.000Z",
+   "retrieved_at": "2026-11-18T15:46:11.733Z",
+   "created_at": "2026-11-18T15:46:11.733Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6199,
+    "truncated": false,
+    "hash": "6016f60a916023e0"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.4,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "industrie"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Outdoor Recreation Economic Statistics, U.S. and States, 2025",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Bureau of Economic Analysis released new statistics measuring the outdoor recreation economy for the nation, all 50 states, and the District of Columbia."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": [
+  {
+   "event_id": "e2dc01221a5ae",
+   "title": "Boris Vujčić: Financial Stability Review - November 2026",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf",
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
+   "log": null
+  }
+ ]
+}
