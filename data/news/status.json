@@ -1,6 +1,6 @@
 {
- "last_run_at": "2026-11-18T15:46:11.733Z",
- "last_success_at": "2026-11-18T15:46:11.733Z",
+ "last_run_at": "2026-11-19T15:51:35.743Z",
+ "last_success_at": "2026-11-19T15:51:35.743Z",
  "last_result": "items",
  "last_note": "5 Meldungen, 1 zurückgehalten, 0 aus dem Zwischenspeicher",
  "sources": {
@@ -8,69 +8,69 @@
    "ok": true,
    "feed_url": "https://www.ecb.europa.eu/rss/press.html",
    "items": 15,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "eurostat": {
    "ok": true,
    "feed_url": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_mode=view&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=CAT_PREREL",
    "items": 11,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "destatis": {
    "ok": true,
    "feed_url": "https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml",
    "items": 10,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "bundesbank": {
    "ok": true,
    "feed_url": "https://www.bundesbank.de/service/rss/de/633286/feed.rss",
    "items": 10,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "fed": {
    "ok": true,
    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
    "items": 20,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "bls": {
    "ok": false,
    "error": "https://www.bls.gov/feed/bls_latest.rss: HTTP 403",
-   "at": "2026-11-18T15:46:11.733Z",
+   "at": "2026-11-19T15:51:35.743Z",
    "last_ok_at": null
   },
   "bea": {
    "ok": true,
    "feed_url": "https://apps.bea.gov/rss/rss.xml",
    "items": 49,
-   "at": "2026-11-18T15:46:11.733Z"
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "eia": {
    "ok": true,
    "feed_url": "https://www.eia.gov/rss/todayinenergy.xml",
-   "items": 29,
-   "at": "2026-11-18T15:46:11.733Z"
+   "items": 30,
+   "at": "2026-11-19T15:51:35.743Z"
   },
   "imf": {
    "ok": false,
    "error": "https://www.imf.org/en/News/rss?language=eng: HTTP 404",
-   "at": "2026-11-18T15:46:11.733Z",
+   "at": "2026-11-19T15:51:35.743Z",
    "last_ok_at": null
   },
   "fao": {
    "ok": true,
    "feed_url": "https://www.fao.org/feeds/fao-newsroom-rss",
-   "items": 17,
-   "at": "2026-11-18T15:46:11.733Z"
+   "items": 19,
+   "at": "2026-11-19T15:51:35.743Z"
   }
  },
  "held": [
   {
-   "event_id": "e2dc01221a5ae",
-   "title": "Boris Vujčić: Financial Stability Review - November 2026",
-   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf",
-   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
+   "event_id": "e82d5d608c1cd",
+   "title": "Risiken durch KI-Bewertungen, Haushaltsungleichgewichte und geoökonomische Spannungen belasten die Aussichten für die Finanzstabilität",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/risiken-durch-ki-bewertungen-haushaltsungleichgewichte-und-geooekonomische-spannungen-belasten-die-aussichten-fuer-die-finanzstabilitaet-959182",
+   "why": "Kein belegbarer Satz in der Quelle gefunden.",
    "log": null
   }
  ],
