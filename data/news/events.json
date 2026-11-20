@@ -89,7 +89,9 @@
   "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_405_45213.html": "ef7c40f67d41c",
   "fao.org/newsroom/detail/fao-food-outlook--global-food-commodity-supplies-remain-generally-ample--but-risks-are-mounting/en": "e877780ae4680",
   "bundesbank.de/de/presse/pressemitteilungen/ezb/risiken-durch-ki-bewertungen-haushaltsungleichgewichte-und-geooekonomische-spannungen-belasten-die-aussichten-fuer-die-finanzstabilitaet-959182": "e82d5d608c1cd",
-  "federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm": "ef437e1f85223"
+  "federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm": "ef437e1f85223",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html": "eb77b58f5e50a",
+  "federalreserve.gov/newsevents/pressreleases/other20261120a.htm": "e0a8d4a170d99"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -8260,7 +8262,7 @@
    "revision": 1,
    "evidence_hash": "995e7cbd32a6e8f6",
    "first_seen_at": "2026-11-18T15:46:11.733Z",
-   "last_seen_at": "2026-11-19T15:51:35.743Z",
+   "last_seen_at": "2026-11-20T15:34:15.949Z",
    "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
    "article": {
     "id": "n-97945620b882",
@@ -8278,8 +8280,8 @@
     "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
     "also": [],
     "published_at": "2026-11-18T09:00:00.000Z",
-    "retrieved_at": "2026-11-19T15:51:35.743Z",
-    "created_at": "2026-11-19T15:51:35.743Z",
+    "retrieved_at": "2026-11-20T15:34:15.949Z",
+    "created_at": "2026-11-20T15:34:15.949Z",
     "evidence": {
      "kind": "page",
      "chars": 3586,
@@ -8632,7 +8634,7 @@
    "revision": 1,
    "evidence_hash": "1a8d581e496606ab",
    "first_seen_at": "2026-11-19T15:51:35.743Z",
-   "last_seen_at": "2026-11-19T15:51:35.743Z",
+   "last_seen_at": "2026-11-20T15:34:15.949Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N081_61_63.html",
    "article": {
     "id": "n-fbba8592205f",
@@ -8650,8 +8652,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N081_61_63.html",
     "also": [],
     "published_at": "2026-11-19T07:00:00.000Z",
-    "retrieved_at": "2026-11-19T15:51:35.743Z",
-    "created_at": "2026-11-19T15:51:35.743Z",
+    "retrieved_at": "2026-11-20T15:34:15.949Z",
+    "created_at": "2026-11-20T15:34:15.949Z",
     "evidence": {
      "kind": "page",
      "chars": 6808,
@@ -8661,7 +8663,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 3.5,
+     "score": 3,
      "why": {
       "source": 1,
       "categories": [
@@ -8669,7 +8671,7 @@
        "zinsen"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -8786,7 +8788,7 @@
    "revision": 1,
    "evidence_hash": "d25f2e1d9e3fdb7e",
    "first_seen_at": "2026-11-19T15:51:35.743Z",
-   "last_seen_at": "2026-11-19T15:51:35.743Z",
+   "last_seen_at": "2026-11-20T15:34:15.949Z",
    "url": "https://www.fao.org/newsroom/detail/fao-food-outlook--global-food-commodity-supplies-remain-generally-ample--but-risks-are-mounting/en",
    "article": {
     "id": "n-877780ae4680",
@@ -8804,8 +8806,8 @@
     "url": "https://www.fao.org/newsroom/detail/fao-food-outlook--global-food-commodity-supplies-remain-generally-ample--but-risks-are-mounting/en",
     "also": [],
     "published_at": "2026-11-19T12:00:00.000Z",
-    "retrieved_at": "2026-11-19T15:51:35.743Z",
-    "created_at": "2026-11-19T15:51:35.743Z",
+    "retrieved_at": "2026-11-20T15:34:15.949Z",
+    "created_at": "2026-11-20T15:34:15.949Z",
     "evidence": {
      "kind": "page",
      "chars": 8047,
@@ -8815,7 +8817,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 3.3,
+     "score": 2.8,
      "why": {
       "source": 0.8,
       "categories": [
@@ -8823,7 +8825,7 @@
        "energie"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -8996,6 +8998,158 @@
     "glossary": [],
     "scenario_link": null,
     "event_date": "2026-11-18",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "eb77b58f5e50a": {
+   "revision": 1,
+   "evidence_hash": "3d9a48c32bc1e2a9",
+   "first_seen_at": "2026-11-20T15:34:15.949Z",
+   "last_seen_at": "2026-11-20T15:34:15.949Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html",
+   "article": {
+    "id": "n-b77b58f5e50a",
+    "event_id": "eb77b58f5e50a",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html",
+    "also": [],
+    "published_at": "2026-11-20T07:00:00.000Z",
+    "retrieved_at": "2026-11-20T15:34:15.949Z",
+    "created_at": "2026-11-20T15:34:15.949Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 5526,
+     "truncated": false,
+     "hash": "3d9a48c32bc1e2a9"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "energie",
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "WIESBADEN – In den ersten drei Quartalen des Jahres 2026 wurden 48,8 Terawattstunden elektrischer Strom im Wert von 4,3 Milliarden Euro aus Deutschland exportiert."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "energie",
+     "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-20",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e0a8d4a170d99": {
+   "revision": 1,
+   "evidence_hash": "dc62b6abe57c8697",
+   "first_seen_at": "2026-11-20T15:34:15.949Z",
+   "last_seen_at": "2026-11-20T15:34:15.949Z",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120a.htm",
+   "article": {
+    "id": "n-0a8d4a170d99",
+    "event_id": "e0a8d4a170d99",
+    "revision": 1,
+    "source": {
+     "id": "fed",
+     "name": "Federal Reserve",
+     "short": "Fed",
+     "region": "USA",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "original_title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120a.htm",
+    "also": [],
+    "published_at": "2026-11-20T15:00:00.000Z",
+    "retrieved_at": "2026-11-20T15:34:15.949Z",
+    "created_at": "2026-11-20T15:34:15.949Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 1206,
+     "truncated": false,
+     "hash": "dc62b6abe57c8697"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "The Federal Reserve Board on Friday released results from a survey of senior financial officers at banks about their strategies and practices for managing reserve balances."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "zinsen"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-20",
     "words": 0,
     "length_ok": false,
     "status": "kurzmeldung",
