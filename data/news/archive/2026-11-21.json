@@ -1,0 +1,345 @@
+{
+ "date": "2026-11-21",
+ "generated_at": "2026-11-21T14:45:07.517Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-b77b58f5e50a",
+   "event_id": "eb77b58f5e50a",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html",
+   "also": [],
+   "published_at": "2026-11-20T07:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5526,
+    "truncated": false,
+    "hash": "3d9a48c32bc1e2a9"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – In den ersten drei Quartalen des Jahres 2026 wurden 48,8 Terawattstunden elektrischer Strom im Wert von 4,3 Milliarden Euro aus Deutschland exportiert."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-20",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-fbba8592205f",
+   "event_id": "efbba8592205f",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "5,7 % der Bevölkerung konnten 2025 aus Geldmangel ihre Wohnung nicht angemessen warmhalten",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N081_61_63.html",
+   "also": [],
+   "published_at": "2026-11-19T07:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6808,
+    "truncated": false,
+    "hash": "1a8d581e496606ab"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "5,7 % der Bevölkerung konnten 2025 aus Geldmangel ihre Wohnung nicht angemessen warmhalten",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Für einige Menschen in Deutschland ist ein warmes Zuhause nicht selbstverständlich."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-19",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-877780ae4680",
+   "event_id": "e877780ae4680",
+   "revision": 1,
+   "source": {
+    "id": "fao",
+    "name": "Ernährungs- und Landwirtschaftsorganisation der UN",
+    "short": "FAO",
+    "region": "Welt",
+    "license": "Wiedergabe mit Quellenangabe (FAO Copyright, CC BY-NC-SA 3.0 IGO)",
+    "license_url": "https://www.fao.org/contact-us/terms/en/"
+   },
+   "original_title": "FAO Food Outlook: Global food commodity supplies remain generally ample, but risks are mounting",
+   "url": "https://www.fao.org/newsroom/detail/fao-food-outlook--global-food-commodity-supplies-remain-generally-ample--but-risks-are-mounting/en",
+   "also": [],
+   "published_at": "2026-11-19T12:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 8047,
+    "truncated": false,
+    "hash": "d25f2e1d9e3fdb7e"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.8,
+    "why": {
+     "source": 0.8,
+     "categories": [
+      "lebensmittel",
+      "energie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "FAO Food Outlook: Global food commodity supplies remain generally ample, but risks are mounting",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Rome – Global agricultural commodity supplies remain generally comfortable, particularly for wheat and coarse grains, although tighter balances are emerging for rice, sugar and vegetable oils."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "energie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-19",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-0a8d4a170d99",
+   "event_id": "e0a8d4a170d99",
+   "revision": 1,
+   "source": {
+    "id": "fed",
+    "name": "Federal Reserve",
+    "short": "Fed",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+   },
+   "original_title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120a.htm",
+   "also": [],
+   "published_at": "2026-11-20T15:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 1206,
+    "truncated": false,
+    "hash": "dc62b6abe57c8697"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The Federal Reserve Board on Friday released results from a survey of senior financial officers at banks about their strategies and practices for managing reserve balances."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-20",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-f437e1f85223",
+   "event_id": "ef437e1f85223",
+   "revision": 1,
+   "source": {
+    "id": "fed",
+    "name": "Federal Reserve",
+    "short": "Fed",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+   },
+   "original_title": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+   "also": [],
+   "published_at": "2026-11-18T19:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 871,
+    "truncated": false,
+    "hash": "cb7333900eb44e08"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The Federal Reserve on Wednesday released the minutes of the Federal Open Market Committee meeting that was held on October 27–28, 2026."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": []
+}

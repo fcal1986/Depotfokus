@@ -1,6 +1,6 @@
 {
- "date": "2026-11-20",
- "generated_at": "2026-11-20T15:34:15.949Z",
+ "date": "2026-11-21",
+ "generated_at": "2026-11-21T14:45:07.517Z",
  "result": "items",
  "note": null,
  "items": [
@@ -20,8 +20,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html",
    "also": [],
    "published_at": "2026-11-20T07:00:00.000Z",
-   "retrieved_at": "2026-11-20T15:34:15.949Z",
-   "created_at": "2026-11-20T15:34:15.949Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
    "evidence": {
     "kind": "page",
     "chars": 5526,
@@ -31,7 +31,7 @@
    "pipeline_version": "1.0.0",
    "model": null,
    "selection": {
-    "score": 3.5,
+    "score": 3,
     "why": {
      "source": 1,
      "categories": [
@@ -39,7 +39,7 @@
       "industrie"
      ],
      "core": false,
-     "fresh": true,
+     "fresh": false,
      "sensational": false
     }
    },
@@ -89,8 +89,8 @@
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N081_61_63.html",
    "also": [],
    "published_at": "2026-11-19T07:00:00.000Z",
-   "retrieved_at": "2026-11-20T15:34:15.949Z",
-   "created_at": "2026-11-20T15:34:15.949Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
    "evidence": {
     "kind": "page",
     "chars": 6808,
@@ -143,75 +143,6 @@
    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
   },
   {
-   "id": "n-97945620b882",
-   "event_id": "e97945620b882",
-   "revision": 1,
-   "source": {
-    "id": "ecb",
-    "name": "Europäische Zentralbank",
-    "short": "EZB",
-    "region": "Euroraum",
-    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
-    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
-   },
-   "original_title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
-   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
-   "also": [],
-   "published_at": "2026-11-18T09:00:00.000Z",
-   "retrieved_at": "2026-11-20T15:34:15.949Z",
-   "created_at": "2026-11-20T15:34:15.949Z",
-   "evidence": {
-    "kind": "page",
-    "chars": 3586,
-    "truncated": false,
-    "hash": "995e7cbd32a6e8f6"
-   },
-   "pipeline_version": "1.0.0",
-   "model": null,
-   "selection": {
-    "score": 3,
-    "why": {
-     "source": 1,
-     "categories": [
-      "industrie",
-      "unternehmen"
-     ],
-     "core": false,
-     "fresh": false,
-     "sensational": false
-    }
-   },
-   "title": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
-   "kurzfassung": null,
-   "facts": [
-    {
-     "text": null,
-     "quote": "The outlook for euro area financial stability is being shaped by risks stemming from artificial intelligence (AI) valuations, fiscal imbalances and geoeconomic tensions, according to the November 2026 Financial Stability Review , which is published today by the European Central Bank (ECB)."
-    }
-   ],
-   "numbers": [],
-   "alltag": null,
-   "finanzwirkung": null,
-   "naechstes": null,
-   "categories": [
-    "industrie",
-    "unternehmen"
-   ],
-   "regions": [],
-   "sectors": [],
-   "companies": [],
-   "dividend": {
-    "status": "nicht erwähnt"
-   },
-   "glossary": [],
-   "scenario_link": null,
-   "event_date": "2026-11-18",
-   "words": 0,
-   "length_ok": false,
-   "status": "kurzmeldung",
-   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
-  },
-  {
    "id": "n-877780ae4680",
    "event_id": "e877780ae4680",
    "revision": 1,
@@ -227,8 +158,8 @@
    "url": "https://www.fao.org/newsroom/detail/fao-food-outlook--global-food-commodity-supplies-remain-generally-ample--but-risks-are-mounting/en",
    "also": [],
    "published_at": "2026-11-19T12:00:00.000Z",
-   "retrieved_at": "2026-11-20T15:34:15.949Z",
-   "created_at": "2026-11-20T15:34:15.949Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
    "evidence": {
     "kind": "page",
     "chars": 8047,
@@ -296,8 +227,8 @@
    "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120a.htm",
    "also": [],
    "published_at": "2026-11-20T15:00:00.000Z",
-   "retrieved_at": "2026-11-20T15:34:15.949Z",
-   "created_at": "2026-11-20T15:34:15.949Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
    "evidence": {
     "kind": "page",
     "chars": 1206,
@@ -342,6 +273,69 @@
    "glossary": [],
    "scenario_link": null,
    "event_date": "2026-11-20",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-f437e1f85223",
+   "event_id": "ef437e1f85223",
+   "revision": 1,
+   "source": {
+    "id": "fed",
+    "name": "Federal Reserve",
+    "short": "Fed",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+   },
+   "original_title": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+   "also": [],
+   "published_at": "2026-11-18T19:00:00.000Z",
+   "retrieved_at": "2026-11-21T14:45:07.517Z",
+   "created_at": "2026-11-21T14:45:07.517Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 871,
+    "truncated": false,
+    "hash": "cb7333900eb44e08"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The Federal Reserve on Wednesday released the minutes of the Federal Open Market Committee meeting that was held on October 27–28, 2026."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-18",
    "words": 0,
    "length_ok": false,
    "status": "kurzmeldung",
