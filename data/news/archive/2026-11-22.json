@@ -1,0 +1,144 @@
+{
+ "date": "2026-11-22",
+ "generated_at": "2026-11-22T14:41:45.494Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-b77b58f5e50a",
+   "event_id": "eb77b58f5e50a",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html",
+   "also": [],
+   "published_at": "2026-11-20T07:00:00.000Z",
+   "retrieved_at": "2026-11-22T14:41:45.494Z",
+   "created_at": "2026-11-22T14:41:45.494Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 5526,
+    "truncated": false,
+    "hash": "3d9a48c32bc1e2a9"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "energie",
+      "industrie"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Elektrischer Strom im Wert von 4,3 Milliarden Euro im 1. bis 3. Quartal 2026 exportiert",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – In den ersten drei Quartalen des Jahres 2026 wurden 48,8 Terawattstunden elektrischer Strom im Wert von 4,3 Milliarden Euro aus Deutschland exportiert."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "energie",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-20",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-0a8d4a170d99",
+   "event_id": "e0a8d4a170d99",
+   "revision": 1,
+   "source": {
+    "id": "fed",
+    "name": "Federal Reserve",
+    "short": "Fed",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+   },
+   "original_title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20261120a.htm",
+   "also": [],
+   "published_at": "2026-11-20T15:00:00.000Z",
+   "retrieved_at": "2026-11-22T14:41:45.494Z",
+   "created_at": "2026-11-22T14:41:45.494Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 1206,
+    "truncated": false,
+    "hash": "dc62b6abe57c8697"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Federal Reserve Board releases results from survey of senior financial officers at banks about their strategies and practices for managing reserve balances",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The Federal Reserve Board on Friday released results from a survey of senior financial officers at banks about their strategies and practices for managing reserve balances."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-20",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": []
+}
