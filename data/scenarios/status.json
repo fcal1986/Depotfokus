@@ -1,11 +1,11 @@
 {
  "scenario_set_id": "macro-2026-10-09_2029-10-09",
- "last_attempt_at": "2026-11-16T13:39:09.648Z",
+ "last_attempt_at": "2026-11-23T15:58:33.790Z",
  "last_attempt_result": "new_snapshot",
- "last_attempt_note": "Unverändert seit der Vorwoche: Neue Daten haben die gerundeten Werte nicht verschoben.",
- "last_attempt_snapshot_id": "2026-W47",
- "last_successful_evaluation_at": "2026-11-16T13:39:09.648Z",
- "next_scheduled_run": "2026-11-23T06:20:00.000Z",
+ "last_attempt_note": "B (Breiter Aufschwung) sinkt um 1 Prozentpunkt auf 21 %; C (Längerer Wirtschafts- und Finanzmarktstress) steigt um 1 Prozentpunkt auf 29 % seit der Vorwoche. Wichtigster Treiber: Erwartete Schwankung US-Aktien (VIX).",
+ "last_attempt_snapshot_id": "2026-W48",
+ "last_successful_evaluation_at": "2026-11-23T15:58:33.790Z",
+ "next_scheduled_run": "2026-11-30T06:20:00.000Z",
  "schedule": "Montag 07:20 Uhr (Europe/Berlin); manuell über Actions › Szenario-Monitor › Run workflow",
  "sources": {
   "EA_ESI": {
@@ -29,7 +29,7 @@
   "EA_HICP_CORE": {
    "status": "ok",
    "new": 0,
-   "revised": 0,
+   "revised": 1,
    "latest": "2026-10"
   },
   "US_CORE_PCE": {
@@ -42,7 +42,7 @@
    "status": "ok",
    "new": 7,
    "revised": 0,
-   "latest": "2026-11-16"
+   "latest": "2026-11-23"
   },
   "BRENT_YOY": {
    "status": "ok",
@@ -59,26 +59,26 @@
   "EA_CISS": {
    "status": "ok",
    "new": 5,
-   "revised": 12,
-   "latest": "2026-11-13"
+   "revised": 13,
+   "latest": "2026-11-20"
   },
   "EA_HY_OAS": {
    "status": "ok",
-   "new": 4,
+   "new": 7,
    "revised": 0,
-   "latest": "2026-11-12"
+   "latest": "2026-11-20"
   },
   "US_HY_OAS": {
    "status": "ok",
-   "new": 4,
+   "new": 7,
    "revised": 0,
-   "latest": "2026-11-12"
+   "latest": "2026-11-20"
   },
   "VIX": {
    "status": "ok",
-   "new": 5,
+   "new": 6,
    "revised": 0,
-   "latest": "2026-11-12"
+   "latest": "2026-11-20"
   },
   "US_PROFITS_YOY": {
    "status": "ok",

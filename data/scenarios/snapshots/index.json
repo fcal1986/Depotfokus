@@ -140,6 +140,26 @@
    "generated_at": "2026-11-16T13:39:09.648Z",
    "model_version": "1.0.0",
    "config_hash": "4bdc3a9385863038"
+  },
+  {
+   "snapshot_id": "2026-W48",
+   "week_id": "2026-W48",
+   "revision": 1,
+   "revision_of": null,
+   "status": "ok",
+   "display": {
+    "A": 50,
+    "B": 21,
+    "C": 29
+   },
+   "raw_weights": {
+    "A": 0.5022791066481552,
+    "B": 0.21166784410934925,
+    "C": 0.28605304924249547
+   },
+   "generated_at": "2026-11-23T15:58:33.790Z",
+   "model_version": "1.0.0",
+   "config_hash": "4bdc3a9385863038"
   }
  ]
 }
