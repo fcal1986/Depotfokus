@@ -91,7 +91,8 @@
   "bundesbank.de/de/presse/pressemitteilungen/ezb/risiken-durch-ki-bewertungen-haushaltsungleichgewichte-und-geooekonomische-spannungen-belasten-die-aussichten-fuer-die-finanzstabilitaet-959182": "e82d5d608c1cd",
   "federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm": "ef437e1f85223",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_406_51.html": "eb77b58f5e50a",
-  "federalreserve.gov/newsevents/pressreleases/other20261120a.htm": "e0a8d4a170d99"
+  "federalreserve.gov/newsevents/pressreleases/other20261120a.htm": "e0a8d4a170d99",
+  "ecb.europa.eu/press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf": "ec5107cdf00d8"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -9154,6 +9155,76 @@
     "length_ok": false,
     "status": "kurzmeldung",
     "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "ec5107cdf00d8": {
+   "revision": 1,
+   "evidence_hash": null,
+   "first_seen_at": "2026-11-23T18:23:17.723Z",
+   "last_seen_at": "2026-11-23T18:23:17.723Z",
+   "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf",
+   "article": {
+    "id": "n-c5107cdf00d8",
+    "event_id": "ec5107cdf00d8",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Philip R. Lane: Climate change and monetary policy",
+    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf",
+    "also": [],
+    "published_at": "2026-11-23T14:30:00.000Z",
+    "retrieved_at": "2026-11-23T18:23:17.723Z",
+    "created_at": "2026-11-23T18:23:17.723Z",
+    "evidence": {
+     "kind": "feed",
+     "chars": 0,
+     "truncated": false,
+     "hash": null
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Philip R. Lane: Climate change and monetary policy",
+    "kurzfassung": null,
+    "facts": [],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "zinsen"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-23",
+    "words": 0,
+    "length_ok": false,
+    "status": "zurückgehalten",
+    "held_reason": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
    },
    "history": []
   }
