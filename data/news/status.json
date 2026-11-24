@@ -1,68 +1,68 @@
 {
- "last_run_at": "2026-11-23T18:23:17.723Z",
- "last_success_at": "2026-11-23T18:23:17.723Z",
- "last_result": "none",
- "last_note": "0 Meldungen, 1 zurückgehalten, 0 aus dem Zwischenspeicher",
+ "last_run_at": "2026-11-24T17:53:41.321Z",
+ "last_success_at": "2026-11-24T17:53:41.321Z",
+ "last_result": "items",
+ "last_note": "4 Meldungen, 1 zurückgehalten, 1 aus dem Zwischenspeicher",
  "sources": {
   "ecb": {
    "ok": true,
    "feed_url": "https://www.ecb.europa.eu/rss/press.html",
    "items": 15,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "eurostat": {
    "ok": true,
    "feed_url": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_mode=view&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=CAT_PREREL",
    "items": 11,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "destatis": {
    "ok": true,
    "feed_url": "https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml",
    "items": 10,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "bundesbank": {
    "ok": true,
    "feed_url": "https://www.bundesbank.de/service/rss/de/633286/feed.rss",
    "items": 10,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "fed": {
    "ok": true,
    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
    "items": 20,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "bls": {
    "ok": false,
    "error": "https://www.bls.gov/feed/bls_latest.rss: HTTP 403",
-   "at": "2026-11-23T18:23:17.723Z",
+   "at": "2026-11-24T17:53:41.321Z",
    "last_ok_at": null
   },
   "bea": {
    "ok": true,
    "feed_url": "https://apps.bea.gov/rss/rss.xml",
    "items": 49,
-   "at": "2026-11-23T18:23:17.723Z"
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "eia": {
    "ok": true,
    "feed_url": "https://www.eia.gov/rss/todayinenergy.xml",
-   "items": 30,
-   "at": "2026-11-23T18:23:17.723Z"
+   "items": 31,
+   "at": "2026-11-24T17:53:41.321Z"
   },
   "imf": {
    "ok": false,
    "error": "https://www.imf.org/en/News/rss?language=eng: HTTP 404",
-   "at": "2026-11-23T18:23:17.723Z",
+   "at": "2026-11-24T17:53:41.321Z",
    "last_ok_at": null
   },
   "fao": {
    "ok": true,
    "feed_url": "https://www.fao.org/feeds/fao-newsroom-rss",
-   "items": 18,
-   "at": "2026-11-23T18:23:17.723Z"
+   "items": 19,
+   "at": "2026-11-24T17:53:41.321Z"
   }
  },
  "held": [
@@ -70,8 +70,7 @@
    "event_id": "ec5107cdf00d8",
    "title": "Philip R. Lane: Climate change and monetary policy",
    "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf",
-   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
-   "log": null
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung."
   }
  ],
  "model": "claude-sonnet-5-5",
@@ -80,7 +79,7 @@
   "input_tokens": 0,
   "output_tokens": 0,
   "calls": 0,
-  "cached": 0,
+  "cached": 1,
   "cost_usd": 0
  }
 }
