@@ -96,7 +96,11 @@
   "destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_48_p002.html": "e0f5b5b9c6a39",
   "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_408_52911.html": "e4229263dc7b7",
   "eia.gov/todayinenergy/detail.php?id=68504": "ea6089fdc8e6e",
-  "fao.org/newsroom/detail/cop31--fao-calls-for-increased-funding-for-agrifood-systems-as-weather-extremes-intensify/en": "e0b44a5f676bc"
+  "fao.org/newsroom/detail/cop31--fao-calls-for-increased-funding-for-agrifood-systems-as-weather-extremes-intensify/en": "e0b44a5f676bc",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html": "e379ab3a053f1",
+  "bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026": "e690e608fd5fc",
+  "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html": "e51377bac4b1e",
+  "bea.gov/news/2026/personal-income-and-outlays-october-2026": "e327ffe465de5"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -9236,7 +9240,7 @@
    "revision": 1,
    "evidence_hash": "153da81556984d39",
    "first_seen_at": "2026-11-24T17:53:41.321Z",
-   "last_seen_at": "2026-11-24T17:53:41.321Z",
+   "last_seen_at": "2026-11-25T17:21:24.914Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_48_p002.html",
    "article": {
     "id": "n-0f5b5b9c6a39",
@@ -9254,8 +9258,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/Zahl-der-Woche/2026/PD26_48_p002.html",
     "also": [],
     "published_at": "2026-11-24T07:00:00.000Z",
-    "retrieved_at": "2026-11-24T17:53:41.321Z",
-    "created_at": "2026-11-24T17:53:41.321Z",
+    "retrieved_at": "2026-11-25T17:21:24.914Z",
+    "created_at": "2026-11-25T17:21:24.914Z",
     "evidence": {
      "kind": "page",
      "chars": 1592,
@@ -9265,7 +9269,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 3.5,
+     "score": 3,
      "why": {
       "source": 1,
       "categories": [
@@ -9273,7 +9277,7 @@
        "industrie"
       ],
       "core": false,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -9531,6 +9535,308 @@
     "glossary": [],
     "scenario_link": null,
     "event_date": "2026-11-24",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e379ab3a053f1": {
+   "revision": 1,
+   "evidence_hash": "54e591fe0ecffb90",
+   "first_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html",
+   "article": {
+    "id": "n-379ab3a053f1",
+    "event_id": "e379ab3a053f1",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Bruttoinlandsprodukt: Ausführliche Ergebnisse zur Wirtschaftsleistung im 3. Quartal 2026",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html",
+    "also": [],
+    "published_at": "2026-11-25T07:00:00.000Z",
+    "retrieved_at": "2026-11-25T17:21:24.914Z",
+    "created_at": "2026-11-25T17:21:24.914Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 14000,
+     "truncated": true,
+     "hash": "54e591fe0ecffb90"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 4.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel",
+       "industrie"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Bruttoinlandsprodukt: Ausführliche Ergebnisse zur Wirtschaftsleistung im 3. Quartal 2026",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "Quartal 2026 – preis-, saison- und kalenderbereinigt – leicht um 0,1 % gestiegen."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "lebensmittel",
+     "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e690e608fd5fc": {
+   "revision": 1,
+   "evidence_hash": "d9d820f4b5f48060",
+   "first_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
+   "article": {
+    "id": "n-690e608fd5fc",
+    "event_id": "e690e608fd5fc",
+    "revision": 1,
+    "source": {
+     "id": "bea",
+     "name": "U.S. Bureau of Economic Analysis",
+     "short": "BEA",
+     "region": "USA",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
+    },
+    "original_title": "GDP, (Second Estimate) and Corporate Profits, 3rd Quarter 2026",
+    "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
+    "also": [],
+    "published_at": "2026-11-25T13:30:00.000Z",
+    "retrieved_at": "2026-11-25T17:21:24.914Z",
+    "created_at": "2026-11-25T17:21:24.914Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 6670,
+     "truncated": false,
+     "hash": "d9d820f4b5f48060"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 4.4,
+     "why": {
+      "source": 0.9,
+      "categories": [
+       "lebensmittel",
+       "industrie",
+       "unternehmen"
+      ],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "GDP, (Second Estimate) and Corporate Profits, 3rd Quarter 2026",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "Real gross domestic product (GDP ) increased at an annual rate of 4.3 percent in the third quarter of 2026 (July, August, and September), according to the second estimate released today by the U.S."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "lebensmittel",
+     "industrie",
+     "unternehmen"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e51377bac4b1e": {
+   "revision": 1,
+   "evidence_hash": "0894e3332e00993c",
+   "first_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html",
+   "article": {
+    "id": "n-51377bac4b1e",
+    "event_id": "e51377bac4b1e",
+    "revision": 1,
+    "source": {
+     "id": "ecb",
+     "name": "Europäische Zentralbank",
+     "short": "EZB",
+     "region": "Euroraum",
+     "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+     "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+    },
+    "original_title": "Card payments edge past cash in shops; euro area consumers want both",
+    "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html",
+    "also": [],
+    "published_at": "2026-11-25T10:00:00.000Z",
+    "retrieved_at": "2026-11-25T17:21:24.914Z",
+    "created_at": "2026-11-25T17:21:24.914Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 2931,
+     "truncated": false,
+     "hash": "0894e3332e00993c"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Card payments edge past cash in shops; euro area consumers want both",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "The European Central Bank (ECB) today published its latest study on the payment attitudes of consumers in the euro area (SPACE)."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "lebensmittel"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e327ffe465de5": {
+   "revision": 1,
+   "evidence_hash": "76376917c31d9deb",
+   "first_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026",
+   "article": {
+    "id": "n-327ffe465de5",
+    "event_id": "e327ffe465de5",
+    "revision": 1,
+    "source": {
+     "id": "bea",
+     "name": "U.S. Bureau of Economic Analysis",
+     "short": "BEA",
+     "region": "USA",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
+    },
+    "original_title": "Personal Income and Outlays, October 2026",
+    "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026",
+    "also": [],
+    "published_at": "2026-11-25T13:30:00.000Z",
+    "retrieved_at": "2026-11-25T17:21:24.914Z",
+    "created_at": "2026-11-25T17:21:24.914Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 4968,
+     "truncated": false,
+     "hash": "76376917c31d9deb"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.4,
+     "why": {
+      "source": 0.9,
+      "categories": [],
+      "core": true,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Personal Income and Outlays, October 2026",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "Personal income increased $201.8 billion (0.7 percent at a monthly rate) in October, according to estimates released today by the U.S."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
     "words": 0,
     "length_ok": false,
     "status": "kurzmeldung",
