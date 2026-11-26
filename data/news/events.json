@@ -100,7 +100,10 @@
   "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html": "e379ab3a053f1",
   "bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026": "e690e608fd5fc",
   "ecb.europa.eu/press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html": "e51377bac4b1e",
-  "bea.gov/news/2026/personal-income-and-outlays-october-2026": "e327ffe465de5"
+  "bea.gov/news/2026/personal-income-and-outlays-october-2026": "e327ffe465de5",
+  "destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N084_51_42.html": "e31bec9a16472",
+  "federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm": "ed185a3607fcf",
+  "federalreserve.gov/newsevents/pressreleases/bcreg20261125a.htm": "eaef2d5244bfd"
  },
  "events": {
   "ebd4c87ff6729": {
@@ -9546,7 +9549,7 @@
    "revision": 1,
    "evidence_hash": "54e591fe0ecffb90",
    "first_seen_at": "2026-11-25T17:21:24.914Z",
-   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-26T17:01:21.154Z",
    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html",
    "article": {
     "id": "n-379ab3a053f1",
@@ -9564,8 +9567,8 @@
     "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html",
     "also": [],
     "published_at": "2026-11-25T07:00:00.000Z",
-    "retrieved_at": "2026-11-25T17:21:24.914Z",
-    "created_at": "2026-11-25T17:21:24.914Z",
+    "retrieved_at": "2026-11-26T17:01:21.154Z",
+    "created_at": "2026-11-26T17:01:21.154Z",
     "evidence": {
      "kind": "page",
      "chars": 14000,
@@ -9575,7 +9578,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 4.5,
+     "score": 4,
      "why": {
       "source": 1,
       "categories": [
@@ -9583,7 +9586,7 @@
        "industrie"
       ],
       "core": true,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -9623,7 +9626,7 @@
    "revision": 1,
    "evidence_hash": "d9d820f4b5f48060",
    "first_seen_at": "2026-11-25T17:21:24.914Z",
-   "last_seen_at": "2026-11-25T17:21:24.914Z",
+   "last_seen_at": "2026-11-26T17:01:21.154Z",
    "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
    "article": {
     "id": "n-690e608fd5fc",
@@ -9641,8 +9644,8 @@
     "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
     "also": [],
     "published_at": "2026-11-25T13:30:00.000Z",
-    "retrieved_at": "2026-11-25T17:21:24.914Z",
-    "created_at": "2026-11-25T17:21:24.914Z",
+    "retrieved_at": "2026-11-26T17:01:21.154Z",
+    "created_at": "2026-11-26T17:01:21.154Z",
     "evidence": {
      "kind": "page",
      "chars": 6670,
@@ -9652,7 +9655,7 @@
     "pipeline_version": "1.0.0",
     "model": null,
     "selection": {
-     "score": 4.4,
+     "score": 3.9,
      "why": {
       "source": 0.9,
       "categories": [
@@ -9661,7 +9664,7 @@
        "unternehmen"
       ],
       "core": true,
-      "fresh": true,
+      "fresh": false,
       "sensational": false
      }
     },
@@ -9828,6 +9831,237 @@
     "finanzwirkung": null,
     "naechstes": null,
     "categories": [],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "e31bec9a16472": {
+   "revision": 1,
+   "evidence_hash": "077cc8a1278b1af9",
+   "first_seen_at": "2026-11-26T17:01:21.154Z",
+   "last_seen_at": "2026-11-26T17:01:21.154Z",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N084_51_42.html",
+   "article": {
+    "id": "n-31bec9a16472",
+    "event_id": "e31bec9a16472",
+    "revision": 1,
+    "source": {
+     "id": "destatis",
+     "name": "Statistisches Bundesamt",
+     "short": "Destatis",
+     "region": "Deutschland",
+     "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+     "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+    },
+    "original_title": "Zahlen zum Advent: Heimische Produktion von Schokolade geht zurück",
+    "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_N084_51_42.html",
+    "also": [],
+    "published_at": "2026-11-26T07:00:00.000Z",
+    "retrieved_at": "2026-11-26T17:01:21.154Z",
+    "created_at": "2026-11-26T17:01:21.154Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 8152,
+     "truncated": false,
+     "hash": "077cc8a1278b1af9"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "energie",
+       "preise",
+       "industrie"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Zahlen zum Advent: Heimische Produktion von Schokolade geht zurück",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "WIESBADEN – Der erste Advent steht vor der Tür, da lohnt sich ein Blick auf ausgewählte Zahlen und Daten zur Advents- und Weihnachtszeit ."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "energie",
+     "preise",
+     "industrie"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-26",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "ed185a3607fcf": {
+   "revision": 1,
+   "evidence_hash": "c6d3495ddfc8b540",
+   "first_seen_at": "2026-11-26T17:01:21.154Z",
+   "last_seen_at": "2026-11-26T17:01:21.154Z",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm",
+   "article": {
+    "id": "n-d185a3607fcf",
+    "event_id": "ed185a3607fcf",
+    "revision": 1,
+    "source": {
+     "id": "fed",
+     "name": "Federal Reserve",
+     "short": "Fed",
+     "region": "USA",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "original_title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm",
+    "also": [],
+    "published_at": "2026-11-25T20:00:00.000Z",
+    "retrieved_at": "2026-11-26T17:01:21.154Z",
+    "created_at": "2026-11-26T17:01:21.154Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 1555,
+     "truncated": false,
+     "hash": "c6d3495ddfc8b540"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 3.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "lebensmittel",
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "The Federal Reserve Board and the Consumer Financial Protection Bureau today announced the dollar thresholds used to determine whether certain consumer credit and lease transactions in 2027 are subject to certain protections under Regulation Z (Truth in Lending) and Regulation M (Consumer Leasing)."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "lebensmittel",
+     "zinsen"
+    ],
+    "regions": [],
+    "sectors": [],
+    "companies": [],
+    "dividend": {
+     "status": "nicht erwähnt"
+    },
+    "glossary": [],
+    "scenario_link": null,
+    "event_date": "2026-11-25",
+    "words": 0,
+    "length_ok": false,
+    "status": "kurzmeldung",
+    "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+   },
+   "history": []
+  },
+  "eaef2d5244bfd": {
+   "revision": 1,
+   "evidence_hash": "b230363b6561052a",
+   "first_seen_at": "2026-11-26T17:01:21.154Z",
+   "last_seen_at": "2026-11-26T17:01:21.154Z",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125a.htm",
+   "article": {
+    "id": "n-aef2d5244bfd",
+    "event_id": "eaef2d5244bfd",
+    "revision": 1,
+    "source": {
+     "id": "fed",
+     "name": "Federal Reserve",
+     "short": "Fed",
+     "region": "USA",
+     "license": "US-Bundesbehörde, gemeinfrei",
+     "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+    },
+    "original_title": "Agencies announce dollar thresholds for smaller loan exemption from appraisal requirements for higher-priced mortgage loans",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125a.htm",
+    "also": [],
+    "published_at": "2026-11-25T20:00:00.000Z",
+    "retrieved_at": "2026-11-26T17:01:21.154Z",
+    "created_at": "2026-11-26T17:01:21.154Z",
+    "evidence": {
+     "kind": "page",
+     "chars": 1564,
+     "truncated": false,
+     "hash": "b230363b6561052a"
+    },
+    "pipeline_version": "1.0.0",
+    "model": null,
+    "selection": {
+     "score": 2.5,
+     "why": {
+      "source": 1,
+      "categories": [
+       "zinsen"
+      ],
+      "core": false,
+      "fresh": true,
+      "sensational": false
+     }
+    },
+    "title": "Agencies announce dollar thresholds for smaller loan exemption from appraisal requirements for higher-priced mortgage loans",
+    "kurzfassung": null,
+    "facts": [
+     {
+      "text": null,
+      "quote": "The Consumer Financial Protection Bureau, the Federal Reserve Board, and the Office of the Comptroller of the Currency today announced that the 2027 threshold for higher-priced mortgage loans that are subject to special appraisal requirements will increase from $34,200 to $35,500."
+     }
+    ],
+    "numbers": [],
+    "alltag": null,
+    "finanzwirkung": null,
+    "naechstes": null,
+    "categories": [
+     "zinsen"
+    ],
     "regions": [],
     "sectors": [],
     "companies": [],
