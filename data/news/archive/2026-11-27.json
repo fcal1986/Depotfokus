@@ -1,0 +1,361 @@
+{
+ "date": "2026-11-27",
+ "generated_at": "2026-11-27T16:46:45.121Z",
+ "result": "items",
+ "items": [
+  {
+   "id": "n-95dea0ace944",
+   "event_id": "e95dea0ace944",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Erwerbstätigkeit im Oktober 2026 saisonbereinigt gegenüber dem Vormonat leicht gesunken",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_412_132.html",
+   "also": [],
+   "published_at": "2026-11-27T07:00:00.000Z",
+   "retrieved_at": "2026-11-27T16:46:45.121Z",
+   "created_at": "2026-11-27T16:46:45.121Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6314,
+    "truncated": false,
+    "hash": "5b8a57f1e2dbf2fb"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 4.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "preise",
+      "zinsen"
+     ],
+     "core": true,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Erwerbstätigkeit im Oktober 2026 saisonbereinigt gegenüber dem Vormonat leicht gesunken",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "WIESBADEN – Im Oktober 2026 waren nach Ergebnissen der Erwerbstätigenrechnung rund 45,69 Millionen Personen mit Wohnort in Deutschland (Inländerkonzept) erwerbstätig."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "preise",
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-27",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-379ab3a053f1",
+   "event_id": "e379ab3a053f1",
+   "revision": 1,
+   "source": {
+    "id": "destatis",
+    "name": "Statistisches Bundesamt",
+    "short": "Destatis",
+    "region": "Deutschland",
+    "license": "Datenlizenz Deutschland – Namensnennung – 2.0",
+    "license_url": "https://www.destatis.de/DE/Service/Impressum/copyright-genehmigung.html"
+   },
+   "original_title": "Bruttoinlandsprodukt: Ausführliche Ergebnisse zur Wirtschaftsleistung im 3. Quartal 2026",
+   "url": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/11/PD26_409_811.html",
+   "also": [],
+   "published_at": "2026-11-25T07:00:00.000Z",
+   "retrieved_at": "2026-11-27T16:46:45.121Z",
+   "created_at": "2026-11-27T16:46:45.121Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 14000,
+    "truncated": true,
+    "hash": "54e591fe0ecffb90"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 4,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "industrie"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Bruttoinlandsprodukt: Ausführliche Ergebnisse zur Wirtschaftsleistung im 3. Quartal 2026",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Quartal 2026 – preis-, saison- und kalenderbereinigt – leicht um 0,1 % gestiegen."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-25",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-690e608fd5fc",
+   "event_id": "e690e608fd5fc",
+   "revision": 1,
+   "source": {
+    "id": "bea",
+    "name": "U.S. Bureau of Economic Analysis",
+    "short": "BEA",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.bea.gov/help/guidelines-for-citing-bea"
+   },
+   "original_title": "GDP, (Second Estimate) and Corporate Profits, 3rd Quarter 2026",
+   "url": "https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026",
+   "also": [],
+   "published_at": "2026-11-25T13:30:00.000Z",
+   "retrieved_at": "2026-11-27T16:46:45.121Z",
+   "created_at": "2026-11-27T16:46:45.121Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 6670,
+    "truncated": false,
+    "hash": "d9d820f4b5f48060"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3.9,
+    "why": {
+     "source": 0.9,
+     "categories": [
+      "lebensmittel",
+      "industrie",
+      "unternehmen"
+     ],
+     "core": true,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "GDP, (Second Estimate) and Corporate Profits, 3rd Quarter 2026",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "Real gross domestic product (GDP ) increased at an annual rate of 4.3 percent in the third quarter of 2026 (July, August, and September), according to the second estimate released today by the U.S."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "industrie",
+    "unternehmen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-25",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-d185a3607fcf",
+   "event_id": "ed185a3607fcf",
+   "revision": 1,
+   "source": {
+    "id": "fed",
+    "name": "Federal Reserve",
+    "short": "Fed",
+    "region": "USA",
+    "license": "US-Bundesbehörde, gemeinfrei",
+    "license_url": "https://www.federalreserve.gov/disclaimer.htm"
+   },
+   "original_title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261125b.htm",
+   "also": [],
+   "published_at": "2026-11-25T20:00:00.000Z",
+   "retrieved_at": "2026-11-27T16:46:45.121Z",
+   "created_at": "2026-11-27T16:46:45.121Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 1555,
+    "truncated": false,
+    "hash": "c6d3495ddfc8b540"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 3,
+    "why": {
+     "source": 1,
+     "categories": [
+      "lebensmittel",
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": false,
+     "sensational": false
+    }
+   },
+   "title": "Agencies announce dollar thresholds for applicability of truth in lending and consumer leasing rules for consumer credit and lease transactions",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "The Federal Reserve Board and the Consumer Financial Protection Bureau today announced the dollar thresholds used to determine whether certain consumer credit and lease transactions in 2027 are subject to certain protections under Regulation Z (Truth in Lending) and Regulation M (Consumer Leasing)."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "lebensmittel",
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-25",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  },
+  {
+   "id": "n-5a80c08964b2",
+   "event_id": "e5a80c08964b2",
+   "revision": 1,
+   "source": {
+    "id": "ecb",
+    "name": "Europäische Zentralbank",
+    "short": "EZB",
+    "region": "Euroraum",
+    "license": "Wiedergabe mit Quellenangabe erlaubt (EZB-Disclaimer, Copyright)",
+    "license_url": "https://www.ecb.europa.eu/home/disclaimer/html/index.en.html"
+   },
+   "original_title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+   "url": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261127~13ecadc0f2.en.html",
+   "also": [],
+   "published_at": "2026-11-27T14:00:00.000Z",
+   "retrieved_at": "2026-11-27T16:46:45.121Z",
+   "created_at": "2026-11-27T16:46:45.121Z",
+   "evidence": {
+    "kind": "page",
+    "chars": 7884,
+    "truncated": false,
+    "hash": "ad41ef1b58b52347"
+   },
+   "pipeline_version": "1.0.0",
+   "model": null,
+   "selection": {
+    "score": 2.5,
+    "why": {
+     "source": 1,
+     "categories": [
+      "zinsen"
+     ],
+     "core": false,
+     "fresh": true,
+     "sensational": false
+    }
+   },
+   "title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+   "kurzfassung": null,
+   "facts": [
+    {
+     "text": null,
+     "quote": "On 25 November 2026 the ECB announced that it had concluded an agreement with Sveriges Riksbank for Sweden to join T2, the Eurosystem’s real-time gross settlement system."
+    }
+   ],
+   "numbers": [],
+   "alltag": null,
+   "finanzwirkung": null,
+   "naechstes": null,
+   "categories": [
+    "zinsen"
+   ],
+   "regions": [],
+   "sectors": [],
+   "companies": [],
+   "dividend": {
+    "status": "nicht erwähnt"
+   },
+   "glossary": [],
+   "scenario_link": null,
+   "event_date": "2026-11-27",
+   "words": 0,
+   "length_ok": false,
+   "status": "kurzmeldung",
+   "check_note": "Sprachmodell nicht verfügbar (Claude API 401: invalid x-api-key). Originaltitel und ein wörtlicher Satz aus der Quelle; Einordnung fehlt."
+  }
+ ],
+ "held": [
+  {
+   "event_id": "e3a0603a05d99",
+   "title": "Ergebnisse der EZB-Umfrage zu den Verbrauchererwartungen: Oktober 2026",
+   "url": "https://www.bundesbank.de/de/presse/pressemitteilungen/ezb/ergebnisse-der-ezb-umfrage-zu-den-verbrauchererwartungen-oktober-2026-1017178",
+   "why": "Quellseite nicht lesbar; ein Feed-Titel allein trägt keine Meldung.",
+   "log": null
+  }
+ ]
+}
